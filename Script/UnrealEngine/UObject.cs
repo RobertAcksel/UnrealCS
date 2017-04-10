@@ -29,17 +29,24 @@ namespace UnrealEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         static extern void _LogError(string msg);
 
-        public static void LogInfo(string msg,params object[] args)
+        public static void LogInfo(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0)
         {
-            _LogInfo(string.Format(msg, args));
+            _LogInfo($"{file}:({line}) in {member} {msg}");
         }
+
         public static void LogWarning(string msg, params object[] args)
         {
             _LogWarning(string.Format(msg, args));
         }
-        public static void LogError(string msg, params object[] args)
+
+        public static void LogWarning(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0)
         {
-            _LogError(string.Format(msg, args));
+            _LogWarning($"{file}:({line}) in {member} {msg}");
+        }
+
+        public static void LogError(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0)
+        {
+            _LogError($"{file}:({line}) in {member} {msg}");
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
