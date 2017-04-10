@@ -21,6 +21,12 @@
 			"WhitelistPlatforms": [ "Win64","Win32","Android","Mac" ]
 		},
 		{
+			"Name" : "MonoScriptGeneratorPlugin",
+			"Type" : "Program",
+			"LoadingPhase" : "PostConfigInit",
+			"WhitelistPlatforms": [ "Win64","Win32","Android","Mac" ]
+    	},
+		{	
 			"Name" : "MonoPlugin",
 			"Type" : "Runtime",
 			"LoadingPhase" : "PreDefault",
