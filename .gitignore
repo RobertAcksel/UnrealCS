@@ -1,3 +1,6 @@
 Binaries/
 Intermediate/
 .vscode/
+obj
+Script/Script.VC.db
+bin

@@ -53,6 +53,8 @@ typedef unsigned __int64	uint64_t;
 
 #endif /* end of compiler-specific stuff */
 
+#include <stdlib.h>
+
 #if defined(MONO_DLL_EXPORT)
 	#define MONO_API MONO_API_EXPORT
 #elif defined(MONO_DLL_IMPORT)
@@ -71,7 +73,58 @@ typedef void	(*MonoHFunc)	(void* key, void* value, void* user_data);
 
 MONO_API void mono_free (void *);
 
+#define MONO_ALLOCATOR_VTABLE_VERSION 1
+
+typedef struct {
+	int version;
+	void *(*malloc)      (size_t size);
+	void *(*realloc)     (void *mem, size_t count);
+	void (*free)        (void *mem);
+	void *(*calloc)      (size_t count, size_t size);
+} MonoAllocatorVTable;
+
+MONO_API mono_bool
+mono_set_allocator_vtable (MonoAllocatorVTable* vtable);
+
+
 #define MONO_CONST_RETURN const
+
+/*
+ * When embedding, you have to define MONO_ZERO_LEN_ARRAY before including any
+ * other Mono header file if you use a different compiler from the one used to
+ * build Mono.
+ */
+#ifndef MONO_ZERO_LEN_ARRAY
+#ifdef __GNUC__
+#define MONO_ZERO_LEN_ARRAY 0
+#else
+#define MONO_ZERO_LEN_ARRAY 1
+#endif
+#endif
+
+#if defined (MONO_INSIDE_RUNTIME)
+
+#if defined (__clang__)
+#define MONO_RT_EXTERNAL_ONLY __attribute__ ((unavailable("The mono runtime must not call this function")))
+#elif defined (__GNUC__)
+#define MONO_RT_EXTERNAL_ONLY __attribute__ ((error("The mono runtime must not call this function")))
+#else
+#define MONO_RT_EXTERNAL_ONLY
+#endif /* __clang__ */
+
+#else
+#define MONO_RT_EXTERNAL_ONLY
+#endif /* MONO_INSIDE_RUNTIME */
+
+#ifdef __GNUC__
+#define _MONO_DEPRECATED __attribute__ ((deprecated))
+#elif defined (_MSC_VER)
+#define _MONO_DEPRECATED __declspec (deprecated)
+#else
+#define _MONO_DEPRECATED
+#endif
+
+#define MONO_DEPRECATED MONO_API MONO_RT_EXTERNAL_ONLY _MONO_DEPRECATED
 
 MONO_END_DECLS
 

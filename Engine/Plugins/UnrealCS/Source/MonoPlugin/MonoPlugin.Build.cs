@@ -70,7 +70,7 @@ namespace UnrealBuildTool.Rules
                 string LibraryName;
                 if (bEnableSGen)
                 {
-                    LibraryName = "monosgen-2.0";
+                    LibraryName = "mono-2.0-sgen";
                 }
                 else
                 {

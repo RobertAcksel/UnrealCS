@@ -13,7 +13,7 @@ namespace Mono
 	void LoadMonoDLL()
 	{
 #if WITH_MONO_SGEN
-		const TCHAR* MonoBaseLibName = TEXT("monosgen");
+		const TCHAR* MonoBaseLibName = TEXT("mono");
 #else
 		const TCHAR* MonoBaseLibName = TEXT("mono");
 #endif
@@ -24,7 +24,7 @@ namespace Mono
 		FString RootMonoPath = FPaths::EngineDir() / TEXT("Binaries/ThirdParty/EMono/bin/Win32/");
 #endif
 		FPlatformProcess::PushDllDirectory(*RootMonoPath);
-		MonoDLLHandle = FPlatformProcess::GetDllHandle(*FString::Printf(TEXT("%s%s-2.0.dll"), *RootMonoPath, MonoBaseLibName));
+		MonoDLLHandle = FPlatformProcess::GetDllHandle(*FString::Printf(TEXT("%s%s-2.0-sgen.dll"), *RootMonoPath, MonoBaseLibName));
 		check(nullptr != MonoDLLHandle);
 		FPlatformProcess::PopDllDirectory(*RootMonoPath);
 	}

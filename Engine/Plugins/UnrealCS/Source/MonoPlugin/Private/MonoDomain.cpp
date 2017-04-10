@@ -350,12 +350,14 @@ MonoDomain* LastDomain = nullptr;
 void FMonoDomain::OnBeginPIE(const bool bIsSimulating)
 {
 	LastDomain = Domain;
-	Domain = CreateGameDomain();
+    UE_LOG(LogMono, Warning, TEXT("Loading Domain."));
+    Domain = CreateGameDomain();
 }
 void FMonoDomain::OnEndPIE(const bool bIsSimulating)
 {
 	Domain  = LastDomain;
-	if (!mono_domain_set(Domain, false))
+    UE_LOG(LogMono, Warning, TEXT("Unloading Domain."));
+    if (!mono_domain_set(Domain, false))
 	{
 		UE_LOG(LogMono, Warning, TEXT("Domain Recover Failed"));
 		return;
