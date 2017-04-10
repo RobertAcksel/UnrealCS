@@ -34,10 +34,10 @@ namespace UnrealEngine
             _LogInfo($"{file}:({line}) in {member} {msg}");
         }
 
-        public static void LogWarning(string msg, params object[] args)
-        {
-            _LogWarning(string.Format(msg, args));
-        }
+//        public static void LogWarning(string msg, params object[] args)
+//        {
+//            _LogWarning(string.Format(msg, args));
+//        }
 
         public static void LogWarning(string msg, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0)
         {
