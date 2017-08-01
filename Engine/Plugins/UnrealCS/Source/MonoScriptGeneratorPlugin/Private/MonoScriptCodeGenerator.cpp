@@ -49,6 +49,14 @@ FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath,
 	BlackList.AddFunction("AnimInstance", "PlaySlotAnimation");
 	BlackList.AddFunction("SceneComponent", "DetachFromParent");
 	BlackList.AddFunction("GameplayStatics", "BeginSpawningActorFromClass");
+
+    BlackList.AddFunction("MovieSceneSequencePlayer", "GetBoundObjects");
+
+    BlackList.AddFunction("KismetRenderingLibrary", "BreakSkinWeightInfo");
+    BlackList.AddFunction("KismetRenderingLibrary", "MakeSkinWeightInfo");
+
+    BlackList.AddFunction("SkinnedMeshComponent", "SetSkinWeightOverride");
+    
 }
 
 void FMonoScriptCodeGenerator::FinishExport()

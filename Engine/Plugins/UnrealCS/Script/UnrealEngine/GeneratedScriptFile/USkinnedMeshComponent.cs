@@ -81,14 +81,6 @@ public  void ClearSkinWeightOverride(int LODIndex)
 	
 }
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetSkinWeightOverride(IntPtr _this,int LODIndex,FSkelMeshSkinWeightInfo[] SkinWeights);
-public  void SetSkinWeightOverride(int LODIndex,FSkelMeshSkinWeightInfo[] SkinWeights)
-{
-	CheckIsValid();
-	SetSkinWeightOverride(_this.Get(),LODIndex,SkinWeights);
-	
-}
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
 extern static void ClearVertexColorOverride(IntPtr _this,int LODIndex);
 public  void ClearVertexColorOverride(int LODIndex)
 {

@@ -61,11 +61,6 @@ namespace UnrealEngine
 			_this->ClearSkinWeightOverride(LODIndex);
 			
 		}
-		static void SetSkinWeightOverride(USkinnedMeshComponent* _this,int32 LODIndex,MonoArray* SkinWeights)
-		{
-			_this->SetSkinWeightOverride(LODIndex,MonoArrayToTArray<FSkelMeshSkinWeightInfo>(SkinWeights));
-			
-		}
 		static void ClearVertexColorOverride(USkinnedMeshComponent* _this,int32 LODIndex)
 		{
 			_this->ClearVertexColorOverride(LODIndex);
@@ -157,7 +152,6 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::BoneIsChildOf",(const void*)BoneIsChildOf);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetMasterPoseComponent",(const void*)SetMasterPoseComponent);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::ClearSkinWeightOverride",(const void*)ClearSkinWeightOverride);
-			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetSkinWeightOverride",(const void*)SetSkinWeightOverride);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::ClearVertexColorOverride",(const void*)ClearVertexColorOverride);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetVertexColorOverride_LinearColor",(const void*)SetVertexColorOverride_LinearColor);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::GetParentBone",(const void*)GetParentBone);

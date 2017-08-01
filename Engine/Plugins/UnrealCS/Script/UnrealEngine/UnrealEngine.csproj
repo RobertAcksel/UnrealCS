@@ -181,6 +181,7 @@
     <Compile Include="GeneratedScriptFile\EBlendableLocation.cs" />
     <Compile Include="GeneratedScriptFile\EBlendMode.cs" />
     <Compile Include="GeneratedScriptFile\EBlendSpaceAxis.cs" />
+    <Compile Include="GeneratedScriptFile\EBloomMethod.cs" />
     <Compile Include="GeneratedScriptFile\EBlueprintStatus.cs" />
     <Compile Include="GeneratedScriptFile\EBlueprintType.cs" />
     <Compile Include="GeneratedScriptFile\EBodyCollisionResponse.cs" />
@@ -261,6 +262,8 @@
     <Compile Include="GeneratedScriptFile\EMaterialSamplerType.cs" />
     <Compile Include="GeneratedScriptFile\EMaterialShadingModel.cs" />
     <Compile Include="GeneratedScriptFile\EMaterialTessellationMode.cs" />
+    <Compile Include="GeneratedScriptFile\EMaterialVectorCoordTransform.cs" />
+    <Compile Include="GeneratedScriptFile\EMaterialVectorCoordTransformSource.cs" />
     <Compile Include="GeneratedScriptFile\EMaxConcurrentResolutionRule.cs" />
     <Compile Include="GeneratedScriptFile\EMenuPlacement.cs" />
     <Compile Include="GeneratedScriptFile\EMeshCameraFacingOptions.cs" />
@@ -284,6 +287,7 @@
     <Compile Include="GeneratedScriptFile\ENotifyFilterType.cs" />
     <Compile Include="GeneratedScriptFile\ENotifyTriggerMode.cs" />
     <Compile Include="GeneratedScriptFile\EObjectTypeQuery.cs" />
+    <Compile Include="GeneratedScriptFile\EOcclusionCombineMode.cs" />
     <Compile Include="GeneratedScriptFile\EOpacitySourceMode.cs" />
     <Compile Include="GeneratedScriptFile\EOrbitChainMode.cs" />
     <Compile Include="GeneratedScriptFile\EOrientation.cs" />
@@ -431,6 +435,7 @@
     <Compile Include="GeneratedScriptFile\UAnimMontage.cs" />
     <Compile Include="GeneratedScriptFile\UAnimNotify.cs" />
     <Compile Include="GeneratedScriptFile\UAnimNotifyState.cs" />
+    <Compile Include="GeneratedScriptFile\UAnimNotifyState_DisableRootMotion.cs" />
     <Compile Include="GeneratedScriptFile\UAnimNotifyState_TimedParticleEffect.cs" />
     <Compile Include="GeneratedScriptFile\UAnimNotifyState_Trail.cs" />
     <Compile Include="GeneratedScriptFile\UAnimNotify_PlayParticleEffect.cs" />
@@ -446,6 +451,8 @@
     <Compile Include="GeneratedScriptFile\UArrowComponent.cs" />
     <Compile Include="GeneratedScriptFile\UAssetClassProperty.cs" />
     <Compile Include="GeneratedScriptFile\UAssetImportData.cs" />
+    <Compile Include="GeneratedScriptFile\UAssetManager.cs" />
+    <Compile Include="GeneratedScriptFile\UAssetManagerSettings.cs" />
     <Compile Include="GeneratedScriptFile\UAssetMappingTable.cs" />
     <Compile Include="GeneratedScriptFile\UAssetObjectProperty.cs" />
     <Compile Include="GeneratedScriptFile\UAssetUserData.cs" />
@@ -522,6 +529,7 @@
     <Compile Include="GeneratedScriptFile\UConsole.cs" />
     <Compile Include="GeneratedScriptFile\UContentWidget.cs" />
     <Compile Include="GeneratedScriptFile\UControlChannel.cs" />
+    <Compile Include="GeneratedScriptFile\UControlRigInterface.cs" />
     <Compile Include="GeneratedScriptFile\UCurveBase.cs" />
     <Compile Include="GeneratedScriptFile\UCurveFloat.cs" />
     <Compile Include="GeneratedScriptFile\UCurveLinearColor.cs" />
@@ -719,11 +727,13 @@
     <Compile Include="GeneratedScriptFile\UKismetNodeHelperLibrary.cs" />
     <Compile Include="GeneratedScriptFile\UKismetRenderingLibrary.cs" />
     <Compile Include="GeneratedScriptFile\UKismetStringLibrary.cs" />
+    <Compile Include="GeneratedScriptFile\UKismetStringTableLibrary.cs" />
     <Compile Include="GeneratedScriptFile\UKismetSystemLibrary.cs" />
     <Compile Include="GeneratedScriptFile\UKismetTextLibrary.cs" />
     <Compile Include="GeneratedScriptFile\ULayer.cs" />
     <Compile Include="GeneratedScriptFile\ULazyObjectProperty.cs" />
     <Compile Include="GeneratedScriptFile\ULevel.cs" />
+    <Compile Include="GeneratedScriptFile\ULevelActorContainer.cs" />
     <Compile Include="GeneratedScriptFile\ULevelScriptBlueprint.cs" />
     <Compile Include="GeneratedScriptFile\ULevelStreaming.cs" />
     <Compile Include="GeneratedScriptFile\ULevelStreamingAlwaysLoaded.cs" />
@@ -867,6 +877,7 @@
     <Compile Include="GeneratedScriptFile\UMaterialExpressionSceneTexture.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionScreenPosition.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionSetMaterialAttributes.cs" />
+    <Compile Include="GeneratedScriptFile\UMaterialExpressionSign.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionSine.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionSpeedTree.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionSphereMask.cs" />
@@ -898,6 +909,7 @@
     <Compile Include="GeneratedScriptFile\UMaterialExpressionVectorNoise.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionVectorParameter.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionVertexColor.cs" />
+    <Compile Include="GeneratedScriptFile\UMaterialExpressionVertexInterpolator.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionVertexNormalWS.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionViewProperty.cs" />
     <Compile Include="GeneratedScriptFile\UMaterialExpressionViewSize.cs" />
@@ -970,6 +982,7 @@
     <Compile Include="GeneratedScriptFile\UMovieSceneLevelVisibilityTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneMarginSection.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneMarginTrack.cs" />
+    <Compile Include="GeneratedScriptFile\UMovieSceneMaterialParameterCollectionTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneMaterialTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneNameableTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneParameterSection.cs" />
@@ -978,6 +991,8 @@
     <Compile Include="GeneratedScriptFile\UMovieSceneParticleTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieScenePropertyTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneSection.cs" />
+    <Compile Include="GeneratedScriptFile\UMovieSceneSegmentCompilerTestSection.cs" />
+    <Compile Include="GeneratedScriptFile\UMovieSceneSegmentCompilerTestTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneSequence.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneSequencePlayer.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneSignedObject.cs" />
@@ -992,6 +1007,7 @@
     <Compile Include="GeneratedScriptFile\UMovieSceneSubSection.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneSubTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneTrack.cs" />
+    <Compile Include="GeneratedScriptFile\UMovieSceneTransformTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneVectorSection.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneVectorTrack.cs" />
     <Compile Include="GeneratedScriptFile\UMovieSceneVisibilityTrack.cs" />
@@ -1040,6 +1056,8 @@
     <Compile Include="GeneratedScriptFile\UNetDriver.cs" />
     <Compile Include="GeneratedScriptFile\UNetworkPredictionInterface.cs" />
     <Compile Include="GeneratedScriptFile\UNetworkSettings.cs" />
+    <Compile Include="GeneratedScriptFile\UNodeMappingContainer.cs" />
+    <Compile Include="GeneratedScriptFile\UNodeMappingProviderInterface.cs" />
     <Compile Include="GeneratedScriptFile\UNumericProperty.cs" />
     <Compile Include="GeneratedScriptFile\UObject.cs" />
     <Compile Include="GeneratedScriptFile\UObjectLibrary.cs" />
@@ -1047,6 +1065,7 @@
     <Compile Include="GeneratedScriptFile\UObjectPropertyBase.cs" />
     <Compile Include="GeneratedScriptFile\UObjectRedirector.cs" />
     <Compile Include="GeneratedScriptFile\UObjectReferencer.cs" />
+    <Compile Include="GeneratedScriptFile\UOcclusionPluginSourceSettingsBase.cs" />
     <Compile Include="GeneratedScriptFile\UOnlineBlueprintCallProxyBase.cs" />
     <Compile Include="GeneratedScriptFile\UOnlineEngineInterface.cs" />
     <Compile Include="GeneratedScriptFile\UOnlineSession.cs" />
@@ -1210,6 +1229,8 @@
     <Compile Include="GeneratedScriptFile\UPoseWatch.cs" />
     <Compile Include="GeneratedScriptFile\UPostProcessComponent.cs" />
     <Compile Include="GeneratedScriptFile\UPreviewMeshCollection.cs" />
+    <Compile Include="GeneratedScriptFile\UPrimaryAssetLabel.cs" />
+    <Compile Include="GeneratedScriptFile\UPrimaryDataAsset.cs" />
     <Compile Include="GeneratedScriptFile\UPrimitiveComponent.cs" />
     <Compile Include="GeneratedScriptFile\UProgressBar.cs" />
     <Compile Include="GeneratedScriptFile\UProjectileMovementComponent.cs" />
@@ -1225,6 +1246,7 @@
     <Compile Include="GeneratedScriptFile\UReporterGraph.cs" />
     <Compile Include="GeneratedScriptFile\URetainerBox.cs" />
     <Compile Include="GeneratedScriptFile\UReverbEffect.cs" />
+    <Compile Include="GeneratedScriptFile\UReverbPluginSourceSettingsBase.cs" />
     <Compile Include="GeneratedScriptFile\URichTextBlock.cs" />
     <Compile Include="GeneratedScriptFile\URichTextBlockDecorator.cs" />
     <Compile Include="GeneratedScriptFile\URig.cs" />
@@ -1279,6 +1301,7 @@
     <Compile Include="GeneratedScriptFile\USoundCue.cs" />
     <Compile Include="GeneratedScriptFile\USoundEffectPreset.cs" />
     <Compile Include="GeneratedScriptFile\USoundEffectSourcePreset.cs" />
+    <Compile Include="GeneratedScriptFile\USoundEffectSourcePresetChain.cs" />
     <Compile Include="GeneratedScriptFile\USoundEffectSubmixPreset.cs" />
     <Compile Include="GeneratedScriptFile\USoundGroups.cs" />
     <Compile Include="GeneratedScriptFile\USoundMix.cs" />
@@ -1310,6 +1333,7 @@
     <Compile Include="GeneratedScriptFile\USoundWave.cs" />
     <Compile Include="GeneratedScriptFile\USoundWaveProcedural.cs" />
     <Compile Include="GeneratedScriptFile\USpacer.cs" />
+    <Compile Include="GeneratedScriptFile\USpatializationPluginSourceSettingsBase.cs" />
     <Compile Include="GeneratedScriptFile\USpectatorPawnMovement.cs" />
     <Compile Include="GeneratedScriptFile\USphereComponent.cs" />
     <Compile Include="GeneratedScriptFile\USphereReflectionCaptureComponent.cs" />
@@ -1324,6 +1348,7 @@
     <Compile Include="GeneratedScriptFile\UStereoLayerComponent.cs" />
     <Compile Include="GeneratedScriptFile\UStereoLayerFunctionLibrary.cs" />
     <Compile Include="GeneratedScriptFile\UStreamingSettings.cs" />
+    <Compile Include="GeneratedScriptFile\UStringTable.cs" />
     <Compile Include="GeneratedScriptFile\UStrProperty.cs" />
     <Compile Include="GeneratedScriptFile\UStruct.cs" />
     <Compile Include="GeneratedScriptFile\UStructProperty.cs" />

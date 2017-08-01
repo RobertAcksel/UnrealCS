@@ -6,15 +6,6 @@ namespace UnrealEngine{
 public partial class UMovieSceneSequencePlayer:UObject 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static IntPtr[] GetBoundObjects(IntPtr _this,ref FMovieSceneObjectBindingID ObjectBinding);
-public  UObject[] GetBoundObjects(FMovieSceneObjectBindingID ObjectBinding)
-{
-	CheckIsValid();
-	IntPtr[] ___ret = GetBoundObjects(_this.Get(),ref ObjectBinding);
-	return MarshalUtil.IntPtrArrayToObjectArray<UObject>(___ret);
-	
-}
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
 extern static float GetPlaybackEnd(IntPtr _this);
 public  float GetPlaybackEnd()
 {
