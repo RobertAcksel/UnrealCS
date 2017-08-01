@@ -1,3 +1,5 @@
+//GENERATED: 
+
 #pragma once
 
 namespace UnrealEngine

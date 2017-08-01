@@ -13,7 +13,7 @@ FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath,
 	FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
 	GeneratedCodePath = FPaths::Combine(*PluginDir, TEXT("Source"), TEXT("MonoPlugin"), TEXT("Private"), TEXT("GeneratedScriptLibraries"));
 
-	CSFileExportPath = FPaths::Combine(*RootLocalPath, TEXT("GeneratedScriptFile"));
+	CSFileExportPath = FPaths::Combine(*PluginDir, TEXT("Script"), TEXT("UnrealEngine"), TEXT("GeneratedScriptFile"));
 	DocHelper::InitializeToolTipLocalization();
 
 	//BlackList.AddStruct("RepMovement");
@@ -153,7 +153,8 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 	const FString ClassNameCPP = GetClassNameCPP(Class);
 
 	GeneratedCSFile.Empty();
-	GeneratedCSFile = TEXT("using System;\r\nusing System.Runtime.CompilerServices;\r\n");
+    GeneratedCSFile += TEXT("//GENERATED: \r\n");
+    GeneratedCSFile += TEXT("using System;\r\nusing System.Runtime.CompilerServices;\r\n");
 	GeneratedCSFile += TEXT("using System.Runtime.InteropServices;\r\n");
 
 
@@ -178,7 +179,8 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 
 		FMonoTextBuilder GeneratedGlue;
-		GeneratedGlue.AppendLine(TEXT("#pragma once"));
+        GeneratedGlue.AppendLine(TEXT("//GENERATED: \r\n"));
+        GeneratedGlue.AppendLine(TEXT("#pragma once"));
 		GeneratedGlue.AppendLine();
 		GeneratedGlue.AppendLine(TEXT("namespace UnrealEngine"));
 		GeneratedGlue.OpenBrace();
