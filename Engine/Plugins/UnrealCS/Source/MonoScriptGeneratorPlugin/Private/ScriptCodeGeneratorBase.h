@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include "Array.h"
+#include "Set.h"
+
 /**
 * Base for script code generators.
 * Contains utility functions that may be common to more specialized script glue generators.

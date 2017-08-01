@@ -4,6 +4,13 @@ namespace UnrealEngine
 {
 	class _UWidgetBlueprintLibrary
 	{
+		static int32 SetHardwareCursor(UWidgetBlueprintLibrary* _this,UObject* WorldContextObject,int32 CursorShape,MonoString* CursorName,FVector2D* HotSpot)
+		{
+			FName CursorName_temp=MonoStringToFName(CursorName);
+			bool ___ret = _this->SetHardwareCursor(WorldContextObject,(TEnumAsByte<EMouseCursor::Type>)CursorShape,CursorName_temp,*HotSpot);
+			return ___ret?1:0;
+			
+		}
 		static void GetSafeZonePadding(UWidgetBlueprintLibrary* _this,UObject* WorldContextObject,FVector2D* SafePadding,FVector2D* SafePaddingScale,FVector2D* SpillOverPadding)
 		{
 			_this->GetSafeZonePadding(WorldContextObject,*SafePadding,*SafePaddingScale,*SpillOverPadding);
@@ -259,6 +266,7 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::SetHardwareCursor",(const void*)SetHardwareCursor);
 			mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::GetSafeZonePadding",(const void*)GetSafeZonePadding);
 			mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::GetInputEventFromNavigationEvent",(const void*)GetInputEventFromNavigationEvent);
 			mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::GetInputEventFromControllerEvent",(const void*)GetInputEventFromControllerEvent);

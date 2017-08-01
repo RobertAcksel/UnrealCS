@@ -4,6 +4,11 @@ namespace UnrealEngine
 {
 	class _UMultiLineEditableTextBox
 	{
+		static void SetIsReadOnly(UMultiLineEditableTextBox* _this,int32 bReadOnly)
+		{
+			_this->SetIsReadOnly(bReadOnly>0?true:false);
+			
+		}
 		static void SetError(UMultiLineEditableTextBox* _this,MonoString* InError)
 		{
 			FText InError_temp=FText::FromString(MonoStringToFString(InError));
@@ -26,6 +31,7 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.UMultiLineEditableTextBox::SetIsReadOnly",(const void*)SetIsReadOnly);
 			mono_add_internal_call("UnrealEngine.UMultiLineEditableTextBox::SetError",(const void*)SetError);
 			mono_add_internal_call("UnrealEngine.UMultiLineEditableTextBox::SetText",(const void*)SetText);
 			mono_add_internal_call("UnrealEngine.UMultiLineEditableTextBox::GetText",(const void*)GetText);

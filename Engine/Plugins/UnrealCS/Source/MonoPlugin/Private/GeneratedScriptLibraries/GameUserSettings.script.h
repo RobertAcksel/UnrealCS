@@ -4,6 +4,18 @@ namespace UnrealEngine
 {
 	class _UGameUserSettings
 	{
+		static int32 IsHDREnabled(UGameUserSettings* _this)
+		{
+			bool ___ret = _this->IsHDREnabled();
+			return ___ret?1:0;
+			
+		}
+		static int32 GetCurrentHDRDisplayNits(UGameUserSettings* _this)
+		{
+			int32 ___ret = _this->GetCurrentHDRDisplayNits();
+			return ___ret;
+			
+		}
 		static void EnableHDRDisplayOutput(UGameUserSettings* _this,int32 bEnable,int32 DisplayNits)
 		{
 			_this->EnableHDRDisplayOutput(bEnable>0?true:false,DisplayNits);
@@ -46,6 +58,12 @@ namespace UnrealEngine
 		static FIntPoint GetDefaultResolution(UGameUserSettings* _this)
 		{
 			FIntPoint ___ret = _this->GetDefaultResolution();
+			return ___ret;
+			
+		}
+		static float GetRecommendedResolutionScale(UGameUserSettings* _this)
+		{
+			float ___ret = _this->GetRecommendedResolutionScale();
 			return ___ret;
 			
 		}
@@ -320,6 +338,8 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.UGameUserSettings::IsHDREnabled",(const void*)IsHDREnabled);
+			mono_add_internal_call("UnrealEngine.UGameUserSettings::GetCurrentHDRDisplayNits",(const void*)GetCurrentHDRDisplayNits);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::EnableHDRDisplayOutput",(const void*)EnableHDRDisplayOutput);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::SupportsHDRDisplayOutput",(const void*)SupportsHDRDisplayOutput);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::ApplyHardwareBenchmarkResults",(const void*)ApplyHardwareBenchmarkResults);
@@ -328,6 +348,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::GetDefaultWindowMode",(const void*)GetDefaultWindowMode);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::GetDefaultWindowPosition",(const void*)GetDefaultWindowPosition);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::GetDefaultResolution",(const void*)GetDefaultResolution);
+			mono_add_internal_call("UnrealEngine.UGameUserSettings::GetRecommendedResolutionScale",(const void*)GetRecommendedResolutionScale);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::GetDefaultResolutionScale",(const void*)GetDefaultResolutionScale);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::SetToDefaults",(const void*)SetToDefaults);
 			mono_add_internal_call("UnrealEngine.UGameUserSettings::ResetToCurrentSettings",(const void*)ResetToCurrentSettings);

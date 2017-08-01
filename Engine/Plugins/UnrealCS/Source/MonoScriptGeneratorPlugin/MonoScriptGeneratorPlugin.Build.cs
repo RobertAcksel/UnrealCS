@@ -8,8 +8,8 @@ namespace UnrealBuildTool.Rules
 {
 	public class MonoScriptGeneratorPlugin : ModuleRules
 	{
-		public MonoScriptGeneratorPlugin(TargetInfo Target)
-		{
+		public MonoScriptGeneratorPlugin(ReadOnlyTargetRules Target) : base(Target)
+        {
 			PublicIncludePaths.AddRange(
 				new string[] {					
 					"Programs/UnrealHeaderTool/Public",

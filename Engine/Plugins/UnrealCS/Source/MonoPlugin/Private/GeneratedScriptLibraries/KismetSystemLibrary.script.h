@@ -32,6 +32,12 @@ namespace UnrealEngine
 			return FStringToMonoString(___ret);
 			
 		}
+		static MonoString* GetDefaultLocale(UKismetSystemLibrary* _this)
+		{
+			FString ___ret = _this->GetDefaultLocale();
+			return FStringToMonoString(___ret);
+			
+		}
 		static MonoArray* GetPreferredLanguages(UKismetSystemLibrary* _this)
 		{
 			TArray<FString> ___ret = _this->GetPreferredLanguages();
@@ -305,6 +311,70 @@ namespace UnrealEngine
 			TArray<AActor*> OutActorList_temp;
 			_this->GetActorListFromComponentList(MonoArrayToTArray<UPrimitiveComponent*>(ComponentList),ActorClassFilter,OutActorList_temp);
 			*OutActorList=TArrayToMonoArray(OutActorList_temp,"System.IntPtr,mscorlib");
+			
+		}
+		static int32 CapsuleTraceMultiByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,float Radius,float HalfHeight,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,MonoArray** OutHits,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			TArray<FHitResult> OutHits_temp;
+			bool ___ret = _this->CapsuleTraceMultiByProfile(WorldContextObject,*Start,*End,Radius,HalfHeight,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,OutHits_temp,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			*OutHits=TArrayToMonoArray(OutHits_temp,"UnrealEngine.FHitResult,UnrealEngine");
+			
+		}
+		static int32 CapsuleTraceSingleByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,float Radius,float HalfHeight,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,FHitResult* OutHit,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			bool ___ret = _this->CapsuleTraceSingleByProfile(WorldContextObject,*Start,*End,Radius,HalfHeight,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,*OutHit,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			
+		}
+		static int32 BoxTraceMultiByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,FVector* HalfSize,FRotator* Orientation,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,MonoArray** OutHits,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			TArray<FHitResult> OutHits_temp;
+			bool ___ret = _this->BoxTraceMultiByProfile(WorldContextObject,*Start,*End,*HalfSize,*Orientation,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,OutHits_temp,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			*OutHits=TArrayToMonoArray(OutHits_temp,"UnrealEngine.FHitResult,UnrealEngine");
+			
+		}
+		static int32 BoxTraceSingleByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,FVector* HalfSize,FRotator* Orientation,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,FHitResult* OutHit,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			bool ___ret = _this->BoxTraceSingleByProfile(WorldContextObject,*Start,*End,*HalfSize,*Orientation,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,*OutHit,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			
+		}
+		static int32 SphereTraceMultiByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,float Radius,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,MonoArray** OutHits,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			TArray<FHitResult> OutHits_temp;
+			bool ___ret = _this->SphereTraceMultiByProfile(WorldContextObject,*Start,*End,Radius,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,OutHits_temp,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			*OutHits=TArrayToMonoArray(OutHits_temp,"UnrealEngine.FHitResult,UnrealEngine");
+			
+		}
+		static int32 SphereTraceSingleByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,float Radius,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,FHitResult* OutHit,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			bool ___ret = _this->SphereTraceSingleByProfile(WorldContextObject,*Start,*End,Radius,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,*OutHit,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			
+		}
+		static int32 LineTraceMultiByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,MonoArray** OutHits,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			TArray<FHitResult> OutHits_temp;
+			bool ___ret = _this->LineTraceMultiByProfile(WorldContextObject,*Start,*End,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,OutHits_temp,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
+			*OutHits=TArrayToMonoArray(OutHits_temp,"UnrealEngine.FHitResult,UnrealEngine");
+			
+		}
+		static int32 LineTraceSingleByProfile(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,MonoString* ProfileName,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,FHitResult* OutHit,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
+		{
+			FName ProfileName_temp=MonoStringToFName(ProfileName);
+			bool ___ret = _this->LineTraceSingleByProfile(WorldContextObject,*Start,*End,ProfileName_temp,bTraceComplex>0?true:false,MonoArrayToTArray<AActor*>(ActorsToIgnore),(TEnumAsByte<EDrawDebugTrace::Type>)DrawDebugType,*OutHit,bIgnoreSelf>0?true:false,*TraceColor,*TraceHitColor,DrawTime);
+			return ___ret?1:0;
 			
 		}
 		static int32 CapsuleTraceMultiForObjects(UKismetSystemLibrary* _this,UObject* WorldContextObject,FVector* Start,FVector* End,float Radius,float HalfHeight,MonoArray* ObjectTypes,int32 bTraceComplex,MonoArray* ActorsToIgnore,int32 DrawDebugType,MonoArray** OutHits,int32 bIgnoreSelf,FLinearColor* TraceColor,FLinearColor* TraceHitColor,float DrawTime)
@@ -899,6 +969,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::RegisterForRemoteNotifications",(const void*)RegisterForRemoteNotifications);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::GetLocalCurrencySymbol",(const void*)GetLocalCurrencySymbol);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::GetLocalCurrencyCode",(const void*)GetLocalCurrencyCode);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::GetDefaultLocale",(const void*)GetDefaultLocale);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::GetPreferredLanguages",(const void*)GetPreferredLanguages);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::SetSuppressViewportTransitionMessage",(const void*)SetSuppressViewportTransitionMessage);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::IsControllerAssignedToGamepad",(const void*)IsControllerAssignedToGamepad);
@@ -949,6 +1020,14 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::DrawDebugCircle",(const void*)DrawDebugCircle);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::DrawDebugLine",(const void*)DrawDebugLine);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::GetActorListFromComponentList",(const void*)GetActorListFromComponentList);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::CapsuleTraceMultiByProfile",(const void*)CapsuleTraceMultiByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::CapsuleTraceSingleByProfile",(const void*)CapsuleTraceSingleByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::BoxTraceMultiByProfile",(const void*)BoxTraceMultiByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::BoxTraceSingleByProfile",(const void*)BoxTraceSingleByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::SphereTraceMultiByProfile",(const void*)SphereTraceMultiByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::SphereTraceSingleByProfile",(const void*)SphereTraceSingleByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::LineTraceMultiByProfile",(const void*)LineTraceMultiByProfile);
+			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::LineTraceSingleByProfile",(const void*)LineTraceSingleByProfile);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::CapsuleTraceMultiForObjects",(const void*)CapsuleTraceMultiForObjects);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::CapsuleTraceSingleForObjects",(const void*)CapsuleTraceSingleForObjects);
 			mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::BoxTraceMultiForObjects",(const void*)BoxTraceMultiForObjects);

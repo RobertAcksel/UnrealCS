@@ -54,6 +54,16 @@ namespace UnrealEngine
 			_this->SetMasterPoseComponent(NewMasterBoneComponent);
 			
 		}
+		static void ClearSkinWeightOverride(USkinnedMeshComponent* _this,int32 LODIndex)
+		{
+			_this->ClearSkinWeightOverride(LODIndex);
+			
+		}
+		static void SetSkinWeightOverride(USkinnedMeshComponent* _this,int32 LODIndex,MonoArray* SkinWeights)
+		{
+			_this->SetSkinWeightOverride(LODIndex,MonoArrayToTArray<FSkelMeshSkinWeightInfo>(SkinWeights));
+			
+		}
 		static void ClearVertexColorOverride(USkinnedMeshComponent* _this,int32 LODIndex)
 		{
 			_this->ClearVertexColorOverride(LODIndex);
@@ -102,6 +112,21 @@ namespace UnrealEngine
 			return ___ret;
 			
 		}
+		static void SetCapsuleIndirectShadowMinVisibility(USkinnedMeshComponent* _this,float NewValue)
+		{
+			_this->SetCapsuleIndirectShadowMinVisibility(NewValue);
+			
+		}
+		static void SetCastCapsuleIndirectShadow(USkinnedMeshComponent* _this,int32 bNewValue)
+		{
+			_this->SetCastCapsuleIndirectShadow(bNewValue>0?true:false);
+			
+		}
+		static void SetCastCapsuleDirectShadow(USkinnedMeshComponent* _this,int32 bNewValue)
+		{
+			_this->SetCastCapsuleDirectShadow(bNewValue>0?true:false);
+			
+		}
 		static void SetForcedLOD(USkinnedMeshComponent* _this,int32 InNewForcedLOD)
 		{
 			_this->SetForcedLOD(InNewForcedLOD);
@@ -129,6 +154,8 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::TransformToBoneSpace",(const void*)TransformToBoneSpace);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::BoneIsChildOf",(const void*)BoneIsChildOf);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetMasterPoseComponent",(const void*)SetMasterPoseComponent);
+			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::ClearSkinWeightOverride",(const void*)ClearSkinWeightOverride);
+			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetSkinWeightOverride",(const void*)SetSkinWeightOverride);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::ClearVertexColorOverride",(const void*)ClearVertexColorOverride);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetVertexColorOverride_LinearColor",(const void*)SetVertexColorOverride_LinearColor);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::GetParentBone",(const void*)GetParentBone);
@@ -137,6 +164,9 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::GetBoneName",(const void*)GetBoneName);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::GetBoneIndex",(const void*)GetBoneIndex);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::GetNumBones",(const void*)GetNumBones);
+			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetCapsuleIndirectShadowMinVisibility",(const void*)SetCapsuleIndirectShadowMinVisibility);
+			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetCastCapsuleIndirectShadow",(const void*)SetCastCapsuleIndirectShadow);
+			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetCastCapsuleDirectShadow",(const void*)SetCastCapsuleDirectShadow);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetForcedLOD",(const void*)SetForcedLOD);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetMinLOD",(const void*)SetMinLOD);
 			mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetPhysicsAsset",(const void*)SetPhysicsAsset);

@@ -51,17 +51,6 @@ namespace UnrealEngine
 			_this->ResetOrientationAndPosition(Yaw,(TEnumAsByte<EOrientPositionSelector::Type>)Options);
 			
 		}
-		static void EnableLowPersistenceMode(UHeadMountedDisplayFunctionLibrary* _this,int32 bEnable)
-		{
-			_this->EnableLowPersistenceMode(bEnable>0?true:false);
-			
-		}
-		static int32 IsInLowPersistenceMode(UHeadMountedDisplayFunctionLibrary* _this)
-		{
-			bool ___ret = _this->IsInLowPersistenceMode();
-			return ___ret?1:0;
-			
-		}
 		static void GetTrackingSensorParameters(UHeadMountedDisplayFunctionLibrary* _this,FVector* Origin,FRotator* Rotation,float* LeftFOV,float* RightFOV,float* TopFOV,float* BottomFOV,float* Distance,float* NearPlane,float* FarPlane,int32* IsActive,int32 Index)
 		{
 			bool IsActive_temp;
@@ -122,8 +111,6 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::GetScreenPercentage",(const void*)GetScreenPercentage);
 			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::SetClippingPlanes",(const void*)SetClippingPlanes);
 			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition",(const void*)ResetOrientationAndPosition);
-			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::EnableLowPersistenceMode",(const void*)EnableLowPersistenceMode);
-			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::IsInLowPersistenceMode",(const void*)IsInLowPersistenceMode);
 			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::GetTrackingSensorParameters",(const void*)GetTrackingSensorParameters);
 			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::GetNumOfTrackingSensors",(const void*)GetNumOfTrackingSensors);
 			mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::HasValidTrackingPosition",(const void*)HasValidTrackingPosition);

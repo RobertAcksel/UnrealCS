@@ -7,7 +7,7 @@ namespace UnrealBuildTool.Rules
 {
 	public class MonoEditorPlugin : ModuleRules
 	{
-		public MonoEditorPlugin(TargetInfo Target)
+		public MonoEditorPlugin(ReadOnlyTargetRules Target) : base(Target)
 		{
 
             PrivatePCHHeaderFile = "Private/MonoEditorPluginPrivatePCH.h";

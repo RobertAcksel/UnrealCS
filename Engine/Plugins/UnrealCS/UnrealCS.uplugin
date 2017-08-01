@@ -6,12 +6,15 @@
 	"VersionName" : "1.0",
 	"CreatedBy" : "xg_55",
 	"CreatedByURL" : "https://github.com/xiongfang/UnrealCS",
-	"EngineVersion" : "4.15.0",
+	"EngineVersion" : "4.16.0",
 	"Description" : "C# script plugin built for Unreal Engine 4.",
 	"Category" : "Script",
 	"SupportURL" : "xg_55@126.com",
+	"CanBeUsedWithUnrealHeaderTool" : true,
 	"EnabledByDefault" : true,
-	"CanBeUsedWithUnrealHeaderTool" : false,
+	"CanContainContent" : true,
+	"IsBetaVersion" : false,
+	"Installed" : false,
   	"Modules" :
 	[
 		{
@@ -20,7 +23,7 @@
 			"LoadingPhase" : "PreDefault",
 			"WhitelistPlatforms": [ "Win64","Win32","Android","Mac" ]
 		},
-		{
+		{	
 			"Name" : "MonoScriptGeneratorPlugin",
 			"Type" : "Program",
 			"LoadingPhase" : "PostConfigInit",

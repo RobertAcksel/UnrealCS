@@ -4,6 +4,13 @@ namespace UnrealEngine
 {
 	class _UPhysicalAnimationComponent
 	{
+		static FTransform GetBodyTargetTransform(UPhysicalAnimationComponent* _this,MonoString* BodyName)
+		{
+			FName BodyName_temp=MonoStringToFName(BodyName);
+			FTransform ___ret = _this->GetBodyTargetTransform(BodyName_temp);
+			return ___ret;
+			
+		}
 		static void ApplyPhysicalAnimationProfileBelow(UPhysicalAnimationComponent* _this,MonoString* BodyName,MonoString* ProfileName,int32 bIncludeSelf,int32 bClearNotFound)
 		{
 			FName BodyName_temp=MonoStringToFName(BodyName);
@@ -37,6 +44,7 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::GetBodyTargetTransform",(const void*)GetBodyTargetTransform);
 			mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::ApplyPhysicalAnimationProfileBelow",(const void*)ApplyPhysicalAnimationProfileBelow);
 			mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::SetStrengthMultiplyer",(const void*)SetStrengthMultiplyer);
 			mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::ApplyPhysicalAnimationSettingsBelow",(const void*)ApplyPhysicalAnimationSettingsBelow);

@@ -217,7 +217,7 @@ void FMonoBlueprintCompiler::FinishCompilingClass(UClass* Class)
 	}
 }
 
-void FMonoBlueprintCompiler::Compile()
+void FMonoBlueprintCompiler::PreCompile()
 {
 	ScriptBlueprint()->UpdateSourceCodeIfChanged();
 	ScriptContext.Reset(FScriptContextBase::CreateContext(ScriptBlueprint()->ClassName, NULL, NULL));

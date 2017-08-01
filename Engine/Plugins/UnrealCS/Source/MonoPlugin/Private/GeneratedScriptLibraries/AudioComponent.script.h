@@ -10,6 +10,11 @@ namespace UnrealEngine
 			return ___ret?1:0;
 			
 		}
+		static void SetSubmixSend(UAudioComponent* _this,USoundSubmix* Submix,float SendLevel)
+		{
+			_this->SetSubmixSend(Submix,SendLevel);
+			
+		}
 		static void AdjustAttenuation(UAudioComponent* _this,FSoundAttenuationSettings* InAttenuationSettings)
 		{
 			_this->AdjustAttenuation(*InAttenuationSettings);
@@ -100,6 +105,7 @@ namespace UnrealEngine
 		static void BindFunctions()
 		{
 			mono_add_internal_call("UnrealEngine.UAudioComponent::BP_GetAttenuationSettingsToApply",(const void*)BP_GetAttenuationSettingsToApply);
+			mono_add_internal_call("UnrealEngine.UAudioComponent::SetSubmixSend",(const void*)SetSubmixSend);
 			mono_add_internal_call("UnrealEngine.UAudioComponent::AdjustAttenuation",(const void*)AdjustAttenuation);
 			mono_add_internal_call("UnrealEngine.UAudioComponent::SetUISound",(const void*)SetUISound);
 			mono_add_internal_call("UnrealEngine.UAudioComponent::SetPitchMultiplier",(const void*)SetPitchMultiplier);

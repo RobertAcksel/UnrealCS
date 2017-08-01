@@ -4,6 +4,12 @@ namespace UnrealEngine
 {
 	class _UMovieSceneSequencePlayer
 	{
+		static MonoArray* GetBoundObjects(UMovieSceneSequencePlayer* _this,FMovieSceneObjectBindingID* ObjectBinding)
+		{
+			TArray<UObject*> ___ret = _this->GetBoundObjects(*ObjectBinding);
+			return TArrayToMonoArray(___ret,"System.IntPtr,mscorlib");
+			
+		}
 		static float GetPlaybackEnd(UMovieSceneSequencePlayer* _this)
 		{
 			float ___ret = _this->GetPlaybackEnd();
@@ -94,6 +100,7 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::GetBoundObjects",(const void*)GetBoundObjects);
 			mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::GetPlaybackEnd",(const void*)GetPlaybackEnd);
 			mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::GetPlaybackStart",(const void*)GetPlaybackStart);
 			mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::SetPlaybackRange",(const void*)SetPlaybackRange);

@@ -4,6 +4,11 @@ namespace UnrealEngine
 {
 	class _USceneCaptureComponent
 	{
+		static void SetCaptureSortPriority(USceneCaptureComponent* _this,int32 NewCaptureSortPriority)
+		{
+			_this->SetCaptureSortPriority(NewCaptureSortPriority);
+			
+		}
 		static void ClearShowOnlyComponents(USceneCaptureComponent* _this,UPrimitiveComponent* InComponent)
 		{
 			_this->ClearShowOnlyComponents(InComponent);
@@ -43,6 +48,7 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.USceneCaptureComponent::SetCaptureSortPriority",(const void*)SetCaptureSortPriority);
 			mono_add_internal_call("UnrealEngine.USceneCaptureComponent::ClearShowOnlyComponents",(const void*)ClearShowOnlyComponents);
 			mono_add_internal_call("UnrealEngine.USceneCaptureComponent::RemoveShowOnlyActorComponents",(const void*)RemoveShowOnlyActorComponents);
 			mono_add_internal_call("UnrealEngine.USceneCaptureComponent::RemoveShowOnlyComponent",(const void*)RemoveShowOnlyComponent);

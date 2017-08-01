@@ -124,6 +124,11 @@ namespace UnrealEngine
 			_this->OnRep_ReplicatedBasedMovement();
 			
 		}
+		static void CacheInitialMeshOffset(ACharacter* _this,FVector* MeshRelativeLocation,FRotator* MeshRelativeRotation)
+		{
+			_this->CacheInitialMeshOffset(*MeshRelativeLocation,*MeshRelativeRotation);
+			
+		}
 		static UClass* StaticClass(){return ACharacter::StaticClass();}
 		public:
 		static void BindFunctions()
@@ -150,6 +155,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.ACharacter::GetBaseTranslationOffset",(const void*)GetBaseTranslationOffset);
 			mono_add_internal_call("UnrealEngine.ACharacter::SetReplicateMovement",(const void*)SetReplicateMovement);
 			mono_add_internal_call("UnrealEngine.ACharacter::OnRep_ReplicatedBasedMovement",(const void*)OnRep_ReplicatedBasedMovement);
+			mono_add_internal_call("UnrealEngine.ACharacter::CacheInitialMeshOffset",(const void*)CacheInitialMeshOffset);
 			mono_add_internal_call("UnrealEngine.ACharacter::StaticClass",(const void*)StaticClass);
 			
 		}

@@ -302,29 +302,29 @@ namespace UnrealEngine
 			_this->SetSubtitlesEnabled(bEnabled>0?true:false);
 			
 		}
-		static UForceFeedbackComponent* SpawnForceFeedbackAttached(UGameplayStatics* _this,UForceFeedbackEffect* ForceFeedbackEffect,USceneComponent* AttachToComponent,MonoString* AttachPointName,FVector* Location,FRotator* Rotation,int32 LocationType,int32 bStopWhenAttachedToDestroyed,int32 bLooping,float IntensityMultiplier,float StartTime,UForceFeedbackAttenuation* AttenuationSettings)
+		static UForceFeedbackComponent* SpawnForceFeedbackAttached(UGameplayStatics* _this,UForceFeedbackEffect* ForceFeedbackEffect,USceneComponent* AttachToComponent,MonoString* AttachPointName,FVector* Location,FRotator* Rotation,int32 LocationType,int32 bStopWhenAttachedToDestroyed,int32 bLooping,float IntensityMultiplier,float StartTime,UForceFeedbackAttenuation* AttenuationSettings,int32 bAutoDestroy)
 		{
 			FName AttachPointName_temp=MonoStringToFName(AttachPointName);
-			UForceFeedbackComponent* ___ret = _this->SpawnForceFeedbackAttached(ForceFeedbackEffect,AttachToComponent,AttachPointName_temp,*Location,*Rotation,(TEnumAsByte<EAttachLocation::Type>)LocationType,bStopWhenAttachedToDestroyed>0?true:false,bLooping>0?true:false,IntensityMultiplier,StartTime,AttenuationSettings);
+			UForceFeedbackComponent* ___ret = _this->SpawnForceFeedbackAttached(ForceFeedbackEffect,AttachToComponent,AttachPointName_temp,*Location,*Rotation,(TEnumAsByte<EAttachLocation::Type>)LocationType,bStopWhenAttachedToDestroyed>0?true:false,bLooping>0?true:false,IntensityMultiplier,StartTime,AttenuationSettings,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
-		static UForceFeedbackComponent* SpawnForceFeedbackAtLocation(UGameplayStatics* _this,UObject* WorldContextObject,UForceFeedbackEffect* ForceFeedbackEffect,FVector* Location,FRotator* Rotation,int32 bLooping,float IntensityMultiplier,float StartTime,UForceFeedbackAttenuation* AttenuationSettings)
+		static UForceFeedbackComponent* SpawnForceFeedbackAtLocation(UGameplayStatics* _this,UObject* WorldContextObject,UForceFeedbackEffect* ForceFeedbackEffect,FVector* Location,FRotator* Rotation,int32 bLooping,float IntensityMultiplier,float StartTime,UForceFeedbackAttenuation* AttenuationSettings,int32 bAutoDestroy)
 		{
-			UForceFeedbackComponent* ___ret = _this->SpawnForceFeedbackAtLocation(WorldContextObject,ForceFeedbackEffect,*Location,*Rotation,bLooping>0?true:false,IntensityMultiplier,StartTime,AttenuationSettings);
+			UForceFeedbackComponent* ___ret = _this->SpawnForceFeedbackAtLocation(WorldContextObject,ForceFeedbackEffect,*Location,*Rotation,bLooping>0?true:false,IntensityMultiplier,StartTime,AttenuationSettings,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
-		static UAudioComponent* SpawnDialogueAttached(UGameplayStatics* _this,UDialogueWave* Dialogue,FDialogueContext* Context,USceneComponent* AttachToComponent,MonoString* AttachPointName,FVector* Location,FRotator* Rotation,int32 LocationType,int32 bStopWhenAttachedToDestroyed,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings)
+		static UAudioComponent* SpawnDialogueAttached(UGameplayStatics* _this,UDialogueWave* Dialogue,FDialogueContext* Context,USceneComponent* AttachToComponent,MonoString* AttachPointName,FVector* Location,FRotator* Rotation,int32 LocationType,int32 bStopWhenAttachedToDestroyed,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings,int32 bAutoDestroy)
 		{
 			FName AttachPointName_temp=MonoStringToFName(AttachPointName);
-			UAudioComponent* ___ret = _this->SpawnDialogueAttached(Dialogue,*Context,AttachToComponent,AttachPointName_temp,*Location,*Rotation,(TEnumAsByte<EAttachLocation::Type>)LocationType,bStopWhenAttachedToDestroyed>0?true:false,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings);
+			UAudioComponent* ___ret = _this->SpawnDialogueAttached(Dialogue,*Context,AttachToComponent,AttachPointName_temp,*Location,*Rotation,(TEnumAsByte<EAttachLocation::Type>)LocationType,bStopWhenAttachedToDestroyed>0?true:false,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
-		static UAudioComponent* SpawnDialogueAtLocation(UGameplayStatics* _this,UObject* WorldContextObject,UDialogueWave* Dialogue,FDialogueContext* Context,FVector* Location,FRotator* Rotation,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings)
+		static UAudioComponent* SpawnDialogueAtLocation(UGameplayStatics* _this,UObject* WorldContextObject,UDialogueWave* Dialogue,FDialogueContext* Context,FVector* Location,FRotator* Rotation,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings,int32 bAutoDestroy)
 		{
-			UAudioComponent* ___ret = _this->SpawnDialogueAtLocation(WorldContextObject,Dialogue,*Context,*Location,*Rotation,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings);
+			UAudioComponent* ___ret = _this->SpawnDialogueAtLocation(WorldContextObject,Dialogue,*Context,*Location,*Rotation,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
@@ -333,9 +333,9 @@ namespace UnrealEngine
 			_this->PlayDialogueAtLocation(WorldContextObject,Dialogue,*Context,*Location,*Rotation,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings);
 			
 		}
-		static UAudioComponent* SpawnDialogue2D(UGameplayStatics* _this,UObject* WorldContextObject,UDialogueWave* Dialogue,FDialogueContext* Context,float VolumeMultiplier,float PitchMultiplier,float StartTime)
+		static UAudioComponent* SpawnDialogue2D(UGameplayStatics* _this,UObject* WorldContextObject,UDialogueWave* Dialogue,FDialogueContext* Context,float VolumeMultiplier,float PitchMultiplier,float StartTime,int32 bAutoDestroy)
 		{
-			UAudioComponent* ___ret = _this->SpawnDialogue2D(WorldContextObject,Dialogue,*Context,VolumeMultiplier,PitchMultiplier,StartTime);
+			UAudioComponent* ___ret = _this->SpawnDialogue2D(WorldContextObject,Dialogue,*Context,VolumeMultiplier,PitchMultiplier,StartTime,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
@@ -344,16 +344,16 @@ namespace UnrealEngine
 			_this->PlayDialogue2D(WorldContextObject,Dialogue,*Context,VolumeMultiplier,PitchMultiplier,StartTime);
 			
 		}
-		static UAudioComponent* SpawnSoundAttached(UGameplayStatics* _this,USoundBase* Sound,USceneComponent* AttachToComponent,MonoString* AttachPointName,FVector* Location,FRotator* Rotation,int32 LocationType,int32 bStopWhenAttachedToDestroyed,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings,USoundConcurrency* ConcurrencySettings)
+		static UAudioComponent* SpawnSoundAttached(UGameplayStatics* _this,USoundBase* Sound,USceneComponent* AttachToComponent,MonoString* AttachPointName,FVector* Location,FRotator* Rotation,int32 LocationType,int32 bStopWhenAttachedToDestroyed,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings,USoundConcurrency* ConcurrencySettings,int32 bAutoDestroy)
 		{
 			FName AttachPointName_temp=MonoStringToFName(AttachPointName);
-			UAudioComponent* ___ret = _this->SpawnSoundAttached(Sound,AttachToComponent,AttachPointName_temp,*Location,*Rotation,(TEnumAsByte<EAttachLocation::Type>)LocationType,bStopWhenAttachedToDestroyed>0?true:false,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,ConcurrencySettings);
+			UAudioComponent* ___ret = _this->SpawnSoundAttached(Sound,AttachToComponent,AttachPointName_temp,*Location,*Rotation,(TEnumAsByte<EAttachLocation::Type>)LocationType,bStopWhenAttachedToDestroyed>0?true:false,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,ConcurrencySettings,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
-		static UAudioComponent* SpawnSoundAtLocation(UGameplayStatics* _this,UObject* WorldContextObject,USoundBase* Sound,FVector* Location,FRotator* Rotation,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings,USoundConcurrency* ConcurrencySettings)
+		static UAudioComponent* SpawnSoundAtLocation(UGameplayStatics* _this,UObject* WorldContextObject,USoundBase* Sound,FVector* Location,FRotator* Rotation,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundAttenuation* AttenuationSettings,USoundConcurrency* ConcurrencySettings,int32 bAutoDestroy)
 		{
-			UAudioComponent* ___ret = _this->SpawnSoundAtLocation(WorldContextObject,Sound,*Location,*Rotation,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,ConcurrencySettings);
+			UAudioComponent* ___ret = _this->SpawnSoundAtLocation(WorldContextObject,Sound,*Location,*Rotation,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,ConcurrencySettings,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
@@ -362,15 +362,15 @@ namespace UnrealEngine
 			_this->PlaySoundAtLocation(WorldContextObject,Sound,*Location,*Rotation,VolumeMultiplier,PitchMultiplier,StartTime,AttenuationSettings,ConcurrencySettings);
 			
 		}
-		static UAudioComponent* CreateSound2D(UGameplayStatics* _this,UObject* WorldContextObject,USoundBase* Sound,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundConcurrency* ConcurrencySettings,int32 bPersistAcrossLevelTransition)
+		static UAudioComponent* CreateSound2D(UGameplayStatics* _this,UObject* WorldContextObject,USoundBase* Sound,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundConcurrency* ConcurrencySettings,int32 bPersistAcrossLevelTransition,int32 bAutoDestroy)
 		{
-			UAudioComponent* ___ret = _this->CreateSound2D(WorldContextObject,Sound,VolumeMultiplier,PitchMultiplier,StartTime,ConcurrencySettings,bPersistAcrossLevelTransition>0?true:false);
+			UAudioComponent* ___ret = _this->CreateSound2D(WorldContextObject,Sound,VolumeMultiplier,PitchMultiplier,StartTime,ConcurrencySettings,bPersistAcrossLevelTransition>0?true:false,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
-		static UAudioComponent* SpawnSound2D(UGameplayStatics* _this,UObject* WorldContextObject,USoundBase* Sound,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundConcurrency* ConcurrencySettings,int32 bPersistAcrossLevelTransition)
+		static UAudioComponent* SpawnSound2D(UGameplayStatics* _this,UObject* WorldContextObject,USoundBase* Sound,float VolumeMultiplier,float PitchMultiplier,float StartTime,USoundConcurrency* ConcurrencySettings,int32 bPersistAcrossLevelTransition,int32 bAutoDestroy)
 		{
-			UAudioComponent* ___ret = _this->SpawnSound2D(WorldContextObject,Sound,VolumeMultiplier,PitchMultiplier,StartTime,ConcurrencySettings,bPersistAcrossLevelTransition>0?true:false);
+			UAudioComponent* ___ret = _this->SpawnSound2D(WorldContextObject,Sound,VolumeMultiplier,PitchMultiplier,StartTime,ConcurrencySettings,bPersistAcrossLevelTransition>0?true:false,bAutoDestroy>0?true:false);
 			return ___ret;
 			
 		}
@@ -611,12 +611,6 @@ namespace UnrealEngine
 			return ___ret;
 			
 		}
-		static AActor* BeginSpawningActorFromClass(UGameplayStatics* _this,UObject* WorldContextObject,TSubclassOf<AActor>  ActorClass,FTransform* SpawnTransform,int32 bNoCollisionFail,AActor* Owner)
-		{
-			AActor* ___ret = _this->BeginSpawningActorFromClass(WorldContextObject,ActorClass,*SpawnTransform,bNoCollisionFail>0?true:false,Owner);
-			return ___ret;
-			
-		}
 		static UObject* SpawnObject(UGameplayStatics* _this,TSubclassOf<UObject>  ObjectClass,UObject* Outer)
 		{
 			UObject* ___ret = _this->SpawnObject(ObjectClass,Outer);
@@ -726,7 +720,6 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UGameplayStatics::GetActorArrayBounds",(const void*)GetActorArrayBounds);
 			mono_add_internal_call("UnrealEngine.UGameplayStatics::GetActorArrayAverageLocation",(const void*)GetActorArrayAverageLocation);
 			mono_add_internal_call("UnrealEngine.UGameplayStatics::FinishSpawningActor",(const void*)FinishSpawningActor);
-			mono_add_internal_call("UnrealEngine.UGameplayStatics::BeginSpawningActorFromClass",(const void*)BeginSpawningActorFromClass);
 			mono_add_internal_call("UnrealEngine.UGameplayStatics::SpawnObject",(const void*)SpawnObject);
 			mono_add_internal_call("UnrealEngine.UGameplayStatics::StaticClass",(const void*)StaticClass);
 			

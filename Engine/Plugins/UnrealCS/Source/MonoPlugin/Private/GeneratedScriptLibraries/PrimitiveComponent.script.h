@@ -118,6 +118,11 @@ namespace UnrealEngine
 			_this->WakeAllRigidBodies();
 			
 		}
+		static void SetAllPhysicsAngularVelocity(UPrimitiveComponent* _this,FVector* NewAngVel,int32 bAddToCurrent)
+		{
+			_this->SetAllPhysicsAngularVelocity(*NewAngVel,bAddToCurrent>0?true:false);
+			
+		}
 		static int32 GetCollisionObjectType(UPrimitiveComponent* _this)
 		{
 			TEnumAsByte<ECollisionChannel> ___ret = _this->GetCollisionObjectType();
@@ -322,6 +327,12 @@ namespace UnrealEngine
 			_this->AddRadialForce(*Origin,Radius,Strength,(TEnumAsByte<ERadialImpulseFalloff>)Falloff,bAccelChange>0?true:false);
 			
 		}
+		static void AddForceAtLocationLocal(UPrimitiveComponent* _this,FVector* Force,FVector* Location,MonoString* BoneName)
+		{
+			FName BoneName_temp=MonoStringToFName(BoneName);
+			_this->AddForceAtLocationLocal(*Force,*Location,BoneName_temp);
+			
+		}
 		static void AddForceAtLocation(UPrimitiveComponent* _this,FVector* Force,FVector* Location,MonoString* BoneName)
 		{
 			FName BoneName_temp=MonoStringToFName(BoneName);
@@ -375,6 +386,12 @@ namespace UnrealEngine
 		static FWalkableSlopeOverride GetWalkableSlopeOverride(UPrimitiveComponent* _this)
 		{
 			FWalkableSlopeOverride ___ret = _this->GetWalkableSlopeOverride();
+			return ___ret;
+			
+		}
+		static UMaterialInterface* GetMaterialFromCollisionFaceIndex(UPrimitiveComponent* _this,int32 FaceIndex)
+		{
+			UMaterialInterface* ___ret = _this->GetMaterialFromCollisionFaceIndex(FaceIndex);
 			return ___ret;
 			
 		}
@@ -494,6 +511,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::IsGravityEnabled",(const void*)IsGravityEnabled);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetEnableGravity",(const void*)SetEnableGravity);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::WakeAllRigidBodies",(const void*)WakeAllRigidBodies);
+			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetAllPhysicsAngularVelocity",(const void*)SetAllPhysicsAngularVelocity);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::GetCollisionObjectType",(const void*)GetCollisionObjectType);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::GetCollisionResponseToChannel",(const void*)GetCollisionResponseToChannel);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::K2_IsPhysicsCollisionEnabled",(const void*)K2_IsPhysicsCollisionEnabled);
@@ -529,6 +547,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetPhysicsLinearVelocity",(const void*)SetPhysicsLinearVelocity);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::AddTorque",(const void*)AddTorque);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::AddRadialForce",(const void*)AddRadialForce);
+			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::AddForceAtLocationLocal",(const void*)AddForceAtLocationLocal);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::AddForceAtLocation",(const void*)AddForceAtLocation);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::AddForce",(const void*)AddForce);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::AddRadialImpulse",(const void*)AddRadialImpulse);
@@ -539,6 +558,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetSimulatePhysics",(const void*)SetSimulatePhysics);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetWalkableSlopeOverride",(const void*)SetWalkableSlopeOverride);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::GetWalkableSlopeOverride",(const void*)GetWalkableSlopeOverride);
+			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::GetMaterialFromCollisionFaceIndex",(const void*)GetMaterialFromCollisionFaceIndex);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::CreateDynamicMaterialInstance",(const void*)CreateDynamicMaterialInstance);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetMaterialByName",(const void*)SetMaterialByName);
 			mono_add_internal_call("UnrealEngine.UPrimitiveComponent::SetMaterial",(const void*)SetMaterial);

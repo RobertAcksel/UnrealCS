@@ -113,6 +113,18 @@ namespace UnrealEngine
 			return ___ret?1:0;
 			
 		}
+		static FVector2D GetAlignmentInViewport(UUserWidget* _this)
+		{
+			FVector2D ___ret = _this->GetAlignmentInViewport();
+			return ___ret;
+			
+		}
+		static FAnchors GetAnchorsInViewport(UUserWidget* _this)
+		{
+			FAnchors ___ret = _this->GetAnchorsInViewport();
+			return ___ret;
+			
+		}
 		static void SetAlignmentInViewport(UUserWidget* _this,FVector2D* Alignment)
 		{
 			_this->SetAlignmentInViewport(*Alignment);
@@ -168,6 +180,8 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UUserWidget::SetOwningLocalPlayer",(const void*)SetOwningLocalPlayer);
 			mono_add_internal_call("UnrealEngine.UUserWidget::GetOwningLocalPlayer",(const void*)GetOwningLocalPlayer);
 			mono_add_internal_call("UnrealEngine.UUserWidget::IsInViewport",(const void*)IsInViewport);
+			mono_add_internal_call("UnrealEngine.UUserWidget::GetAlignmentInViewport",(const void*)GetAlignmentInViewport);
+			mono_add_internal_call("UnrealEngine.UUserWidget::GetAnchorsInViewport",(const void*)GetAnchorsInViewport);
 			mono_add_internal_call("UnrealEngine.UUserWidget::SetAlignmentInViewport",(const void*)SetAlignmentInViewport);
 			mono_add_internal_call("UnrealEngine.UUserWidget::SetAnchorsInViewport",(const void*)SetAnchorsInViewport);
 			mono_add_internal_call("UnrealEngine.UUserWidget::SetDesiredSizeInViewport",(const void*)SetDesiredSizeInViewport);

@@ -7,8 +7,8 @@ namespace UnrealBuildTool.Rules
 {
 	public class MonoHelper : ModuleRules
 	{
-		public MonoHelper(TargetInfo Target)
-		{
+		public MonoHelper(ReadOnlyTargetRules Target) : base(Target)
+        {
             PrivatePCHHeaderFile = "Private/MonoHelperPrivatePCH.h";
 
             PublicIncludePaths.AddRange(

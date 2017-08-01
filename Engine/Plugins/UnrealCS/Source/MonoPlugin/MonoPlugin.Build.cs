@@ -24,7 +24,7 @@ namespace UnrealBuildTool.Rules
             }
         }
 
-        void LoadMono(TargetInfo Target)
+        void LoadMono(ReadOnlyTargetRules Target)
         {
             bool bEnableSGen = true;
 
@@ -140,7 +140,7 @@ namespace UnrealBuildTool.Rules
             }
         }
 
-        public MonoPlugin(TargetInfo Target)
+        public MonoPlugin(ReadOnlyTargetRules Target) : base(Target)
         {
 
             PrivatePCHHeaderFile = "Private/MonoPluginPrivatePCH.h";

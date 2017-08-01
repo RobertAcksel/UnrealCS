@@ -16,7 +16,6 @@ FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath,
 	CSFileExportPath = FPaths::Combine(*RootLocalPath, TEXT("GeneratedScriptFile"));
 	DocHelper::InitializeToolTipLocalization();
 
-
 	//BlackList.AddStruct("RepMovement");
 	//BlackList.AddStruct("DialogueWaveParameter");
 	BlackList.AddClass("KismetArrayLibrary");

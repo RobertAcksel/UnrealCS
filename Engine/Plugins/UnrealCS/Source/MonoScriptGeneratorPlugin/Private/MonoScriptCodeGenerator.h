@@ -7,6 +7,8 @@
 #include "InclusionLists.h"
 #include "PropertyHandler.h"
 #include "MonoTextBuilder.h"
+#include "Array.h"
+
 /**
 * Lua glue generator.
 */

@@ -1784,6 +1784,12 @@ namespace UnrealEngine
 			return ___ret;
 			
 		}
+		static float Log(UKismetMathLibrary* _this,float A,float Base)
+		{
+			float ___ret = _this->Log(A,Base);
+			return ___ret;
+			
+		}
 		static float Exp(UKismetMathLibrary* _this,float A)
 		{
 			float ___ret = _this->Exp(A);
@@ -2525,6 +2531,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Square",(const void*)Square);
 			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Sqrt",(const void*)Sqrt);
 			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Loge",(const void*)Loge);
+			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Log",(const void*)Log);
 			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Exp",(const void*)Exp);
 			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Atan2",(const void*)Atan2);
 			mono_add_internal_call("UnrealEngine.UKismetMathLibrary::Atan",(const void*)Atan);

@@ -20,7 +20,7 @@ public:
 	virtual ~FMonoBlueprintCompiler();
 
 	// FKismetCompilerContext
-	virtual void Compile() override;
+	virtual void PreCompile() override;
 	// End FKismetCompilerContext
 
 protected:

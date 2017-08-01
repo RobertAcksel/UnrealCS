@@ -81,22 +81,22 @@ namespace UnrealEngine
 			return (int32)___ret.GetValue();
 			
 		}
-		static FVector GetRandomPointInNavigableRadius(UNavigationSystem* _this,UObject* WorldContext,FVector* Origin,float Radius,ANavigationData* NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
+		static int32 K2_GetRandomPointInNavigableRadius(UNavigationSystem* _this,UObject* WorldContext,FVector* Origin,FVector* RandomLocation,float Radius,ANavigationData* NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
 		{
-			FVector ___ret = _this->GetRandomPointInNavigableRadius(WorldContext,*Origin,Radius,NavData,FilterClass);
-			return ___ret;
+			bool ___ret = _this->K2_GetRandomPointInNavigableRadius(WorldContext,*Origin,*RandomLocation,Radius,NavData,FilterClass);
+			return ___ret?1:0;
 			
 		}
-		static FVector GetRandomReachablePointInRadius(UNavigationSystem* _this,UObject* WorldContext,FVector* Origin,float Radius,ANavigationData* NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
+		static int32 K2_GetRandomReachablePointInRadius(UNavigationSystem* _this,UObject* WorldContext,FVector* Origin,FVector* RandomLocation,float Radius,ANavigationData* NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
 		{
-			FVector ___ret = _this->GetRandomReachablePointInRadius(WorldContext,*Origin,Radius,NavData,FilterClass);
-			return ___ret;
+			bool ___ret = _this->K2_GetRandomReachablePointInRadius(WorldContext,*Origin,*RandomLocation,Radius,NavData,FilterClass);
+			return ___ret?1:0;
 			
 		}
-		static FVector ProjectPointToNavigation(UNavigationSystem* _this,UObject* WorldContext,FVector* Point,ANavigationData* NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass,FVector* QueryExtent)
+		static int32 K2_ProjectPointToNavigation(UNavigationSystem* _this,UObject* WorldContext,FVector* Point,FVector* ProjectedLocation,ANavigationData* NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass,FVector* QueryExtent)
 		{
-			FVector ___ret = _this->ProjectPointToNavigation(WorldContext,*Point,NavData,FilterClass,*QueryExtent);
-			return ___ret;
+			bool ___ret = _this->K2_ProjectPointToNavigation(WorldContext,*Point,*ProjectedLocation,NavData,FilterClass,*QueryExtent);
+			return ___ret?1:0;
 			
 		}
 		static UNavigationSystem* GetNavigationSystem(UNavigationSystem* _this,UObject* WorldContext)
@@ -123,9 +123,9 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UNavigationSystem::IsNavigationBeingBuilt",(const void*)IsNavigationBeingBuilt);
 			mono_add_internal_call("UnrealEngine.UNavigationSystem::GetPathLength",(const void*)GetPathLength);
 			mono_add_internal_call("UnrealEngine.UNavigationSystem::GetPathCost",(const void*)GetPathCost);
-			mono_add_internal_call("UnrealEngine.UNavigationSystem::GetRandomPointInNavigableRadius",(const void*)GetRandomPointInNavigableRadius);
-			mono_add_internal_call("UnrealEngine.UNavigationSystem::GetRandomReachablePointInRadius",(const void*)GetRandomReachablePointInRadius);
-			mono_add_internal_call("UnrealEngine.UNavigationSystem::ProjectPointToNavigation",(const void*)ProjectPointToNavigation);
+			mono_add_internal_call("UnrealEngine.UNavigationSystem::K2_GetRandomPointInNavigableRadius",(const void*)K2_GetRandomPointInNavigableRadius);
+			mono_add_internal_call("UnrealEngine.UNavigationSystem::K2_GetRandomReachablePointInRadius",(const void*)K2_GetRandomReachablePointInRadius);
+			mono_add_internal_call("UnrealEngine.UNavigationSystem::K2_ProjectPointToNavigation",(const void*)K2_ProjectPointToNavigation);
 			mono_add_internal_call("UnrealEngine.UNavigationSystem::GetNavigationSystem",(const void*)GetNavigationSystem);
 			mono_add_internal_call("UnrealEngine.UNavigationSystem::StaticClass",(const void*)StaticClass);
 			

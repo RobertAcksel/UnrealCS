@@ -116,6 +116,11 @@ namespace UnrealEngine
 			_this->AddImpulse(*Impulse,bVelocityChange>0?true:false);
 			
 		}
+		static void ClearAccumulatedForces(UCharacterMovementComponent* _this)
+		{
+			_this->ClearAccumulatedForces();
+			
+		}
 		static float GetAnalogInputModifier(UCharacterMovementComponent* _this)
 		{
 			float ___ret = _this->GetAnalogInputModifier();
@@ -137,6 +142,12 @@ namespace UnrealEngine
 		static float GetMaxAcceleration(UCharacterMovementComponent* _this)
 		{
 			float ___ret = _this->GetMaxAcceleration();
+			return ___ret;
+			
+		}
+		static float GetMaxJumpHeightWithJumpTime(UCharacterMovementComponent* _this)
+		{
+			float ___ret = _this->GetMaxJumpHeightWithJumpTime();
 			return ___ret;
 			
 		}
@@ -229,10 +240,12 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetPerchRadiusThreshold",(const void*)GetPerchRadiusThreshold);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::AddForce",(const void*)AddForce);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::AddImpulse",(const void*)AddImpulse);
+			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::ClearAccumulatedForces",(const void*)ClearAccumulatedForces);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetAnalogInputModifier",(const void*)GetAnalogInputModifier);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetCurrentAcceleration",(const void*)GetCurrentAcceleration);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetMaxBrakingDeceleration",(const void*)GetMaxBrakingDeceleration);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetMaxAcceleration",(const void*)GetMaxAcceleration);
+			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetMaxJumpHeightWithJumpTime",(const void*)GetMaxJumpHeightWithJumpTime);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetMaxJumpHeight",(const void*)GetMaxJumpHeight);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::CalcVelocity",(const void*)CalcVelocity);
 			mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::GetImpartedMovementBaseVelocity",(const void*)GetImpartedMovementBaseVelocity);

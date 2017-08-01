@@ -36,6 +36,12 @@ namespace UnrealEngine
 			return ___ret;
 			
 		}
+		static UNodeMappingContainer* GetNodeMappingContainer(USkeletalMesh* _this,UBlueprint* SourceAsset)
+		{
+			UNodeMappingContainer* ___ret = _this->GetNodeMappingContainer(SourceAsset);
+			return ___ret;
+			
+		}
 		static FBoxSphereBounds GetImportedBounds(USkeletalMesh* _this)
 		{
 			FBoxSphereBounds ___ret = _this->GetImportedBounds();
@@ -57,6 +63,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.USkeletalMesh::NumSockets",(const void*)NumSockets);
 			mono_add_internal_call("UnrealEngine.USkeletalMesh::FindSocketAndIndex",(const void*)FindSocketAndIndex);
 			mono_add_internal_call("UnrealEngine.USkeletalMesh::FindSocket",(const void*)FindSocket);
+			mono_add_internal_call("UnrealEngine.USkeletalMesh::GetNodeMappingContainer",(const void*)GetNodeMappingContainer);
 			mono_add_internal_call("UnrealEngine.USkeletalMesh::GetImportedBounds",(const void*)GetImportedBounds);
 			mono_add_internal_call("UnrealEngine.USkeletalMesh::GetBounds",(const void*)GetBounds);
 			mono_add_internal_call("UnrealEngine.USkeletalMesh::StaticClass",(const void*)StaticClass);

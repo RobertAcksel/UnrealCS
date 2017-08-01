@@ -69,6 +69,11 @@ namespace UnrealEngine
 			_this->SetLightColor(*NewLightColor,bSRGB>0?true:false);
 			
 		}
+		static void SetVolumetricScatteringIntensity(ULightComponent* _this,float NewIntensity)
+		{
+			_this->SetVolumetricScatteringIntensity(NewIntensity);
+			
+		}
 		static void SetIndirectLightingIntensity(ULightComponent* _this,float NewIntensity)
 		{
 			_this->SetIndirectLightingIntensity(NewIntensity);
@@ -96,6 +101,7 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.ULightComponent::SetLightFunctionMaterial",(const void*)SetLightFunctionMaterial);
 			mono_add_internal_call("UnrealEngine.ULightComponent::SetTemperature",(const void*)SetTemperature);
 			mono_add_internal_call("UnrealEngine.ULightComponent::SetLightColor",(const void*)SetLightColor);
+			mono_add_internal_call("UnrealEngine.ULightComponent::SetVolumetricScatteringIntensity",(const void*)SetVolumetricScatteringIntensity);
 			mono_add_internal_call("UnrealEngine.ULightComponent::SetIndirectLightingIntensity",(const void*)SetIndirectLightingIntensity);
 			mono_add_internal_call("UnrealEngine.ULightComponent::SetIntensity",(const void*)SetIntensity);
 			mono_add_internal_call("UnrealEngine.ULightComponent::StaticClass",(const void*)StaticClass);

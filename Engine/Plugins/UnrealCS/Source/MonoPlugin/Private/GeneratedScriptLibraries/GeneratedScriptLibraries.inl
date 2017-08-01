@@ -18,6 +18,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimSet.h"
 #include "../../../../Source/Runtime/Engine/Classes/EditorFramework/AssetImportData.h"
+#include "../../../../Source/Runtime/Engine/Classes/Engine/AssetManager.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AssetMappingTable.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/AssetUserData.h"
 #include "../../../../Source/Runtime/Engine/Classes/Tests/AutomationTestSettings.h"
@@ -44,6 +45,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Slate/CheckboxStyleAsset.h"
 #include "../../../../Source/Runtime/Engine/Classes/Commandlets/Commandlet.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/Console.h"
+#include "../../../../Source/Runtime/Engine/Classes/Animation/ControlRigInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/Curves/CurveBase.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/CurveSourceInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/CurveTable.h"
@@ -88,6 +90,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Engine/IntSerialization.h"
 #include "../../../../Source/Runtime/Engine/Classes/Layers/Layer.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/Level.h"
+#include "../../../../Source/Runtime/Engine/Classes/Engine/LevelActorContainer.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/LevelStreaming.h"
 #include "../../../../Source/Runtime/Engine/Classes/Lightmass/LightmappedSurfaceCollection.h"
 #include "../../../../Source/Runtime/Engine/Classes/Lightmass/LightmassPrimitiveSettingsObject.h"
@@ -116,7 +119,10 @@
 #include "../../../../Source/Runtime/Engine/Classes/AI/Navigation/NavRelevantInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/NetDriver.h"
 #include "../../../../Source/Runtime/Engine/Classes/Interfaces/NetworkPredictionInterface.h"
+#include "../../../../Source/Runtime/Engine/Public/Animation/NodeMappingContainer.h"
+#include "../../../../Source/Runtime/Engine/Public/Animation/NodeMappingProviderInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/ObjectLibrary.h"
+#include "../../../../Source/Runtime/Engine/Public/IAudioExtensionPlugin.h"
 #include "../../../../Source/Runtime/Engine/Public/Net/OnlineBlueprintCallProxyBase.h"
 #include "../../../../Source/Runtime/Engine/Public/Net/OnlineEngineInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/GameFramework/OnlineSession.h"
@@ -138,6 +144,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Engine/Polys.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/PoseWatch.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/ReverbEffect.h"
+#include "../../../../Source/Runtime/Engine/Public/IAudioExtensionPlugin.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/Rig.h"
 #include "../../../../Source/Runtime/Engine/Public/AI/RVOAvoidanceInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/GameFramework/SaveGame.h"
@@ -155,12 +162,14 @@
 #include "../../../../Source/Runtime/Engine/Classes/Sound/SoundClass.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/SoundConcurrency.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/SoundEffectPreset.h"
+#include "../../../../Source/Runtime/Engine/Classes/Sound/SoundEffectSource.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/SoundMix.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/SoundNode.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/SoundSubmix.h"
+#include "../../../../Source/Runtime/Engine/Public/IAudioExtensionPlugin.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/StaticMesh.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/StaticMeshSocket.h"
-#include "../../../../Source/Runtime/Engine/Classes/Engine/SubDSurface.h"
+#include "../../../../Source/Runtime/Engine/Public/Internationalization/StringTable.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/SubsurfaceProfile.h"
 #include "../../../../Source/Runtime/Engine/Classes/Particles/SubUVAnimation.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/Texture.h"
@@ -171,7 +180,6 @@
 #include "../../../../Source/Runtime/Engine/Classes/Engine/UserDefinedEnum.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/UserDefinedStruct.h"
 #include "../../../../Source/Runtime/Engine/Classes/VectorField/VectorField.h"
-#include "../../../../Source/Runtime/Engine/Classes/Engine/SubDSurface.h"
 #include "../../../../Source/Runtime/Engine/Public/VisualLogger/VisualLoggerDebugSnapshotInterface.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/World.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/WorldComposition.h"
@@ -206,7 +214,6 @@
 #include "../../../../Source/Runtime/Engine/Classes/Animation/SkeletalMeshActor.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/SplineMeshActor.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/StaticMeshActor.h"
-#include "../../../../Source/Runtime/Engine/Classes/Engine/SubDSurfaceActor.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/TargetPoint.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/TextRenderActor.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/TriggerBase.h"
@@ -226,7 +233,6 @@
 #include "../../../../Source/Runtime/Engine/Classes/Engine/PostProcessVolume.h"
 #include "../../../../Source/Runtime/Engine/Classes/Lightmass/PrecomputedVisibilityOverrideVolume.h"
 #include "../../../../Source/Runtime/Engine/Classes/Lightmass/PrecomputedVisibilityVolume.h"
-#include "../../../../Source/Runtime/Engine/Classes/Engine/PreCullTrianglesVolume.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/TriggerVolume.h"
 #include "../../../../Source/Runtime/Engine/Classes/GameFramework/DefaultPhysicsVolume.h"
 #include "../../../../Source/Runtime/Engine/Classes/GameFramework/KillZVolume.h"
@@ -331,7 +337,6 @@
 #include "../../../../Source/Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
 #include "../../../../Source/Runtime/Engine/Classes/Components/ShapeComponent.h"
 #include "../../../../Source/Runtime/Engine/Classes/Components/SplineComponent.h"
-#include "../../../../Source/Runtime/Engine/Classes/Components/SubDSurfaceComponent.h"
 #include "../../../../Source/Runtime/Engine/Classes/Components/TextRenderComponent.h"
 #include "../../../../Source/Runtime/Engine/Classes/Components/VectorFieldComponent.h"
 #include "../../../../Source/Runtime/Engine/Classes/Components/SkinnedMeshComponent.h"
@@ -372,6 +377,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotify_PlayParticleEffect.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotify_PlaySound.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotify_ResetClothingSimulation.h"
+#include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState_DisableRootMotion.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState_TimedParticleEffect.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimNotifies/AnimNotifyState_Trail.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/Blueprint.h"
@@ -391,6 +397,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Kismet/KismetNodeHelperLibrary.h"
 #include "../../../../Source/Runtime/Engine/Classes/Kismet/KismetRenderingLibrary.h"
 #include "../../../../Source/Runtime/Engine/Classes/Kismet/KismetStringLibrary.h"
+#include "../../../../Source/Runtime/Engine/Classes/Kismet/KismetStringTableLibrary.h"
 #include "../../../../Source/Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 #include "../../../../Source/Runtime/Engine/Classes/Kismet/KismetTextLibrary.h"
 #include "../../../../Source/Runtime/Engine/Classes/AI/Navigation/NavigationSystem.h"
@@ -406,8 +413,11 @@
 #include "../../../../Source/Runtime/Engine/Classes/Curves/CurveLinearColor.h"
 #include "../../../../Source/Runtime/Engine/Classes/Curves/CurveVector.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/PreviewMeshCollection.h"
+#include "../../../../Source/Runtime/Engine/Classes/Engine/DataAsset.h"
 #include "../../../../Source/Runtime/Engine/Classes/Vehicles/TireType.h"
+#include "../../../../Source/Runtime/Engine/Classes/Engine/PrimaryAssetLabel.h"
 #include "../../../../Source/Runtime/Engine/Classes/Animation/AnimationSettings.h"
+#include "../../../../Source/Runtime/Engine/Classes/Engine/AssetManagerSettings.h"
 #include "../../../../Source/Runtime/Engine/Classes/Sound/AudioSettings.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/CollisionProfile.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/CoreSettings.h"
@@ -473,10 +483,13 @@
 #include "../../../../Source/Runtime/Engine/Classes/Matinee/InterpTrackInstFloatProp.h"
 #include "../../../../Source/Runtime/Engine/Classes/Engine/LevelStreamingAlwaysLoaded.h"
 #include "../../../../Source/Runtime/Engine/Classes/GameFramework/EngineMessage.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionAbs.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionAdd.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionAppendVector.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionBlendMaterialAttributes.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionBreakMaterialAttributes.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionBumpOffset.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionCameraVectorWS.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionClamp.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionCollectionParameter.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionComment.h"
@@ -486,12 +499,18 @@
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionConstant3Vector.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionConstant4Vector.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionConstantBiasScale.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionCosine.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionCrossProduct.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionCustom.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionCustomOutput.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionDivide.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionDotProduct.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionDynamicParameter.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFeatureLevelSwitch.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFloor.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFmod.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFontSample.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFresnel.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFunctionInput.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionFunctionOutput.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionGetMaterialAttributes.h"
@@ -509,6 +528,7 @@
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionOneMinus.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionPanner.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionParameter.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionPixelNormalWS.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionPower.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionPreSkinnedNormal.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionPreSkinnedPosition.h"
@@ -518,17 +538,21 @@
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionReroute.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionRotateAboutAxis.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionSetMaterialAttributes.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionSine.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionSpeedTree.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionSquareRoot.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionStaticBool.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionStaticSwitch.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionSubtract.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTextureBase.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTextureCoordinate.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTextureProperty.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTransform.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTransformPosition.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTwoSidedSign.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionVectorNoise.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionVertexColor.h"
+#include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionVertexNormalWS.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionViewProperty.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionWorldPosition.h"
 #include "../../../../Source/Runtime/Engine/Classes/Materials/MaterialExpressionTangentOutput.h"
@@ -684,7 +708,9 @@
 #include "../../../../Source/Runtime/MovieScene/Public/MovieSceneSection.h"
 #include "../../../../Source/Runtime/MovieScene/Public/MovieSceneSequence.h"
 #include "../../../../Source/Runtime/MovieScene/Public/MovieSceneTrack.h"
+#include "../../../../Source/Runtime/MovieScene/Private/Tests/MovieSceneSegmentCompilerTests.h"
 #include "../../../../Source/Runtime/MovieScene/Public/MovieSceneNameableTrack.h"
+#include "../../../../Source/Runtime/MovieScene/Private/Tests/MovieSceneSegmentCompilerTests.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Sections/MovieScene3DConstraintSection.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieScene3DConstraintTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Sections/MovieScene3DTransformSection.h"
@@ -728,6 +754,7 @@
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Sections/MovieSceneFadeSection.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Sections/MovieSceneSlomoSection.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneMaterialTrack.h"
+#include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneMaterialParameterCollectionTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieScene3DTransformTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneActorReferenceTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneBoolTrack.h"
@@ -737,6 +764,7 @@
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneFloatTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneIntegerTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneStringTrack.h"
+#include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneTransformTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneVectorTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneVisibilityTrack.h"
 #include "../../../../Source/Runtime/MovieSceneTracks/Public/Tracks/MovieSceneFadeTrack.h"
@@ -861,6 +889,7 @@
 #include "AnimNotifyState.script.h"
 #include "AnimSet.script.h"
 #include "AssetImportData.script.h"
+#include "AssetManager.script.h"
 #include "AssetMappingTable.script.h"
 #include "AssetUserData.script.h"
 #include "AutomationTestSettings.script.h"
@@ -887,6 +916,7 @@
 #include "CheckBoxStyleAsset.script.h"
 #include "Commandlet.script.h"
 #include "Console.script.h"
+#include "ControlRigInterface.script.h"
 #include "CurveBase.script.h"
 #include "CurveSourceInterface.script.h"
 #include "CurveTable.script.h"
@@ -931,6 +961,7 @@
 #include "IntSerialization.script.h"
 #include "Layer.script.h"
 #include "Level.script.h"
+#include "LevelActorContainer.script.h"
 #include "LevelStreaming.script.h"
 #include "LightmappedSurfaceCollection.script.h"
 #include "LightmassPrimitiveSettingsObject.script.h"
@@ -959,7 +990,10 @@
 #include "NavRelevantInterface.script.h"
 #include "NetDriver.script.h"
 #include "NetworkPredictionInterface.script.h"
+#include "NodeMappingContainer.script.h"
+#include "NodeMappingProviderInterface.script.h"
 #include "ObjectLibrary.script.h"
+#include "OcclusionPluginSourceSettingsBase.script.h"
 #include "OnlineBlueprintCallProxyBase.script.h"
 #include "OnlineEngineInterface.script.h"
 #include "OnlineSession.script.h"
@@ -981,6 +1015,7 @@
 #include "Polys.script.h"
 #include "PoseWatch.script.h"
 #include "ReverbEffect.script.h"
+#include "ReverbPluginSourceSettingsBase.script.h"
 #include "Rig.script.h"
 #include "RVOAvoidanceInterface.script.h"
 #include "SaveGame.script.h"
@@ -998,12 +1033,14 @@
 #include "SoundClass.script.h"
 #include "SoundConcurrency.script.h"
 #include "SoundEffectPreset.script.h"
+#include "SoundEffectSourcePresetChain.script.h"
 #include "SoundMix.script.h"
 #include "SoundNode.script.h"
 #include "SoundSubmix.script.h"
+#include "SpatializationPluginSourceSettingsBase.script.h"
 #include "StaticMesh.script.h"
 #include "StaticMeshSocket.script.h"
-#include "SubDSurface.script.h"
+#include "StringTable.script.h"
 #include "SubsurfaceProfile.script.h"
 #include "SubUVAnimation.script.h"
 #include "Texture.script.h"
@@ -1014,7 +1051,6 @@
 #include "UserDefinedEnum.script.h"
 #include "UserDefinedStruct.script.h"
 #include "VectorField.script.h"
-#include "VertexAttributeStream.script.h"
 #include "VisualLoggerDebugSnapshotInterface.script.h"
 #include "World.script.h"
 #include "WorldComposition.script.h"
@@ -1049,7 +1085,6 @@
 #include "SkeletalMeshActor.script.h"
 #include "SplineMeshActor.script.h"
 #include "StaticMeshActor.script.h"
-#include "SubDSurfaceActor.script.h"
 #include "TargetPoint.script.h"
 #include "TextRenderActor.script.h"
 #include "TriggerBase.script.h"
@@ -1069,7 +1104,6 @@
 #include "PostProcessVolume.script.h"
 #include "PrecomputedVisibilityOverrideVolume.script.h"
 #include "PrecomputedVisibilityVolume.script.h"
-#include "PreCullTrianglesVolume.script.h"
 #include "TriggerVolume.script.h"
 #include "DefaultPhysicsVolume.script.h"
 #include "KillZVolume.script.h"
@@ -1174,7 +1208,6 @@
 #include "ParticleSystemComponent.script.h"
 #include "ShapeComponent.script.h"
 #include "SplineComponent.script.h"
-#include "SubDSurfaceComponent.script.h"
 #include "TextRenderComponent.script.h"
 #include "VectorFieldComponent.script.h"
 #include "SkinnedMeshComponent.script.h"
@@ -1215,6 +1248,7 @@
 #include "AnimNotify_PlayParticleEffect.script.h"
 #include "AnimNotify_PlaySound.script.h"
 #include "AnimNotify_ResetClothingSimulation.script.h"
+#include "AnimNotifyState_DisableRootMotion.script.h"
 #include "AnimNotifyState_TimedParticleEffect.script.h"
 #include "AnimNotifyState_Trail.script.h"
 #include "Blueprint.script.h"
@@ -1234,6 +1268,7 @@
 #include "KismetNodeHelperLibrary.script.h"
 #include "KismetRenderingLibrary.script.h"
 #include "KismetStringLibrary.script.h"
+#include "KismetStringTableLibrary.script.h"
 #include "KismetSystemLibrary.script.h"
 #include "KismetTextLibrary.script.h"
 #include "NavigationSystem.script.h"
@@ -1249,8 +1284,11 @@
 #include "CurveLinearColor.script.h"
 #include "CurveVector.script.h"
 #include "PreviewMeshCollection.script.h"
+#include "PrimaryDataAsset.script.h"
 #include "TireType.script.h"
+#include "PrimaryAssetLabel.script.h"
 #include "AnimationSettings.script.h"
+#include "AssetManagerSettings.script.h"
 #include "AudioSettings.script.h"
 #include "CollisionProfile.script.h"
 #include "GarbageCollectionSettings.script.h"
@@ -1316,10 +1354,13 @@
 #include "InterpTrackInstFloatProp.script.h"
 #include "LevelStreamingAlwaysLoaded.script.h"
 #include "EngineMessage.script.h"
+#include "MaterialExpressionAbs.script.h"
 #include "MaterialExpressionAdd.script.h"
+#include "MaterialExpressionAppendVector.script.h"
 #include "MaterialExpressionBlendMaterialAttributes.script.h"
 #include "MaterialExpressionBreakMaterialAttributes.script.h"
 #include "MaterialExpressionBumpOffset.script.h"
+#include "MaterialExpressionCameraVectorWS.script.h"
 #include "MaterialExpressionClamp.script.h"
 #include "MaterialExpressionCollectionParameter.script.h"
 #include "MaterialExpressionComment.script.h"
@@ -1329,12 +1370,18 @@
 #include "MaterialExpressionConstant3Vector.script.h"
 #include "MaterialExpressionConstant4Vector.script.h"
 #include "MaterialExpressionConstantBiasScale.script.h"
+#include "MaterialExpressionCosine.script.h"
+#include "MaterialExpressionCrossProduct.script.h"
 #include "MaterialExpressionCustom.script.h"
 #include "MaterialExpressionCustomOutput.script.h"
 #include "MaterialExpressionDivide.script.h"
+#include "MaterialExpressionDotProduct.script.h"
 #include "MaterialExpressionDynamicParameter.script.h"
 #include "MaterialExpressionFeatureLevelSwitch.script.h"
+#include "MaterialExpressionFloor.script.h"
+#include "MaterialExpressionFmod.script.h"
 #include "MaterialExpressionFontSample.script.h"
+#include "MaterialExpressionFresnel.script.h"
 #include "MaterialExpressionFunctionInput.script.h"
 #include "MaterialExpressionFunctionOutput.script.h"
 #include "MaterialExpressionGetMaterialAttributes.script.h"
@@ -1352,6 +1399,7 @@
 #include "MaterialExpressionOneMinus.script.h"
 #include "MaterialExpressionPanner.script.h"
 #include "MaterialExpressionParameter.script.h"
+#include "MaterialExpressionPixelNormalWS.script.h"
 #include "MaterialExpressionPower.script.h"
 #include "MaterialExpressionPreSkinnedNormal.script.h"
 #include "MaterialExpressionPreSkinnedPosition.script.h"
@@ -1361,17 +1409,21 @@
 #include "MaterialExpressionReroute.script.h"
 #include "MaterialExpressionRotateAboutAxis.script.h"
 #include "MaterialExpressionSetMaterialAttributes.script.h"
+#include "MaterialExpressionSine.script.h"
 #include "MaterialExpressionSpeedTree.script.h"
+#include "MaterialExpressionSquareRoot.script.h"
 #include "MaterialExpressionStaticBool.script.h"
 #include "MaterialExpressionStaticSwitch.script.h"
 #include "MaterialExpressionSubtract.script.h"
 #include "MaterialExpressionTextureBase.script.h"
 #include "MaterialExpressionTextureCoordinate.script.h"
 #include "MaterialExpressionTextureProperty.script.h"
+#include "MaterialExpressionTransform.script.h"
 #include "MaterialExpressionTransformPosition.script.h"
 #include "MaterialExpressionTwoSidedSign.script.h"
 #include "MaterialExpressionVectorNoise.script.h"
 #include "MaterialExpressionVertexColor.script.h"
+#include "MaterialExpressionVertexNormalWS.script.h"
 #include "MaterialExpressionViewProperty.script.h"
 #include "MaterialExpressionWorldPosition.script.h"
 #include "MaterialExpressionTangentOutput.script.h"
@@ -1527,7 +1579,9 @@
 #include "MovieSceneSection.script.h"
 #include "MovieSceneSequence.script.h"
 #include "MovieSceneTrack.script.h"
+#include "MovieSceneSegmentCompilerTestSection.script.h"
 #include "MovieSceneNameableTrack.script.h"
+#include "MovieSceneSegmentCompilerTestTrack.script.h"
 #include "MovieScene3DConstraintSection.script.h"
 #include "MovieScene3DConstraintTrack.script.h"
 #include "MovieScene3DTransformSection.script.h"
@@ -1571,6 +1625,7 @@
 #include "MovieSceneFadeSection.script.h"
 #include "MovieSceneSlomoSection.script.h"
 #include "MovieSceneComponentMaterialTrack.script.h"
+#include "MovieSceneMaterialParameterCollectionTrack.script.h"
 #include "MovieScene3DTransformTrack.script.h"
 #include "MovieSceneActorReferenceTrack.script.h"
 #include "MovieSceneBoolTrack.script.h"
@@ -1580,6 +1635,7 @@
 #include "MovieSceneFloatTrack.script.h"
 #include "MovieSceneIntegerTrack.script.h"
 #include "MovieSceneStringTrack.script.h"
+#include "MovieSceneTransformTrack.script.h"
 #include "MovieSceneVectorTrack.script.h"
 #include "MovieSceneVisibilityTrack.script.h"
 #include "MovieSceneFadeTrack.script.h"
@@ -1708,6 +1764,7 @@
 	_UAnimNotifyState::BindFunctions();
 	_UAnimSet::BindFunctions();
 	_UAssetImportData::BindFunctions();
+	_UAssetManager::BindFunctions();
 	_UAssetMappingTable::BindFunctions();
 	_UAssetUserData::BindFunctions();
 	_UAutomationTestSettings::BindFunctions();
@@ -1734,6 +1791,7 @@
 	_UCheckBoxStyleAsset::BindFunctions();
 	_UCommandlet::BindFunctions();
 	_UConsole::BindFunctions();
+	_UControlRigInterface::BindFunctions();
 	_UCurveBase::BindFunctions();
 	_UCurveSourceInterface::BindFunctions();
 	_UCurveTable::BindFunctions();
@@ -1778,6 +1836,7 @@
 	_UIntSerialization::BindFunctions();
 	_ULayer::BindFunctions();
 	_ULevel::BindFunctions();
+	_ULevelActorContainer::BindFunctions();
 	_ULevelStreaming::BindFunctions();
 	_ULightmappedSurfaceCollection::BindFunctions();
 	_ULightmassPrimitiveSettingsObject::BindFunctions();
@@ -1806,7 +1865,10 @@
 	_UNavRelevantInterface::BindFunctions();
 	_UNetDriver::BindFunctions();
 	_UNetworkPredictionInterface::BindFunctions();
+	_UNodeMappingContainer::BindFunctions();
+	_UNodeMappingProviderInterface::BindFunctions();
 	_UObjectLibrary::BindFunctions();
+	_UOcclusionPluginSourceSettingsBase::BindFunctions();
 	_UOnlineBlueprintCallProxyBase::BindFunctions();
 	_UOnlineEngineInterface::BindFunctions();
 	_UOnlineSession::BindFunctions();
@@ -1828,6 +1890,7 @@
 	_UPolys::BindFunctions();
 	_UPoseWatch::BindFunctions();
 	_UReverbEffect::BindFunctions();
+	_UReverbPluginSourceSettingsBase::BindFunctions();
 	_URig::BindFunctions();
 	_URVOAvoidanceInterface::BindFunctions();
 	_USaveGame::BindFunctions();
@@ -1845,12 +1908,14 @@
 	_USoundClass::BindFunctions();
 	_USoundConcurrency::BindFunctions();
 	_USoundEffectPreset::BindFunctions();
+	_USoundEffectSourcePresetChain::BindFunctions();
 	_USoundMix::BindFunctions();
 	_USoundNode::BindFunctions();
 	_USoundSubmix::BindFunctions();
+	_USpatializationPluginSourceSettingsBase::BindFunctions();
 	_UStaticMesh::BindFunctions();
 	_UStaticMeshSocket::BindFunctions();
-	_USubDSurface::BindFunctions();
+	_UStringTable::BindFunctions();
 	_USubsurfaceProfile::BindFunctions();
 	_USubUVAnimation::BindFunctions();
 	_UTexture::BindFunctions();
@@ -1861,7 +1926,6 @@
 	_UUserDefinedEnum::BindFunctions();
 	_UUserDefinedStruct::BindFunctions();
 	_UVectorField::BindFunctions();
-	_UVertexAttributeStream::BindFunctions();
 	_UVisualLoggerDebugSnapshotInterface::BindFunctions();
 	_UWorld::BindFunctions();
 	_UWorldComposition::BindFunctions();
@@ -1896,7 +1960,6 @@
 	_ASkeletalMeshActor::BindFunctions();
 	_ASplineMeshActor::BindFunctions();
 	_AStaticMeshActor::BindFunctions();
-	_ASubDSurfaceActor::BindFunctions();
 	_ATargetPoint::BindFunctions();
 	_ATextRenderActor::BindFunctions();
 	_ATriggerBase::BindFunctions();
@@ -1916,7 +1979,6 @@
 	_APostProcessVolume::BindFunctions();
 	_APrecomputedVisibilityOverrideVolume::BindFunctions();
 	_APrecomputedVisibilityVolume::BindFunctions();
-	_APreCullTrianglesVolume::BindFunctions();
 	_ATriggerVolume::BindFunctions();
 	_ADefaultPhysicsVolume::BindFunctions();
 	_AKillZVolume::BindFunctions();
@@ -2021,7 +2083,6 @@
 	_UParticleSystemComponent::BindFunctions();
 	_UShapeComponent::BindFunctions();
 	_USplineComponent::BindFunctions();
-	_USubDSurfaceComponent::BindFunctions();
 	_UTextRenderComponent::BindFunctions();
 	_UVectorFieldComponent::BindFunctions();
 	_USkinnedMeshComponent::BindFunctions();
@@ -2062,6 +2123,7 @@
 	_UAnimNotify_PlayParticleEffect::BindFunctions();
 	_UAnimNotify_PlaySound::BindFunctions();
 	_UAnimNotify_ResetClothingSimulation::BindFunctions();
+	_UAnimNotifyState_DisableRootMotion::BindFunctions();
 	_UAnimNotifyState_TimedParticleEffect::BindFunctions();
 	_UAnimNotifyState_Trail::BindFunctions();
 	_UBlueprint::BindFunctions();
@@ -2081,6 +2143,7 @@
 	_UKismetNodeHelperLibrary::BindFunctions();
 	_UKismetRenderingLibrary::BindFunctions();
 	_UKismetStringLibrary::BindFunctions();
+	_UKismetStringTableLibrary::BindFunctions();
 	_UKismetSystemLibrary::BindFunctions();
 	_UKismetTextLibrary::BindFunctions();
 	_UNavigationSystem::BindFunctions();
@@ -2096,8 +2159,11 @@
 	_UCurveLinearColor::BindFunctions();
 	_UCurveVector::BindFunctions();
 	_UPreviewMeshCollection::BindFunctions();
+	_UPrimaryDataAsset::BindFunctions();
 	_UTireType::BindFunctions();
+	_UPrimaryAssetLabel::BindFunctions();
 	_UAnimationSettings::BindFunctions();
+	_UAssetManagerSettings::BindFunctions();
 	_UAudioSettings::BindFunctions();
 	_UCollisionProfile::BindFunctions();
 	_UGarbageCollectionSettings::BindFunctions();
@@ -2163,10 +2229,13 @@
 	_UInterpTrackInstFloatProp::BindFunctions();
 	_ULevelStreamingAlwaysLoaded::BindFunctions();
 	_UEngineMessage::BindFunctions();
+	_UMaterialExpressionAbs::BindFunctions();
 	_UMaterialExpressionAdd::BindFunctions();
+	_UMaterialExpressionAppendVector::BindFunctions();
 	_UMaterialExpressionBlendMaterialAttributes::BindFunctions();
 	_UMaterialExpressionBreakMaterialAttributes::BindFunctions();
 	_UMaterialExpressionBumpOffset::BindFunctions();
+	_UMaterialExpressionCameraVectorWS::BindFunctions();
 	_UMaterialExpressionClamp::BindFunctions();
 	_UMaterialExpressionCollectionParameter::BindFunctions();
 	_UMaterialExpressionComment::BindFunctions();
@@ -2176,12 +2245,18 @@
 	_UMaterialExpressionConstant3Vector::BindFunctions();
 	_UMaterialExpressionConstant4Vector::BindFunctions();
 	_UMaterialExpressionConstantBiasScale::BindFunctions();
+	_UMaterialExpressionCosine::BindFunctions();
+	_UMaterialExpressionCrossProduct::BindFunctions();
 	_UMaterialExpressionCustom::BindFunctions();
 	_UMaterialExpressionCustomOutput::BindFunctions();
 	_UMaterialExpressionDivide::BindFunctions();
+	_UMaterialExpressionDotProduct::BindFunctions();
 	_UMaterialExpressionDynamicParameter::BindFunctions();
 	_UMaterialExpressionFeatureLevelSwitch::BindFunctions();
+	_UMaterialExpressionFloor::BindFunctions();
+	_UMaterialExpressionFmod::BindFunctions();
 	_UMaterialExpressionFontSample::BindFunctions();
+	_UMaterialExpressionFresnel::BindFunctions();
 	_UMaterialExpressionFunctionInput::BindFunctions();
 	_UMaterialExpressionFunctionOutput::BindFunctions();
 	_UMaterialExpressionGetMaterialAttributes::BindFunctions();
@@ -2199,6 +2274,7 @@
 	_UMaterialExpressionOneMinus::BindFunctions();
 	_UMaterialExpressionPanner::BindFunctions();
 	_UMaterialExpressionParameter::BindFunctions();
+	_UMaterialExpressionPixelNormalWS::BindFunctions();
 	_UMaterialExpressionPower::BindFunctions();
 	_UMaterialExpressionPreSkinnedNormal::BindFunctions();
 	_UMaterialExpressionPreSkinnedPosition::BindFunctions();
@@ -2208,17 +2284,21 @@
 	_UMaterialExpressionReroute::BindFunctions();
 	_UMaterialExpressionRotateAboutAxis::BindFunctions();
 	_UMaterialExpressionSetMaterialAttributes::BindFunctions();
+	_UMaterialExpressionSine::BindFunctions();
 	_UMaterialExpressionSpeedTree::BindFunctions();
+	_UMaterialExpressionSquareRoot::BindFunctions();
 	_UMaterialExpressionStaticBool::BindFunctions();
 	_UMaterialExpressionStaticSwitch::BindFunctions();
 	_UMaterialExpressionSubtract::BindFunctions();
 	_UMaterialExpressionTextureBase::BindFunctions();
 	_UMaterialExpressionTextureCoordinate::BindFunctions();
 	_UMaterialExpressionTextureProperty::BindFunctions();
+	_UMaterialExpressionTransform::BindFunctions();
 	_UMaterialExpressionTransformPosition::BindFunctions();
 	_UMaterialExpressionTwoSidedSign::BindFunctions();
 	_UMaterialExpressionVectorNoise::BindFunctions();
 	_UMaterialExpressionVertexColor::BindFunctions();
+	_UMaterialExpressionVertexNormalWS::BindFunctions();
 	_UMaterialExpressionViewProperty::BindFunctions();
 	_UMaterialExpressionWorldPosition::BindFunctions();
 	_UMaterialExpressionTangentOutput::BindFunctions();
@@ -2374,7 +2454,9 @@
 	_UMovieSceneSection::BindFunctions();
 	_UMovieSceneSequence::BindFunctions();
 	_UMovieSceneTrack::BindFunctions();
+	_UMovieSceneSegmentCompilerTestSection::BindFunctions();
 	_UMovieSceneNameableTrack::BindFunctions();
+	_UMovieSceneSegmentCompilerTestTrack::BindFunctions();
 	_UMovieScene3DConstraintSection::BindFunctions();
 	_UMovieScene3DConstraintTrack::BindFunctions();
 	_UMovieScene3DTransformSection::BindFunctions();
@@ -2418,6 +2500,7 @@
 	_UMovieSceneFadeSection::BindFunctions();
 	_UMovieSceneSlomoSection::BindFunctions();
 	_UMovieSceneComponentMaterialTrack::BindFunctions();
+	_UMovieSceneMaterialParameterCollectionTrack::BindFunctions();
 	_UMovieScene3DTransformTrack::BindFunctions();
 	_UMovieSceneActorReferenceTrack::BindFunctions();
 	_UMovieSceneBoolTrack::BindFunctions();
@@ -2427,6 +2510,7 @@
 	_UMovieSceneFloatTrack::BindFunctions();
 	_UMovieSceneIntegerTrack::BindFunctions();
 	_UMovieSceneStringTrack::BindFunctions();
+	_UMovieSceneTransformTrack::BindFunctions();
 	_UMovieSceneVectorTrack::BindFunctions();
 	_UMovieSceneVisibilityTrack::BindFunctions();
 	_UMovieSceneFadeTrack::BindFunctions();

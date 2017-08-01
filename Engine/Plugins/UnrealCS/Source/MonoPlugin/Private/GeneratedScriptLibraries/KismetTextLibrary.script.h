@@ -4,6 +4,32 @@ namespace UnrealEngine
 {
 	class _UKismetTextLibrary
 	{
+		static int32 StringTableIdAndKeyFromText(UKismetTextLibrary* _this,MonoString* Text,MonoString** OutTableId,MonoString** OutKey)
+		{
+			FText Text_temp=FText::FromString(MonoStringToFString(Text));
+			FName OutTableId_temp;
+			FString OutKey_temp;
+			bool ___ret = _this->StringTableIdAndKeyFromText(Text_temp,OutTableId_temp,OutKey_temp);
+			return ___ret?1:0;
+			*OutTableId=FNameToMonoString(OutTableId_temp);
+			*OutKey=FStringToMonoString(OutKey_temp);
+			
+		}
+		static MonoString* TextFromStringTable(UKismetTextLibrary* _this,MonoString* TableId,MonoString* Key)
+		{
+			FName TableId_temp=MonoStringToFName(TableId);
+			FString Key_temp=MonoStringToFString(Key);
+			FText ___ret = _this->TextFromStringTable(TableId_temp,Key_temp);
+			return FStringToMonoString(___ret.ToString());
+			
+		}
+		static int32 TextIsFromStringTable(UKismetTextLibrary* _this,MonoString* Text)
+		{
+			FText Text_temp=FText::FromString(MonoStringToFString(Text));
+			bool ___ret = _this->TextIsFromStringTable(Text_temp);
+			return ___ret?1:0;
+			
+		}
 		static MonoString* Format(UKismetTextLibrary* _this,MonoString* InPattern,MonoArray* InArgs)
 		{
 			FText InPattern_temp=FText::FromString(MonoStringToFString(InPattern));
@@ -176,6 +202,20 @@ namespace UnrealEngine
 			return FStringToMonoString(___ret.ToString());
 			
 		}
+		static MonoString* TextToUpper(UKismetTextLibrary* _this,MonoString* InText)
+		{
+			FText InText_temp=FText::FromString(MonoStringToFString(InText));
+			FText ___ret = _this->TextToUpper(InText_temp);
+			return FStringToMonoString(___ret.ToString());
+			
+		}
+		static MonoString* TextToLower(UKismetTextLibrary* _this,MonoString* InText)
+		{
+			FText InText_temp=FText::FromString(MonoStringToFString(InText));
+			FText ___ret = _this->TextToLower(InText_temp);
+			return FStringToMonoString(___ret.ToString());
+			
+		}
 		static int32 TextIsCultureInvariant(UKismetTextLibrary* _this,MonoString* InText)
 		{
 			FText InText_temp=FText::FromString(MonoStringToFString(InText));
@@ -258,6 +298,9 @@ namespace UnrealEngine
 		public:
 		static void BindFunctions()
 		{
+			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::StringTableIdAndKeyFromText",(const void*)StringTableIdAndKeyFromText);
+			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextFromStringTable",(const void*)TextFromStringTable);
+			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextIsFromStringTable",(const void*)TextIsFromStringTable);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::Format",(const void*)Format);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::AsTimespan_Timespan",(const void*)AsTimespan_Timespan);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::AsTimeZoneTime_DateTime",(const void*)AsTimeZoneTime_DateTime);
@@ -283,6 +326,8 @@ namespace UnrealEngine
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextTrimPrecedingAndTrailing",(const void*)TextTrimPrecedingAndTrailing);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextTrimTrailing",(const void*)TextTrimTrailing);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextTrimPreceding",(const void*)TextTrimPreceding);
+			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextToUpper",(const void*)TextToUpper);
+			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextToLower",(const void*)TextToLower);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextIsCultureInvariant",(const void*)TextIsCultureInvariant);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextIsTransient",(const void*)TextIsTransient);
 			mono_add_internal_call("UnrealEngine.UKismetTextLibrary::TextIsEmpty",(const void*)TextIsEmpty);
