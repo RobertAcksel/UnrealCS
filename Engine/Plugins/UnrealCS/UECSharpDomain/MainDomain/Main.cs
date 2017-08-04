@@ -10,17 +10,17 @@ using System.Linq;
 
 namespace MainDomain{
     public class Main{
-        static Main Instance;
+        private static Main instance;
 
-        readonly bool withEidtor;
-        readonly string gameName;
-        readonly string pluginBaseDir;
-        readonly string engineAssembliesDir;
-        readonly string gameAssembliesDir;
-        string shadowCopyDirectory;
+        private readonly bool withEidtor;
+        private readonly string gameName;
+        private readonly string pluginBaseDir;
+        private readonly string engineAssembliesDir;
+        private readonly string gameAssembliesDir;
+        private string shadowCopyDirectory;
 
-        AppDomain gameDomain;
-        System.IO.FileSystemWatcher fsw;
+        private AppDomain gameDomain;
+        private System.IO.FileSystemWatcher fsw;
 
         public Main(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
             this.withEidtor = withEidtor != 0;
@@ -34,11 +34,12 @@ namespace MainDomain{
                 CreateFileWatcher();
         }
 
-        void CreateFileWatcher(){
-            //开启文件监测服务
-            fsw = new FileSystemWatcher(gameAssembliesDir);
-            fsw.Filter = "*.dll";
-            fsw.NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName;
+        private void CreateFileWatcher(){
+            //Open the file monitoring service
+            fsw = new FileSystemWatcher(gameAssembliesDir){
+                Filter = "*.dll",
+                NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
+            };
             //fsw.Changed += Fsw_Changed;
             fsw.Created += Fsw_Created;
             //fsw.Deleted += Fsw_Deleted;
@@ -48,7 +49,7 @@ namespace MainDomain{
             fsw.InternalBufferSize = 10240;
             fsw.EnableRaisingEvents = true;
 
-            UnrealEngine.UObject.LogInfo("启动文件热更监听 " + gameAssembliesDir + "Game.dll");
+            UnrealEngine.UObject.LogInfo("Start file hot reload listens at '" + gameAssembliesDir + "Game.dll'");
         }
 
         private void Fsw_Renamed(object sender, RenamedEventArgs e){
@@ -86,7 +87,7 @@ namespace MainDomain{
             }
         }
 
-        void CopyFolder(string Dest, string Src){
+        private void CopyFolder(string Dest, string Src){
             if (!(Dest.EndsWith("\\") || Dest.EndsWith("/")))
                 Dest += "/";
             if (!(Src.EndsWith("\\") || Src.EndsWith("/")))
@@ -94,28 +95,28 @@ namespace MainDomain{
             if (!Directory.Exists(Dest))
                 Directory.CreateDirectory(Dest);
 
-            // 子文件夹
-            foreach (string sub in Directory.GetDirectories(Src, "*", SearchOption.TopDirectoryOnly)){
-                string name = Path.GetFileName(sub);
+            // subfolders
+            foreach (var sub in Directory.GetDirectories(Src, "*", SearchOption.TopDirectoryOnly)){
+                var name = Path.GetFileName(sub);
                 CopyFolder(Path.Combine(Dest, name), Path.Combine(Src, name));
             }
 
-            // 文件
-            foreach (string file in Directory.GetFiles(Src, "*", SearchOption.TopDirectoryOnly)){
-                string name = Path.GetFileName(file);
+            // files
+            foreach (var file in Directory.GetFiles(Src, "*", SearchOption.TopDirectoryOnly)){
+                var name = Path.GetFileName(file);
                 File.Copy(Path.Combine(Src, name), Path.Combine(Dest, name), true);
             }
         }
 
-        void OpenProject(){
-            //检查脚本工程
+        private void OpenProject(){
+            //Check the script works
             if (!Directory.Exists(Path.Combine(FPaths.GameDir(), "Project"))){
-                //复制脚本模板到工程目录
+                //Copy the script template to the project directory
                 UObject.LogInfo("Copy script project template");
-                string ProjectDir = Path.Combine(pluginBaseDir, "Project");
+                var ProjectDir = Path.Combine(pluginBaseDir, "Project");
                 CopyFolder(Path.Combine(FPaths.GameDir(), "Project"), ProjectDir);
 
-                ////重命名静态库，否则打包会失败
+                ////Rename the static library, otherwise the package will fail
                 //string MonoHelperFilePathName = Path.Combine(FPaths.GamePluginsDir(), "Mono", "Binaries", "Win64", "UE4-MonoHelper.lib");
                 //if(File.Exists(MonoHelperFilePathName))
                 //{
@@ -137,7 +138,7 @@ namespace MainDomain{
             }
 
             if (UGameplayStatics.GetPlatformName() == "Windows"){
-                string InstallDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",
+                var InstallDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",
                     null, "").ToString();
                 if (string.IsNullOrEmpty(InstallDir)){
                     UObject.LogWarning("Can't find devenv.exe");
@@ -145,42 +146,38 @@ namespace MainDomain{
                 }
                 Process.Start(InstallDir, Path.Combine(FPaths.GameDir(), "Project", "Script.sln"));
             } else{
-                //无工具，显示项目位置
+                //No tool to display item location
                 UObject.LogWarning("C# script solution file located at " + Path.Combine(FPaths.GameDir(), "Project", "Script.sln"));
             }
         }
 
-        List<string> aot_filename_list = null;
+        private List<string> aot_filename_list = null;
 
-        void AOT(){
+        private void AOT(){
             UObject.LogInfo("AOT Start");
 
             aot_filename_list = new List<string>();
             aot_filename_list.Clear();
 
-            string last_work_dir = System.Environment.CurrentDirectory;
+            var last_work_dir = System.Environment.CurrentDirectory;
             try{
-                bool isWindows = UGameplayStatics.GetPlatformName() == "Windows";
-                bool isMac = UGameplayStatics.GetPlatformName() == "Mac";
+                var isWindows = UGameplayStatics.GetPlatformName() == "Windows";
+                var isMac = UGameplayStatics.GetPlatformName() == "Mac";
 
                 if (!isWindows && !isMac)
                     return;
 
-                //遍历目录，aot每个文件
-                string MAC_AOT_MONO_PATH;
-                if (isWindows)
-                    MAC_AOT_MONO_PATH = Path.GetFullPath(Path.Combine(pluginBaseDir, "mono_aot", "aot_host_windows_target_armv7", "bin"));
-                else
-                    MAC_AOT_MONO_PATH = Path.GetFullPath(Path.Combine(pluginBaseDir, "mono_aot", "aot_host_mac_target_armv7", "bin"));
+                //Traverse the directory, aot each file
+                var MAC_AOT_MONO_PATH = Path.GetFullPath(isWindows ? Path.Combine(pluginBaseDir, "mono_aot", "aot_host_windows_target_armv7", "bin") : Path.Combine(pluginBaseDir, "mono_aot", "aot_host_mac_target_armv7", "bin"));
 
-                string aot_target = "armv7";
-                string mscorlib_path = Path.GetFullPath(Path.Combine(pluginBaseDir, "mono_aot", "pre_aot_files", aot_target));
+                var aot_target = "armv7";
+                var mscorlib_path = Path.GetFullPath(Path.Combine(pluginBaseDir, "mono_aot", "pre_aot_files", aot_target));
 
-                string ios_predefine_header_file_pathname = Path.GetFullPath(Path.Combine(pluginBaseDir, "Source", "MonoPlugin", "Private", "ios_predefine.h"));
-                string ios_private_path = Path.GetFullPath(Path.Combine(pluginBaseDir, "Source", "MonoPlugin", "Private", "IOS"));
+                var ios_predefine_header_file_pathname = Path.GetFullPath(Path.Combine(pluginBaseDir, "Source", "MonoPlugin", "Private", "ios_predefine.h"));
+                var ios_private_path = Path.GetFullPath(Path.Combine(pluginBaseDir, "Source", "MonoPlugin", "Private", "IOS"));
 
-                string outpath = Path.GetFullPath(Path.Combine(pluginBaseDir, "AOT"));
-                string temppath = Path.Combine(outpath, "Temp");
+                var outpath = Path.GetFullPath(Path.Combine(pluginBaseDir, "AOT"));
+                var temppath = Path.Combine(outpath, "Temp");
 
                 if (Directory.Exists(outpath))
                     Directory.Delete(outpath, true);
@@ -190,19 +187,19 @@ namespace MainDomain{
                 Directory.CreateDirectory(outpath);
                 Directory.CreateDirectory(temppath);
 
-                //拷贝所有dll到temp文件夹
+                //Copy all dll to temp folder
                 {
-                    List<string> dllPath = new List<string>();
-                    dllPath.Add(engineAssembliesDir);
-                    dllPath.Add(gameAssembliesDir);
-                    dllPath.Add(Path.Combine(FPaths.GameDir(), "Content", "Scripts", "framework"));
-
+                    var dllPath = new List<string>{
+                        engineAssembliesDir,
+                        gameAssembliesDir,
+                        Path.Combine(FPaths.GameDir(), "Content", "Scripts", "framework")
+                    };
                     foreach (var dir in dllPath){
-                        string[] files = Directory.GetFiles(dir, "*.dll", SearchOption.AllDirectories);
+                        var files = Directory.GetFiles(dir, "*.dll", SearchOption.AllDirectories);
                         foreach (var file in files){
-                            string filename = Path.GetFileName(file);
-                            string filepath = file.Substring(0, file.Length - filename.Length);
-                            //跳过无效的UnrealEngine.dll
+                            var filename = Path.GetFileName(file);
+                            var filepath = file.Substring(0, file.Length - filename.Length);
+                            //Skip invalid UnrealEngine.dll
                             if (filename == "UnrealEngine.dll"){
                                 if ((aot_target == "armv7" || aot_target == "armv7s") && !filepath.Contains("Game_32bits")){
                                     continue;
@@ -216,14 +213,14 @@ namespace MainDomain{
                     }
                 }
 
-                //AOT所有目标temp文件夹的文件
+                //AOT all files for the temp folder
                 {
-                    string[] files = Directory.GetFiles(temppath, "*.dll", SearchOption.AllDirectories);
+                    var files = Directory.GetFiles(temppath, "*.dll", SearchOption.AllDirectories);
                     foreach (var file in files){
-                        string filename = Path.GetFileName(file);
-                        string filepath = file.Substring(0, file.Length - filename.Length);
+                        var filename = Path.GetFileName(file);
+                        var filepath = file.Substring(0, file.Length - filename.Length);
 
-                        //跳过此文件
+                        //Skip this file
                         if (filename == "mscorlib.dll"){
                             aot_filename_list.Add("mono_aot_module_mscorlib_info");
                             //copy mscorlib.dll.a
@@ -236,22 +233,22 @@ namespace MainDomain{
                         {
                             System.Environment.CurrentDirectory = MAC_AOT_MONO_PATH;
 
-                            Process proc = new System.Diagnostics.Process();
+                            var proc = new System.Diagnostics.Process();
                             proc.StartInfo.WorkingDirectory = MAC_AOT_MONO_PATH;
                             if (isWindows){
                                 proc.StartInfo.FileName = Path.Combine(MAC_AOT_MONO_PATH, "mono-sgen.exe");
-                                proc.StartInfo.Arguments = string.Format(" --aot=full,asmonly,static \"{0}\"", file);
+                                proc.StartInfo.Arguments = $" --aot=full,asmonly,static \"{file}\"";
                             } else{
                                 proc.StartInfo.FileName = "./armv7-apple-darwin-mono-sgen";
-                                proc.StartInfo.Arguments = string.Format("--aot=full,asmonly,static,nrgctx-trampolines=8096,nimt-trampolines=8096,ntrampolines=4048 \"{0}\"", file);
+                                proc.StartInfo.Arguments = $"--aot=full,asmonly,static,nrgctx-trampolines=8096,nimt-trampolines=8096,ntrampolines=4048 \"{file}\"";
                             }
 
                             proc.StartInfo.CreateNoWindow = true;
                             proc.StartInfo.UseShellExecute = false;
                             proc.StartInfo.RedirectStandardOutput = true;
                             proc.StartInfo.RedirectStandardError = true;
-                            proc.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
-                            proc.ErrorDataReceived += new DataReceivedEventHandler(ErrorHandler);
+                            proc.OutputDataReceived += OutputHandler;
+                            proc.ErrorDataReceived += ErrorHandler;
 
                             UObject.LogInfo("aot {0}", proc.StartInfo.Arguments);
                             proc.Start();
@@ -262,26 +259,29 @@ namespace MainDomain{
                             proc.WaitForExit();
                             proc.Close();
 
-                            //复制到Private/IOS目录
+                            //Copy to the Private / IOS directory
                             //File.Copy(file+".s", Path.Combine(ios_private_path, filename +".s"), true);
                         }
 
                         if (isMac){
                             //AS
                             {
-                                Process proc = new System.Diagnostics.Process();
-                                proc.StartInfo.WorkingDirectory = filepath;
+                                var proc = new Process{
+                                    StartInfo = {
+                                        WorkingDirectory = filepath,
+                                        FileName = "xcrun",
+                                        Arguments = string.Format("-sdk iphoneos as -arch {2} -mno-thumb -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -o {0}.o {1}.s", filename, filename, aot_target),
+                                        CreateNoWindow = true,
+                                        UseShellExecute = false,
+                                        RedirectStandardOutput = true,
+                                        RedirectStandardError = true
+                                    }
+                                };
                                 //proc.StartInfo.FileName = "as";
                                 //proc.StartInfo.Arguments = string.Format("-arch {2} -march=armv7-a -mno-thumb -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -o {0}.o {1}.s", filename, filename, aot_target);
-                                proc.StartInfo.FileName = "xcrun";
-                                proc.StartInfo.Arguments = string.Format("-sdk iphoneos as -arch {2} -mno-thumb -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -o {0}.o {1}.s", filename, filename, aot_target);
 
-                                proc.StartInfo.CreateNoWindow = true;
-                                proc.StartInfo.UseShellExecute = false;
-                                proc.StartInfo.RedirectStandardOutput = true;
-                                proc.StartInfo.RedirectStandardError = true;
-                                proc.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
-                                proc.ErrorDataReceived += new DataReceivedEventHandler(ErrorHandler);
+                                proc.OutputDataReceived += OutputHandler;
+                                proc.ErrorDataReceived += ErrorHandler;
 
                                 UObject.LogInfo("as {0}", proc.StartInfo.Arguments);
                                 proc.Start();
@@ -295,20 +295,23 @@ namespace MainDomain{
 
                             //ar
                             {
-                                Process proc = new System.Diagnostics.Process();
-                                proc.StartInfo.WorkingDirectory = filepath;
+                                var proc = new Process{
+                                    StartInfo = {
+                                        WorkingDirectory = filepath,
+                                        FileName = "xcrun",
+                                        Arguments = $"-sdk iphoneos ar rcu \"{Path.GetFullPath(Path.Combine(outpath, filename))}.a\" {filename}.o",
+                                        CreateNoWindow = true,
+                                        UseShellExecute = false,
+                                        RedirectStandardOutput = true,
+                                        RedirectStandardError = true
+                                    }
+                                };
                                 //proc.StartInfo.FileName = "ar";
                                 //proc.StartInfo.Arguments = string.Format("-r \"{0}.a\" {1}.o", Path.GetFullPath(Path.Combine(outpath, filename)), filename);
 
-                                proc.StartInfo.FileName = "xcrun";
-                                proc.StartInfo.Arguments = string.Format("-sdk iphoneos ar rcu \"{0}.a\" {1}.o", Path.GetFullPath(Path.Combine(outpath, filename)), filename);
 
-                                proc.StartInfo.CreateNoWindow = true;
-                                proc.StartInfo.UseShellExecute = false;
-                                proc.StartInfo.RedirectStandardOutput = true;
-                                proc.StartInfo.RedirectStandardError = true;
-                                proc.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
-                                proc.ErrorDataReceived += new DataReceivedEventHandler(ErrorHandler);
+                                proc.OutputDataReceived += OutputHandler;
+                                proc.ErrorDataReceived += ErrorHandler;
 
                                 UObject.LogInfo("ar {0}", proc.StartInfo.Arguments);
                                 proc.Start();
@@ -323,13 +326,13 @@ namespace MainDomain{
                     }
                 }
 
-                //删除temp文件夹
+                //Delete the temp folder
                 {
                     Directory.Delete(temppath, true);
                 }
 
-                //构建ios预定义头文件
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                //Build ios pre-defined header files
+                var sb = new System.Text.StringBuilder();
                 sb.AppendLine("extern \"C\"{");
                 sb.AppendLine("\tvoid mono_aot_register_module(void* pt);");
                 foreach (var filename in aot_filename_list){
@@ -355,42 +358,41 @@ namespace MainDomain{
             }
         }
 
-        private static void OutputHandler(object sendingProcess,
-                                          DataReceivedEventArgs outLine){
+        private static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine){
             // Collect the sort command output.
-            if (!String.IsNullOrEmpty(outLine.Data)){
-                Regex r = new Regex("mono_aot_module_[\\s\\S]*_info");
+            if (!string.IsNullOrEmpty(outLine.Data)){
+                var r = new Regex("mono_aot_module_[\\s\\S]*_info");
 
-                Match m = r.Match(outLine.Data);
+                var m = r.Match(outLine.Data);
                 if (m.Success){
-                    Instance.aot_filename_list.Add(m.ToString());
+                    instance.aot_filename_list.Add(m.ToString());
                 }
                 UObject.LogWarning(outLine.Data);
             }
         }
 
-        private static void ErrorHandler(object sendingProcess,
-                                         DataReceivedEventArgs outLine){
+        private static void ErrorHandler(object sendingProcess, DataReceivedEventArgs outLine){
             // Collect the sort command output.
-            if (!String.IsNullOrEmpty(outLine.Data)){
+            if (!string.IsNullOrEmpty(outLine.Data)){
                 UObject.LogError(outLine.Data);
             }
         }
 
-        void Start(){
+        private void Start(){
             if (gameDomain == null){
-                var domaininfo = new AppDomainSetup();
+                var domaininfo = new AppDomainSetup{
+                    ApplicationName = gameName,
+                    DisallowApplicationBaseProbing = true
+                };
                 //domaininfo.ShadowCopyDirectories = gameAssembliesDir;// string.Join(System.IO.Path.PathSeparator.ToString(), engineAssembliesDir, gameAssembliesDir);
                 //domaininfo.ShadowCopyFiles = "true";
-                domaininfo.ApplicationName = gameName;
-                domaininfo.DisallowApplicationBaseProbing = true;
                 //domaininfo.CachePath = shadowCopyDirectory;
                 gameDomain = AppDomain.CreateDomain("Game", AppDomain.CurrentDomain.Evidence, domaininfo);
                 //gameDomain = AppDomain.CreateDomain("Game");
             }
         }
 
-        void End(){
+        private void End(){
             if (gameDomain != null){
                 //UnrealEngine.UObject.Log("Unload Game Domain");
                 //AppDomain.Unload(gameDomain);
@@ -398,23 +400,23 @@ namespace MainDomain{
             }
         }
 
-        void ClearAndRenameAssembly(){
-            //查找最新的文件
-            string[] files = Directory.GetFiles(gameAssembliesDir);
-            string lastFileName = "";
+        private void ClearAndRenameAssembly(){
+            //Find the latest file
+            var files = Directory.GetFiles(gameAssembliesDir);
+            var lastFileName = "";
 
-            int max_number = -1;
+            var max_number = -1;
             foreach (var file in files){
-                int startIndex = file.LastIndexOf('-');
-                int endIndex = file.LastIndexOf('.');
+                var startIndex = file.LastIndexOf('-');
+                var endIndex = file.LastIndexOf('.');
                 if (startIndex == -1 || endIndex == -1){
                     continue;
                 }
 
-                string numStr = file.Substring(startIndex + 1, (endIndex - startIndex) - 1);
+                var numStr = file.Substring(startIndex + 1, (endIndex - startIndex) - 1);
 
                 try{
-                    int num = int.Parse(numStr);
+                    var num = int.Parse(numStr);
                     if (max_number < num){
                         max_number = num;
                         lastFileName = file;
@@ -423,7 +425,7 @@ namespace MainDomain{
             }
 
             if (max_number >= 0){
-                //删除之前的文件
+                //Delete the previous file
                 foreach (var f in files){
                     if (f != lastFileName){
                         UnrealEngine.UObject.LogInfo("DeleteFile " + f);
@@ -443,18 +445,18 @@ namespace MainDomain{
             Start();
         }
 
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void NativeReload();
 
         public static Main Initialize(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
-            Instance = new Main(gameName, pluginBaseDir, engineAssembliesDir, gameAssembliesDir, shadowCopyDirectory, withEidtor);
-            return Instance;
+            instance = new Main(gameName, pluginBaseDir, engineAssembliesDir, gameAssembliesDir, shadowCopyDirectory, withEidtor);
+            return instance;
         }
 
         public static void Shutdown(){
-            if (Instance != null){
-                Instance.End();
-                Instance = null;
+            if (instance != null){
+                instance.End();
+                instance = null;
             }
         }
     }
