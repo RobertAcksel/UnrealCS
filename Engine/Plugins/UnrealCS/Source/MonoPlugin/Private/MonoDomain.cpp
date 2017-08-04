@@ -1,10 +1,10 @@
 ﻿// Copyright xg_55,All Rights Reserved.Support E-mail: xg_55@126.com
 // For details, see LICENSE.txt
 
-#pragma once
 #if WITH_MONO
-#include "MonoDomain.h"
+
 #include "MonoPluginPrivatePCH.h"
+#include "MonoDomain.h"
 
 #include "MonoScriptClass.h"
 #include "MonoScriptBindHelper.h"
@@ -22,6 +22,7 @@ namespace UnrealEngine
 
 
 static TArray<FString> MonoPreloadSearchPaths;
+auto const unrealCSContentFolderName = TEXT("Scripts");
 
 static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assemblies_path, void* user_data)
 {
@@ -159,9 +160,9 @@ static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assem
 			continue;
 		}
 
-		if (mono_image_get_assembly(image) == NULL)
+		if (mono_image_get_assembly(image) == nullptr)
 		{
-			UE_LOG(LogMono, Warning, TEXT("Failed to load image from UFS path '%s'. image.assembly==NULL Maybe Load The Same Assembly ,or you need change you assembly version number"), *AsmPath);
+			UE_LOG(LogMono, Warning, TEXT("Failed to load image from UFS path '%s'. image.assembly==nullptr Maybe Load The Same Assembly ,or you need change you assembly version number"), *AsmPath);
 		}
 		else
 		{
@@ -172,14 +173,14 @@ static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assem
 	}
 
 	UE_LOG(LogMono, Error, TEXT("Could not find assembly %s."), *AsmName);
-	return NULL;
+	return nullptr;
 }
 
 static void install_preload_hook(const FString& MonoRuntimeDirectory, const FString& InGameAssemblyDirectory, const FString& MonoEngineDirectory)
 {
 	if (MonoPreloadSearchPaths.Num() == 0)
 	{
-		mono_install_assembly_preload_hook(assembly_preload_hook, NULL);
+		mono_install_assembly_preload_hook(assembly_preload_hook, nullptr);
 	}
 	else
 	{
@@ -236,7 +237,7 @@ void G_NativeReload()
 #endif
 }
 
-FMonoDomain* FMonoDomain::Instance = NULL;
+FMonoDomain* FMonoDomain::Instance = nullptr;
 
 void FMonoDomain::Init()
 {
@@ -247,9 +248,9 @@ void FMonoDomain::Init()
     mono_jit_set_aot_only(true);
 #endif
     
-    RuntimeAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), TEXT("Scripts"), TEXT("framework"));
-	GameAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), TEXT("Scripts"),TEXT("GameAssemblies"));
-	EngineAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), TEXT("Scripts"), TEXT("EngineAssemblies"));
+    RuntimeAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework"));
+	GameAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName,TEXT("GameAssemblies"));
+	EngineAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies"));
 
 	mono_trace_set_log_handler(MonoLog, nullptr);
 	mono_trace_set_print_handler(MonoPrintf);
@@ -322,11 +323,11 @@ void FMonoDomain::Install()
 {
     auto PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
 	//检查内容
-	if (!FPaths::DirectoryExists(FPaths::Combine(*FPaths::GameContentDir(), TEXT("Scripts"), TEXT("GameAssemblies"))))
+	if (!FPaths::DirectoryExists(FPaths::Combine(*FPaths::GameContentDir(), unrealCSContentFolderName, TEXT("GameAssemblies"))))
 	{
 		//Copy the content template to the content directory
-	    auto sourceDir = FPaths::Combine(*PluginDir, TEXT("Scripts"));
-        auto destination = FPaths::Combine(*FPaths::GameContentDir(), TEXT("Scripts"));
+	    auto sourceDir = FPaths::Combine(*PluginDir, unrealCSContentFolderName);
+        auto destination = FPaths::Combine(*FPaths::GameContentDir(), unrealCSContentFolderName);
 		CopyFolder(*destination, *sourceDir);
 	}
     auto engineMonoDir = FPaths::Combine(*FPaths::EngineDir(), TEXT("Binaries"), TEXT("ThirdParty"), TEXT("EMono"));
@@ -380,25 +381,25 @@ MonoDomain* FMonoDomain::CreateGameDomain()
 		if (!mono_domain_set(MainDomain, false))
 		{
 			UE_LOG(LogMono, Log, TEXT("MainDomain Unloaded"));
-			return NULL;
+			return nullptr;
 		}
 
 		//调用初始化方法
 		MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
-		if (AssemblyMainClass == NULL)
-			return NULL;
+		if (AssemblyMainClass == nullptr)
+			return nullptr;
 		//内部使用
 		MonoMethod* methodHotReload = mono_class_get_method_from_name(AssemblyMainClass, "HotReload", -1);
-		if (methodHotReload == NULL)
-			return NULL;
+		if (methodHotReload == nullptr)
+			return nullptr;
 
-		MonoObject* exception = NULL;
+		MonoObject* exception = nullptr;
 
 		mono_runtime_invoke(methodHotReload, mainObject, nullptr, &exception);
 		if (exception)
 		{
 			mono_print_unhandled_exception(exception);
-			return NULL;
+			return nullptr;
 		}
 	}
 
@@ -408,7 +409,7 @@ MonoDomain* FMonoDomain::CreateGameDomain()
 		MonoObject* gameDomain = nullptr;
 		mono_field_get_value(mainObject, Field_gameDomain, &gameDomain);
 		if (gameDomain == nullptr)
-			return NULL;
+			return nullptr;
 
 		MonoClass* AppDomainClass = mono_class_from_name(mono_get_corlib(), "System", "AppDomain");
 		check(AppDomainClass);
@@ -423,7 +424,7 @@ MonoDomain* FMonoDomain::CreateGameDomain()
 		if (!mono_domain_set(GameDomain, false))
 		{
 			UE_LOG(LogMono, Warning, TEXT("Domain Set Failed"));
-			return NULL;
+			return nullptr;
 		}
 
 		return GameDomain;
@@ -451,7 +452,7 @@ FMonoDomain::FMonoDomain()
 	NeedHotReload = false;
 #endif
 	
-	check(Instance == NULL);
+	check(Instance == nullptr);
 	Instance = this;
 
 	Init();
@@ -463,7 +464,7 @@ FMonoDomain::FMonoDomain()
 
 FMonoDomain::~FMonoDomain()
 {
-	Instance = NULL;
+	Instance = nullptr;
 	ShutDownMainDomain();
 #if WITH_EDITOR
 	FEditorDelegates::BeginPIE.RemoveAll(this);
@@ -494,7 +495,7 @@ void FMonoDomain::InitCreateMainDomain()
 #if PLATFORM_MAC
 	FModuleStatus MonoRuntimeStatus;
 	FModuleManager::Get().QueryModule("MonoPlugin", MonoRuntimeStatus);
-	mono_dllmap_insert(NULL, "__Internal", NULL, TCHAR_TO_ANSI(*MonoRuntimeStatus.FilePath), NULL);
+	mono_dllmap_insert(nullptr, "__Internal", nullptr, TCHAR_TO_ANSI(*MonoRuntimeStatus.FilePath), nullptr);
 #endif
 	MonoAssembly* MainAssembly = Open(MainDomain,TCHAR_TO_ANSI(*AssemblyName));
 	if (nullptr == MainAssembly)
@@ -510,13 +511,13 @@ void FMonoDomain::InitCreateMainDomain()
 
 	//调用初始化方法
 	MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
-	if (AssemblyMainClass != NULL)
+	if (AssemblyMainClass != nullptr)
 	{
 		//内部使用
 		MonoMethod* methodInitialize = mono_class_get_method_from_name(AssemblyMainClass, "Initialize", -1);
 		if (methodInitialize != nullptr)
 		{
-			MonoObject* exception = NULL;
+			MonoObject* exception = nullptr;
 			FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
 			MonoString* monoStr_gameDir = FStringToMonoString(GameName, MainDomain);
 			MonoString* monoStr_PluginDir = FStringToMonoString(PluginDir,MainDomain);
@@ -585,7 +586,7 @@ void FMonoDomain::NativeHotReload()
 
 	//获取方法
 	MonoClass* MarshalUtilClass = mono_class_from_name(EngineImage, "UnrealEngine", "MarshalUtil");
-	if (MarshalUtilClass != NULL)
+	if (MarshalUtilClass != nullptr)
 	{
 		//内部使用
 		methodCreateInstance = mono_class_get_method_from_name(MarshalUtilClass, "CreateInstance", -1);
@@ -598,18 +599,18 @@ void FMonoDomain::NativeHotReload()
 
 	MonoClass* AssemblyExportedClass = mono_class_from_name(Image, "Game", "AssemblyExportedClass");
 
-	if (AssemblyExportedClass != NULL)
+	if (AssemblyExportedClass != nullptr)
 	{
 		MonoMethod* GetExportedTypes = mono_class_get_method_from_name(AssemblyExportedClass, "GetExportedTypes", -1);
-		if (GetExportedTypes != NULL)
+		if (GetExportedTypes != nullptr)
 		{
-			MonoArray* data = NULL;
-			MonoObject* exec = NULL;
+			MonoArray* data = nullptr;
+			MonoObject* exec = nullptr;
 			void *args[1];
 			args[0] = &data;
-			mono_runtime_invoke(GetExportedTypes, NULL, args, &exec);
+			mono_runtime_invoke(GetExportedTypes, nullptr, args, &exec);
 
-			if (NULL != data) //
+			if (nullptr != data) //
 			{
 				int32 len = mono_array_length(data);
 				for (int i = 0; i < len; i++)
@@ -625,20 +626,20 @@ void FMonoDomain::NativeHotReload()
 	for (int i = 0; i < ExportedClass.Num(); i++)
 	{
 		MonoClass* C = mono_class_from_name(Image, "Game", TCHAR_TO_ANSI(*ExportedClass[i]));
-		if (C != NULL)
+		if (C != nullptr)
 		{
-			UClass* Parent = NULL;
+			UClass* Parent = nullptr;
 
 			//查找父类
 			MonoClass* C_Parent = mono_class_get_parent(C);
-			while (C_Parent != NULL)
+			while (C_Parent != nullptr)
 			{
 				MonoMethod* StaticClassMethod = mono_class_get_method_from_name(C_Parent, "StaticClass", 0);
 				if (StaticClassMethod)
 				{
-					MonoObject* exec = NULL;
-					MonoObject* r = mono_runtime_invoke(StaticClassMethod, NULL, NULL, &exec);
-					if (r != NULL)
+					MonoObject* exec = nullptr;
+					MonoObject* r = mono_runtime_invoke(StaticClassMethod, nullptr, nullptr, &exec);
+					if (r != nullptr)
 					{
 						void* ptr = mono_object_unbox(r);
 						Parent = *(UClass**)ptr;
@@ -651,14 +652,14 @@ void FMonoDomain::NativeHotReload()
 				}
 				C_Parent = mono_class_get_parent(C_Parent);
 			}
-			if (Parent == NULL)
+			if (Parent == nullptr)
 			{
-				UE_LOG(LogMono, Log, TEXT("Could not Found Class %s parent %s"), *ExportedClass[i], Parent != NULL ? *Parent->GetName() : TEXT(" null "));
+				UE_LOG(LogMono, Log, TEXT("Could not Found Class %s parent %s"), *ExportedClass[i], Parent != nullptr ? *Parent->GetName() : TEXT(" nullptr "));
 			}
 			else
 			{
 
-				UE_LOG(LogMono, Log, TEXT("Found Class %s parent %s"), *ExportedClass[i], Parent != NULL ? *Parent->GetName() : TEXT(" null "));
+				UE_LOG(LogMono, Log, TEXT("Found Class %s parent %s"), *ExportedClass[i], Parent != nullptr ? *Parent->GetName() : TEXT(" nullptr "));
 				IMonoPlugin::Get().Event_OnNewClass().Broadcast(ExportedClass[i], Parent);
 			}
 		}
@@ -754,7 +755,7 @@ void FMonoDomain::Tick(float DeltaTime)
 		{
 			void *args[1];
 			args[0] = &DeltaTime;
-			MonoObject* exception = NULL;
+			MonoObject* exception = nullptr;
 			MonoObject* ret = mono_runtime_invoke(TickObjects[i].TickMethod, TickObjects[i].Obj, args, &exception);
 			if (exception)
 			{
@@ -765,14 +766,13 @@ void FMonoDomain::Tick(float DeltaTime)
 }
 
 
-MonoAssembly* FMonoDomain::Open(MonoDomain* domain, const FString& AssemblyName)
-{
+MonoAssembly* FMonoDomain::Open(MonoDomain* domain, const FString& AssemblyName) const {
 	MonoDomain *PreviousDomain = mono_domain_get();
 	if (PreviousDomain != domain) {
 		mono_domain_set(domain, false);
 	}
 	else {
-		PreviousDomain = NULL;
+		PreviousDomain = nullptr;
 	}
 
 	MonoImageOpenStatus status;
@@ -793,52 +793,49 @@ MonoAssembly* FMonoDomain::Open(MonoDomain* domain, const FString& AssemblyName)
 }
 
 
-MonoObject* FMonoDomain::CreateInstance(const FString& TypeName)
-{
-	if (methodCreateInstance == NULL)
-		return NULL;
+MonoObject* FMonoDomain::CreateInstance(const FString& TypeName) const {
+	if (methodCreateInstance == nullptr)
+		return nullptr;
 
-	MonoObject* exception = NULL;
+	MonoObject* exception = nullptr;
 	MonoString* pArg = FStringToMonoString(TypeName);
 	void *args[1];
 	args[0] = pArg;
-	MonoObject* ret = mono_runtime_invoke(methodCreateInstance, NULL, args, &exception);
+	MonoObject* ret = mono_runtime_invoke(methodCreateInstance, nullptr, args, &exception);
 	return ret;
 }
 
-MonoObject* FMonoDomain::CreateArray(const FString& TypeName, int32 len)
-{
-	if (methodCreateArray == NULL)
-		return NULL;
+MonoObject* FMonoDomain::CreateArray(const FString& TypeName, int32 len) const {
+	if (methodCreateArray == nullptr)
+		return nullptr;
 
-	MonoObject* exception = NULL;
+	MonoObject* exception = nullptr;
 	MonoString* pArg = FStringToMonoString(TypeName);
 	void *args[2];
 	args[0] = pArg;
 	args[1] = &len;
-	MonoObject* ret = mono_runtime_invoke(methodCreateArray, NULL, args, &exception);
+	MonoObject* ret = mono_runtime_invoke(methodCreateArray, nullptr, args, &exception);
 	return ret;
 }
 
-void FMonoDomain::SendCommand(const FString& cmd)
-{
+void FMonoDomain::SendCommand(const FString& cmd) const {
 	MonoDomain *PreviousDomain = mono_domain_get();
 	if (PreviousDomain != MainDomain) {
 		mono_domain_set(MainDomain, false);
 	}
 	else {
-		PreviousDomain = NULL;
+		PreviousDomain = nullptr;
 	}
 
 	//调用初始化方法
 	MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
-	if (AssemblyMainClass != NULL)
+	if (AssemblyMainClass != nullptr)
 	{
 		//内部使用
 		MonoMethod* methodOnCommand = mono_class_get_method_from_name(AssemblyMainClass, "OnCommand", -1);
 		if (methodOnCommand != nullptr)
 		{
-			MonoObject* exception = NULL;
+			MonoObject* exception = nullptr;
 			MonoString* monoStr_Cmd = FStringToMonoString(cmd, MainDomain);
 			void* args[] = { monoStr_Cmd };
 			mono_runtime_invoke(methodOnCommand, mainObject, args, &exception);

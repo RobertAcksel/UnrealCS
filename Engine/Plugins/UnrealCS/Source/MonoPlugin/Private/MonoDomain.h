@@ -2,8 +2,9 @@
 
 #if WITH_MONO
 
-class FMonoDomain
-	:public FTickableGameObject
+#include <mono/metadata/object.h>
+
+class FMonoDomain : public FTickableGameObject
 {
 private:
 	struct TickObject
@@ -30,10 +31,10 @@ public:
 
 	static FMonoDomain* Get(){ return Instance; }
 
-	MonoAssembly* Open(MonoDomain* domain,const FString& AssemblyName);
+	MonoAssembly* Open(MonoDomain* domain,const FString& AssemblyName) const;
 
-	MonoObject* CreateInstance(const FString& TypeName);
-	MonoObject* CreateArray(const FString& TypeName,int32 len);
+	MonoObject* CreateInstance(const FString& TypeName) const;
+	MonoObject* CreateArray(const FString& TypeName,int32 len) const;
 
 	bool AddTickableObject(MonoObject* obj);
 	bool RemoveTickableObject(MonoObject* obj);
@@ -47,14 +48,14 @@ public:
 		return true;
 	}
 	virtual void Tick(float DeltaTime) override;
-	virtual bool IsTickable() const {
+	virtual bool IsTickable() const override {
 		return true;
 	}
 	virtual TStatId GetStatId() const override { RETURN_QUICK_DECLARE_CYCLE_STAT(FMonoDomain, STATGROUP_Tickables); }
 
 
 	//向MainDoman发送指令
-	void SendCommand(const FString& cmd);
+	void SendCommand(const FString& cmd) const;
 
 	//安装插件必须的文件到指定目录
 	static void Install();
