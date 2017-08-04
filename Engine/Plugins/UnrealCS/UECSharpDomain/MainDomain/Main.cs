@@ -109,12 +109,14 @@ namespace MainDomain{
         }
 
         private void OpenProject(){
+            var sourceDir = Path.Combine(pluginBaseDir, "Project");
+            var destinationDir = Path.Combine(FPaths.GameDir(), "Project");
+            var solutionPath = Path.Combine(FPaths.GameDir(), "Project", "Script.sln");
             //Check the script works
-            if (!Directory.Exists(Path.Combine(FPaths.GameDir(), "Project"))){
+            if (!Directory.Exists(destinationDir)){
                 //Copy the script template to the project directory
-                UObject.LogInfo("Copy script project template");
-                var ProjectDir = Path.Combine(pluginBaseDir, "Project");
-                CopyFolder(Path.Combine(FPaths.GameDir(), "Project"), ProjectDir);
+                UObject.LogInfo($"Copy script project template from '{sourceDir}' to '{destinationDir}'");
+                CopyFolder(destinationDir, sourceDir);
 
                 ////Rename the static library, otherwise the package will fail
                 //string MonoHelperFilePathName = Path.Combine(FPaths.GamePluginsDir(), "Mono", "Binaries", "Win64", "UE4-MonoHelper.lib");
@@ -138,16 +140,16 @@ namespace MainDomain{
             }
 
             if (UGameplayStatics.GetPlatformName() == "Windows"){
-                var InstallDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",
+                var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",
                     null, "").ToString();
-                if (string.IsNullOrEmpty(InstallDir)){
+                if (string.IsNullOrEmpty(installDir)){
                     UObject.LogWarning("Can't find devenv.exe");
                     return;
                 }
-                Process.Start(InstallDir, Path.Combine(FPaths.GameDir(), "Project", "Script.sln"));
+                Process.Start(installDir, solutionPath);
             } else{
                 //No tool to display item location
-                UObject.LogWarning("C# script solution file located at " + Path.Combine(FPaths.GameDir(), "Project", "Script.sln"));
+                UObject.LogWarning("C# script solution file located at " + solutionPath);
             }
         }
 

@@ -320,29 +320,28 @@ void CopyFolder(const TCHAR* Dest, const  TCHAR* Src)
 
 void FMonoDomain::Install()
 {
-	FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
+    auto PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
 	//检查内容
 	if (!FPaths::DirectoryExists(FPaths::Combine(*FPaths::GameContentDir(), TEXT("Scripts"), TEXT("GameAssemblies"))))
 	{
-		//复制内容模板到内容目录
-		FString ScriptsDir = FPaths::Combine(*PluginDir, TEXT("Scripts"));
-		CopyFolder(*FPaths::Combine(*FPaths::GameContentDir(), TEXT("Scripts")), *ScriptsDir);
+		//Copy the content template to the content directory
+	    auto sourceDir = FPaths::Combine(*PluginDir, TEXT("Scripts"));
+        auto destination = FPaths::Combine(*FPaths::GameContentDir(), TEXT("Scripts"));
+		CopyFolder(*destination, *sourceDir);
 	}
-	//检查动态库
-	if (!FPaths::DirectoryExists(FPaths::Combine(*FPaths::EngineDir(), TEXT("Binaries"), TEXT("ThirdParty"), TEXT("EMono"))))
-	{
-		//复制内容模板到内容目录
-		FString BinDir = FPaths::Combine(*PluginDir, TEXT("EMono"));
-		CopyFolder(*FPaths::Combine(*FPaths::EngineDir(), TEXT("Binaries"),TEXT("ThirdParty"), TEXT("EMono")), *BinDir);
+    auto engineMonoDir = FPaths::Combine(*FPaths::EngineDir(), TEXT("Binaries"), TEXT("ThirdParty"), TEXT("EMono"));
+	if (!FPaths::DirectoryExists(FPaths::Combine(*engineMonoDir))){
+		//Copy the content template to the content directory
+	    auto BinDir = FPaths::Combine(*PluginDir, TEXT("EMono"));
+		CopyFolder(*engineMonoDir, *BinDir);
 	}
 
-	////检查脚本工程
-	//if (!FPaths::DirectoryExists(FPaths::Combine(*FPaths::GameDir(),TEXT("Project"))))
-	//{
-	//	//复制脚本模板到工程目录
-	//	FString ProjectDir = FPaths::Combine(*FPaths::GamePluginsDir(), TEXT("Mono"), TEXT("Project"));
-	//	CopyFolder(*FPaths::Combine(*FPaths::GameDir(), TEXT("Project")), *ProjectDir);
-	//}
+    auto projectDestinationPath = FPaths::Combine(*FPaths::GameDir(), TEXT("Project"));
+	if (!FPaths::DirectoryExists(projectDestinationPath)){
+		//Copy the CSharp template to the project directory
+	    auto ProjectDir = FPaths::Combine(*PluginDir, TEXT("Project"));
+		CopyFolder(*projectDestinationPath, *ProjectDir);
+	}
 }
 
 MonoDomain* LastDomain = nullptr;

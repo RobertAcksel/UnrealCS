@@ -71,7 +71,6 @@ void FMonoScriptCodeGenerator::FinishExport()
 
 	//导出枚举
 	{
-		
 		for (auto e : NeededExportedEnums)
 		{
 			ExportEnum(e);
