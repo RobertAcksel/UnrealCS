@@ -6,6 +6,6 @@ namespace UnrealEngine{
 public partial class UDistributionVectorConstant:UDistributionVector 
 {
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	public static extern new IntPtr StaticClass();
 }
 }

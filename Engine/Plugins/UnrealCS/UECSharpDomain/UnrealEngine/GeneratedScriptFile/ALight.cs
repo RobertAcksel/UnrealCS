@@ -6,14 +6,15 @@ namespace UnrealEngine{
 public partial class ALight:AActor 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void OnRep_bEnabled(IntPtr _this);
-public  void OnRep_bEnabled()
-{
-	CheckIsValid();
-	OnRep_bEnabled(_this.Get());
+	static extern void OnRep_bEnabled(IntPtr _this);
+	public  void OnRep_bEnabled()
+	{
+		CheckIsValid();
+		OnRep_bEnabled(_this.Get());
+		
+	}
 	
-}
-	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	public static extern new IntPtr StaticClass();
 }
 }

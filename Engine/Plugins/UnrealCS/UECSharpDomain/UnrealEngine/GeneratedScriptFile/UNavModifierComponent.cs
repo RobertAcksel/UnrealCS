@@ -6,14 +6,15 @@ namespace UnrealEngine{
 public partial class UNavModifierComponent:UNavRelevantComponent 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetAreaClass(IntPtr _this,IntPtr NewAreaClass);
-public  void SetAreaClass(TSubclassOf<UNavArea>  NewAreaClass)
-{
-	CheckIsValid();
-	SetAreaClass(_this.Get(),NewAreaClass.NativeClass);
+	static extern void SetAreaClass(IntPtr _this,IntPtr NewAreaClass);
+	public  void SetAreaClass(TSubclassOf<UNavArea>  NewAreaClass)
+	{
+		CheckIsValid();
+		SetAreaClass(_this.Get(),NewAreaClass.NativeClass);
+		
+	}
 	
-}
-	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	public static extern new IntPtr StaticClass();
 }
 }

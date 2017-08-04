@@ -6,6 +6,6 @@ namespace UnrealEngine{
 public partial class UParticleModuleSourceMovement:UParticleModuleLocationBase 
 {
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	public static extern new IntPtr StaticClass();
 }
 }

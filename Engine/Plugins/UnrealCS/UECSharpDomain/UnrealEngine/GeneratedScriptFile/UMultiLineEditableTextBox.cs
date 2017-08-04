@@ -6,39 +6,43 @@ namespace UnrealEngine{
 public partial class UMultiLineEditableTextBox:UTextLayoutWidget 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetIsReadOnly(IntPtr _this,int bReadOnly);
-public  void SetIsReadOnly(bool bReadOnly)
-{
-	CheckIsValid();
-	SetIsReadOnly(_this.Get(),bReadOnly?1:0);
+	static extern void SetIsReadOnly(IntPtr _this,int bReadOnly);
+	public  void SetIsReadOnly(bool bReadOnly)
+	{
+		CheckIsValid();
+		SetIsReadOnly(_this.Get(),bReadOnly?1:0);
+		
+	}
 	
-}
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetError(IntPtr _this,string InError);
-public  void SetError(string InError)
-{
-	CheckIsValid();
-	SetError(_this.Get(),InError);
-	
-}
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetText(IntPtr _this,string InText);
-public  void SetText(string InText)
-{
-	CheckIsValid();
-	SetText(_this.Get(),InText);
-	
-}
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static string GetText(IntPtr _this);
-public  string GetText()
-{
-	CheckIsValid();
-	string ___ret = GetText(_this.Get());
-	return ___ret;
-	
-}
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	static extern void SetError(IntPtr _this,string InError);
+	public  void SetError(string InError)
+	{
+		CheckIsValid();
+		SetError(_this.Get(),InError);
+		
+	}
+	
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	static extern void SetText(IntPtr _this,string InText);
+	public  void SetText(string InText)
+	{
+		CheckIsValid();
+		SetText(_this.Get(),InText);
+		
+	}
+	
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	static extern string GetText(IntPtr _this);
+	public  string GetText()
+	{
+		CheckIsValid();
+		string ___ret = GetText(_this.Get());
+		return ___ret;
+		
+	}
+	
+		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	public static extern new IntPtr StaticClass();
 }
 }

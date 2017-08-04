@@ -6,23 +6,25 @@ namespace UnrealEngine{
 public partial class UWrapBox:UPanelWidget 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static IntPtr AddChildWrapBox(IntPtr _this,IntPtr Content);
-public  UWrapBoxSlot AddChildWrapBox(UWidget Content)
-{
-	CheckIsValid();
-	IntPtr ___ret = AddChildWrapBox(_this.Get(),Content);
-	if(___ret==IntPtr.Zero) return null; UWrapBoxSlot ___ret2= new UWrapBoxSlot(){ _this = ___ret }; return ___ret2;
+	static extern IntPtr AddChildWrapBox(IntPtr _this,IntPtr Content);
+	public  UWrapBoxSlot AddChildWrapBox(UWidget Content)
+	{
+		CheckIsValid();
+		IntPtr ___ret = AddChildWrapBox(_this.Get(),Content);
+		if(___ret==IntPtr.Zero) return null; UWrapBoxSlot ___ret2= new UWrapBoxSlot(){ _this = ___ret }; return ___ret2;
+		
+	}
 	
-}
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetInnerSlotPadding(IntPtr _this,ref FVector2D InPadding);
-public  void SetInnerSlotPadding(FVector2D InPadding)
-{
-	CheckIsValid();
-	SetInnerSlotPadding(_this.Get(),ref InPadding);
-	
-}
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	static extern void SetInnerSlotPadding(IntPtr _this,ref FVector2D InPadding);
+	public  void SetInnerSlotPadding(FVector2D InPadding)
+	{
+		CheckIsValid();
+		SetInnerSlotPadding(_this.Get(),ref InPadding);
+		
+	}
+	
+		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	public static extern new IntPtr StaticClass();
 }
 }

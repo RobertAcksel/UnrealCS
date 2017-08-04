@@ -6,6 +6,6 @@ namespace UnrealEngine{
 public partial class UParticleModuleParameterDynamic:UParticleModuleParameterBase 
 {
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	public static extern new IntPtr StaticClass();
 }
 }

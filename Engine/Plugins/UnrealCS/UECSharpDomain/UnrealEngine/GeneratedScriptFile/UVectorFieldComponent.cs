@@ -6,14 +6,15 @@ namespace UnrealEngine{
 public partial class UVectorFieldComponent:UPrimitiveComponent 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetIntensity(IntPtr _this,float NewIntensity);
-public  void SetIntensity(float NewIntensity)
-{
-	CheckIsValid();
-	SetIntensity(_this.Get(),NewIntensity);
+	static extern void SetIntensity(IntPtr _this,float NewIntensity);
+	public  void SetIntensity(float NewIntensity)
+	{
+		CheckIsValid();
+		SetIntensity(_this.Get(),NewIntensity);
+		
+	}
 	
-}
-	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	public static extern new IntPtr StaticClass();
 }
 }

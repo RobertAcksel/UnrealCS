@@ -6,6 +6,6 @@ namespace UnrealEngine{
 public partial class UInputComponent:UActorComponent 
 {
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	public static extern new IntPtr StaticClass();
 }
 }

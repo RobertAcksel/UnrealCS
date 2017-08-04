@@ -6,6 +6,6 @@ namespace UnrealEngine{
 public partial class UMaterialExpressionTextureSampleParameter2D:UMaterialExpressionTextureSampleParameter 
 {
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+	public static extern new IntPtr StaticClass();
 }
 }

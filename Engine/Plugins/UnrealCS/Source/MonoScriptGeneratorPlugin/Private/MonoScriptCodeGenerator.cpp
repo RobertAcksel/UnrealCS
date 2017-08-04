@@ -355,16 +355,17 @@ FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNa
 	//C#声明以及返回值
 	{
 		FMonoTextBuilder Body_Static;
+        Body_Static.Indent();
 		FMonoTextBuilder Body_Public;
 		Body_Static.AppendLine("[MethodImplAttribute(MethodImplOptions.InternalCall)]");
 		UProperty* ReturnValue = Function->GetReturnProperty();
 		if (ReturnValue)
 		{
-			Body_Static += FString::Printf(TEXT("\tstatic extern %s %s(IntPtr _this"), *Factory.GetCSharpMarshalReturnTypeName(ReturnValue), *Function->GetName());
+			Body_Static += FString::Printf(TEXT("static extern %s %s(IntPtr _this"), *Factory.GetCSharpMarshalReturnTypeName(ReturnValue), *Function->GetName());
 		}
 		else
 		{
-			Body_Static += FString::Printf(TEXT("\tstatic extern void %s(IntPtr _this"), *Function->GetName());
+			Body_Static += FString::Printf(TEXT("static extern void %s(IntPtr _this"), *Function->GetName());
 		}
 
 		Body_Public.AppendLine();
@@ -412,13 +413,13 @@ FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNa
 		}
 
 		Body_Static.AppendLine(");");
-		Body_Public.AppendLine(")");
+        Body_Public.Indent();
+        Body_Public.AppendLine(")");
 		Body_Public.OpenBrace();
 
 		if (!static_func)
 		{
 			Body_Public.AppendLine(TEXT("CheckIsValid();"));
-
 		}
 
 		Body_Public.Append(PreCallDeclare);
@@ -438,7 +439,7 @@ FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNa
 			
 		}
 		Body_Public.CloseBrace();
-
+        Body_Public.AppendLine();
 
 		GeneratedCSFile += Body_Static.ToText();
 		GeneratedCSFile += Body_Public.ToText();

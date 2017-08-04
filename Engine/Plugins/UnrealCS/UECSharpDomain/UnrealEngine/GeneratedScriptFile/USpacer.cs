@@ -6,14 +6,15 @@ namespace UnrealEngine{
 public partial class USpacer:UWidget 
 {
 [MethodImplAttribute(MethodImplOptions.InternalCall)]
-extern static void SetSize(IntPtr _this,ref FVector2D InSize);
-public  void SetSize(FVector2D InSize)
-{
-	CheckIsValid();
-	SetSize(_this.Get(),ref InSize);
+	static extern void SetSize(IntPtr _this,ref FVector2D InSize);
+	public  void SetSize(FVector2D InSize)
+	{
+		CheckIsValid();
+		SetSize(_this.Get(),ref InSize);
+		
+	}
 	
-}
-	[MethodImplAttribute(MethodImplOptions.InternalCall)]
-	public extern static new IntPtr StaticClass();
+		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	public static extern new IntPtr StaticClass();
 }
 }
