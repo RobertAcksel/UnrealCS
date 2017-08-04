@@ -65,15 +65,15 @@ static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assem
 		{
 #if WITH_EDITOR
 #if PLATFORM_64BITS
-			LoadPath = FPaths::Combine(*LoadPath, TEXT("Editor_64bits"));
+//			LoadPath = FPaths::Combine(*LoadPath, TEXT("Editor_64bits"));
 #else
-			LoadPath = FPaths::Combine(*LoadPath, TEXT("Editor_32bits"));
+//			LoadPath = FPaths::Combine(*LoadPath, TEXT("Editor_32bits"));
 #endif
 #else
 #if PLATFORM_64BITS
-			LoadPath = FPaths::Combine(*LoadPath, TEXT("Game_64bits"));
+//			LoadPath = FPaths::Combine(*LoadPath, TEXT("Game_64bits"));
 #else
-			LoadPath = FPaths::Combine(*LoadPath, TEXT("Game_32bits"));
+//			LoadPath = FPaths::Combine(*LoadPath, TEXT("Game_32bits"));
 #endif
 #endif
 		}
