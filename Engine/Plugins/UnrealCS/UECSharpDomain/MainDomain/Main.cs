@@ -140,8 +140,7 @@ namespace MainDomain{
             }
 
             if (UGameplayStatics.GetPlatformName() == "Windows"){
-                var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",
-                    null, "").ToString();
+                var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",null, "").ToString();
                 if (string.IsNullOrEmpty(installDir)){
                     UObject.LogWarning("Can't find devenv.exe");
                     return;

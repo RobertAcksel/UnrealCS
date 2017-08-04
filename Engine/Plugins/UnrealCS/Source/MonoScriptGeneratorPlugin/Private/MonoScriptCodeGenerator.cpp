@@ -167,7 +167,7 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 	UClass* superClass = Class->GetSuperClass();
 
-	if (superClass != NULL)
+	if (superClass != nullptr)
 	{
 		FString SuperClassName = GetClassNameCPP(superClass);
 		GeneratedCSFile += FString::Printf(TEXT("namespace UnrealEngine{\r\npublic partial class %s:%s \r\n{\r\n"), *ClassNameCPP, *SuperClassName);
@@ -255,7 +255,7 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 		SaveHeaderIfChanged(CI.ClassHeader, GeneratedGlue.ToText());
 
-		GeneratedCSFile += TEXT("\t[MethodImplAttribute(MethodImplOptions.InternalCall)]\r\n\tpublic extern static new IntPtr StaticClass();\r\n");
+		GeneratedCSFile += TEXT("\t[MethodImplAttribute(MethodImplOptions.InternalCall)]\r\n\tpublic static extern new IntPtr StaticClass();\r\n");
 	}
 	
 
@@ -326,7 +326,7 @@ void FMonoScriptCodeGenerator::CollectExportInfo(UProperty* Property)
 	if (Property->IsA(UByteProperty::StaticClass()))
 	{
 		UByteProperty* ByteProp = Cast<UByteProperty>(Property);
-		if (ByteProp->GetIntPropertyEnum() != NULL)
+		if (ByteProp->GetIntPropertyEnum() != nullptr)
 		{
 			if (!NeededExportedEnums.Contains(ByteProp->GetIntPropertyEnum()))
 				NeededExportedEnums.Add(ByteProp->GetIntPropertyEnum());
@@ -349,7 +349,7 @@ void FMonoScriptCodeGenerator::CollectExportInfo(UProperty* Property)
 
 FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNameCPP, UClass* Class, UFunction* Function)
 {
-	UClass* FuncSuper = NULL;
+	UClass* FuncSuper = nullptr;
 	bool static_func = Function->HasAnyFunctionFlags(FUNC_Static);
 
 	//C#声明以及返回值
@@ -360,17 +360,16 @@ FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNa
 		UProperty* ReturnValue = Function->GetReturnProperty();
 		if (ReturnValue)
 		{
-			Body_Static += FString::Printf(TEXT("extern static %s %s(IntPtr _this"), *Factory.GetCSharpMarshalReturnTypeName(ReturnValue), *Function->GetName());
+			Body_Static += FString::Printf(TEXT("\tstatic extern %s %s(IntPtr _this"), *Factory.GetCSharpMarshalReturnTypeName(ReturnValue), *Function->GetName());
 		}
 		else
 		{
-			Body_Static += FString::Printf(TEXT("extern static void %s(IntPtr _this"), *Function->GetName());
+			Body_Static += FString::Printf(TEXT("\tstatic extern void %s(IntPtr _this"), *Function->GetName());
 		}
 
 		Body_Public.AppendLine();
 		Body_Public += DocHelper::AppendDocCommentSummary(DocHelper::GetFieldToolTip(*Function));
-		Body_Public.Append(FString::Printf(TEXT("public %s %s %s("),
-			static_func?TEXT("static"):TEXT(""), ReturnValue?*Factory.GetCSharpParamTypeName(ReturnValue):TEXT("void"), *Function->GetName()));
+		Body_Public.Append(FString::Printf(TEXT("public %s %s %s("), static_func ? TEXT("static") : TEXT(""), ReturnValue ? *Factory.GetCSharpParamTypeName(ReturnValue) : TEXT("void"), *Function->GetName()));
 
 		FMonoTextBuilder PreCallDeclare;
 		FMonoTextBuilder PostCallSet;
@@ -426,7 +425,7 @@ FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNa
 
 		FString Caller = static_func ? TEXT("IntPtr.Zero"):TEXT("_this.Get()");
 
-		if (ReturnValue != NULL)
+		if (ReturnValue != nullptr)
 		{
 			Body_Public.AppendLine(FString::Printf(TEXT("%s ___ret = %s(%s%s);"), *Factory.GetCSharpMarshalReturnTypeName(ReturnValue), *Function->GetName(), *Caller, *paramList.ToText()));
 			Body_Public.Append(PostCallSet);
