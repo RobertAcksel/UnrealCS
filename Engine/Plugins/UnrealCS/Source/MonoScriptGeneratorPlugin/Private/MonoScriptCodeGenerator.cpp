@@ -13,7 +13,7 @@ FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath,
 	FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
 	GeneratedCodePath = FPaths::Combine(*PluginDir, TEXT("Source"), TEXT("MonoPlugin"), TEXT("Private"), TEXT("GeneratedScriptLibraries"));
 
-	CSFileExportPath = FPaths::Combine(*PluginDir, TEXT("Script"), TEXT("UnrealEngine"), TEXT("GeneratedScriptFile"));
+	CSFileExportPath = FPaths::Combine(*PluginDir, TEXT("UECSharpDomain"), TEXT("UnrealEngine"), TEXT("GeneratedScriptFile"));
 	DocHelper::InitializeToolTipLocalization();
 
 	//BlackList.AddStruct("RepMovement");
