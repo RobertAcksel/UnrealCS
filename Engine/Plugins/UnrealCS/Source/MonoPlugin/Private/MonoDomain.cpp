@@ -3,8 +3,8 @@
 
 #if WITH_MONO
 
-#include "MonoPluginPrivatePCH.h"
 #include "MonoDomain.h"
+#include "MonoPluginPrivatePCH.h"
 
 #include "MonoScriptClass.h"
 #include "MonoScriptBindHelper.h"

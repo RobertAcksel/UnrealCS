@@ -1,8 +1,5 @@
-// Copyright xg_55,All Rights Reserved.Support E-mail: xg_55@126.com
-// For details, see LICENSE.txt
 #include "DocHelper.h"
 #include "MonoHelperPrivatePCH.h"
-
 
 static const FName NAME_ToolTip(TEXT("ToolTip"));
 
@@ -63,8 +60,13 @@ namespace LocalizationHack
 	void FLocalizationEntryTracker::ReadFromArchive(FArchive & Archive, const FString& Identifier)
 	{
 		// Read namespace count
-		uint32 NamespaceCount;
+		uint32 NamespaceCount = 0;
 		Archive << NamespaceCount;
+
+	    if(NamespaceCount > UINT32_MAX/4) {
+            UE_LOG(LogMonoHelper, Error, TEXT("Failed to read from archive %s. %d bytes seems to be to big."), *Identifier, NamespaceCount);
+            return;
+	    }
 
 		for (uint32 i = 0; i < NamespaceCount; ++i)
 		{
@@ -125,28 +127,23 @@ namespace LocalizationHack
 
 void DocHelper::InitializeToolTipLocalization()
 {
-    return;
-	if (!LocalizationHack::ToolTipLocalizationInitialized)
-	{
-		TArray<FString> ToolTipPaths;
-		ToolTipPaths.Add(TEXT("../../../Engine/Content/Localization/ToolTips"));
+    if (!LocalizationHack::ToolTipLocalizationInitialized){
+        auto pathToRead = FPaths::Combine(FPaths::EngineContentDir(), "Localization", "ToolTips");
+        
+	    TArray<FString> ToolTipPaths;
+		ToolTipPaths.Add(pathToRead);
 
-		for (int32 PathIndex = 0; PathIndex < ToolTipPaths.Num(); ++PathIndex)
-		{
-			const FString& LocalizationPath = ToolTipPaths[PathIndex];
-			//Ê¹ÓÃÓ¢ÎÄ
+		for (int32 PathIndex = 0; PathIndex < ToolTipPaths.Num(); ++PathIndex){
+			const FString & LocalizationPath = ToolTipPaths[PathIndex];
 			const FString CulturePath = LocalizationPath / TEXT("en");
-
 			LocalizationHack::ToolTipLocalization.ReadFromDirectory(CulturePath);
 		}
-
 		LocalizationHack::ToolTipLocalizationInitialized = true;
 	}
 }
 
 FString DocHelper::GetEnumValueMetaData(const UEnum& InEnum, const TCHAR* MetadataKey, int32 ValueIndex)
 {
-    return FString();
 #if WITH_EDITOR || HACK_HEADER_GENERATOR
 	FName EnumValueMetaDataKey(*FString::Printf(TEXT("%s.%s"), *InEnum.GetNameStringByIndex(ValueIndex), MetadataKey));
 
@@ -160,7 +157,6 @@ FString DocHelper::GetEnumValueMetaData(const UEnum& InEnum, const TCHAR* Metada
 
 FString DocHelper::GetEnumValueToolTip(const UEnum& InEnum, int32 ValueIndex)
 {
-    return FString();
     FString LocalizedToolTip;
 	const FString NativeToolTip = GetEnumValueMetaData(InEnum, *NAME_ToolTip.ToString(), ValueIndex);
 
@@ -180,7 +176,6 @@ FString DocHelper::GetEnumValueToolTip(const UEnum& InEnum, int32 ValueIndex)
 FMonoTextBuilder DocHelper::AppendDocCommentSummary(const FString& SummaryText)
 {
 	FMonoTextBuilder outText;
-    return outText;
 
 	if (SummaryText.Len() > 0)
 	{
@@ -212,7 +207,6 @@ FMonoTextBuilder DocHelper::AppendDocCommentSummary(const FString& SummaryText)
 }
 FString DocHelper::GetFieldToolTip(const UField& InField)
 {
-    return FString();
 #if WITH_EDITOR || HACK_HEADER_GENERATOR
 	if (InField.HasMetaData(NAME_ToolTip))
 	{

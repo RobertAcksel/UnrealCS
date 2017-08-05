@@ -2,9 +2,8 @@
 // For details, see LICENSE.txt
 
 //#if WITH_MONO
-#include "MonoPluginPrivatePCH.h"
-
 #include "MonoIntegration.h"
+#include "MonoPluginPrivatePCH.h"
 
 #include "MonoScriptClass.h"
 #include "MonoDomain.h"

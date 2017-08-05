@@ -4,9 +4,11 @@
 
 class MONOHELPER_API FMonoTextBuilder
 {
+    bool onNewLine = true;
 	//…Ó∂»
 	int depth;
 	FString Report;
+
 public:
 	FMonoTextBuilder()
 	{
@@ -38,42 +40,53 @@ public:
 
 	void Append(const FString& text)
 	{
-		Report += text;
+        AppendIndent();
+        Report += text;
+	}
+
+    void AppendIndent() {
+        if (onNewLine) {
+            for (int32 Index = 0; Index < depth; Index++) {
+                Report += TEXT("\t");
+            }
+            onNewLine = false;
+        }
 	}
 
 	void AppendLine()
 	{
-		if (!Report.IsEmpty())
+        AppendIndent();
+        if (!Report.IsEmpty())
 		{
 			Report += LINE_TERMINATOR;
 		}
+        onNewLine = true;
+    }
 
-		for (int32 Index = 0; Index < depth; Index++)
-		{
-			Report += TEXT("\t");
-		}
-	}
-	void AppendLine(const FString& text)
+    void AppendLine(const FString& text)
 	{
-		Report += text;
+        AppendIndent();
+        Report += text;
 		AppendLine();
-	}
-	void AppendLine(const TCHAR* Line)
+    }
+
+    void AppendLine(const TCHAR* Line)
 	{
 		AppendLine(FString(Line));
 	}
-	void OpenBrace()
+
+    void OpenBrace()
 	{
 		Append(TEXT("{"));
 		Indent();
-		AppendLine();
+        AppendLine();
 	}
 
 	void CloseBrace()
 	{
-		Unindent();
 		AppendLine();
-		AppendLine(TEXT("}"));
+        Unindent();
+        AppendLine(TEXT("}"));
 	}
 
 	const FString& ToText() const{ return Report; }
@@ -96,5 +109,5 @@ public:
 		return *this;
 	}
 
-	int32 GetDepth() { return depth; }
+	int32 GetDepth() const { return depth; }
 };
