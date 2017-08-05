@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include "MonoScriptClass.h"
+#include "MonoDomain.h"
+
 #if WITH_MONO
 
 struct FFunctionField
@@ -65,8 +68,8 @@ public:
 
 #if WITH_EDITOR
 	virtual void GetScriptDefinedFields(TArray<FScriptField>& OutFields) override;
-	virtual void BeginHotReload();
-	virtual void EndHotReload();
+	virtual void BeginHotReload() override;
+	virtual void EndHotReload() override;
 	void CreateFunctions(UMonoScriptClass* NewClass);
 #endif
 

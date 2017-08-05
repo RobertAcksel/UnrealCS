@@ -2,6 +2,7 @@
 // For details, see LICENSE.txt
 
 #pragma once
+#include "Engine/EngineTypes.h"
 #include "Engine/BlueprintGeneratedClass.h"
 #include "MonoScriptClass.generated.h"
 
@@ -134,6 +135,7 @@ class MONOPLUGIN_API UMonoScriptClass : public UBlueprintGeneratedClass
 {
 	GENERATED_UCLASS_BODY()
 
+public:
 	/** Script source code. @todo: this should be editor-only */
 	UPROPERTY()
 	FString ClassName;

@@ -8,6 +8,7 @@
 #include "MonoScriptClass.h"
 #include "MonoDomain.h"
 #include "MonoScriptBind_Component.h"
+#include "MonoScriptBindHelper.h"
 
 
 FMonoContext::FMonoContext()

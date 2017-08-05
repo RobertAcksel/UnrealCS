@@ -3,6 +3,7 @@
 #if WITH_MONO
 
 #include <mono/metadata/object.h>
+#include "Tickable.h"
 
 class FMonoDomain : public FTickableGameObject
 {

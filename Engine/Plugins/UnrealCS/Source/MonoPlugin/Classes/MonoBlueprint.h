@@ -28,7 +28,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 	/** Override to ensure we write out the asset import data */
-	virtual void GetAssetRegistryTags(TArray<FAssetRegistryTag>& OutTags) const;
+	virtual void GetAssetRegistryTags(TArray<FAssetRegistryTag>& OutTags) const override;
 #endif
 
 #if WITH_EDITOR
