@@ -233,7 +233,7 @@ void FMonoBlueprintCompiler::PreCompile()
 	}
 	ContextProperty = NULL;
 
-	Super::Compile();
+	Super::PreCompile();
 }
 
 void FMonoBlueprintCompiler::EnsureProperGeneratedClass(UClass*& TargetUClass)

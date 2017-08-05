@@ -1,10 +1,10 @@
 // Copyright xg_55,All Rights Reserved.Support E-mail: xg_55@126.com
 // For details, see LICENSE.txt
 
-#pragma once
 //#if WITH_MONO
-#include "MonoIntegration.h"
 #include "MonoPluginPrivatePCH.h"
+
+#include "MonoIntegration.h"
 
 #include "MonoScriptClass.h"
 #include "MonoDomain.h"
