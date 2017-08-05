@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Flags used by the widget designer.</summary>
 	public enum EWidgetDesignFlags:byte
 	{
 		None=0,

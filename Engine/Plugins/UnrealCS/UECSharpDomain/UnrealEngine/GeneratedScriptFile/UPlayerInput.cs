@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPlayerInput:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearSmoothing(IntPtr _this);
+	
+	/// <summary>Exec function to reset mouse smoothing values</summary>
 	public  void ClearSmoothing()
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UPlayerInput:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void InvertAxis(IntPtr _this,string AxisName);
+	
+	/// <summary>Exec function to invert an axis mapping</summary>
 	public  void InvertAxis(string AxisName)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UPlayerInput:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void InvertAxisKey(IntPtr _this,ref FKey AxisKey);
+	
+	/// <summary>Exec function to invert an axis key</summary>
 	public  void InvertAxisKey(FKey AxisKey)
 	{
 		CheckIsValid();
@@ -34,6 +40,8 @@ public partial class UPlayerInput:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBind(IntPtr _this,string BindName,string Command);
+	
+	/// <summary>Exec function to add a debug exec command</summary>
 	public  void SetBind(string BindName,string Command)
 	{
 		CheckIsValid();
@@ -43,6 +51,8 @@ public partial class UPlayerInput:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMouseSensitivity(IntPtr _this,float Sensitivity);
+	
+	/// <summary>Exec function to change the mouse sensitivity</summary>
 	public  void SetMouseSensitivity(float Sensitivity)
 	{
 		CheckIsValid();
@@ -50,7 +60,7 @@ public partial class UPlayerInput:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

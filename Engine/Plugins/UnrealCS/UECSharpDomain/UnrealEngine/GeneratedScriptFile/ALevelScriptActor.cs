@@ -5,8 +5,17 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ALevelScriptActor:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCinematicMode(IntPtr _this,int bCinematicMode,int bHidePlayer,int bAffectsHUD,int bAffectsMovement,int bAffectsTurning);
+	
+	/// <summary>
+	/// Sets the cinematic mode on all PlayerControllers
+	/// @param       bInCinematicMode        specify true if the player is entering cinematic mode; false if the player is leaving cinematic mode.
+	/// @param       bHidePlayer                     specify true to hide the player's pawn (only relevant if bInCinematicMode is true)
+	/// @param       bAffectsHUD                     specify true if we should show/hide the HUD to match the value of bCinematicMode
+	/// @param       bAffectsMovement        specify true to disable movement in cinematic mode, enable it when leaving
+	/// @param       bAffectsTurning         specify true to disable turning in cinematic mode or enable it when leaving
+	/// </summary>
 	public  void SetCinematicMode(bool bCinematicMode,bool bHidePlayer=true,bool bAffectsHUD=true,bool bAffectsMovement=false,bool bAffectsTurning=false)
 	{
 		CheckIsValid();
@@ -16,6 +25,8 @@ public partial class ALevelScriptActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int RemoteEvent(IntPtr _this,string EventName);
+	
+	/// <summary>Tries to find an event named "EventName" on all other levels, and calls it</summary>
 	public  bool RemoteEvent(string EventName)
 	{
 		CheckIsValid();
@@ -24,7 +35,7 @@ public partial class ALevelScriptActor:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

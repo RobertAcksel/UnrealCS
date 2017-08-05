@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ASceneCaptureCube:ASceneCapture 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnInterpToggle(IntPtr _this,int bEnable);
+	
 	public  void OnInterpToggle(bool bEnable)
 	{
 		CheckIsValid();
@@ -14,7 +15,7 @@ public partial class ASceneCaptureCube:ASceneCapture
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

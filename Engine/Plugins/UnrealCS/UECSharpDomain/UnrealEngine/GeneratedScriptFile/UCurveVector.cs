@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCurveVector:UCurveBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetVectorValue(IntPtr _this,float InTime);
+	
+	/// <summary>Evaluate this float curve at the specified time</summary>
 	public  FVector GetVectorValue(float InTime)
 	{
 		CheckIsValid();
@@ -15,7 +17,7 @@ public partial class UCurveVector:UCurveBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

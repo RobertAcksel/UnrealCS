@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UStereoLayerComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void MarkTextureForUpdate(IntPtr _this);
+	
+	/// <summary>Manually mark the stereo layer texture for updating</summary>
 	public  void MarkTextureForUpdate()
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetPriority(IntPtr _this);
+	
+	/// <summary>@return the render priority</summary>
 	public  int GetPriority()
 	{
 		CheckIsValid();
@@ -26,6 +30,11 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPriority(IntPtr _this,int InPriority);
+	
+	/// <summary>
+	/// Change the layer's render priority, higher priorities render on top of lower priorities
+	/// @param       InPriority: Priority value
+	/// </summary>
 	public  void SetPriority(int InPriority)
 	{
 		CheckIsValid();
@@ -35,6 +44,8 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FBox2D GetUVRect(IntPtr _this);
+	
+	/// <summary>@return the UV coordinates mapped to the quad face</summary>
 	public  FBox2D GetUVRect()
 	{
 		CheckIsValid();
@@ -45,6 +56,11 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetUVRect(IntPtr _this,ref FBox2D InUVRect);
+	
+	/// <summary>
+	/// Change the UV coordinates mapped to the quad face
+	/// @param       InUVRect: Min and Max UV coordinates
+	/// </summary>
 	public  void SetUVRect(FBox2D InUVRect)
 	{
 		CheckIsValid();
@@ -54,6 +70,8 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetQuadSize(IntPtr _this);
+	
+	/// <summary>@return the height and width of the rendered quad</summary>
 	public  FVector2D GetQuadSize()
 	{
 		CheckIsValid();
@@ -64,6 +82,11 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetQuadSize(IntPtr _this,ref FVector2D InQuadSize);
+	
+	/// <summary>
+	/// Change the quad size. This is the unscaled height and width, before component scale is applied.
+	/// @param       InQuadSize: new quad size.
+	/// </summary>
 	public  void SetQuadSize(FVector2D InQuadSize)
 	{
 		CheckIsValid();
@@ -73,6 +96,8 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetTexture(IntPtr _this);
+	
+	/// <summary>@return the texture mapped to the stereo layer quad</summary>
 	public  UTexture GetTexture()
 	{
 		CheckIsValid();
@@ -83,6 +108,11 @@ public partial class UStereoLayerComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTexture(IntPtr _this,IntPtr InTexture);
+	
+	/// <summary>
+	/// Change the texture displayed on the stereo layer quad
+	/// @param       InTexture: new Texture2D
+	/// </summary>
 	public  void SetTexture(UTexture InTexture)
 	{
 		CheckIsValid();
@@ -90,7 +120,7 @@ public partial class UStereoLayerComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,14 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrary 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetVRFocusState(IntPtr _this,out int bUseFocus,out int bHasFocus);
+	
+	/// <summary>
+	/// Returns current state of VR focus.
+	/// @param bUseFocus             (out) if set to true, then this App does use VR focus.
+	/// @param bHasFocus             (out) if set to true, then this App currently has VR focus.
+	/// </summary>
 	public static void GetVRFocusState(out bool bUseFocus,out bool bHasFocus)
 	{
 		int bUseFocus_temp;
@@ -19,6 +25,8 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetTrackingOrigin(IntPtr _this);
+	
+	/// <summary>Returns current tracking origin type (eye level or floor level).</summary>
 	public static EHMDTrackingOrigin GetTrackingOrigin()
 	{
 		int ___ret = GetTrackingOrigin(IntPtr.Zero);
@@ -28,6 +36,8 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTrackingOrigin(IntPtr _this,int Origin);
+	
+	/// <summary>Sets current tracking origin type (eye level or floor level).</summary>
 	public static void SetTrackingOrigin(EHMDTrackingOrigin Origin)
 	{
 		SetTrackingOrigin(IntPtr.Zero,(int)Origin);
@@ -36,6 +46,11 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetWorldToMetersScale(IntPtr _this,IntPtr WorldContext);
+	
+	/// <summary>
+	/// Returns the World to Meters scale, which corresponds to the scale of the world as perceived by the player
+	/// @return       How many Unreal units correspond to one meter in the real world
+	/// </summary>
 	public static float GetWorldToMetersScale(UObject WorldContext)
 	{
 		float ___ret = GetWorldToMetersScale(IntPtr.Zero,WorldContext);
@@ -45,6 +60,11 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetWorldToMetersScale(IntPtr _this,IntPtr WorldContext,float NewScale);
+	
+	/// <summary>
+	/// Sets the World to Meters scale, which changes the scale of the world as perceived by the player
+	/// @param NewScale       Specifies how many Unreal units correspond to one meter in the real world
+	/// </summary>
 	public static void SetWorldToMetersScale(UObject WorldContext,float NewScale=100.000000f)
 	{
 		SetWorldToMetersScale(IntPtr.Zero,WorldContext,NewScale);
@@ -53,6 +73,11 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetScreenPercentage(IntPtr _this);
+	
+	/// <summary>
+	/// Returns screen percentage to be used in VR mode.
+	/// @return (float)      The screen percentage to be used in VR mode.
+	/// </summary>
 	public static float GetScreenPercentage()
 	{
 		float ___ret = GetScreenPercentage(IntPtr.Zero);
@@ -62,6 +87,13 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetClippingPlanes(IntPtr _this,float Near,float Far);
+	
+	/// <summary>
+	/// Sets near and far clipping planes (NCP and FCP) for stereo rendering. Similar to 'stereo ncp= fcp' console command, but NCP and FCP set by this
+	/// call won't be saved in .ini file.
+	/// @param Near                          (in) Near clipping plane, in centimeters
+	/// @param Far                           (in) Far clipping plane, in centimeters
+	/// </summary>
 	public static void SetClippingPlanes(float Near,float Far)
 	{
 		SetClippingPlanes(IntPtr.Zero,Near,Far);
@@ -70,6 +102,13 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ResetOrientationAndPosition(IntPtr _this,float Yaw,int Options);
+	
+	/// <summary>
+	/// Resets orientation by setting roll and pitch to 0, assuming that current yaw is forward direction and assuming
+	/// current position as a 'zero-point' (for positional tracking).
+	/// @param Yaw                           (in) the desired yaw to be set after orientation reset.
+	/// @param Options                       (in) specifies either position, orientation or both should be reset.
+	/// </summary>
 	public static void ResetOrientationAndPosition(float Yaw=0.000000f,EOrientPositionSelector Options=EOrientPositionSelector.OrientationAndPosition)
 	{
 		ResetOrientationAndPosition(IntPtr.Zero,Yaw,(int)Options);
@@ -78,6 +117,22 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetTrackingSensorParameters(IntPtr _this,out FVector Origin,out FRotator Rotation,out float LeftFOV,out float RightFOV,out float TopFOV,out float BottomFOV,out float Distance,out float NearPlane,out float FarPlane,out int IsActive,int Index);
+	
+	/// <summary>
+	/// If the HMD has a positional sensor, this will return the game-world location of it, as well as the parameters for the bounding region of tracking.
+	/// This allows an in-game representation of the legal positional tracking range.  All values will be zeroed if the sensor is not available or the HMD does not support it.
+	/// @param Index                         (in) Index of the tracking sensor to query
+	/// @param Origin                        (out) Origin, in world-space, of the sensor
+	/// @param Rotation                      (out) Rotation, in world-space, of the sensor
+	/// @param LeftFOV                       (out) Field-of-view, left from center, in degrees, of the valid tracking zone of the sensor
+	/// @param RightFOV                      (out) Field-of-view, right from center, in degrees, of the valid tracking zone of the sensor
+	/// @param TopFOV                        (out) Field-of-view, top from center, in degrees, of the valid tracking zone of the sensor
+	/// @param BottomFOV                     (out) Field-of-view, bottom from center, in degrees, of the valid tracking zone of the sensor
+	/// @param Distance                      (out) Nominal distance to sensor, in world-space
+	/// @param NearPlane                     (out) Near plane distance of the tracking volume, in world-space
+	/// @param FarPlane                      (out) Far plane distance of the tracking volume, in world-space
+	/// @param IsActive                      (out) True, if the query for the specified sensor succeeded.
+	/// </summary>
 	public static void GetTrackingSensorParameters(out FVector Origin,out FRotator Rotation,out float LeftFOV,out float RightFOV,out float TopFOV,out float BottomFOV,out float Distance,out float NearPlane,out float FarPlane,out bool IsActive,int Index=0)
 	{
 		int IsActive_temp;
@@ -88,6 +143,8 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumOfTrackingSensors(IntPtr _this);
+	
+	/// <summary>If the HMD has multiple positional tracking sensors, return a total number of them currently connected.</summary>
 	public static int GetNumOfTrackingSensors()
 	{
 		int ___ret = GetNumOfTrackingSensors(IntPtr.Zero);
@@ -97,6 +154,8 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int HasValidTrackingPosition(IntPtr _this);
+	
+	/// <summary>If the HMD supports positional tracking, whether or not we are currently being tracked</summary>
 	public static bool HasValidTrackingPosition()
 	{
 		int ___ret = HasValidTrackingPosition(IntPtr.Zero);
@@ -106,6 +165,12 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetOrientationAndPosition(IntPtr _this,out FRotator DeviceRotation,out FVector DevicePosition);
+	
+	/// <summary>
+	/// Grabs the current orientation and position for the HMD.  If positional tracking is not available, DevicePosition will be a zero vector
+	/// @param DeviceRotation        (out) The device's current rotation
+	/// @param DevicePosition        (out) The device's current position, in its own tracking space
+	/// </summary>
 	public static void GetOrientationAndPosition(out FRotator DeviceRotation,out FVector DevicePosition)
 	{
 		GetOrientationAndPosition(IntPtr.Zero,out DeviceRotation,out DevicePosition);
@@ -114,6 +179,11 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetHMDDeviceName(IntPtr _this);
+	
+	/// <summary>
+	/// Returns the name of the device, so scripts can modify their behaviour appropriately
+	/// @return      FName specific to the currently active HMD device type.  "None" implies no device, "Unknown" implies a device with no description.
+	/// </summary>
 	public static string GetHMDDeviceName()
 	{
 		string ___ret = GetHMDDeviceName(IntPtr.Zero);
@@ -123,6 +193,12 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int EnableHMD(IntPtr _this,int bEnable);
+	
+	/// <summary>
+	/// Switches to/from using HMD and stereo rendering.
+	/// @param bEnable                       (in) 'true' to enable HMD / stereo; 'false' otherwise
+	/// @return (Boolean)            True, if the request was successful.
+	/// </summary>
 	public static bool EnableHMD(bool bEnable)
 	{
 		int ___ret = EnableHMD(IntPtr.Zero,bEnable?1:0);
@@ -132,6 +208,11 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsHeadMountedDisplayConnected(IntPtr _this);
+	
+	/// <summary>
+	/// Returns whether or not the HMD hardware is connected and ready to use.  It may or may not actually be in use.
+	/// @return (Boolean)  status whether the HMD hardware is connected and ready to use.  It may or may not actually be in use.
+	/// </summary>
 	public static bool IsHeadMountedDisplayConnected()
 	{
 		int ___ret = IsHeadMountedDisplayConnected(IntPtr.Zero);
@@ -141,6 +222,11 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsHeadMountedDisplayEnabled(IntPtr _this);
+	
+	/// <summary>
+	/// Returns whether or not we are currently using the head mounted display.
+	/// @return (Boolean)  status of HMD
+	/// </summary>
 	public static bool IsHeadMountedDisplayEnabled()
 	{
 		int ___ret = IsHeadMountedDisplayEnabled(IntPtr.Zero);
@@ -148,7 +234,7 @@ public partial class UHeadMountedDisplayFunctionLibrary:UBlueprintFunctionLibrar
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ULightComponent:ULightComponentBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIESTexture(IntPtr _this,IntPtr NewValue);
+	
 	public  void SetIESTexture(UTextureLightProfile NewValue)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBloomTint(IntPtr _this,ref FColor NewValue);
+	
 	public  void SetBloomTint(FColor NewValue)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBloomThreshold(IntPtr _this,float NewValue);
+	
 	public  void SetBloomThreshold(float NewValue)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBloomScale(IntPtr _this,float NewValue);
+	
 	public  void SetBloomScale(float NewValue)
 	{
 		CheckIsValid();
@@ -43,6 +47,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetEnableLightShaftBloom(IntPtr _this,int bNewValue);
+	
 	public  void SetEnableLightShaftBloom(bool bNewValue)
 	{
 		CheckIsValid();
@@ -52,6 +57,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAffectTranslucentLighting(IntPtr _this,int bNewValue);
+	
 	public  void SetAffectTranslucentLighting(bool bNewValue)
 	{
 		CheckIsValid();
@@ -61,6 +67,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAffectDynamicIndirectLighting(IntPtr _this,int bNewValue);
+	
 	public  void SetAffectDynamicIndirectLighting(bool bNewValue)
 	{
 		CheckIsValid();
@@ -70,6 +77,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightFunctionDisabledBrightness(IntPtr _this,float NewValue);
+	
 	public  void SetLightFunctionDisabledBrightness(float NewValue)
 	{
 		CheckIsValid();
@@ -79,6 +87,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightFunctionFadeDistance(IntPtr _this,float NewLightFunctionFadeDistance);
+	
 	public  void SetLightFunctionFadeDistance(float NewLightFunctionFadeDistance)
 	{
 		CheckIsValid();
@@ -88,6 +97,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightFunctionScale(IntPtr _this,ref FVector NewLightFunctionScale);
+	
 	public  void SetLightFunctionScale(FVector NewLightFunctionScale)
 	{
 		CheckIsValid();
@@ -97,6 +107,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightFunctionMaterial(IntPtr _this,IntPtr NewLightFunctionMaterial);
+	
 	public  void SetLightFunctionMaterial(UMaterialInterface NewLightFunctionMaterial)
 	{
 		CheckIsValid();
@@ -106,6 +117,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTemperature(IntPtr _this,float NewTemperature);
+	
 	public  void SetTemperature(float NewTemperature)
 	{
 		CheckIsValid();
@@ -115,6 +127,8 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightColor(IntPtr _this,ref FLinearColor NewLightColor,int bSRGB);
+	
+	/// <summary>Set color of the light</summary>
 	public  void SetLightColor(FLinearColor NewLightColor,bool bSRGB=true)
 	{
 		CheckIsValid();
@@ -124,6 +138,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricScatteringIntensity(IntPtr _this,float NewIntensity);
+	
 	public  void SetVolumetricScatteringIntensity(float NewIntensity)
 	{
 		CheckIsValid();
@@ -133,6 +148,7 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIndirectLightingIntensity(IntPtr _this,float NewIntensity);
+	
 	public  void SetIndirectLightingIntensity(float NewIntensity)
 	{
 		CheckIsValid();
@@ -142,6 +158,8 @@ public partial class ULightComponent:ULightComponentBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIntensity(IntPtr _this,float NewIntensity);
+	
+	/// <summary>Set intensity of the light</summary>
 	public  void SetIntensity(float NewIntensity)
 	{
 		CheckIsValid();
@@ -149,7 +167,7 @@ public partial class ULightComponent:ULightComponentBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

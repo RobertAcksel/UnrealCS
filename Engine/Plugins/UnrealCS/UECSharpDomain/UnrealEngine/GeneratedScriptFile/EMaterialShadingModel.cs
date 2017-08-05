@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Note: Check UMaterialInstance::Serialize if changed!</summary>
 	public enum EMaterialShadingModel:byte
 	{
 		MSM_Unlit=0,

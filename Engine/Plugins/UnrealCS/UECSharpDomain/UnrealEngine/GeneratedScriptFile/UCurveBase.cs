@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCurveBase:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetValueRange(IntPtr _this,out float MinValue,out float MaxValue);
+	
+	/// <summary>Get the value range across all curves</summary>
 	public  void GetValueRange(out float MinValue,out float MaxValue)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UCurveBase:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetTimeRange(IntPtr _this,out float MinTime,out float MaxTime);
+	
+	/// <summary>Get the time range across all curves</summary>
 	public  void GetTimeRange(out float MinTime,out float MaxTime)
 	{
 		CheckIsValid();
@@ -23,7 +27,7 @@ public partial class UCurveBase:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

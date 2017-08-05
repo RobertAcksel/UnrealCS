@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UActorComponent:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RemoveTickPrerequisiteComponent(IntPtr _this,IntPtr PrerequisiteComponent);
+	
+	/// <summary>Remove tick dependency on PrerequisiteComponent.</summary>
 	public  void RemoveTickPrerequisiteComponent(UActorComponent PrerequisiteComponent)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RemoveTickPrerequisiteActor(IntPtr _this,IntPtr PrerequisiteActor);
+	
+	/// <summary>Remove tick dependency on PrerequisiteActor.</summary>
 	public  void RemoveTickPrerequisiteActor(AActor PrerequisiteActor)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddTickPrerequisiteComponent(IntPtr _this,IntPtr PrerequisiteComponent);
+	
+	/// <summary>Make this component tick after PrerequisiteComponent.</summary>
 	public  void AddTickPrerequisiteComponent(UActorComponent PrerequisiteComponent)
 	{
 		CheckIsValid();
@@ -34,6 +40,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddTickPrerequisiteActor(IntPtr _this,IntPtr PrerequisiteActor);
+	
+	/// <summary>Make this component tick after PrerequisiteActor</summary>
 	public  void AddTickPrerequisiteActor(AActor PrerequisiteActor)
 	{
 		CheckIsValid();
@@ -43,6 +51,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTickGroup(IntPtr _this,int NewTickGroup);
+	
+	/// <summary>Changes the ticking group for this component</summary>
 	public  void SetTickGroup(ETickingGroup NewTickGroup)
 	{
 		CheckIsValid();
@@ -52,6 +62,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void K2_DestroyComponent(IntPtr _this,IntPtr Object);
+	
+	/// <summary>Unregister and mark for pending kill a component.  This may not be used to destroy a component is owned by an actor other than the one calling the function.</summary>
 	public  void K2_DestroyComponent(UObject Object)
 	{
 		CheckIsValid();
@@ -61,6 +73,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetComponentTickInterval(IntPtr _this);
+	
+	/// <summary>Returns whether this component has tick enabled or not</summary>
 	public  float GetComponentTickInterval()
 	{
 		CheckIsValid();
@@ -71,6 +85,11 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetComponentTickInterval(IntPtr _this,float TickInterval);
+	
+	/// <summary>
+	/// Sets the tick interval for this component's primary tick function. Does not enable the tick interval. Takes effect on next tick.
+	/// @param TickInterval   The duration between ticks for this component's primary tick function
+	/// </summary>
 	public  void SetComponentTickInterval(float TickInterval)
 	{
 		CheckIsValid();
@@ -80,6 +99,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsComponentTickEnabled(IntPtr _this);
+	
+	/// <summary>Returns whether this component has tick enabled or not</summary>
 	public  bool IsComponentTickEnabled()
 	{
 		CheckIsValid();
@@ -90,6 +111,11 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetComponentTickEnabled(IntPtr _this,int bEnabled);
+	
+	/// <summary>
+	/// Set this component's tick functions to be enabled or disabled. Only has an effect if the function is registered
+	/// @param       bEnabled - Whether it should be enabled or not
+	/// </summary>
 	public  void SetComponentTickEnabled(bool bEnabled)
 	{
 		CheckIsValid();
@@ -99,6 +125,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsReplicated(IntPtr _this,int ShouldReplicate);
+	
+	/// <summary>Enable or disable replication. This is the equivalent of RemoteRole for actors (only a bool is required for components)</summary>
 	public  void SetIsReplicated(bool ShouldReplicate)
 	{
 		CheckIsValid();
@@ -108,6 +136,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTickableWhenPaused(IntPtr _this,int bTickableWhenPaused);
+	
+	/// <summary>Sets whether this component can tick when paused.</summary>
 	public  void SetTickableWhenPaused(bool bTickableWhenPaused)
 	{
 		CheckIsValid();
@@ -117,6 +147,11 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAutoActivate(IntPtr _this,int bNewAutoActivate);
+	
+	/// <summary>
+	/// Sets whether the component should be auto activate or not. Only safe during construction scripts.
+	/// @param bNewAutoActivate - The new auto activate state of the component
+	/// </summary>
 	public  void SetAutoActivate(bool bNewAutoActivate)
 	{
 		CheckIsValid();
@@ -126,6 +161,11 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsActive(IntPtr _this);
+	
+	/// <summary>
+	/// Returns whether the component is active or not
+	/// @return - The active state of the component.
+	/// </summary>
 	public  bool IsActive()
 	{
 		CheckIsValid();
@@ -136,6 +176,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ToggleActive(IntPtr _this);
+	
+	/// <summary>Toggles the active state of the component</summary>
 	public  void ToggleActive()
 	{
 		CheckIsValid();
@@ -145,6 +187,11 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetActive(IntPtr _this,int bNewActive,int bReset);
+	
+	/// <summary>
+	/// Sets whether the component is active or not
+	/// @param bNewActive - The new active state of the component
+	/// </summary>
 	public  void SetActive(bool bNewActive,bool bReset=false)
 	{
 		CheckIsValid();
@@ -154,6 +201,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Deactivate(IntPtr _this);
+	
+	/// <summary>Deactivates the SceneComponent.</summary>
 	public  void Deactivate()
 	{
 		CheckIsValid();
@@ -163,6 +212,11 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Activate(IntPtr _this,int bReset);
+	
+	/// <summary>
+	/// Activates the SceneComponent
+	/// @param bReset - The value to assign to HiddenGame.
+	/// </summary>
 	public  void Activate(bool bReset=false)
 	{
 		CheckIsValid();
@@ -172,6 +226,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int ComponentHasTag(IntPtr _this,string Tag);
+	
+	/// <summary>See if this component contains the supplied tag</summary>
 	public  bool ComponentHasTag(string Tag)
 	{
 		CheckIsValid();
@@ -182,6 +238,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetOwner(IntPtr _this);
+	
+	/// <summary>Follow the Outer chain to get the  AActor  that 'Owns' this component</summary>
 	public  AActor GetOwner()
 	{
 		CheckIsValid();
@@ -192,6 +250,7 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_IsActive(IntPtr _this);
+	
 	public  void OnRep_IsActive()
 	{
 		CheckIsValid();
@@ -201,6 +260,8 @@ public partial class UActorComponent:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsBeingDestroyed(IntPtr _this);
+	
+	/// <summary>Returns whether the component is in the process of being destroyed.</summary>
 	public  bool IsBeingDestroyed()
 	{
 		CheckIsValid();
@@ -209,7 +270,7 @@ public partial class UActorComponent:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

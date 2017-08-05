@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UStaticMesh:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumSections(IntPtr _this,int InLOD);
+	
+	/// <summary>Returns number of Sections that this StaticMesh has, in the supplied LOD (LOD 0 is the highest)</summary>
 	public  int GetNumSections(int InLOD)
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UStaticMesh:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FBox GetBoundingBox(IntPtr _this);
+	
+	/// <summary>Returns the bounding box, in local space including bounds extension(s), of the StaticMesh asset</summary>
 	public  FBox GetBoundingBox()
 	{
 		CheckIsValid();
@@ -27,6 +31,11 @@ public partial class UStaticMesh:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FBoxSphereBounds GetBounds(IntPtr _this);
+	
+	/// <summary>
+	/// Returns the number of bounds of the mesh.
+	/// @return      The bounding box represented as box origin with extents and also a sphere that encapsulates that box
+	/// </summary>
 	public  FBoxSphereBounds GetBounds()
 	{
 		CheckIsValid();
@@ -37,6 +46,8 @@ public partial class UStaticMesh:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumLODs(IntPtr _this);
+	
+	/// <summary>Returns the number of LODs used by the mesh.</summary>
 	public  int GetNumLODs()
 	{
 		CheckIsValid();
@@ -45,7 +56,7 @@ public partial class UStaticMesh:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

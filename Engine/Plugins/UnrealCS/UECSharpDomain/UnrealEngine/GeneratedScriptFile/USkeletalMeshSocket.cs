@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class USkeletalMeshSocket:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void InitializeSocketFromLocation(IntPtr _this,IntPtr SkelComp,ref FVector WorldLocation,ref FVector WorldNormal);
+	
+	/// <summary>Sets BoneName, RelativeLocation and RelativeRotation based on closest bone to WorldLocation and WorldNormal</summary>
 	public  void InitializeSocketFromLocation(USkeletalMeshComponent SkelComp,FVector WorldLocation,FVector WorldNormal)
 	{
 		CheckIsValid();
@@ -16,6 +18,7 @@ public partial class USkeletalMeshSocket:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetSocketLocation(IntPtr _this,IntPtr SkelComp);
+	
 	public  FVector GetSocketLocation(USkeletalMeshComponent SkelComp)
 	{
 		CheckIsValid();
@@ -24,7 +27,7 @@ public partial class USkeletalMeshSocket:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

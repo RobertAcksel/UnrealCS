@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UWrapBox:UPanelWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddChildWrapBox(IntPtr _this,IntPtr Content);
+	
 	public  UWrapBoxSlot AddChildWrapBox(UWidget Content)
 	{
 		CheckIsValid();
@@ -17,6 +18,8 @@ public partial class UWrapBox:UPanelWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetInnerSlotPadding(IntPtr _this,ref FVector2D InPadding);
+	
+	/// <summary>Sets the inner slot padding goes between slots sharing borders</summary>
 	public  void SetInnerSlotPadding(FVector2D InPadding)
 	{
 		CheckIsValid();
@@ -24,7 +27,7 @@ public partial class UWrapBox:UPanelWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

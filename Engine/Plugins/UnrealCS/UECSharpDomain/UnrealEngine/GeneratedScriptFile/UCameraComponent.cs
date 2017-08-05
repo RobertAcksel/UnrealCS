@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCameraComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetCameraView(IntPtr _this,float DeltaTime,out FMinimalViewInfo DesiredView);
+	
+	/// <summary>
+	/// Returns camera's Point of View.
+	/// Called by Camera class. Subclass and postprocess to add any effects.
+	/// </summary>
 	public  void GetCameraView(float DeltaTime,out FMinimalViewInfo DesiredView)
 	{
 		CheckIsValid();
@@ -16,6 +21,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPostProcessBlendWeight(IntPtr _this,float InPostProcessBlendWeight);
+	
 	public  void SetPostProcessBlendWeight(float InPostProcessBlendWeight)
 	{
 		CheckIsValid();
@@ -25,6 +31,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetProjectionMode(IntPtr _this,int InProjectionMode);
+	
 	public  void SetProjectionMode(ECameraProjectionMode InProjectionMode)
 	{
 		CheckIsValid();
@@ -34,6 +41,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetUseFieldOfViewForLOD(IntPtr _this,int bInUseFieldOfViewForLOD);
+	
 	public  void SetUseFieldOfViewForLOD(bool bInUseFieldOfViewForLOD)
 	{
 		CheckIsValid();
@@ -43,6 +51,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetConstraintAspectRatio(IntPtr _this,int bInConstrainAspectRatio);
+	
 	public  void SetConstraintAspectRatio(bool bInConstrainAspectRatio)
 	{
 		CheckIsValid();
@@ -52,6 +61,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAspectRatio(IntPtr _this,float InAspectRatio);
+	
 	public  void SetAspectRatio(float InAspectRatio)
 	{
 		CheckIsValid();
@@ -61,6 +71,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOrthoFarClipPlane(IntPtr _this,float InOrthoFarClipPlane);
+	
 	public  void SetOrthoFarClipPlane(float InOrthoFarClipPlane)
 	{
 		CheckIsValid();
@@ -70,6 +81,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOrthoNearClipPlane(IntPtr _this,float InOrthoNearClipPlane);
+	
 	public  void SetOrthoNearClipPlane(float InOrthoNearClipPlane)
 	{
 		CheckIsValid();
@@ -79,6 +91,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOrthoWidth(IntPtr _this,float InOrthoWidth);
+	
 	public  void SetOrthoWidth(float InOrthoWidth)
 	{
 		CheckIsValid();
@@ -88,6 +101,7 @@ public partial class UCameraComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFieldOfView(IntPtr _this,float InFieldOfView);
+	
 	public  void SetFieldOfView(float InFieldOfView)
 	{
 		CheckIsValid();
@@ -95,7 +109,7 @@ public partial class UCameraComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UOverlay:UPanelWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddChildToOverlay(IntPtr _this,IntPtr Content);
+	
 	public  UOverlaySlot AddChildToOverlay(UWidget Content)
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UOverlay:UPanelWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

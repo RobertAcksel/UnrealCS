@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enum indicating how each type should respond</summary>
 	public enum ECollisionResponse:byte
 	{
 		ECR_Ignore=0,

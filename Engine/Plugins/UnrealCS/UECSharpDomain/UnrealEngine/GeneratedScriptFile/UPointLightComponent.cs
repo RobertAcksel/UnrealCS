@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPointLightComponent:ULightComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSourceLength(IntPtr _this,float NewValue);
+	
 	public  void SetSourceLength(float NewValue)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UPointLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSourceRadius(IntPtr _this,float bNewValue);
+	
 	public  void SetSourceRadius(float bNewValue)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UPointLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightFalloffExponent(IntPtr _this,float NewLightFalloffExponent);
+	
 	public  void SetLightFalloffExponent(float NewLightFalloffExponent)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class UPointLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAttenuationRadius(IntPtr _this,float NewRadius);
+	
 	public  void SetAttenuationRadius(float NewRadius)
 	{
 		CheckIsValid();
@@ -41,7 +45,7 @@ public partial class UPointLightComponent:ULightComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

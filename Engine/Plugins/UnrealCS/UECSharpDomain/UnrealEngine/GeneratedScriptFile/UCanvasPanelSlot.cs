@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCanvasPanelSlot:UPanelSlot 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaximum(IntPtr _this,ref FVector2D InMaximumAnchors);
+	
+	/// <summary>Sets the anchors on the slot</summary>
 	public  void SetMaximum(FVector2D InMaximumAnchors)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMinimum(IntPtr _this,ref FVector2D InMinimumAnchors);
+	
+	/// <summary>Sets the anchors on the slot</summary>
 	public  void SetMinimum(FVector2D InMinimumAnchors)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetZOrder(IntPtr _this);
+	
+	/// <summary>Gets the z-order on the slot</summary>
 	public  int GetZOrder()
 	{
 		CheckIsValid();
@@ -35,6 +41,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetZOrder(IntPtr _this,int InZOrder);
+	
+	/// <summary>Sets the z-order on the slot</summary>
 	public  void SetZOrder(int InZOrder)
 	{
 		CheckIsValid();
@@ -44,6 +52,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetAutoSize(IntPtr _this);
+	
+	/// <summary>Gets if the slot to be auto-sized</summary>
 	public  bool GetAutoSize()
 	{
 		CheckIsValid();
@@ -54,6 +64,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAutoSize(IntPtr _this,int InbAutoSize);
+	
+	/// <summary>Sets if the slot to be auto-sized</summary>
 	public  void SetAutoSize(bool InbAutoSize)
 	{
 		CheckIsValid();
@@ -63,6 +75,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetAlignment(IntPtr _this);
+	
+	/// <summary>Gets the alignment on the slot</summary>
 	public  FVector2D GetAlignment()
 	{
 		CheckIsValid();
@@ -73,6 +87,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAlignment(IntPtr _this,ref FVector2D InAlignment);
+	
+	/// <summary>Sets the alignment on the slot</summary>
 	public  void SetAlignment(FVector2D InAlignment)
 	{
 		CheckIsValid();
@@ -82,6 +98,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FAnchors GetAnchors(IntPtr _this);
+	
+	/// <summary>Gets the anchors on the slot</summary>
 	public  FAnchors GetAnchors()
 	{
 		CheckIsValid();
@@ -92,6 +110,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAnchors(IntPtr _this,ref FAnchors InAnchors);
+	
+	/// <summary>Sets the anchors on the slot</summary>
 	public  void SetAnchors(FAnchors InAnchors)
 	{
 		CheckIsValid();
@@ -101,6 +121,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FMargin GetOffsets(IntPtr _this);
+	
+	/// <summary>Gets the offset data of the slot, which could be position and size, or margins depending on the anchor points</summary>
 	public  FMargin GetOffsets()
 	{
 		CheckIsValid();
@@ -111,6 +133,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOffsets(IntPtr _this,ref FMargin InOffset);
+	
+	/// <summary>Sets the offset data of the slot, which could be position and size, or margins depending on the anchor points</summary>
 	public  void SetOffsets(FMargin InOffset)
 	{
 		CheckIsValid();
@@ -120,6 +144,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetSize(IntPtr _this);
+	
+	/// <summary>Gets the size of the slot</summary>
 	public  FVector2D GetSize()
 	{
 		CheckIsValid();
@@ -130,6 +156,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSize(IntPtr _this,ref FVector2D InSize);
+	
+	/// <summary>Sets the size of the slot</summary>
 	public  void SetSize(FVector2D InSize)
 	{
 		CheckIsValid();
@@ -139,6 +167,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetPosition(IntPtr _this);
+	
+	/// <summary>Gets the position of the slot</summary>
 	public  FVector2D GetPosition()
 	{
 		CheckIsValid();
@@ -149,6 +179,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPosition(IntPtr _this,ref FVector2D InPosition);
+	
+	/// <summary>Sets the position of the slot</summary>
 	public  void SetPosition(FVector2D InPosition)
 	{
 		CheckIsValid();
@@ -158,6 +190,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FAnchorData GetLayout(IntPtr _this);
+	
+	/// <summary>Gets the layout data of the slot</summary>
 	public  FAnchorData GetLayout()
 	{
 		CheckIsValid();
@@ -168,6 +202,8 @@ public partial class UCanvasPanelSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLayout(IntPtr _this,ref FAnchorData InLayoutData);
+	
+	/// <summary>Sets the layout data of the slot</summary>
 	public  void SetLayout(FAnchorData InLayoutData)
 	{
 		CheckIsValid();
@@ -175,7 +211,7 @@ public partial class UCanvasPanelSlot:UPanelSlot
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

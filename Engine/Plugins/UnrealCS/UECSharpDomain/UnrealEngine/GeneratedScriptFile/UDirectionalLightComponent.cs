@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UDirectionalLightComponent:ULightComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLightShaftOverrideDirection(IntPtr _this,ref FVector NewValue);
+	
 	public  void SetLightShaftOverrideDirection(FVector NewValue)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOcclusionMaskDarkness(IntPtr _this,float NewValue);
+	
 	public  void SetOcclusionMaskDarkness(float NewValue)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetEnableLightShaftOcclusion(IntPtr _this,int bNewValue);
+	
 	public  void SetEnableLightShaftOcclusion(bool bNewValue)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetShadowDistanceFadeoutFraction(IntPtr _this,float NewValue);
+	
 	public  void SetShadowDistanceFadeoutFraction(float NewValue)
 	{
 		CheckIsValid();
@@ -43,6 +47,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCascadeTransitionFraction(IntPtr _this,float NewValue);
+	
 	public  void SetCascadeTransitionFraction(float NewValue)
 	{
 		CheckIsValid();
@@ -52,6 +57,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCascadeDistributionExponent(IntPtr _this,float NewValue);
+	
 	public  void SetCascadeDistributionExponent(float NewValue)
 	{
 		CheckIsValid();
@@ -61,6 +67,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDynamicShadowCascades(IntPtr _this,int NewValue);
+	
 	public  void SetDynamicShadowCascades(int NewValue)
 	{
 		CheckIsValid();
@@ -70,6 +77,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDynamicShadowDistanceStationaryLight(IntPtr _this,float NewValue);
+	
 	public  void SetDynamicShadowDistanceStationaryLight(float NewValue)
 	{
 		CheckIsValid();
@@ -79,6 +87,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDynamicShadowDistanceMovableLight(IntPtr _this,float NewValue);
+	
 	public  void SetDynamicShadowDistanceMovableLight(float NewValue)
 	{
 		CheckIsValid();
@@ -86,7 +95,7 @@ public partial class UDirectionalLightComponent:ULightComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UAsyncTaskDownloadImage:UBlueprintAsyncActionBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr DownloadImage(IntPtr _this,string URL);
+	
 	public static UAsyncTaskDownloadImage DownloadImage(string URL)
 	{
 		IntPtr ___ret = DownloadImage(IntPtr.Zero,URL);
@@ -14,7 +15,7 @@ public partial class UAsyncTaskDownloadImage:UBlueprintAsyncActionBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

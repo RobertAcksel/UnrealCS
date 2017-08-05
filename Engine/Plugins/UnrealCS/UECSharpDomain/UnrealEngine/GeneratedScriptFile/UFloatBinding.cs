@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UFloatBinding:UPropertyBinding 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetValue(IntPtr _this);
+	
 	public  float GetValue()
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UFloatBinding:UPropertyBinding
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

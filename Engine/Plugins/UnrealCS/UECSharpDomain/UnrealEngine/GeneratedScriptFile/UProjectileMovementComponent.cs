@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UProjectileMovementComponent:UMovementComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopSimulating(IntPtr _this,ref FHitResult HitResult);
+	
+	/// <summary>Clears the reference to UpdatedComponent, fires stop event (OnProjectileStop), and stops ticking (if bAutoUpdateTickRegistration is true).</summary>
 	public  void StopSimulating(FHitResult HitResult)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UProjectileMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVelocityInLocalSpace(IntPtr _this,ref FVector NewVelocity);
+	
+	/// <summary>Sets the velocity to the new value, rotated into Actor space.</summary>
 	public  void SetVelocityInLocalSpace(FVector NewVelocity)
 	{
 		CheckIsValid();
@@ -23,7 +27,7 @@ public partial class UProjectileMovementComponent:UMovementComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

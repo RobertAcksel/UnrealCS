@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enum for specifying type of a name instance parameter.</summary>
 	public enum EParticleSysParamType:byte
 	{
 		PSPT_None=0,

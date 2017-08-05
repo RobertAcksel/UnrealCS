@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ALight:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_bEnabled(IntPtr _this);
+	
+	/// <summary>Replication Notification Callbacks</summary>
 	public  void OnRep_bEnabled()
 	{
 		CheckIsValid();
@@ -14,7 +16,7 @@ public partial class ALight:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

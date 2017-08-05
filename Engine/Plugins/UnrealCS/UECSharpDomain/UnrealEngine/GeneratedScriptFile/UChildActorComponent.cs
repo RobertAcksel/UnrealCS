@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UChildActorComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetChildActorClass(IntPtr _this,IntPtr InClass);
+	
 	public  void SetChildActorClass(TSubclassOf<AActor>  InClass)
 	{
 		CheckIsValid();
@@ -14,7 +15,7 @@ public partial class UChildActorComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

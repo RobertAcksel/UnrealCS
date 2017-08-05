@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Method of interpolation between this key and the next.</summary>
 	public enum ERichCurveInterpMode:byte
 	{
 		RCIM_Linear=0,

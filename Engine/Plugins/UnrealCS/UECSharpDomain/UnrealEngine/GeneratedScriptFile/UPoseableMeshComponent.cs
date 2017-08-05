@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPoseableMeshComponent:USkinnedMeshComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void CopyPoseFromSkeletalComponent(IntPtr _this,IntPtr InComponentToCopy);
+	
 	public  void CopyPoseFromSkeletalComponent(USkeletalMeshComponent InComponentToCopy)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ResetBoneTransformByName(IntPtr _this,string BoneName);
+	
 	public  void ResetBoneTransformByName(string BoneName)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetBoneScaleByName(IntPtr _this,string BoneName,int BoneSpace);
+	
 	public  FVector GetBoneScaleByName(string BoneName,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -35,6 +38,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FRotator GetBoneRotationByName(IntPtr _this,string BoneName,int BoneSpace);
+	
 	public  FRotator GetBoneRotationByName(string BoneName,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -45,6 +49,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetBoneLocationByName(IntPtr _this,string BoneName,int BoneSpace);
+	
 	public  FVector GetBoneLocationByName(string BoneName,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -55,6 +60,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FTransform GetBoneTransformByName(IntPtr _this,string BoneName,int BoneSpace);
+	
 	public  FTransform GetBoneTransformByName(string BoneName,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -65,6 +71,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBoneScaleByName(IntPtr _this,string BoneName,ref FVector InScale3D,int BoneSpace);
+	
 	public  void SetBoneScaleByName(string BoneName,FVector InScale3D,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -74,6 +81,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBoneRotationByName(IntPtr _this,string BoneName,ref FRotator InRotation,int BoneSpace);
+	
 	public  void SetBoneRotationByName(string BoneName,FRotator InRotation,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -83,6 +91,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBoneLocationByName(IntPtr _this,string BoneName,ref FVector InLocation,int BoneSpace);
+	
 	public  void SetBoneLocationByName(string BoneName,FVector InLocation,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -92,6 +101,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBoneTransformByName(IntPtr _this,string BoneName,ref FTransform InTransform,int BoneSpace);
+	
 	public  void SetBoneTransformByName(string BoneName,FTransform InTransform,EBoneSpaces BoneSpace)
 	{
 		CheckIsValid();
@@ -99,7 +109,7 @@ public partial class UPoseableMeshComponent:USkinnedMeshComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

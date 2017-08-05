@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class APlayerState:AInfo 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_UniqueId(IntPtr _this);
+	
 	public  void OnRep_UniqueId()
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class APlayerState:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_bIsInactive(IntPtr _this);
+	
 	public  void OnRep_bIsInactive()
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class APlayerState:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_PlayerName(IntPtr _this);
+	
 	public  void OnRep_PlayerName()
 	{
 		CheckIsValid();
@@ -34,6 +37,8 @@ public partial class APlayerState:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_Score(IntPtr _this);
+	
+	/// <summary>Replication Notification Callbacks</summary>
 	public  void OnRep_Score()
 	{
 		CheckIsValid();
@@ -41,7 +46,7 @@ public partial class APlayerState:AInfo
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

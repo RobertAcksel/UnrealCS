@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UComboBoxString:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetOptionCount(IntPtr _this);
+	
+	/// <summary>@return The number of options</summary>
 	public  int GetOptionCount()
 	{
 		CheckIsValid();
@@ -17,6 +19,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetSelectedOption(IntPtr _this);
+	
 	public  string GetSelectedOption()
 	{
 		CheckIsValid();
@@ -27,6 +30,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSelectedOption(IntPtr _this,string Option);
+	
 	public  void SetSelectedOption(string Option)
 	{
 		CheckIsValid();
@@ -36,6 +40,11 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RefreshOptions(IntPtr _this);
+	
+	/// <summary>
+	/// Refreshes the list of options.  If you added new ones, and want to update the list even if it's
+	/// currently being displayed use this.
+	/// </summary>
 	public  void RefreshOptions()
 	{
 		CheckIsValid();
@@ -45,6 +54,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearSelection(IntPtr _this);
+	
 	public  void ClearSelection()
 	{
 		CheckIsValid();
@@ -54,6 +64,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearOptions(IntPtr _this);
+	
 	public  void ClearOptions()
 	{
 		CheckIsValid();
@@ -63,6 +74,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetOptionAtIndex(IntPtr _this,int Index);
+	
 	public  string GetOptionAtIndex(int Index)
 	{
 		CheckIsValid();
@@ -73,6 +85,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int FindOptionIndex(IntPtr _this,string Option);
+	
 	public  int FindOptionIndex(string Option)
 	{
 		CheckIsValid();
@@ -83,6 +96,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int RemoveOption(IntPtr _this,string Option);
+	
 	public  bool RemoveOption(string Option)
 	{
 		CheckIsValid();
@@ -93,6 +107,7 @@ public partial class UComboBoxString:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddOption(IntPtr _this,string Option);
+	
 	public  void AddOption(string Option)
 	{
 		CheckIsValid();
@@ -100,7 +115,7 @@ public partial class UComboBoxString:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

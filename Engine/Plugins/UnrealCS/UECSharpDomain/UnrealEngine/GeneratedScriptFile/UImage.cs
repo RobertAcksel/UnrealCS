@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UImage:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetDynamicMaterial(IntPtr _this);
+	
 	public  UMaterialInstanceDynamic GetDynamicMaterial()
 	{
 		CheckIsValid();
@@ -17,6 +18,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromMaterial(IntPtr _this,IntPtr Material);
+	
 	public  void SetBrushFromMaterial(UMaterialInterface Material)
 	{
 		CheckIsValid();
@@ -26,6 +28,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromTextureDynamic(IntPtr _this,IntPtr Texture,int bMatchSize);
+	
 	public  void SetBrushFromTextureDynamic(UTexture2DDynamic Texture,bool bMatchSize=false)
 	{
 		CheckIsValid();
@@ -35,6 +38,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromTexture(IntPtr _this,IntPtr Texture,int bMatchSize);
+	
 	public  void SetBrushFromTexture(UTexture2D Texture,bool bMatchSize=false)
 	{
 		CheckIsValid();
@@ -44,6 +48,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromAsset(IntPtr _this,IntPtr Asset);
+	
 	public  void SetBrushFromAsset(USlateBrushAsset Asset)
 	{
 		CheckIsValid();
@@ -53,6 +58,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrush(IntPtr _this,ref FSlateBrush InBrush);
+	
 	public  void SetBrush(FSlateBrush InBrush)
 	{
 		CheckIsValid();
@@ -62,6 +68,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOpacity(IntPtr _this,float InOpacity);
+	
 	public  void SetOpacity(float InOpacity)
 	{
 		CheckIsValid();
@@ -71,6 +78,7 @@ public partial class UImage:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColorAndOpacity(IntPtr _this,ref FLinearColor InColorAndOpacity);
+	
 	public  void SetColorAndOpacity(FLinearColor InColorAndOpacity)
 	{
 		CheckIsValid();
@@ -78,7 +86,7 @@ public partial class UImage:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

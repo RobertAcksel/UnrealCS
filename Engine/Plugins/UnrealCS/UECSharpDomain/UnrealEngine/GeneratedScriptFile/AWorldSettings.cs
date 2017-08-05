@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class AWorldSettings:AInfo 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_WorldGravityZ(IntPtr _this);
+	
 	public  void OnRep_WorldGravityZ()
 	{
 		CheckIsValid();
@@ -14,7 +15,7 @@ public partial class AWorldSettings:AInfo
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

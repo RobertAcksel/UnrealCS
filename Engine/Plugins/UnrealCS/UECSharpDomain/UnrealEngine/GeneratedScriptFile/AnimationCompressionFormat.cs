@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Indicates animation data compression format.</summary>
 	public enum AnimationCompressionFormat:byte
 	{
 		ACF_None=0,

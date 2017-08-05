@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UForceFeedbackComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int BP_GetAttenuationSettingsToApply(IntPtr _this,out FForceFeedbackAttenuationSettings OutAttenuationSettings);
+	
 	public  bool BP_GetAttenuationSettingsToApply(out FForceFeedbackAttenuationSettings OutAttenuationSettings)
 	{
 		CheckIsValid();
@@ -17,6 +18,8 @@ public partial class UForceFeedbackComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AdjustAttenuation(IntPtr _this,ref FForceFeedbackAttenuationSettings InAttenuationSettings);
+	
+	/// <summary>Modify the attenuation settings of the component</summary>
 	public  void AdjustAttenuation(FForceFeedbackAttenuationSettings InAttenuationSettings)
 	{
 		CheckIsValid();
@@ -26,6 +29,8 @@ public partial class UForceFeedbackComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIntensityMultiplier(IntPtr _this,float NewIntensityMultiplier);
+	
+	/// <summary>Set a new intensity multiplier</summary>
 	public  void SetIntensityMultiplier(float NewIntensityMultiplier)
 	{
 		CheckIsValid();
@@ -35,6 +40,8 @@ public partial class UForceFeedbackComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Stop(IntPtr _this);
+	
+	/// <summary>Stop playing the feedback effect</summary>
 	public  void Stop()
 	{
 		CheckIsValid();
@@ -44,6 +51,8 @@ public partial class UForceFeedbackComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Play(IntPtr _this,float StartTime);
+	
+	/// <summary>Start a feedback effect playing</summary>
 	public  void Play(float StartTime=0.000000f)
 	{
 		CheckIsValid();
@@ -53,6 +62,8 @@ public partial class UForceFeedbackComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetForceFeedbackEffect(IntPtr _this,IntPtr NewForceFeedbackEffect);
+	
+	/// <summary>Set what force feedback effect is played by this component</summary>
 	public  void SetForceFeedbackEffect(UForceFeedbackEffect NewForceFeedbackEffect)
 	{
 		CheckIsValid();
@@ -60,7 +71,7 @@ public partial class UForceFeedbackComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class APawn:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsMoveInputIgnored(IntPtr _this);
+	
+	/// <summary>Helper to see if move input is ignored. If our controller is a PlayerController, checks Controller->IsMoveInputIgnored().</summary>
 	public  bool IsMoveInputIgnored()
 	{
 		CheckIsValid();
@@ -17,6 +19,13 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddControllerRollInput(IntPtr _this,float Val);
+	
+	/// <summary>
+	/// Add input (affecting Roll) to the Controller's ControlRotation, if it is a local PlayerController.
+	/// This value is multiplied by the PlayerController's InputRollScale value.
+	/// @param Val Amount to add to Roll. This value is multiplied by the PlayerController's InputRollScale value.
+	/// @see PlayerController::InputRollScale
+	/// </summary>
 	public  void AddControllerRollInput(float Val)
 	{
 		CheckIsValid();
@@ -26,6 +35,13 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddControllerYawInput(IntPtr _this,float Val);
+	
+	/// <summary>
+	/// Add input (affecting Yaw) to the Controller's ControlRotation, if it is a local PlayerController.
+	/// This value is multiplied by the PlayerController's InputYawScale value.
+	/// @param Val Amount to add to Yaw. This value is multiplied by the PlayerController's InputYawScale value.
+	/// @see PlayerController::InputYawScale
+	/// </summary>
 	public  void AddControllerYawInput(float Val)
 	{
 		CheckIsValid();
@@ -35,6 +51,13 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddControllerPitchInput(IntPtr _this,float Val);
+	
+	/// <summary>
+	/// Add input (affecting Pitch) to the Controller's ControlRotation, if it is a local PlayerController.
+	/// This value is multiplied by the PlayerController's InputPitchScale value.
+	/// @param Val Amount to add to Pitch. This value is multiplied by the PlayerController's InputPitchScale value.
+	/// @see PlayerController::InputPitchScale
+	/// </summary>
 	public  void AddControllerPitchInput(float Val)
 	{
 		CheckIsValid();
@@ -44,6 +67,13 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector ConsumeMovementInputVector(IntPtr _this);
+	
+	/// <summary>
+	/// Returns the pending input vector and resets it to zero.
+	/// This should be used during a movement update (by the Pawn or PawnMovementComponent) to prevent accumulation of control input between frames.
+	/// Copies the pending input vector to the saved input vector (GetLastMovementInputVector()).
+	/// @return The pending input vector.
+	/// </summary>
 	public  FVector ConsumeMovementInputVector()
 	{
 		CheckIsValid();
@@ -54,6 +84,15 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetLastMovementInputVector(IntPtr _this);
+	
+	/// <summary>
+	/// Return the last input vector in world space that was processed by ConsumeMovementInputVector(), which is usually done by the Pawn or PawnMovementComponent.
+	/// Any user that needs to know about the input that last affected movement should use this function.
+	/// For example an animation update would want to use this, since by default the order of updates in a frame is:
+	/// PlayerController (device input) -> MovementComponent -> Pawn -> Mesh (animations)
+	/// @return The last input vector in world space that was processed by ConsumeMovementInputVector().
+	/// @see AddMovementInput(), GetPendingMovementInputVector(), ConsumeMovementInputVector()
+	/// </summary>
 	public  FVector GetLastMovementInputVector()
 	{
 		CheckIsValid();
@@ -64,6 +103,13 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetPendingMovementInputVector(IntPtr _this);
+	
+	/// <summary>
+	/// Return the pending input vector in world space. This is the most up-to-date value of the input vector, pending ConsumeMovementInputVector() which clears it,
+	/// Usually only a PawnMovementComponent will want to read this value, or the Pawn itself if it is responsible for movement.
+	/// @return The pending input vector in world space.
+	/// @see AddMovementInput(), GetLastMovementInputVector(), ConsumeMovementInputVector()
+	/// </summary>
 	public  FVector GetPendingMovementInputVector()
 	{
 		CheckIsValid();
@@ -74,6 +120,15 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddMovementInput(IntPtr _this,ref FVector WorldDirection,float ScaleValue,int bForce);
+	
+	/// <summary>
+	/// Add movement input along the given world direction vector (usually normalized) scaled by 'ScaleValue'. If ScaleValue < 0, movement will be in the opposite direction.
+	/// Base Pawn classes won't automatically apply movement, it's up to the user to do so in a Tick event. Subclasses such as Character and DefaultPawn automatically handle this input and move.
+	/// @param WorldDirection        Direction in world space to apply input
+	/// @param ScaleValue            Scale to apply to input. This can be used for analog input, ie a value of 0.5 applies half the normal value, while -1.0 would reverse the direction.
+	/// @param bForce                        If true always add the input, ignoring the result of IsMoveInputIgnored().
+	/// @see GetPendingMovementInputVector(), GetLastMovementInputVector(), ConsumeMovementInputVector()
+	/// </summary>
 	public  void AddMovementInput(FVector WorldDirection,float ScaleValue=1.000000f,bool bForce=false)
 	{
 		CheckIsValid();
@@ -83,6 +138,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SpawnDefaultController(IntPtr _this);
+	
+	/// <summary>Spawn default controller for this Pawn, and get possessed by it.</summary>
 	public  void SpawnDefaultController()
 	{
 		CheckIsValid();
@@ -92,6 +149,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void DetachFromControllerPendingDestroy(IntPtr _this);
+	
+	/// <summary>Call this function to detach safely pawn from its controller, knowing that we will be destroyed soon.</summary>
 	public  void DetachFromControllerPendingDestroy()
 	{
 		CheckIsValid();
@@ -101,6 +160,12 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FRotator GetBaseAimRotation(IntPtr _this);
+	
+	/// <summary>
+	/// Return the aim rotation for the Pawn.
+	/// If we have a controller, by default we aim at the player's 'eyes' direction
+	/// that is by default the Pawn rotation for AI, and camera (crosshair) rotation for human players.
+	/// </summary>
 	public  FRotator GetBaseAimRotation()
 	{
 		CheckIsValid();
@@ -111,6 +176,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPlayerControlled(IntPtr _this);
+	
+	/// <summary>@return true if controlled by a human player (possessed by a PlayerController).</summary>
 	public  bool IsPlayerControlled()
 	{
 		CheckIsValid();
@@ -121,6 +188,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsLocallyControlled(IntPtr _this);
+	
+	/// <summary>@return true if controlled by a local (not network) Controller.</summary>
 	public  bool IsLocallyControlled()
 	{
 		CheckIsValid();
@@ -131,6 +200,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetNavAgentLocation(IntPtr _this);
+	
+	/// <summary>Basically retrieved pawn's location on navmesh</summary>
 	public  FVector GetNavAgentLocation()
 	{
 		CheckIsValid();
@@ -141,6 +212,11 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCanAffectNavigationGeneration(IntPtr _this,int bNewValue,int bForceUpdate);
+	
+	/// <summary>
+	/// Use SetCanAffectNavigationGeneration to change this value at runtime.
+	///     Note that calling this function at runtime will result in any navigation change only if runtime navigation generation is enabled.
+	/// </summary>
 	public  void SetCanAffectNavigationGeneration(bool bNewValue,bool bForceUpdate=false)
 	{
 		CheckIsValid();
@@ -150,6 +226,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_PlayerState(IntPtr _this);
+	
+	/// <summary>PlayerState Replication Notification Callback</summary>
 	public  void OnRep_PlayerState()
 	{
 		CheckIsValid();
@@ -159,6 +237,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_Controller(IntPtr _this);
+	
+	/// <summary>Called when Controller is replicated</summary>
 	public  void OnRep_Controller()
 	{
 		CheckIsValid();
@@ -168,6 +248,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FRotator GetControlRotation(IntPtr _this);
+	
+	/// <summary>Get the rotation of the Controller, often the 'view' rotation of this Pawn.</summary>
 	public  FRotator GetControlRotation()
 	{
 		CheckIsValid();
@@ -178,6 +260,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetController(IntPtr _this);
+	
+	/// <summary>Returns controller for this actor.</summary>
 	public  AController GetController()
 	{
 		CheckIsValid();
@@ -188,6 +272,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsControlled(IntPtr _this);
+	
+	/// <summary>See if this actor is currently being controlled</summary>
 	public  bool IsControlled()
 	{
 		CheckIsValid();
@@ -198,6 +284,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetMovementBaseActor(IntPtr _this,IntPtr Pawn);
+	
+	/// <summary>Gets the owning actor of the Movement Base Component on which the pawn is standing.</summary>
 	public static AActor GetMovementBaseActor(APawn Pawn)
 	{
 		IntPtr ___ret = GetMovementBaseActor(IntPtr.Zero,Pawn);
@@ -207,6 +295,15 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PawnMakeNoise(IntPtr _this,float Loudness,ref FVector NoiseLocation,int bUseNoiseMakerLocation,IntPtr NoiseMaker);
+	
+	/// <summary>
+	/// Inform AIControllers that you've made a noise they might hear (they are sent a HearNoise message if they have bHearNoises==true)
+	/// The instigator of this sound is the pawn which is used to call MakeNoise.
+	/// @param Loudness - is the relative loudness of this noise (range 0.0 to 1.0).  Directly affects the hearing range specified by the AI's HearingThreshold.
+	/// @param NoiseLocation - Position of noise source.  If zero vector, use the actor's location.
+	/// @param bUseNoiseMakerLocation - If true, use the location of the NoiseMaker rather than NoiseLocation.  If false, use NoiseLocation.
+	/// @param NoiseMaker - Which actor is the source of the noise.  Not to be confused with the Noise Instigator, which is responsible for the noise (and is the pawn on which this function is called).  If not specified, the pawn instigating the noise will be used as the NoiseMaker
+	/// </summary>
 	public  void PawnMakeNoise(float Loudness,FVector NoiseLocation,bool bUseNoiseMakerLocation=true,AActor NoiseMaker=default(AActor))
 	{
 		CheckIsValid();
@@ -216,6 +313,8 @@ public partial class APawn:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetMovementComponent(IntPtr _this);
+	
+	/// <summary>Return our PawnMovementComponent, if we have one.</summary>
 	public  UPawnMovementComponent GetMovementComponent()
 	{
 		CheckIsValid();
@@ -224,7 +323,7 @@ public partial class APawn:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

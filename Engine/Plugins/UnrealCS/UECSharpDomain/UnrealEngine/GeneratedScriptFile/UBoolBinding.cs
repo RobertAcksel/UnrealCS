@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UBoolBinding:UPropertyBinding 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetValue(IntPtr _this);
+	
 	public  bool GetValue()
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UBoolBinding:UPropertyBinding
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

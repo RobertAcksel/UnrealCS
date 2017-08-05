@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UMultiLineEditableTextBox:UTextLayoutWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsReadOnly(IntPtr _this,int bReadOnly);
+	
 	public  void SetIsReadOnly(bool bReadOnly)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UMultiLineEditableTextBox:UTextLayoutWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetError(IntPtr _this,string InError);
+	
 	public  void SetError(string InError)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UMultiLineEditableTextBox:UTextLayoutWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetText(IntPtr _this,string InText);
+	
 	public  void SetText(string InText)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class UMultiLineEditableTextBox:UTextLayoutWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetText(IntPtr _this);
+	
 	public  string GetText()
 	{
 		CheckIsValid();
@@ -42,7 +46,7 @@ public partial class UMultiLineEditableTextBox:UTextLayoutWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Parse_StringToGuid(IntPtr _this,string GuidString,out FGuid OutGuid,out int Success);
+	
+	/// <summary>Converts a String of format EGuidFormats to a Guid. Returns Guid OutGuid, Returns bool Success</summary>
 	public static void Parse_StringToGuid(string GuidString,out FGuid OutGuid,out bool Success)
 	{
 		int Success_temp;
@@ -17,6 +19,8 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string Conv_GuidToString(IntPtr _this,ref FGuid InGuid);
+	
+	/// <summary>Converts a GUID value to a string, in the form 'A-B-C-D'</summary>
 	public static string Conv_GuidToString(FGuid InGuid)
 	{
 		string ___ret = Conv_GuidToString(IntPtr.Zero,ref InGuid);
@@ -26,6 +30,8 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FGuid NewGuid(IntPtr _this);
+	
+	/// <summary>Returns a new unique GUID</summary>
 	public static FGuid NewGuid()
 	{
 		FGuid ___ret = NewGuid(IntPtr.Zero);
@@ -35,6 +41,8 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Invalidate_Guid(IntPtr _this,out FGuid InGuid);
+	
+	/// <summary>Invalidates the given GUID</summary>
 	public static void Invalidate_Guid(out FGuid InGuid)
 	{
 		Invalidate_Guid(IntPtr.Zero,out InGuid);
@@ -43,6 +51,8 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsValid_Guid(IntPtr _this,ref FGuid InGuid);
+	
+	/// <summary>Checks whether the given GUID is valid</summary>
 	public static bool IsValid_Guid(FGuid InGuid)
 	{
 		int ___ret = IsValid_Guid(IntPtr.Zero,ref InGuid);
@@ -52,6 +62,8 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int NotEqual_GuidGuid(IntPtr _this,ref FGuid A,ref FGuid B);
+	
+	/// <summary>Returns true if the values are not equal (A != B)</summary>
 	public static bool NotEqual_GuidGuid(FGuid A,FGuid B)
 	{
 		int ___ret = NotEqual_GuidGuid(IntPtr.Zero,ref A,ref B);
@@ -61,6 +73,8 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int EqualEqual_GuidGuid(IntPtr _this,ref FGuid A,ref FGuid B);
+	
+	/// <summary>Returns true if the values are equal (A == B)</summary>
 	public static bool EqualEqual_GuidGuid(FGuid A,FGuid B)
 	{
 		int ___ret = EqualEqual_GuidGuid(IntPtr.Zero,ref A,ref B);
@@ -68,7 +82,7 @@ public partial class UKismetGuidLibrary:UBlueprintFunctionLibrary
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

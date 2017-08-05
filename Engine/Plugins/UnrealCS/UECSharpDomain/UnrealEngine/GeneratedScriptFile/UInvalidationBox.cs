@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UInvalidationBox:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCanCache(IntPtr _this,int CanCache);
+	
 	public  void SetCanCache(bool CanCache)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UInvalidationBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetCanCache(IntPtr _this);
+	
 	public  bool GetCanCache()
 	{
 		CheckIsValid();
@@ -26,6 +28,7 @@ public partial class UInvalidationBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void InvalidateCache(IntPtr _this);
+	
 	public  void InvalidateCache()
 	{
 		CheckIsValid();
@@ -33,7 +36,7 @@ public partial class UInvalidationBox:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

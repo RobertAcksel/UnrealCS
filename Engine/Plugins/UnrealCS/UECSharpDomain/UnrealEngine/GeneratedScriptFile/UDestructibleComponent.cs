@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UDestructibleComponent:USkinnedMeshComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetDestructibleMesh(IntPtr _this);
+	
 	public  UDestructibleMesh GetDestructibleMesh()
 	{
 		CheckIsValid();
@@ -17,6 +18,7 @@ public partial class UDestructibleComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDestructibleMesh(IntPtr _this,IntPtr NewMesh);
+	
 	public  void SetDestructibleMesh(UDestructibleMesh NewMesh)
 	{
 		CheckIsValid();
@@ -26,6 +28,8 @@ public partial class UDestructibleComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ApplyRadiusDamage(IntPtr _this,float BaseDamage,ref FVector HurtOrigin,float DamageRadius,float ImpulseStrength,int bFullDamage);
+	
+	/// <summary>Take radius damage</summary>
 	public  void ApplyRadiusDamage(float BaseDamage,FVector HurtOrigin,float DamageRadius,float ImpulseStrength,bool bFullDamage)
 	{
 		CheckIsValid();
@@ -35,6 +39,8 @@ public partial class UDestructibleComponent:USkinnedMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ApplyDamage(IntPtr _this,float DamageAmount,ref FVector HitLocation,ref FVector ImpulseDir,float ImpulseStrength);
+	
+	/// <summary>Take damage</summary>
 	public  void ApplyDamage(float DamageAmount,FVector HitLocation,FVector ImpulseDir,float ImpulseStrength)
 	{
 		CheckIsValid();
@@ -42,7 +48,7 @@ public partial class UDestructibleComponent:USkinnedMeshComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

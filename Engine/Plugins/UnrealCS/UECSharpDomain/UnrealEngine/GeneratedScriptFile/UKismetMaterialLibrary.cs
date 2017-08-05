@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UKismetMaterialLibrary:UBlueprintFunctionLibrary 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr CreateDynamicMaterialInstance(IntPtr _this,IntPtr WorldContextObject,IntPtr Parent);
+	
+	/// <summary>Creates a Dynamic Material Instance which you can modify during gameplay.</summary>
 	public static UMaterialInstanceDynamic CreateDynamicMaterialInstance(UObject WorldContextObject,UMaterialInterface Parent)
 	{
 		IntPtr ___ret = CreateDynamicMaterialInstance(IntPtr.Zero,WorldContextObject,Parent);
@@ -16,6 +18,8 @@ public partial class UKismetMaterialLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FLinearColor GetVectorParameterValue(IntPtr _this,IntPtr WorldContextObject,IntPtr Collection,string ParameterName);
+	
+	/// <summary>Gets a vector parameter value from the material collection instance. Logs if ParameterName is invalid.</summary>
 	public static FLinearColor GetVectorParameterValue(UObject WorldContextObject,UMaterialParameterCollection Collection,string ParameterName)
 	{
 		FLinearColor ___ret = GetVectorParameterValue(IntPtr.Zero,WorldContextObject,Collection,ParameterName);
@@ -25,6 +29,8 @@ public partial class UKismetMaterialLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetScalarParameterValue(IntPtr _this,IntPtr WorldContextObject,IntPtr Collection,string ParameterName);
+	
+	/// <summary>Gets a scalar parameter value from the material collection instance. Logs if ParameterName is invalid.</summary>
 	public static float GetScalarParameterValue(UObject WorldContextObject,UMaterialParameterCollection Collection,string ParameterName)
 	{
 		float ___ret = GetScalarParameterValue(IntPtr.Zero,WorldContextObject,Collection,ParameterName);
@@ -34,6 +40,8 @@ public partial class UKismetMaterialLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVectorParameterValue(IntPtr _this,IntPtr WorldContextObject,IntPtr Collection,string ParameterName,ref FLinearColor ParameterValue);
+	
+	/// <summary>Sets a vector parameter value on the material collection instance. Logs if ParameterName is invalid.</summary>
 	public static void SetVectorParameterValue(UObject WorldContextObject,UMaterialParameterCollection Collection,string ParameterName,FLinearColor ParameterValue)
 	{
 		SetVectorParameterValue(IntPtr.Zero,WorldContextObject,Collection,ParameterName,ref ParameterValue);
@@ -42,13 +50,15 @@ public partial class UKismetMaterialLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetScalarParameterValue(IntPtr _this,IntPtr WorldContextObject,IntPtr Collection,string ParameterName,float ParameterValue);
+	
+	/// <summary>Sets a scalar parameter value on the material collection instance. Logs if ParameterName is invalid.</summary>
 	public static void SetScalarParameterValue(UObject WorldContextObject,UMaterialParameterCollection Collection,string ParameterName,float ParameterValue)
 	{
 		SetScalarParameterValue(IntPtr.Zero,WorldContextObject,Collection,ParameterName,ParameterValue);
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

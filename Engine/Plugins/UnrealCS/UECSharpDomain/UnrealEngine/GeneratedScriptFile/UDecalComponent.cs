@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UDecalComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr CreateDynamicMaterialInstance(IntPtr _this);
+	
+	/// <summary>Utility to allocate a new Dynamic Material Instance, set its parent to the currently applied material, and assign it</summary>
 	public  UMaterialInstanceDynamic CreateDynamicMaterialInstance()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UDecalComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetDecalMaterial(IntPtr _this);
+	
+	/// <summary>Accessor for decal material</summary>
 	public  UMaterialInterface GetDecalMaterial()
 	{
 		CheckIsValid();
@@ -27,6 +31,8 @@ public partial class UDecalComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDecalMaterial(IntPtr _this,IntPtr NewDecalMaterial);
+	
+	/// <summary>setting decal material on decal component. This will force the decal to reattach</summary>
 	public  void SetDecalMaterial(UMaterialInterface NewDecalMaterial)
 	{
 		CheckIsValid();
@@ -36,6 +42,8 @@ public partial class UDecalComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSortOrder(IntPtr _this,int Value);
+	
+	/// <summary>Sets the sort order for the decal component. Higher values draw later (on top). This will force the decal to reattach</summary>
 	public  void SetSortOrder(int Value)
 	{
 		CheckIsValid();
@@ -45,6 +53,15 @@ public partial class UDecalComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFadeOut(IntPtr _this,float StartDelay,float Duration,int DestroyOwnerAfterFade);
+	
+	/// <summary>
+	/// Sets the decal's fade start time, duration and if the owning actor should be destroyed after the decal is fully faded out.
+	/// The default value of 0 for FadeStartDelay and FadeDuration makes the decal persistent. See DecalLifetimeOpacity material
+	/// node to control the look of "fading out."
+	/// @param StartDelay - Time in seconds to wait before beginning to fade out the decal.
+	/// @param Duration - Time in second for the decal to fade out.
+	/// @param DestroyOwnerAfterFade - Should the owning actor automatically be destroyed after it is completely faded out.
+	/// </summary>
 	public  void SetFadeOut(float StartDelay,float Duration,bool DestroyOwnerAfterFade=true)
 	{
 		CheckIsValid();
@@ -54,6 +71,7 @@ public partial class UDecalComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetFadeDuration(IntPtr _this);
+	
 	public  float GetFadeDuration()
 	{
 		CheckIsValid();
@@ -64,6 +82,7 @@ public partial class UDecalComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetFadeStartDelay(IntPtr _this);
+	
 	public  float GetFadeStartDelay()
 	{
 		CheckIsValid();
@@ -72,7 +91,7 @@ public partial class UDecalComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

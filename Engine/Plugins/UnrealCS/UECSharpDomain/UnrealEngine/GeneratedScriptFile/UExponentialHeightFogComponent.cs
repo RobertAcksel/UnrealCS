@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UExponentialHeightFogComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricFogDistance(IntPtr _this,float NewValue);
+	
 	public  void SetVolumetricFogDistance(float NewValue)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricFogEmissive(IntPtr _this,ref FLinearColor NewValue);
+	
 	public  void SetVolumetricFogEmissive(FLinearColor NewValue)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricFogAlbedo(IntPtr _this,ref FColor NewValue);
+	
 	public  void SetVolumetricFogAlbedo(FColor NewValue)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricFogExtinctionScale(IntPtr _this,float NewValue);
+	
 	public  void SetVolumetricFogExtinctionScale(float NewValue)
 	{
 		CheckIsValid();
@@ -43,6 +47,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricFogScatteringDistribution(IntPtr _this,float NewValue);
+	
 	public  void SetVolumetricFogScatteringDistribution(float NewValue)
 	{
 		CheckIsValid();
@@ -52,6 +57,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVolumetricFog(IntPtr _this,int bNewValue);
+	
 	public  void SetVolumetricFog(bool bNewValue)
 	{
 		CheckIsValid();
@@ -61,6 +67,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFogCutoffDistance(IntPtr _this,float Value);
+	
 	public  void SetFogCutoffDistance(float Value)
 	{
 		CheckIsValid();
@@ -70,6 +77,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetStartDistance(IntPtr _this,float Value);
+	
 	public  void SetStartDistance(float Value)
 	{
 		CheckIsValid();
@@ -79,6 +87,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFogMaxOpacity(IntPtr _this,float Value);
+	
 	public  void SetFogMaxOpacity(float Value)
 	{
 		CheckIsValid();
@@ -88,6 +97,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFogHeightFalloff(IntPtr _this,float Value);
+	
 	public  void SetFogHeightFalloff(float Value)
 	{
 		CheckIsValid();
@@ -97,6 +107,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDirectionalInscatteringColor(IntPtr _this,ref FLinearColor Value);
+	
 	public  void SetDirectionalInscatteringColor(FLinearColor Value)
 	{
 		CheckIsValid();
@@ -106,6 +117,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDirectionalInscatteringStartDistance(IntPtr _this,float Value);
+	
 	public  void SetDirectionalInscatteringStartDistance(float Value)
 	{
 		CheckIsValid();
@@ -115,6 +127,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDirectionalInscatteringExponent(IntPtr _this,float Value);
+	
 	public  void SetDirectionalInscatteringExponent(float Value)
 	{
 		CheckIsValid();
@@ -124,6 +137,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetInscatteringTextureTint(IntPtr _this,ref FLinearColor Value);
+	
 	public  void SetInscatteringTextureTint(FLinearColor Value)
 	{
 		CheckIsValid();
@@ -133,6 +147,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetNonDirectionalInscatteringColorDistance(IntPtr _this,float Value);
+	
 	public  void SetNonDirectionalInscatteringColorDistance(float Value)
 	{
 		CheckIsValid();
@@ -142,6 +157,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFullyDirectionalInscatteringColorDistance(IntPtr _this,float Value);
+	
 	public  void SetFullyDirectionalInscatteringColorDistance(float Value)
 	{
 		CheckIsValid();
@@ -151,6 +167,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetInscatteringColorCubemapAngle(IntPtr _this,float Value);
+	
 	public  void SetInscatteringColorCubemapAngle(float Value)
 	{
 		CheckIsValid();
@@ -160,6 +177,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetInscatteringColorCubemap(IntPtr _this,IntPtr Value);
+	
 	public  void SetInscatteringColorCubemap(UTextureCube Value)
 	{
 		CheckIsValid();
@@ -169,6 +187,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFogInscatteringColor(IntPtr _this,ref FLinearColor Value);
+	
 	public  void SetFogInscatteringColor(FLinearColor Value)
 	{
 		CheckIsValid();
@@ -178,6 +197,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFogDensity(IntPtr _this,float Value);
+	
 	public  void SetFogDensity(float Value)
 	{
 		CheckIsValid();
@@ -185,7 +205,7 @@ public partial class UExponentialHeightFogComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

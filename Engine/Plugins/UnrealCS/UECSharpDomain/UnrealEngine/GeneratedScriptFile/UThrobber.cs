@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UThrobber:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAnimateOpacity(IntPtr _this,int bInAnimateOpacity);
+	
+	/// <summary>Sets whether the pieces animate their opacity.</summary>
 	public  void SetAnimateOpacity(bool bInAnimateOpacity)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UThrobber:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAnimateVertically(IntPtr _this,int bInAnimateVertically);
+	
+	/// <summary>Sets whether the pieces animate vertically.</summary>
 	public  void SetAnimateVertically(bool bInAnimateVertically)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UThrobber:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAnimateHorizontally(IntPtr _this,int bInAnimateHorizontally);
+	
+	/// <summary>Sets whether the pieces animate horizontally.</summary>
 	public  void SetAnimateHorizontally(bool bInAnimateHorizontally)
 	{
 		CheckIsValid();
@@ -34,6 +40,8 @@ public partial class UThrobber:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetNumberOfPieces(IntPtr _this,int InNumberOfPieces);
+	
+	/// <summary>Sets how many pieces there are</summary>
 	public  void SetNumberOfPieces(int InNumberOfPieces)
 	{
 		CheckIsValid();
@@ -41,7 +49,7 @@ public partial class UThrobber:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

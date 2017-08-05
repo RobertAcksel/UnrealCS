@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UWidgetBinding:UPropertyBinding 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetValue(IntPtr _this);
+	
 	public  UWidget GetValue()
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UWidgetBinding:UPropertyBinding
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

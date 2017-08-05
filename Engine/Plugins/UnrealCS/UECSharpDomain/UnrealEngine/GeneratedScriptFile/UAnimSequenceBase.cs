@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UAnimSequenceBase:UAnimationAsset 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetPlayLength(IntPtr _this);
+	
+	/// <summary>Returns the total play length of the montage, if played back with a speed of 1.0.</summary>
 	public  float GetPlayLength()
 	{
 		CheckIsValid();
@@ -15,7 +17,7 @@ public partial class UAnimSequenceBase:UAnimationAsset
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UUniformGridSlot:UPanelSlot 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVerticalAlignment(IntPtr _this,int InVerticalAlignment);
+	
 	public  void SetVerticalAlignment(EVerticalAlignment InVerticalAlignment)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UUniformGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetHorizontalAlignment(IntPtr _this,int InHorizontalAlignment);
+	
 	public  void SetHorizontalAlignment(EHorizontalAlignment InHorizontalAlignment)
 	{
 		CheckIsValid();
@@ -25,6 +27,8 @@ public partial class UUniformGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColumn(IntPtr _this,int InColumn);
+	
+	/// <summary>Sets the column index of the slot, this determines what cell the slot is in the panel</summary>
 	public  void SetColumn(int InColumn)
 	{
 		CheckIsValid();
@@ -34,6 +38,8 @@ public partial class UUniformGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRow(IntPtr _this,int InRow);
+	
+	/// <summary>Sets the row index of the slot, this determines what cell the slot is in the panel</summary>
 	public  void SetRow(int InRow)
 	{
 		CheckIsValid();
@@ -41,7 +47,7 @@ public partial class UUniformGridSlot:UPanelSlot
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Supported input types</summary>
 	public enum EFunctionInputType:byte
 	{
 		FunctionInput_Scalar=0,

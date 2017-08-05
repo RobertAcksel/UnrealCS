@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCheckBox:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsChecked(IntPtr _this,int InIsChecked);
+	
+	/// <summary>Sets the checked state.</summary>
 	public  void SetIsChecked(bool InIsChecked)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UCheckBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsChecked(IntPtr _this);
+	
+	/// <summary>Returns true if the checkbox is currently checked</summary>
 	public  bool IsChecked()
 	{
 		CheckIsValid();
@@ -26,6 +30,8 @@ public partial class UCheckBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPressed(IntPtr _this);
+	
+	/// <summary>Returns true if this button is currently pressed</summary>
 	public  bool IsPressed()
 	{
 		CheckIsValid();
@@ -34,7 +40,7 @@ public partial class UCheckBox:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

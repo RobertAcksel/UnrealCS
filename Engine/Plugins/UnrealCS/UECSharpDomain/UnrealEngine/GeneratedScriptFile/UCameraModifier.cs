@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCameraModifier:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void EnableModifier(IntPtr _this);
+	
+	/// <summary>Enables this modifier.</summary>
 	public  void EnableModifier()
 	{
 		CheckIsValid();
@@ -16,6 +18,11 @@ public partial class UCameraModifier:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void DisableModifier(IntPtr _this,int bImmediate);
+	
+	/// <summary>
+	/// Disables this modifier.
+	/// @param  bImmediate  - true to disable with no blend out, false (default) to allow blend out
+	/// </summary>
 	public  void DisableModifier(bool bImmediate=false)
 	{
 		CheckIsValid();
@@ -25,6 +32,8 @@ public partial class UCameraModifier:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetViewTarget(IntPtr _this);
+	
+	/// <summary>@return Returns the actor the camera is currently viewing.</summary>
 	public  AActor GetViewTarget()
 	{
 		CheckIsValid();
@@ -35,6 +44,8 @@ public partial class UCameraModifier:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsDisabled(IntPtr _this);
+	
+	/// <summary>@return Returns true if modifier is disabled, false otherwise.</summary>
 	public  bool IsDisabled()
 	{
 		CheckIsValid();
@@ -43,7 +54,7 @@ public partial class UCameraModifier:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

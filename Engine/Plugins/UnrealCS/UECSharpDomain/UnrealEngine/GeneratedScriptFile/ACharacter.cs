@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ACharacter:APawn 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetAnimRootMotionTranslationScale(IntPtr _this);
+	
+	/// <summary>Returns current value of AnimRootMotionScale</summary>
 	public  float GetAnimRootMotionTranslationScale()
 	{
 		CheckIsValid();
@@ -17,6 +19,11 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPlayingNetworkedRootMotionMontage(IntPtr _this);
+	
+	/// <summary>
+	/// true if we are playing Root Motion right now, through a Montage with RootMotionMode == ERootMotionMode::RootMotionFromMontagesOnly.
+	/// This means code path for networked root motion is enabled.
+	/// </summary>
 	public  bool IsPlayingNetworkedRootMotionMontage()
 	{
 		CheckIsValid();
@@ -27,6 +34,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPlayingRootMotion(IntPtr _this);
+	
+	/// <summary>true if we are playing Root Motion right now</summary>
 	public  bool IsPlayingRootMotion()
 	{
 		CheckIsValid();
@@ -37,6 +46,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_RootMotion(IntPtr _this);
+	
+	/// <summary>Handles replicated root motion properties on simulated proxies and position correction.</summary>
 	public  void OnRep_RootMotion()
 	{
 		CheckIsValid();
@@ -46,6 +57,7 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientCheatGhost(IntPtr _this);
+	
 	public  void ClientCheatGhost()
 	{
 		CheckIsValid();
@@ -55,6 +67,7 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientCheatFly(IntPtr _this);
+	
 	public  void ClientCheatFly()
 	{
 		CheckIsValid();
@@ -64,6 +77,7 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientCheatWalk(IntPtr _this);
+	
 	public  void ClientCheatWalk()
 	{
 		CheckIsValid();
@@ -73,6 +87,13 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void UnCrouch(IntPtr _this,int bClientSimulation);
+	
+	/// <summary>
+	/// Request the character to stop crouching. The request is processed on the next update of the CharacterMovementComponent.
+	/// @see OnEndCrouch
+	/// @see IsCrouched
+	/// @see CharacterMovement->WantsToCrouch
+	/// </summary>
 	public  void UnCrouch(bool bClientSimulation=false)
 	{
 		CheckIsValid();
@@ -82,6 +103,13 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Crouch(IntPtr _this,int bClientSimulation);
+	
+	/// <summary>
+	/// Request the character to start crouching. The request is processed on the next update of the CharacterMovementComponent.
+	/// @see OnStartCrouch
+	/// @see IsCrouched
+	/// @see CharacterMovement->WantsToCrouch
+	/// </summary>
 	public  void Crouch(bool bClientSimulation=false)
 	{
 		CheckIsValid();
@@ -91,6 +119,14 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void LaunchCharacter(IntPtr _this,ref FVector LaunchVelocity,int bXYOverride,int bZOverride);
+	
+	/// <summary>
+	/// Set a pending launch velocity on the Character. This velocity will be processed on the next CharacterMovementComponent tick,
+	/// and will set it to the "falling" state. Triggers the OnLaunched event.
+	/// @PARAM LaunchVelocity is the velocity to impart to the Character
+	/// @PARAM bXYOverride if true replace the XY part of the Character's velocity instead of adding to it.
+	/// @PARAM bZOverride if true replace the Z component of the Character's velocity instead of adding to it.
+	/// </summary>
 	public  void LaunchCharacter(FVector LaunchVelocity,bool bXYOverride,bool bZOverride)
 	{
 		CheckIsValid();
@@ -100,6 +136,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetCurrentMontage(IntPtr _this);
+	
+	/// <summary>Return current playing Montage *</summary>
 	public  UAnimMontage GetCurrentMontage()
 	{
 		CheckIsValid();
@@ -110,6 +148,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAnimMontage(IntPtr _this,IntPtr AnimMontage);
+	
+	/// <summary>Stop Animation Montage. If NULL, it will stop what's currently active. The Blend Out Time is taken from the montage asset that is being stopped. *</summary>
 	public  void StopAnimMontage(UAnimMontage AnimMontage)
 	{
 		CheckIsValid();
@@ -119,6 +159,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float PlayAnimMontage(IntPtr _this,IntPtr AnimMontage,float InPlayRate,string StartSectionName);
+	
+	/// <summary>Play Animation Montage on the character mesh *</summary>
 	public  float PlayAnimMontage(UAnimMontage AnimMontage,float InPlayRate=1.000000f,string StartSectionName="None")
 	{
 		CheckIsValid();
@@ -129,6 +171,11 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsJumpProvidingForce(IntPtr _this);
+	
+	/// <summary>
+	/// True if jump is actively providing a force, such as when the jump key is held and the time it has been held is less than JumpMaxHoldTime.
+	/// @see CharacterMovement->IsFalling
+	/// </summary>
 	public  bool IsJumpProvidingForce()
 	{
 		CheckIsValid();
@@ -139,6 +186,12 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int CanJump(IntPtr _this);
+	
+	/// <summary>
+	/// Check if the character can jump in the current state.
+	/// The default implementation may be overridden or extended by implementing the custom CanJump event in Blueprints.
+	/// @Return Whether the character can jump in the current state.
+	/// </summary>
 	public  bool CanJump()
 	{
 		CheckIsValid();
@@ -149,6 +202,13 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopJumping(IntPtr _this);
+	
+	/// <summary>
+	/// Stop the character from jumping on the next update.
+	/// Call this from an input event (such as a button 'up' event) to cease applying
+	/// jump Z-velocity. If this is not called, then jump z-velocity will be applied
+	/// until JumpMaxHoldTime is reached.
+	/// </summary>
 	public  void StopJumping()
 	{
 		CheckIsValid();
@@ -158,6 +218,15 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Jump(IntPtr _this);
+	
+	/// <summary>
+	/// Make the character jump on the next update.
+	/// If you want your character to jump according to the time that the jump key is held,
+	/// then you can set JumpKeyHoldTime to some non-zero value. Make sure in this case to
+	/// call StopJumping() when you want the jump's z-velocity to stop being applied (such
+	/// as on a button up event), otherwise the character will carry on receiving the
+	/// velocity until JumpKeyHoldTime is reached.
+	/// </summary>
 	public  void Jump()
 	{
 		CheckIsValid();
@@ -167,6 +236,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_IsCrouched(IntPtr _this);
+	
+	/// <summary>Handle Crouching replicated from server</summary>
 	public  void OnRep_IsCrouched()
 	{
 		CheckIsValid();
@@ -176,6 +247,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FRotator GetBaseRotationOffsetRotator(IntPtr _this);
+	
+	/// <summary>Get the saved rotation offset of mesh. This is how much extra rotation is applied from the capsule rotation.</summary>
 	public  FRotator GetBaseRotationOffsetRotator()
 	{
 		CheckIsValid();
@@ -186,6 +259,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetBaseTranslationOffset(IntPtr _this);
+	
+	/// <summary>Get the saved translation offset of mesh. This is how much extra offset is applied from the center of the capsule.</summary>
 	public  FVector GetBaseTranslationOffset()
 	{
 		CheckIsValid();
@@ -196,6 +271,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetReplicateMovement(IntPtr _this,int bInReplicateMovement);
+	
+	/// <summary>Set whether this actor's movement replicates to network clients.</summary>
 	public  void SetReplicateMovement(bool bInReplicateMovement)
 	{
 		CheckIsValid();
@@ -205,6 +282,8 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_ReplicatedBasedMovement(IntPtr _this);
+	
+	/// <summary>Rep notify for ReplicatedBasedMovement</summary>
 	public  void OnRep_ReplicatedBasedMovement()
 	{
 		CheckIsValid();
@@ -214,6 +293,12 @@ public partial class ACharacter:APawn
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void CacheInitialMeshOffset(IntPtr _this,ref FVector MeshRelativeLocation,ref FRotator MeshRelativeRotation);
+	
+	/// <summary>
+	/// Cache mesh offset from capsule. This is used as the target for network smoothing interpolation, when the mesh is offset with lagged smoothing.
+	/// This is automatically called during initialization; call this at runtime if you intend to change the default mesh offset from the capsule.
+	/// @see GetBaseTranslationOffset(), GetBaseRotationOffset()
+	/// </summary>
 	public  void CacheInitialMeshOffset(FVector MeshRelativeLocation,FRotator MeshRelativeRotation)
 	{
 		CheckIsValid();
@@ -221,7 +306,7 @@ public partial class ACharacter:APawn
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

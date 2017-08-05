@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UBorder:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDesiredSizeScale(IntPtr _this,ref FVector2D InScale);
+	
+	/// <summary>
+	/// Sets the DesireSizeScale of this border.
+	/// @param InScale    The X and Y multipliers for the desired size
+	/// </summary>
 	public  void SetDesiredSizeScale(FVector2D InScale)
 	{
 		CheckIsValid();
@@ -16,6 +21,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetDynamicMaterial(IntPtr _this);
+	
 	public  UMaterialInstanceDynamic GetDynamicMaterial()
 	{
 		CheckIsValid();
@@ -26,6 +32,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromMaterial(IntPtr _this,IntPtr Material);
+	
 	public  void SetBrushFromMaterial(UMaterialInterface Material)
 	{
 		CheckIsValid();
@@ -35,6 +42,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromTexture(IntPtr _this,IntPtr Texture);
+	
 	public  void SetBrushFromTexture(UTexture2D Texture)
 	{
 		CheckIsValid();
@@ -44,6 +52,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushFromAsset(IntPtr _this,IntPtr Asset);
+	
 	public  void SetBrushFromAsset(USlateBrushAsset Asset)
 	{
 		CheckIsValid();
@@ -53,6 +62,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrush(IntPtr _this,ref FSlateBrush InBrush);
+	
 	public  void SetBrush(FSlateBrush InBrush)
 	{
 		CheckIsValid();
@@ -62,6 +72,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBrushColor(IntPtr _this,ref FLinearColor InBrushColor);
+	
 	public  void SetBrushColor(FLinearColor InBrushColor)
 	{
 		CheckIsValid();
@@ -71,6 +82,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVerticalAlignment(IntPtr _this,int InVerticalAlignment);
+	
 	public  void SetVerticalAlignment(EVerticalAlignment InVerticalAlignment)
 	{
 		CheckIsValid();
@@ -80,6 +92,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetHorizontalAlignment(IntPtr _this,int InHorizontalAlignment);
+	
 	public  void SetHorizontalAlignment(EHorizontalAlignment InHorizontalAlignment)
 	{
 		CheckIsValid();
@@ -89,6 +102,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPadding(IntPtr _this,ref FMargin InPadding);
+	
 	public  void SetPadding(FMargin InPadding)
 	{
 		CheckIsValid();
@@ -98,6 +112,7 @@ public partial class UBorder:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetContentColorAndOpacity(IntPtr _this,ref FLinearColor InContentColorAndOpacity);
+	
 	public  void SetContentColorAndOpacity(FLinearColor InContentColorAndOpacity)
 	{
 		CheckIsValid();
@@ -105,7 +120,7 @@ public partial class UBorder:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

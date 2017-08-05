@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UHorizontalBox:UPanelWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddChildToHorizontalBox(IntPtr _this,IntPtr Content);
+	
 	public  UHorizontalBoxSlot AddChildToHorizontalBox(UWidget Content)
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UHorizontalBox:UPanelWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

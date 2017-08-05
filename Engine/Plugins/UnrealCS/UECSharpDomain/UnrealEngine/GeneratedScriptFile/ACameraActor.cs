@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ACameraActor:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetAutoActivatePlayerIndex(IntPtr _this);
+	
+	/// <summary>Returns index of the player for whom we auto-activate, or INDEX_NONE (-1) if disabled.</summary>
 	public  int GetAutoActivatePlayerIndex()
 	{
 		CheckIsValid();
@@ -15,7 +17,7 @@ public partial class ACameraActor:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UInputKeySelector:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetIsSelectingKey(IntPtr _this);
+	
+	/// <summary>Returns true if the widget is currently selecting a key, otherwise returns false.</summary>
 	public  bool GetIsSelectingKey()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UInputKeySelector:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAllowModifierKeys(IntPtr _this,int bInAllowModifierKeys);
+	
+	/// <summary>Sets whether or not modifier keys are allowed in the selected key.</summary>
 	public  void SetAllowModifierKeys(bool bInAllowModifierKeys)
 	{
 		CheckIsValid();
@@ -26,6 +30,8 @@ public partial class UInputKeySelector:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetKeySelectionText(IntPtr _this,string InKeySelectionText);
+	
+	/// <summary>Sets the text which is displayed while selecting keys.</summary>
 	public  void SetKeySelectionText(string InKeySelectionText)
 	{
 		CheckIsValid();
@@ -35,6 +41,8 @@ public partial class UInputKeySelector:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSelectedKey(IntPtr _this,ref FInputChord InSelectedKey);
+	
+	/// <summary>Sets the currently selected key.</summary>
 	public  void SetSelectedKey(FInputChord InSelectedKey)
 	{
 		CheckIsValid();
@@ -42,7 +50,7 @@ public partial class UInputKeySelector:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class USlider:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSliderHandleColor(IntPtr _this,ref FLinearColor InValue);
+	
+	/// <summary>Sets the color of the handle bar</summary>
 	public  void SetSliderHandleColor(FLinearColor InValue)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class USlider:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSliderBarColor(IntPtr _this,ref FLinearColor InValue);
+	
+	/// <summary>Sets the color of the slider bar</summary>
 	public  void SetSliderBarColor(FLinearColor InValue)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class USlider:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetStepSize(IntPtr _this,float InValue);
+	
+	/// <summary>Sets the amount to adjust the value by, when using a controller or keyboard</summary>
 	public  void SetStepSize(float InValue)
 	{
 		CheckIsValid();
@@ -34,6 +40,8 @@ public partial class USlider:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLocked(IntPtr _this,int InValue);
+	
+	/// <summary>Sets the handle to be interactive or fixed</summary>
 	public  void SetLocked(bool InValue)
 	{
 		CheckIsValid();
@@ -43,6 +51,8 @@ public partial class USlider:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIndentHandle(IntPtr _this,int InValue);
+	
+	/// <summary>Sets if the slidable area should be indented to fit the handle</summary>
 	public  void SetIndentHandle(bool InValue)
 	{
 		CheckIsValid();
@@ -52,6 +62,8 @@ public partial class USlider:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetValue(IntPtr _this,float InValue);
+	
+	/// <summary>Sets the current value of the slider.</summary>
 	public  void SetValue(float InValue)
 	{
 		CheckIsValid();
@@ -61,6 +73,8 @@ public partial class USlider:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetValue(IntPtr _this);
+	
+	/// <summary>Gets the current value of the slider.</summary>
 	public  float GetValue()
 	{
 		CheckIsValid();
@@ -69,7 +83,7 @@ public partial class USlider:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

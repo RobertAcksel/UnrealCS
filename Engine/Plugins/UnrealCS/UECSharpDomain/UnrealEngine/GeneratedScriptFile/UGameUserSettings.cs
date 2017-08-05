@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UGameUserSettings:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsHDREnabled(IntPtr _this);
+	
 	public  bool IsHDREnabled()
 	{
 		CheckIsValid();
@@ -17,6 +18,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetCurrentHDRDisplayNits(IntPtr _this);
+	
+	/// <summary>Returns 0 if HDR isn't supported or is turned off</summary>
 	public  int GetCurrentHDRDisplayNits()
 	{
 		CheckIsValid();
@@ -27,6 +30,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void EnableHDRDisplayOutput(IntPtr _this,int bEnable,int DisplayNits);
+	
+	/// <summary>Enables or disables HDR display output. Can be called again to change the desired nit level</summary>
 	public  void EnableHDRDisplayOutput(bool bEnable,int DisplayNits=1000)
 	{
 		CheckIsValid();
@@ -36,6 +41,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int SupportsHDRDisplayOutput(IntPtr _this);
+	
+	/// <summary>Whether the curently running system supports HDR display output</summary>
 	public  bool SupportsHDRDisplayOutput()
 	{
 		CheckIsValid();
@@ -46,6 +53,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ApplyHardwareBenchmarkResults(IntPtr _this);
+	
+	/// <summary>Applies the settings stored in ScalabilityQuality and saves settings</summary>
 	public  void ApplyHardwareBenchmarkResults()
 	{
 		CheckIsValid();
@@ -55,6 +64,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RunHardwareBenchmark(IntPtr _this,int WorkScale,float CPUMultiplier,float GPUMultiplier);
+	
+	/// <summary>Runs the hardware benchmark and populates ScalabilityQuality as well as the last benchmark results config members, but does not apply the settings it determines. Designed to be called in conjunction with ApplyHardwareBenchmarkResults</summary>
 	public  void RunHardwareBenchmark(int WorkScale=10,float CPUMultiplier=1.000000f,float GPUMultiplier=1.000000f)
 	{
 		CheckIsValid();
@@ -64,6 +75,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetGameUserSettings(IntPtr _this);
+	
+	/// <summary>Returns the game local machine settings (resolution, windowing mode, scalability settings, etc...)</summary>
 	public static UGameUserSettings GetGameUserSettings()
 	{
 		IntPtr ___ret = GetGameUserSettings(IntPtr.Zero);
@@ -73,6 +86,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetDefaultWindowMode(IntPtr _this);
+	
+	/// <summary>@return The default window mode when no mode is set</summary>
 	public static EWindowMode GetDefaultWindowMode()
 	{
 		int ___ret = GetDefaultWindowMode(IntPtr.Zero);
@@ -82,6 +97,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FIntPoint GetDefaultWindowPosition(IntPtr _this);
+	
+	/// <summary>@return The default window position when no position is set</summary>
 	public static FIntPoint GetDefaultWindowPosition()
 	{
 		FIntPoint ___ret = GetDefaultWindowPosition(IntPtr.Zero);
@@ -91,6 +108,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FIntPoint GetDefaultResolution(IntPtr _this);
+	
+	/// <summary>@return The default resolution when no resolution is set</summary>
 	public static FIntPoint GetDefaultResolution()
 	{
 		FIntPoint ___ret = GetDefaultResolution(IntPtr.Zero);
@@ -100,6 +119,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetRecommendedResolutionScale(IntPtr _this);
+	
+	/// <summary>Gets the recommended resolution quality based on LastRecommendedScreenWidth/Height and the current screen resolution</summary>
 	public  float GetRecommendedResolutionScale()
 	{
 		CheckIsValid();
@@ -110,6 +131,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetDefaultResolutionScale(IntPtr _this);
+	
+	/// <summary>Gets the desired resolution quality based on DesiredScreenWidth/Height and the current screen resolution</summary>
 	public  float GetDefaultResolutionScale()
 	{
 		CheckIsValid();
@@ -120,6 +143,7 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetToDefaults(IntPtr _this);
+	
 	public  void SetToDefaults()
 	{
 		CheckIsValid();
@@ -129,6 +153,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ResetToCurrentSettings(IntPtr _this);
+	
+	/// <summary>This function resets all settings to the current system settings</summary>
 	public  void ResetToCurrentSettings()
 	{
 		CheckIsValid();
@@ -138,6 +164,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SaveSettings(IntPtr _this);
+	
+	/// <summary>Save the user settings to persistent storage (automatically happens as part of ApplySettings)</summary>
 	public  void SaveSettings()
 	{
 		CheckIsValid();
@@ -147,6 +175,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void LoadSettings(IntPtr _this,int bForceReload);
+	
+	/// <summary>Loads the user settings from persistent storage</summary>
 	public  void LoadSettings(bool bForceReload=false)
 	{
 		CheckIsValid();
@@ -156,6 +186,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ValidateSettings(IntPtr _this);
+	
+	/// <summary>Validates and resets bad user settings to default. Deletes stale user settings file if necessary.</summary>
 	public  void ValidateSettings()
 	{
 		CheckIsValid();
@@ -165,6 +197,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsDirty(IntPtr _this);
+	
+	/// <summary>Checks if any user settings is different from current</summary>
 	public  bool IsDirty()
 	{
 		CheckIsValid();
@@ -175,6 +209,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetFoliageQuality(IntPtr _this);
+	
+	/// <summary>Returns the post-processing quality (0..3, higher is better)</summary>
 	public  int GetFoliageQuality()
 	{
 		CheckIsValid();
@@ -185,6 +221,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFoliageQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the post-processing quality (0..3, higher is better)</summary>
 	public  void SetFoliageQuality(int Value)
 	{
 		CheckIsValid();
@@ -194,6 +232,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetPostProcessingQuality(IntPtr _this);
+	
+	/// <summary>Returns the post-processing quality (0..3, higher is better)</summary>
 	public  int GetPostProcessingQuality()
 	{
 		CheckIsValid();
@@ -204,6 +244,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPostProcessingQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the post-processing quality (0..3, higher is better)</summary>
 	public  void SetPostProcessingQuality(int Value)
 	{
 		CheckIsValid();
@@ -213,6 +255,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetVisualEffectQuality(IntPtr _this);
+	
+	/// <summary>Returns the visual effects quality (0..3, higher is better)</summary>
 	public  int GetVisualEffectQuality()
 	{
 		CheckIsValid();
@@ -223,6 +267,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVisualEffectQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the visual effects quality (0..3, higher is better)</summary>
 	public  void SetVisualEffectQuality(int Value)
 	{
 		CheckIsValid();
@@ -232,6 +278,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetTextureQuality(IntPtr _this);
+	
+	/// <summary>Returns the texture quality (0..3, higher is better)</summary>
 	public  int GetTextureQuality()
 	{
 		CheckIsValid();
@@ -242,6 +290,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTextureQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the texture quality (0..3, higher is better)</summary>
 	public  void SetTextureQuality(int Value)
 	{
 		CheckIsValid();
@@ -251,6 +301,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetAntiAliasingQuality(IntPtr _this);
+	
+	/// <summary>Returns the anti-aliasing quality (0..3, higher is better)</summary>
 	public  int GetAntiAliasingQuality()
 	{
 		CheckIsValid();
@@ -261,6 +313,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAntiAliasingQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the anti-aliasing quality (0..3, higher is better)</summary>
 	public  void SetAntiAliasingQuality(int Value)
 	{
 		CheckIsValid();
@@ -270,6 +324,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetShadowQuality(IntPtr _this);
+	
+	/// <summary>Returns the shadow quality (0..3, higher is better)</summary>
 	public  int GetShadowQuality()
 	{
 		CheckIsValid();
@@ -280,6 +336,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetShadowQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the shadow quality (0..3, higher is better)</summary>
 	public  void SetShadowQuality(int Value)
 	{
 		CheckIsValid();
@@ -289,6 +347,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetViewDistanceQuality(IntPtr _this);
+	
+	/// <summary>Returns the view distance quality (0..3, higher is better)</summary>
 	public  int GetViewDistanceQuality()
 	{
 		CheckIsValid();
@@ -299,6 +359,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetViewDistanceQuality(IntPtr _this,int Value);
+	
+	/// <summary>Sets the view distance quality (0..3, higher is better)</summary>
 	public  void SetViewDistanceQuality(int Value)
 	{
 		CheckIsValid();
@@ -308,6 +370,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetResolutionScaleNormalized(IntPtr _this,float NewScaleNormalized);
+	
+	/// <summary>Sets the current resolution scale as a normalized 0..1 value between MinScaleValue and MaxScaleValue</summary>
 	public  void SetResolutionScaleNormalized(float NewScaleNormalized)
 	{
 		CheckIsValid();
@@ -317,6 +381,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetResolutionScaleValueEx(IntPtr _this,float NewScaleValue);
+	
+	/// <summary>Sets the current resolution scale</summary>
 	public  void SetResolutionScaleValueEx(float NewScaleValue)
 	{
 		CheckIsValid();
@@ -326,6 +392,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetResolutionScaleInformationEx(IntPtr _this,out float CurrentScaleNormalized,out float CurrentScaleValue,out float MinScaleValue,out float MaxScaleValue);
+	
+	/// <summary>Returns the current resolution scale and the range</summary>
 	public  void GetResolutionScaleInformationEx(out float CurrentScaleNormalized,out float CurrentScaleValue,out float MinScaleValue,out float MaxScaleValue)
 	{
 		CheckIsValid();
@@ -335,6 +403,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetOverallScalabilityLevel(IntPtr _this);
+	
+	/// <summary>Returns the overall scalability level (can return -1 if the settings are custom)</summary>
 	public  int GetOverallScalabilityLevel()
 	{
 		CheckIsValid();
@@ -345,6 +415,11 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOverallScalabilityLevel(IntPtr _this,int Value);
+	
+	/// <summary>
+	/// Changes all scalability settings at once based on a single overall quality level
+	/// @param Value 0:low, 1:medium, 2:high, 3:epic
+	/// </summary>
 	public  void SetOverallScalabilityLevel(int Value)
 	{
 		CheckIsValid();
@@ -354,6 +429,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetFrameRateLimit(IntPtr _this);
+	
+	/// <summary>Gets the user's frame rate limit (0 indiciates the frame rate limit is disabled)</summary>
 	public  float GetFrameRateLimit()
 	{
 		CheckIsValid();
@@ -364,6 +441,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFrameRateLimit(IntPtr _this,float NewLimit);
+	
+	/// <summary>Sets the user's frame rate limit (0 will disable frame rate limiting)</summary>
 	public  void SetFrameRateLimit(float NewLimit)
 	{
 		CheckIsValid();
@@ -373,6 +452,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetAudioQualityLevel(IntPtr _this);
+	
+	/// <summary>Returns the user's audio quality level setting</summary>
 	public  int GetAudioQualityLevel()
 	{
 		CheckIsValid();
@@ -383,6 +464,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAudioQualityLevel(IntPtr _this,int QualityLevel);
+	
+	/// <summary>Sets the user's audio quality level setting</summary>
 	public  void SetAudioQualityLevel(int QualityLevel)
 	{
 		CheckIsValid();
@@ -392,6 +475,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBenchmarkFallbackValues(IntPtr _this);
+	
+	/// <summary>Set scalability settings to sensible fallback values, for use when the benchmark fails or potentially causes a crash</summary>
 	public  void SetBenchmarkFallbackValues()
 	{
 		CheckIsValid();
@@ -401,6 +486,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RevertVideoMode(IntPtr _this);
+	
+	/// <summary>Revert video mode (fullscreenmode/resolution) back to the last user confirmed values</summary>
 	public  void RevertVideoMode()
 	{
 		CheckIsValid();
@@ -410,6 +497,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ConfirmVideoMode(IntPtr _this);
+	
+	/// <summary>Mark current video mode settings (fullscreenmode/resolution) as being confirmed by the user</summary>
 	public  void ConfirmVideoMode()
 	{
 		CheckIsValid();
@@ -419,6 +508,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsVSyncDirty(IntPtr _this);
+	
+	/// <summary>Checks if the vsync user setting is different from current system setting</summary>
 	public  bool IsVSyncDirty()
 	{
 		CheckIsValid();
@@ -429,6 +520,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsFullscreenModeDirty(IntPtr _this);
+	
+	/// <summary>Checks if the FullscreenMode user setting is different from current</summary>
 	public  bool IsFullscreenModeDirty()
 	{
 		CheckIsValid();
@@ -439,6 +532,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsScreenResolutionDirty(IntPtr _this);
+	
+	/// <summary>Checks if the Screen Resolution user setting is different from current</summary>
 	public  bool IsScreenResolutionDirty()
 	{
 		CheckIsValid();
@@ -449,6 +544,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsVSyncEnabled(IntPtr _this);
+	
+	/// <summary>Returns the user setting for vsync.</summary>
 	public  bool IsVSyncEnabled()
 	{
 		CheckIsValid();
@@ -459,6 +556,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVSyncEnabled(IntPtr _this,int bEnable);
+	
+	/// <summary>Sets the user setting for vsync. See UGameUserSettings::bUseVSync.</summary>
 	public  void SetVSyncEnabled(bool bEnable)
 	{
 		CheckIsValid();
@@ -468,6 +567,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetPreferredFullscreenMode(IntPtr _this);
+	
+	/// <summary>Returns the user setting for game window fullscreen mode.</summary>
 	public  EWindowMode GetPreferredFullscreenMode()
 	{
 		CheckIsValid();
@@ -478,6 +579,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFullscreenMode(IntPtr _this,int InFullscreenMode);
+	
+	/// <summary>Sets the user setting for the game window fullscreen mode. See UGameUserSettings::FullscreenMode.</summary>
 	public  void SetFullscreenMode(EWindowMode InFullscreenMode)
 	{
 		CheckIsValid();
@@ -487,6 +590,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetLastConfirmedFullscreenMode(IntPtr _this);
+	
+	/// <summary>Returns the last confirmed user setting for game window fullscreen mode.</summary>
 	public  EWindowMode GetLastConfirmedFullscreenMode()
 	{
 		CheckIsValid();
@@ -497,6 +602,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetFullscreenMode(IntPtr _this);
+	
+	/// <summary>Returns the user setting for game window fullscreen mode.</summary>
 	public  EWindowMode GetFullscreenMode()
 	{
 		CheckIsValid();
@@ -507,6 +614,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetScreenResolution(IntPtr _this,ref FIntPoint Resolution);
+	
+	/// <summary>Sets the user setting for game screen resolution, in pixels.</summary>
 	public  void SetScreenResolution(FIntPoint Resolution)
 	{
 		CheckIsValid();
@@ -516,6 +625,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FIntPoint GetDesktopResolution(IntPtr _this);
+	
+	/// <summary>Returns user's desktop resolution, in pixels.</summary>
 	public  FIntPoint GetDesktopResolution()
 	{
 		CheckIsValid();
@@ -526,6 +637,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FIntPoint GetLastConfirmedScreenResolution(IntPtr _this);
+	
+	/// <summary>Returns the last confirmed user setting for game screen resolution, in pixels.</summary>
 	public  FIntPoint GetLastConfirmedScreenResolution()
 	{
 		CheckIsValid();
@@ -536,6 +649,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FIntPoint GetScreenResolution(IntPtr _this);
+	
+	/// <summary>Returns the user setting for game screen resolution, in pixels.</summary>
 	public  FIntPoint GetScreenResolution()
 	{
 		CheckIsValid();
@@ -546,6 +661,7 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ApplyResolutionSettings(IntPtr _this,int bCheckForCommandLineOverrides);
+	
 	public  void ApplyResolutionSettings(bool bCheckForCommandLineOverrides)
 	{
 		CheckIsValid();
@@ -555,6 +671,7 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ApplyNonResolutionSettings(IntPtr _this);
+	
 	public  void ApplyNonResolutionSettings()
 	{
 		CheckIsValid();
@@ -564,6 +681,8 @@ public partial class UGameUserSettings:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ApplySettings(IntPtr _this,int bCheckForCommandLineOverrides);
+	
+	/// <summary>Applies all current user settings to the game and saves to permanent storage (e.g. file), optionally checking for command line overrides.</summary>
 	public  void ApplySettings(bool bCheckForCommandLineOverrides)
 	{
 		CheckIsValid();
@@ -571,7 +690,7 @@ public partial class UGameUserSettings:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

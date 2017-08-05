@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCircularThrobber:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRadius(IntPtr _this,float InRadius);
+	
+	/// <summary>Sets the radius of the circle.</summary>
 	public  void SetRadius(float InRadius)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UCircularThrobber:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPeriod(IntPtr _this,float InPeriod);
+	
+	/// <summary>Sets the amount of time for a full circle (in seconds).</summary>
 	public  void SetPeriod(float InPeriod)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UCircularThrobber:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetNumberOfPieces(IntPtr _this,int InNumberOfPieces);
+	
+	/// <summary>Sets how many pieces there are.</summary>
 	public  void SetNumberOfPieces(int InNumberOfPieces)
 	{
 		CheckIsValid();
@@ -32,7 +38,7 @@ public partial class UCircularThrobber:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UHierarchicalInstancedStaticMeshComponent:UInstancedStaticMeshComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int RemoveInstances(IntPtr _this,int[] InstancesToRemove);
+	
+	/// <summary>Removes all the instances with indices specified in the InstancesToRemove array. Returns true on success.</summary>
 	public  bool RemoveInstances(int[] InstancesToRemove)
 	{
 		CheckIsValid();
@@ -15,7 +17,7 @@ public partial class UHierarchicalInstancedStaticMeshComponent:UInstancedStaticM
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

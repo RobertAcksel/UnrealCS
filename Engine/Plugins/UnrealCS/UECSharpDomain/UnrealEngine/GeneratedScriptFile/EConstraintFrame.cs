@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enum to indicate which frame we want.</summary>
 	public enum EConstraintFrame:byte
 	{
 		Frame1=0,

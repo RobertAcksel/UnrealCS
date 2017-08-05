@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class USizeBox:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMaxAspectRatio(IntPtr _this);
+	
 	public  void ClearMaxAspectRatio()
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaxAspectRatio(IntPtr _this,float InMaxAspectRatio);
+	
 	public  void SetMaxAspectRatio(float InMaxAspectRatio)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMaxDesiredHeight(IntPtr _this);
+	
 	public  void ClearMaxDesiredHeight()
 	{
 		CheckIsValid();
@@ -34,6 +37,8 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaxDesiredHeight(IntPtr _this,float InMaxDesiredHeight);
+	
+	/// <summary>When specified, will report the MaxDesiredHeight if smaller than the content's desired height.</summary>
 	public  void SetMaxDesiredHeight(float InMaxDesiredHeight)
 	{
 		CheckIsValid();
@@ -43,6 +48,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMaxDesiredWidth(IntPtr _this);
+	
 	public  void ClearMaxDesiredWidth()
 	{
 		CheckIsValid();
@@ -52,6 +58,8 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaxDesiredWidth(IntPtr _this,float InMaxDesiredWidth);
+	
+	/// <summary>When specified, will report the MaxDesiredWidth if smaller than the content's desired width.</summary>
 	public  void SetMaxDesiredWidth(float InMaxDesiredWidth)
 	{
 		CheckIsValid();
@@ -61,6 +69,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMinDesiredHeight(IntPtr _this);
+	
 	public  void ClearMinDesiredHeight()
 	{
 		CheckIsValid();
@@ -70,6 +79,8 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMinDesiredHeight(IntPtr _this,float InMinDesiredHeight);
+	
+	/// <summary>When specified, will report the MinDesiredHeight if larger than the content's desired height.</summary>
 	public  void SetMinDesiredHeight(float InMinDesiredHeight)
 	{
 		CheckIsValid();
@@ -79,6 +90,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMinDesiredWidth(IntPtr _this);
+	
 	public  void ClearMinDesiredWidth()
 	{
 		CheckIsValid();
@@ -88,6 +100,8 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMinDesiredWidth(IntPtr _this,float InMinDesiredWidth);
+	
+	/// <summary>When specified, will report the MinDesiredWidth if larger than the content's desired width.</summary>
 	public  void SetMinDesiredWidth(float InMinDesiredWidth)
 	{
 		CheckIsValid();
@@ -97,6 +111,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearHeightOverride(IntPtr _this);
+	
 	public  void ClearHeightOverride()
 	{
 		CheckIsValid();
@@ -106,6 +121,8 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetHeightOverride(IntPtr _this,float InHeightOverride);
+	
+	/// <summary>When specified, ignore the content's desired size and report the HeightOverride as the Box's desired height.</summary>
 	public  void SetHeightOverride(float InHeightOverride)
 	{
 		CheckIsValid();
@@ -115,6 +132,7 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearWidthOverride(IntPtr _this);
+	
 	public  void ClearWidthOverride()
 	{
 		CheckIsValid();
@@ -124,6 +142,8 @@ public partial class USizeBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetWidthOverride(IntPtr _this,float InWidthOverride);
+	
+	/// <summary>When specified, ignore the content's desired size and report the WidthOverride as the Box's desired width.</summary>
 	public  void SetWidthOverride(float InWidthOverride)
 	{
 		CheckIsValid();
@@ -131,7 +151,7 @@ public partial class USizeBox:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

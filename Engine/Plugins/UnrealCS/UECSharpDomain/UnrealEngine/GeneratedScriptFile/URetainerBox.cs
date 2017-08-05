@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class URetainerBox:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTextureParameter(IntPtr _this,string TextureParameter);
+	
+	/// <summary>Sets the name of the texture parameter to set the render target to on the material.</summary>
 	public  void SetTextureParameter(string TextureParameter)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class URetainerBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetEffectMaterial(IntPtr _this,IntPtr EffectMaterial);
+	
+	/// <summary>Set a new effect material to the retainer widget.</summary>
 	public  void SetEffectMaterial(UMaterialInterface EffectMaterial)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class URetainerBox:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetEffectMaterial(IntPtr _this);
+	
+	/// <summary>Get the current dynamic effect material applied to the retainer box.</summary>
 	public  UMaterialInstanceDynamic GetEffectMaterial()
 	{
 		CheckIsValid();
@@ -33,7 +39,7 @@ public partial class URetainerBox:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

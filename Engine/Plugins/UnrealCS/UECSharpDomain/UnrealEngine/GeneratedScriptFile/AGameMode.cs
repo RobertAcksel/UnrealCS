@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class AGameMode:AGameModeBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBandwidthLimit(IntPtr _this,float AsyncIOBandwidthLimit);
+	
+	/// <summary>Alters the synthetic bandwidth limit for a running game.</summary>
 	public  void SetBandwidthLimit(float AsyncIOBandwidthLimit)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Say(IntPtr _this,string Msg);
+	
+	/// <summary>Exec command to broadcast a string to all players</summary>
 	public  void Say(string Msg)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AbortMatch(IntPtr _this);
+	
+	/// <summary>Report that a match has failed due to unrecoverable error</summary>
 	public  void AbortMatch()
 	{
 		CheckIsValid();
@@ -34,6 +40,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RestartGame(IntPtr _this);
+	
+	/// <summary>Restart the game, by default travel to the current map</summary>
 	public  void RestartGame()
 	{
 		CheckIsValid();
@@ -43,6 +51,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void EndMatch(IntPtr _this);
+	
+	/// <summary>Transition from InProgress to WaitingPostMatch. You can call this manually, will also get called if ReadyToEndMatch returns true</summary>
 	public  void EndMatch()
 	{
 		CheckIsValid();
@@ -52,6 +62,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StartMatch(IntPtr _this);
+	
+	/// <summary>Transition from WaitingToStart to InProgress. You can call this manually, will also get called if ReadyToStartMatch returns true</summary>
 	public  void StartMatch()
 	{
 		CheckIsValid();
@@ -61,6 +73,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int HasMatchEnded(IntPtr _this);
+	
+	/// <summary>Returns true if the match state is WaitingPostMatch or later</summary>
 	public  bool HasMatchEnded()
 	{
 		CheckIsValid();
@@ -71,6 +85,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsMatchInProgress(IntPtr _this);
+	
+	/// <summary>Returns true if the match state is InProgress or other gameplay state</summary>
 	public  bool IsMatchInProgress()
 	{
 		CheckIsValid();
@@ -81,6 +97,8 @@ public partial class AGameMode:AGameModeBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetMatchState(IntPtr _this);
+	
+	/// <summary>Returns the current match state, this is an accessor to protect the state machine flow</summary>
 	public  string GetMatchState()
 	{
 		CheckIsValid();
@@ -89,7 +107,7 @@ public partial class AGameMode:AGameModeBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

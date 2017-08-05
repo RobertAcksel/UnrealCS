@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Types of surfaces in the game.</summary>
 	public enum EPhysicalSurface:byte
 	{
 		SurfaceType_Default=0,

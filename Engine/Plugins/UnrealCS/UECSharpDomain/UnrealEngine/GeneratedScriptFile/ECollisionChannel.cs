@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enum indicating different type of objects for rigid-body collision purposes.</summary>
 	public enum ECollisionChannel:byte
 	{
 		ECC_WorldStatic=0,
@@ -13,6 +14,7 @@ namespace UnrealEngine
 		ECC_PhysicsBody=5,
 		ECC_Vehicle=6,
 		ECC_Destructible=7,
+		/// <summary>Reserved for gizmo collision</summary>
 		ECC_EngineTraceChannel1=8,
 		ECC_EngineTraceChannel2=9,
 		ECC_EngineTraceChannel3=10,
@@ -37,6 +39,7 @@ namespace UnrealEngine
 		ECC_GameTraceChannel16=29,
 		ECC_GameTraceChannel17=30,
 		ECC_GameTraceChannel18=31,
+		/// <summary>Add only nonserialized/transient flags below // NOTE!!!! THESE ARE BEING DEPRECATED BUT STILL THERE FOR BLUEPRINT. PLEASE DO NOT USE THEM IN CODE</summary>
 		ECC_OverlapAll_Deprecated=32,
 		ECC_MAX=33,
 		

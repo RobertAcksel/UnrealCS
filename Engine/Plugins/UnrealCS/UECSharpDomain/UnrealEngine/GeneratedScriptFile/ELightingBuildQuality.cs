@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Lighting build quality enumeration</summary>
 	public enum ELightingBuildQuality:byte
 	{
 		Quality_Preview=0,

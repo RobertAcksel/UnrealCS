@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RemoveAllWidgets(IntPtr _this,IntPtr WorldContextObject);
+	
+	/// <summary>Removes all widgets from the viewport.</summary>
 	public static void RemoveAllWidgets(UObject WorldContextObject)
 	{
 		RemoveAllWidgets(IntPtr.Zero,WorldContextObject);
@@ -15,6 +17,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsVerticalBoxSlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Vertical Box Slot, allowing you to manipulate its information.
+	/// @param Widget The child widget of a Vertical Box.
+	/// </summary>
 	public static UVerticalBoxSlot SlotAsVerticalBoxSlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsVerticalBoxSlot(IntPtr.Zero,Widget);
@@ -24,6 +31,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsUniformGridSlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Uniform Grid Slot, allowing you to manipulate layout information.
+	/// @param Widget The child widget of a uniform grid panel.
+	/// </summary>
 	public static UUniformGridSlot SlotAsUniformGridSlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsUniformGridSlot(IntPtr.Zero,Widget);
@@ -33,6 +45,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsOverlaySlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Overlay Slot, allowing you to manipulate layout information.
+	/// @param Widget The child widget of a overlay panel.
+	/// </summary>
 	public static UOverlaySlot SlotAsOverlaySlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsOverlaySlot(IntPtr.Zero,Widget);
@@ -42,6 +59,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsHorizontalBoxSlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Horizontal Box Slot, allowing you to manipulate its information.
+	/// @param Widget The child widget of a Horizontal Box.
+	/// </summary>
 	public static UHorizontalBoxSlot SlotAsHorizontalBoxSlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsHorizontalBoxSlot(IntPtr.Zero,Widget);
@@ -51,6 +73,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsGridSlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Grid Slot, allowing you to manipulate layout information.
+	/// @param Widget The child widget of a grid panel.
+	/// </summary>
 	public static UGridSlot SlotAsGridSlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsGridSlot(IntPtr.Zero,Widget);
@@ -60,6 +87,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsCanvasSlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Canvas Slot, allowing you to manipulate layout information.
+	/// @param Widget The child widget of a canvas panel.
+	/// </summary>
 	public static UCanvasPanelSlot SlotAsCanvasSlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsCanvasSlot(IntPtr.Zero,Widget);
@@ -69,6 +101,11 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SlotAsBorderSlot(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Gets the slot object on the child widget as a Border Slot, allowing you to manipulate layout information.
+	/// @param Widget The child widget of a border panel.
+	/// </summary>
 	public static UBorderSlot SlotAsBorderSlot(UWidget Widget)
 	{
 		IntPtr ___ret = SlotAsBorderSlot(IntPtr.Zero,Widget);
@@ -78,6 +115,12 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetMousePositionScaledByDPI(IntPtr _this,IntPtr Player,out float LocationX,out float LocationY);
+	
+	/// <summary>
+	/// Gets the mouse position of the player controller, scaled by the DPI.  If you're trying to go from raw mouse screenspace coordinates
+	/// to fullscreen widget space, you'll need to transform the mouse into DPI Scaled space.  This function performs that scaling.
+	/// MousePositionScaledByDPI = MousePosition * (1 / ViewportScale).
+	/// </summary>
 	public static bool GetMousePositionScaledByDPI(APlayerController Player,out float LocationX,out float LocationY)
 	{
 		int ___ret = GetMousePositionScaledByDPI(IntPtr.Zero,Player,out LocationX,out LocationY);
@@ -87,6 +130,8 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetViewportSize(IntPtr _this,IntPtr WorldContextObject);
+	
+	/// <summary>Gets the size of the game viewport.</summary>
 	public static FVector2D GetViewportSize(UObject WorldContextObject)
 	{
 		FVector2D ___ret = GetViewportSize(IntPtr.Zero,WorldContextObject);
@@ -96,6 +141,8 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetViewportScale(IntPtr _this,IntPtr WorldContextObject);
+	
+	/// <summary>Gets the current DPI Scale being applied to the viewport and all the Widgets.</summary>
 	public static float GetViewportScale(UObject WorldContextObject)
 	{
 		float ___ret = GetViewportScale(IntPtr.Zero,WorldContextObject);
@@ -105,6 +152,15 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int ProjectWorldLocationToWidgetPosition(IntPtr _this,IntPtr PlayerController,ref FVector WorldLocation,out FVector2D ScreenPosition);
+	
+	/// <summary>
+	/// Gets the projected world to screen position for a player, then converts it into a widget
+	/// position, which takes into account any quality scaling.
+	/// @param PlayerController The player controller to project the position in the world to their screen.
+	/// @param WorldLocation The world location to project from.
+	/// @param ScreenPosition The position in the viewport with quality scale removed and DPI scale remove.
+	/// @return true if the position projects onto the screen.
+	/// </summary>
 	public static bool ProjectWorldLocationToWidgetPosition(APlayerController PlayerController,FVector WorldLocation,out FVector2D ScreenPosition)
 	{
 		int ___ret = ProjectWorldLocationToWidgetPosition(IntPtr.Zero,PlayerController,ref WorldLocation,out ScreenPosition);
@@ -112,7 +168,7 @@ public partial class UWidgetLayoutLibrary:UBlueprintFunctionLibrary
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

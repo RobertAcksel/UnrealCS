@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCanvasPanel:UPanelWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddChildToCanvas(IntPtr _this,IntPtr Content);
+	
 	public  UCanvasPanelSlot AddChildToCanvas(UWidget Content)
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UCanvasPanel:UPanelWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

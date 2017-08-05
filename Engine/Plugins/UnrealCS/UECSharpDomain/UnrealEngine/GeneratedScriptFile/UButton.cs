@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UButton:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPressed(IntPtr _this);
+	
+	/// <summary>
+	/// Returns true if the user is actively pressing the button.  Do not use this for detecting 'Clicks', use the OnClicked event instead.
+	/// @return true if the user is actively pressing the button otherwise false.
+	/// </summary>
 	public  bool IsPressed()
 	{
 		CheckIsValid();
@@ -17,6 +22,8 @@ public partial class UButton:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBackgroundColor(IntPtr _this,ref FLinearColor InBackgroundColor);
+	
+	/// <summary>Sets the color multiplier for the button background</summary>
 	public  void SetBackgroundColor(FLinearColor InBackgroundColor)
 	{
 		CheckIsValid();
@@ -26,6 +33,8 @@ public partial class UButton:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColorAndOpacity(IntPtr _this,ref FLinearColor InColorAndOpacity);
+	
+	/// <summary>Sets the color multiplier for the button content</summary>
 	public  void SetColorAndOpacity(FLinearColor InColorAndOpacity)
 	{
 		CheckIsValid();
@@ -35,6 +44,8 @@ public partial class UButton:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetStyle(IntPtr _this,ref FButtonStyle InStyle);
+	
+	/// <summary>Sets the color multiplier for the button background</summary>
 	public  void SetStyle(FButtonStyle InStyle)
 	{
 		CheckIsValid();
@@ -42,7 +53,7 @@ public partial class UButton:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

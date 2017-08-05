@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UWidgetComponent:UMeshComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBackgroundColor(IntPtr _this,ref FLinearColor NewBackgroundColor);
+	
+	/// <summary>Sets the background color and opacityscale for this widget</summary>
 	public  void SetBackgroundColor(FLinearColor NewBackgroundColor)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RequestRedraw(IntPtr _this);
+	
+	/// <summary>Requests that the widget be redrawn.</summary>
 	public  void RequestRedraw()
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDrawSize(IntPtr _this,ref FVector2D Size);
+	
+	/// <summary>Sets the draw size of the quad in the world</summary>
 	public  void SetDrawSize(FVector2D Size)
 	{
 		CheckIsValid();
@@ -34,6 +40,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetDrawSize(IntPtr _this);
+	
+	/// <summary>@return The draw size of the quad in the world</summary>
 	public  FVector2D GetDrawSize()
 	{
 		CheckIsValid();
@@ -44,6 +52,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetOwnerPlayer(IntPtr _this);
+	
+	/// <summary>Gets the local player that owns this widget component.</summary>
 	public  ULocalPlayer GetOwnerPlayer()
 	{
 		CheckIsValid();
@@ -54,6 +64,12 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOwnerPlayer(IntPtr _this,IntPtr LocalPlayer);
+	
+	/// <summary>
+	/// Sets the local player that owns this widget component.  Setting the owning player controls
+	/// which player's viewport the widget appears on in a split screen scenario.  Additionally it
+	/// forwards the owning player to the actual UserWidget that is spawned.
+	/// </summary>
 	public  void SetOwnerPlayer(ULocalPlayer LocalPlayer)
 	{
 		CheckIsValid();
@@ -63,6 +79,11 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetWidget(IntPtr _this,IntPtr Widget);
+	
+	/// <summary>
+	/// Sets the widget to use directly. This function will keep track of the widget till the next time it's called
+	///     with either a newer widget or a nullptr
+	/// </summary>
 	public  void SetWidget(UUserWidget Widget)
 	{
 		CheckIsValid();
@@ -72,6 +93,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetMaterialInstance(IntPtr _this);
+	
+	/// <summary>@return The dynamic material instance used to render the user widget</summary>
 	public  UMaterialInstanceDynamic GetMaterialInstance()
 	{
 		CheckIsValid();
@@ -82,6 +105,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetRenderTarget(IntPtr _this);
+	
+	/// <summary>@return The render target to which the user widget is rendered</summary>
 	public  UTextureRenderTarget2D GetRenderTarget()
 	{
 		CheckIsValid();
@@ -92,6 +117,8 @@ public partial class UWidgetComponent:UMeshComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetUserWidgetObject(IntPtr _this);
+	
+	/// <summary>@return The user widget object displayed by this component</summary>
 	public  UUserWidget GetUserWidgetObject()
 	{
 		CheckIsValid();
@@ -100,7 +127,7 @@ public partial class UWidgetComponent:UMeshComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UUniformGridPanel:UPanelWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddChildToUniformGrid(IntPtr _this,IntPtr Content);
+	
 	public  UUniformGridSlot AddChildToUniformGrid(UWidget Content)
 	{
 		CheckIsValid();
@@ -17,6 +18,7 @@ public partial class UUniformGridPanel:UPanelWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMinDesiredSlotHeight(IntPtr _this,float InMinDesiredSlotHeight);
+	
 	public  void SetMinDesiredSlotHeight(float InMinDesiredSlotHeight)
 	{
 		CheckIsValid();
@@ -26,6 +28,7 @@ public partial class UUniformGridPanel:UPanelWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMinDesiredSlotWidth(IntPtr _this,float InMinDesiredSlotWidth);
+	
 	public  void SetMinDesiredSlotWidth(float InMinDesiredSlotWidth)
 	{
 		CheckIsValid();
@@ -35,6 +38,7 @@ public partial class UUniformGridPanel:UPanelWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSlotPadding(IntPtr _this,ref FMargin InSlotPadding);
+	
 	public  void SetSlotPadding(FMargin InSlotPadding)
 	{
 		CheckIsValid();
@@ -42,7 +46,7 @@ public partial class UUniformGridPanel:UPanelWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPlatformInterfaceWebResponse:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetHeaderValue(IntPtr _this,string HeaderName);
+	
+	/// <summary>@return the value for the given header (or "" if no matching header)</summary>
 	public  string GetHeaderValue(string HeaderName)
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UPlatformInterfaceWebResponse:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetHeader(IntPtr _this,int HeaderIndex,out string Header,out string Value);
+	
+	/// <summary>Retrieve the header and value for the given index of header/value pair</summary>
 	public  void GetHeader(int HeaderIndex,out string Header,out string Value)
 	{
 		CheckIsValid();
@@ -26,6 +30,8 @@ public partial class UPlatformInterfaceWebResponse:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumHeaders(IntPtr _this);
+	
+	/// <summary>@return the number of header/value pairs</summary>
 	public  int GetNumHeaders()
 	{
 		CheckIsValid();
@@ -34,7 +40,7 @@ public partial class UPlatformInterfaceWebResponse:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

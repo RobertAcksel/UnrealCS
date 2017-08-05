@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UProgressBar:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsMarquee(IntPtr _this,int InbIsMarquee);
+	
+	/// <summary>Sets the progress bar to show as a marquee.</summary>
 	public  void SetIsMarquee(bool InbIsMarquee)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UProgressBar:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFillColorAndOpacity(IntPtr _this,ref FLinearColor InColor);
+	
+	/// <summary>Sets the fill color of the progress bar.</summary>
 	public  void SetFillColorAndOpacity(FLinearColor InColor)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UProgressBar:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPercent(IntPtr _this,float InPercent);
+	
+	/// <summary>Sets the current value of the ProgressBar.</summary>
 	public  void SetPercent(float InPercent)
 	{
 		CheckIsValid();
@@ -32,7 +38,7 @@ public partial class UProgressBar:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

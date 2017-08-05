@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UGridSlot:UPanelSlot 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVerticalAlignment(IntPtr _this,int InVerticalAlignment);
+	
 	public  void SetVerticalAlignment(EVerticalAlignment InVerticalAlignment)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetHorizontalAlignment(IntPtr _this,int InHorizontalAlignment);
+	
 	public  void SetHorizontalAlignment(EHorizontalAlignment InHorizontalAlignment)
 	{
 		CheckIsValid();
@@ -25,6 +27,8 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLayer(IntPtr _this,int InLayer);
+	
+	/// <summary>Sets positive values offset this cell to be hit-tested and drawn on top of others.</summary>
 	public  void SetLayer(int InLayer)
 	{
 		CheckIsValid();
@@ -34,6 +38,8 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColumnSpan(IntPtr _this,int InColumnSpan);
+	
+	/// <summary>How many columns this slot spans over</summary>
 	public  void SetColumnSpan(int InColumnSpan)
 	{
 		CheckIsValid();
@@ -43,6 +49,8 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColumn(IntPtr _this,int InColumn);
+	
+	/// <summary>Sets the column index of the slot, this determines what cell the slot is in the panel</summary>
 	public  void SetColumn(int InColumn)
 	{
 		CheckIsValid();
@@ -52,6 +60,8 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRowSpan(IntPtr _this,int InRowSpan);
+	
+	/// <summary>How many rows this this slot spans over</summary>
 	public  void SetRowSpan(int InRowSpan)
 	{
 		CheckIsValid();
@@ -61,6 +71,8 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRow(IntPtr _this,int InRow);
+	
+	/// <summary>Sets the row index of the slot, this determines what cell the slot is in the panel</summary>
 	public  void SetRow(int InRow)
 	{
 		CheckIsValid();
@@ -70,6 +82,7 @@ public partial class UGridSlot:UPanelSlot
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPadding(IntPtr _this,ref FMargin InPadding);
+	
 	public  void SetPadding(FMargin InPadding)
 	{
 		CheckIsValid();
@@ -77,7 +90,7 @@ public partial class UGridSlot:UPanelSlot
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

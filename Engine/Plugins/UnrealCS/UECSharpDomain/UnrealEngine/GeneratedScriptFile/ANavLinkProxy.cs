@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ANavLinkProxy:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int HasMovingAgents(IntPtr _this);
+	
+	/// <summary>check if any agent is moving through smart link right now</summary>
 	public  bool HasMovingAgents()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class ANavLinkProxy:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSmartLinkEnabled(IntPtr _this,int bEnabled);
+	
+	/// <summary>change state of smart link</summary>
 	public  void SetSmartLinkEnabled(bool bEnabled)
 	{
 		CheckIsValid();
@@ -26,6 +30,8 @@ public partial class ANavLinkProxy:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsSmartLinkEnabled(IntPtr _this);
+	
+	/// <summary>check if smart link is enabled</summary>
 	public  bool IsSmartLinkEnabled()
 	{
 		CheckIsValid();
@@ -36,6 +42,8 @@ public partial class ANavLinkProxy:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ResumePathFollowing(IntPtr _this,IntPtr Agent);
+	
+	/// <summary>resume normal path following</summary>
 	public  void ResumePathFollowing(AActor Agent)
 	{
 		CheckIsValid();
@@ -43,7 +51,7 @@ public partial class ANavLinkProxy:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

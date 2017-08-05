@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UTileView:UTableViewBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RequestListRefresh(IntPtr _this);
+	
+	/// <summary>Refreshes the list</summary>
 	public  void RequestListRefresh()
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UTileView:UTableViewBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetItemHeight(IntPtr _this,float Height);
+	
+	/// <summary>Set item height</summary>
 	public  void SetItemHeight(float Height)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UTileView:UTableViewBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetItemWidth(IntPtr _this,float Width);
+	
+	/// <summary>Set item width</summary>
 	public  void SetItemWidth(float Width)
 	{
 		CheckIsValid();
@@ -32,7 +38,7 @@ public partial class UTileView:UTableViewBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

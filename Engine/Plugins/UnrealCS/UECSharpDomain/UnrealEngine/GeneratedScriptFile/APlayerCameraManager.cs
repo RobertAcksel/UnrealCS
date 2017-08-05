@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class APlayerCameraManager:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAllCameraAnims(IntPtr _this,int bImmediate);
+	
+	/// <summary>
+	/// Stop playing all CameraAnims on this CameraManager.
+	/// @param bImmediate    True to stop it right now and ignore blend out, false to let it blend out as indicated.
+	/// </summary>
 	public  void StopAllCameraAnims(bool bImmediate=false)
 	{
 		CheckIsValid();
@@ -16,6 +21,11 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopCameraAnimInst(IntPtr _this,IntPtr AnimInst,int bImmediate);
+	
+	/// <summary>
+	/// Stops the given CameraAnimInst from playing.  The given pointer should be considered invalid after this.
+	/// @param bImmediate    True to stop it right now and ignore blend out, false to let it blend out as indicated.
+	/// </summary>
 	public  void StopCameraAnimInst(UCameraAnimInst AnimInst,bool bImmediate=false)
 	{
 		CheckIsValid();
@@ -25,6 +35,11 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAllInstancesOfCameraAnim(IntPtr _this,IntPtr Anim,int bImmediate);
+	
+	/// <summary>
+	/// Stop playing all instances of the indicated CameraAnim.
+	/// @param bImmediate    True to stop it right now and ignore blend out, false to let it blend out as indicated.
+	/// </summary>
 	public  void StopAllInstancesOfCameraAnim(UCameraAnim Anim,bool bImmediate=false)
 	{
 		CheckIsValid();
@@ -34,6 +49,21 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr PlayCameraAnim(IntPtr _this,IntPtr Anim,float Rate,float Scale,float BlendInTime,float BlendOutTime,int bLoop,int bRandomStartTime,float Duration,int PlaySpace,ref FRotator UserPlaySpaceRot);
+	
+	/// <summary>
+	/// Play the indicated CameraAnim on this camera.
+	/// @param Anim The animation that should play on this instance.
+	/// @param Rate                          How fast to play the animation. 1.0 is normal.
+	/// @param Scale                         How "intense" to play the animation. 1.0 is normal.
+	/// @param BlendInTime           Time to linearly ramp in.
+	/// @param BlendOutTime          Time to linearly ramp out.
+	/// @param bLoop                         True to loop the animation if it hits the end.
+	/// @param bRandomStartTime      Whether or not to choose a random time to start playing. Useful with bLoop=true and a duration to randomize things like shakes.
+	/// @param Duration                      Optional total playtime for this animation, including blends. 0 means to use animations natural duration, or infinite if looping.
+	/// @param PlaySpace                     Which space to play the animation in.
+	/// @param UserPlaySpaceRot  Custom play space, used when PlaySpace is UserDefined.
+	/// @return The CameraAnim instance, which can be stored to manipulate/stop the anim after the fact.
+	/// </summary>
 	public  UCameraAnimInst PlayCameraAnim(UCameraAnim Anim,float Rate=1.000000f,float Scale=1.000000f,float BlendInTime=0.000000f,float BlendOutTime=0.000000f,bool bLoop=false,bool bRandomStartTime=false,float Duration=0.000000f,ECameraAnimPlaySpace PlaySpace=ECameraAnimPlaySpace.CameraLocal,FRotator UserPlaySpaceRot=default(FRotator))
 	{
 		CheckIsValid();
@@ -44,6 +74,11 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetManualCameraFade(IntPtr _this,float InFadeAmount,ref FLinearColor Color,int bInFadeAudio);
+	
+	/// <summary>
+	/// Turns on camera fading at the given opacity. Does not auto-animate, allowing user to animate themselves.
+	/// Call StopCameraFade to turn fading back off.
+	/// </summary>
 	public  void SetManualCameraFade(float InFadeAmount,FLinearColor Color,bool bInFadeAudio)
 	{
 		CheckIsValid();
@@ -53,6 +88,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopCameraFade(IntPtr _this);
+	
+	/// <summary>Stops camera fading.</summary>
 	public  void StopCameraFade()
 	{
 		CheckIsValid();
@@ -62,6 +99,16 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StartCameraFade(IntPtr _this,float FromAlpha,float ToAlpha,float Duration,ref FLinearColor Color,int bShouldFadeAudio,int bHoldWhenFinished);
+	
+	/// <summary>
+	/// Does a camera fade to/from a solid color.  Animates automatically.
+	/// @param FromAlpha - Alpha at which to begin the fade. Range [0..1], where 0 is fully transparent and 1 is fully opaque solid color.
+	/// @param ToAlpha - Alpha at which to finish the fade.
+	/// @param Duration - How long the fade should take, in seconds.
+	/// @param Color - Color to fade to/from.
+	/// @param bShouldFadeAudio - True to fade audio volume along with the alpha of the solid color.
+	/// @param bHoldWhenFinished - True for fade to hold at the ToAlpha until explicitly stopped (e.g. with StopCameraFade)
+	/// </summary>
 	public  void StartCameraFade(float FromAlpha,float ToAlpha,float Duration,FLinearColor Color,bool bShouldFadeAudio=false,bool bHoldWhenFinished=false)
 	{
 		CheckIsValid();
@@ -71,6 +118,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAllCameraShakes(IntPtr _this,int bImmediately);
+	
+	/// <summary>Stops all active camera shakes on this camera.</summary>
 	public  void StopAllCameraShakes(bool bImmediately=true)
 	{
 		CheckIsValid();
@@ -80,6 +129,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAllInstancesOfCameraShake(IntPtr _this,IntPtr Shake,int bImmediately);
+	
+	/// <summary>Stops playing CameraShake of the given class.</summary>
 	public  void StopAllInstancesOfCameraShake(TSubclassOf<UCameraShake>  Shake,bool bImmediately=true)
 	{
 		CheckIsValid();
@@ -89,6 +140,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopCameraShake(IntPtr _this,IntPtr ShakeInstance,int bImmediately);
+	
+	/// <summary>Immediately stops the given shake instance and invalidates it.</summary>
 	public  void StopCameraShake(UCameraShake ShakeInstance,bool bImmediately=true)
 	{
 		CheckIsValid();
@@ -98,6 +151,14 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr PlayCameraShake(IntPtr _this,IntPtr ShakeClass,float Scale,int PlaySpace,ref FRotator UserPlaySpaceRot);
+	
+	/// <summary>
+	/// Plays a camera shake on this camera.
+	/// @param Shake - The class of camera shake to play.
+	/// @param Scale - Scalar defining how "intense" to play the shake. 1.0 is normal (as authored).
+	/// @param PlaySpace - Which coordinate system to play the shake in (affects oscillations and camera anims)
+	/// @param UserPlaySpaceRot - Coordinate system to play shake when PlaySpace == CAPS_UserDefined.
+	/// </summary>
 	public  UCameraShake PlayCameraShake(TSubclassOf<UCameraShake>  ShakeClass,float Scale=1.000000f,ECameraAnimPlaySpace PlaySpace=ECameraAnimPlaySpace.CameraLocal,FRotator UserPlaySpaceRot=default(FRotator))
 	{
 		CheckIsValid();
@@ -108,6 +169,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearCameraLensEffects(IntPtr _this);
+	
+	/// <summary>Removes all camera lens effects.</summary>
 	public  void ClearCameraLensEffects()
 	{
 		CheckIsValid();
@@ -117,6 +180,11 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RemoveCameraLensEffect(IntPtr _this,IntPtr Emitter);
+	
+	/// <summary>
+	/// Removes the given lens effect from the camera.
+	/// @param Emitter - the emitter actor to remove from the camera
+	/// </summary>
 	public  void RemoveCameraLensEffect(AEmitterCameraLensEffectBase Emitter)
 	{
 		CheckIsValid();
@@ -126,6 +194,12 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddCameraLensEffect(IntPtr _this,IntPtr LensEffectEmitterClass);
+	
+	/// <summary>
+	/// Creates a camera lens effect of the given class on this camera.
+	/// @param LensEffectEmitterClass - Class of lens effect emitter to create.
+	/// @return Returns the new emitter actor.
+	/// </summary>
 	public  AEmitterCameraLensEffectBase AddCameraLensEffect(TSubclassOf<AEmitterCameraLensEffectBase>  LensEffectEmitterClass)
 	{
 		CheckIsValid();
@@ -136,6 +210,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetCameraLocation(IntPtr _this);
+	
+	/// <summary>@return Returns camera's current location.</summary>
 	public  FVector GetCameraLocation()
 	{
 		CheckIsValid();
@@ -146,6 +222,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FRotator GetCameraRotation(IntPtr _this);
+	
+	/// <summary>@return Returns camera's current rotation.</summary>
 	public  FRotator GetCameraRotation()
 	{
 		CheckIsValid();
@@ -156,6 +234,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetFOVAngle(IntPtr _this);
+	
+	/// <summary>@return Returns the camera's current full FOV angle, in degrees.</summary>
 	public  float GetFOVAngle()
 	{
 		CheckIsValid();
@@ -166,6 +246,11 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int RemoveCameraModifier(IntPtr _this,IntPtr ModifierToRemove);
+	
+	/// <summary>
+	/// Removes the given camera modifier from this camera (if it's on the camera in the first place) and discards it.
+	/// @return True if successfully removed, false otherwise.
+	/// </summary>
 	public  bool RemoveCameraModifier(UCameraModifier ModifierToRemove)
 	{
 		CheckIsValid();
@@ -176,6 +261,11 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr FindCameraModifierByClass(IntPtr _this,IntPtr ModifierClass);
+	
+	/// <summary>
+	/// Returns camera modifier for this camera of the given class, if it exists.
+	/// Exact class match only. If there are multiple modifiers of the same class, the first one is returned.
+	/// </summary>
 	public  UCameraModifier FindCameraModifierByClass(TSubclassOf<UCameraModifier>  ModifierClass)
 	{
 		CheckIsValid();
@@ -186,6 +276,12 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddNewCameraModifier(IntPtr _this,IntPtr ModifierClass);
+	
+	/// <summary>
+	/// Creates and initializes a new camera modifier of the specified class.
+	/// @param ModifierClass - The class of camera modifier to create.
+	/// @return Returns the newly created camera modifier.
+	/// </summary>
 	public  UCameraModifier AddNewCameraModifier(TSubclassOf<UCameraModifier>  ModifierClass)
 	{
 		CheckIsValid();
@@ -196,6 +292,8 @@ public partial class APlayerCameraManager:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetOwningPlayerController(IntPtr _this);
+	
+	/// <summary>Returns the PlayerController that owns this camera.</summary>
 	public  APlayerController GetOwningPlayerController()
 	{
 		CheckIsValid();
@@ -204,7 +302,7 @@ public partial class APlayerCameraManager:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

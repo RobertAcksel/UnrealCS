@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UMeshComponent:UPrimitiveComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVectorParameterValueOnMaterials(IntPtr _this,string ParameterName,ref FVector ParameterValue);
+	
+	/// <summary>Set all occurrences of Vector Material Parameters with ParameterName in the set of materials of the SkeletalMesh to ParameterValue</summary>
 	public  void SetVectorParameterValueOnMaterials(string ParameterName,FVector ParameterValue)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UMeshComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetScalarParameterValueOnMaterials(IntPtr _this,string ParameterName,float ParameterValue);
+	
+	/// <summary>Set all occurrences of Scalar Material Parameters with ParameterName in the set of materials of the SkeletalMesh to ParameterValue</summary>
 	public  void SetScalarParameterValueOnMaterials(string ParameterName,float ParameterValue)
 	{
 		CheckIsValid();
@@ -25,6 +29,7 @@ public partial class UMeshComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsMaterialSlotNameValid(IntPtr _this,string MaterialSlotName);
+	
 	public  bool IsMaterialSlotNameValid(string MaterialSlotName)
 	{
 		CheckIsValid();
@@ -35,6 +40,7 @@ public partial class UMeshComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FName[] GetMaterialSlotNames(IntPtr _this);
+	
 	public  FName[] GetMaterialSlotNames()
 	{
 		CheckIsValid();
@@ -45,6 +51,7 @@ public partial class UMeshComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetMaterialIndex(IntPtr _this,string MaterialSlotName);
+	
 	public  int GetMaterialIndex(string MaterialSlotName)
 	{
 		CheckIsValid();
@@ -55,6 +62,7 @@ public partial class UMeshComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr[] GetMaterials(IntPtr _this);
+	
 	public  UMaterialInterface[] GetMaterials()
 	{
 		CheckIsValid();
@@ -63,7 +71,7 @@ public partial class UMeshComponent:UPrimitiveComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,15 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPrimitiveComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int CanCharacterStepUp(IntPtr _this,IntPtr Pawn);
+	
+	/// <summary>
+	/// Return true if the given Pawn can step up onto this component.
+	/// This controls whether they can try to step up on it when they bump in to it, not whether they can walk on it after landing on it.
+	/// @param Pawn the Pawn that wants to step onto this component.
+	/// @see CanCharacterStepUpOn
+	/// </summary>
 	public  bool CanCharacterStepUp(APawn Pawn)
 	{
 		CheckIsValid();
@@ -17,6 +24,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCullDistance(IntPtr _this,float NewCullDistance);
+	
+	/// <summary>
+	/// Changes the value of CullDistance.
+	/// @param NewCullDistance - The value to assign to CullDistance.
+	/// </summary>
 	public  void SetCullDistance(float NewCullDistance)
 	{
 		CheckIsValid();
@@ -26,6 +38,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPhysMaterialOverride(IntPtr _this,IntPtr NewPhysMaterial);
+	
+	/// <summary>
+	/// Changes the current PhysMaterialOverride for this component.
+	/// Note that if physics is already running on this component, this will _not_ alter its mass/inertia etc,
+	/// it will only change its surface properties like friction.
+	/// </summary>
 	public  void SetPhysMaterialOverride(UPhysicalMaterial NewPhysMaterial)
 	{
 		CheckIsValid();
@@ -35,6 +53,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCollisionResponseToAllChannels(IntPtr _this,int NewResponse);
+	
+	/// <summary>
+	/// Changes all ResponseToChannels container for this PrimitiveComponent. to be NewResponse
+	/// @param       NewResponse  What the new response should be to the supplied Channel
+	/// </summary>
 	public  void SetCollisionResponseToAllChannels(ECollisionResponse NewResponse)
 	{
 		CheckIsValid();
@@ -44,6 +67,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCollisionResponseToChannel(IntPtr _this,int Channel,int NewResponse);
+	
+	/// <summary>
+	/// Changes a member of the ResponseToChannels container for this PrimitiveComponent.
+	/// @param       Channel      The channel to change the response of
+	/// @param       NewResponse  What the new response should be to the supplied Channel
+	/// </summary>
 	public  void SetCollisionResponseToChannel(ECollisionChannel Channel,ECollisionResponse NewResponse)
 	{
 		CheckIsValid();
@@ -53,6 +82,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsAnyRigidBodyAwake(IntPtr _this);
+	
+	/// <summary>Returns if any body in this component is currently awake and simulating.</summary>
 	public  bool IsAnyRigidBodyAwake()
 	{
 		CheckIsValid();
@@ -63,6 +94,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector ScaleByMomentOfInertia(IntPtr _this,ref FVector InputVector,string BoneName);
+	
+	/// <summary>Scales the given vector by the world space moment of inertia. Useful for computing the torque needed to rotate an object.</summary>
 	public  FVector ScaleByMomentOfInertia(FVector InputVector,string BoneName="None")
 	{
 		CheckIsValid();
@@ -73,6 +106,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetInertiaTensor(IntPtr _this,string BoneName);
+	
+	/// <summary>Returns the inertia tensor of this component in kg cm^2. The inertia tensor is in local component space.</summary>
 	public  FVector GetInertiaTensor(string BoneName="None")
 	{
 		CheckIsValid();
@@ -83,6 +118,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetMass(IntPtr _this);
+	
+	/// <summary>Returns the mass of this component in kg.</summary>
 	public  float GetMass()
 	{
 		CheckIsValid();
@@ -93,6 +130,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMassOverrideInKg(IntPtr _this,string BoneName,float MassInKg,int bOverrideMass);
+	
+	/// <summary>
+	/// Override the mass (in Kg) of a single physics body.
+	/// Note that in the case where multiple bodies are attached together, the override mass will be set for the entire group.
+	/// Set the Override Mass to false if you want to reset the body's mass to the auto-calculated physx mass.
+	/// </summary>
 	public  void SetMassOverrideInKg(string BoneName="None",float MassInKg=1.000000f,bool bOverrideMass=true)
 	{
 		CheckIsValid();
@@ -102,6 +145,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAllMassScale(IntPtr _this,float InMassScale);
+	
+	/// <summary>Change the mass scale used fo all bodies in this component</summary>
 	public  void SetAllMassScale(float InMassScale=1.000000f)
 	{
 		CheckIsValid();
@@ -111,6 +156,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetMassScale(IntPtr _this,string BoneName);
+	
+	/// <summary>Returns the mass scale used to calculate the mass of a single physics body</summary>
 	public  float GetMassScale(string BoneName="None")
 	{
 		CheckIsValid();
@@ -121,6 +168,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMassScale(IntPtr _this,string BoneName,float InMassScale);
+	
+	/// <summary>Change the mass scale used to calculate the mass of a single physics body</summary>
 	public  void SetMassScale(string BoneName="None",float InMassScale=1.000000f)
 	{
 		CheckIsValid();
@@ -130,6 +179,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetAngularDamping(IntPtr _this);
+	
+	/// <summary>Returns the angular damping of this component.</summary>
 	public  float GetAngularDamping()
 	{
 		CheckIsValid();
@@ -140,6 +191,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAngularDamping(IntPtr _this,float InDamping);
+	
+	/// <summary>Sets the angular damping of this component.</summary>
 	public  void SetAngularDamping(float InDamping)
 	{
 		CheckIsValid();
@@ -149,6 +202,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetLinearDamping(IntPtr _this);
+	
+	/// <summary>Returns the linear damping of this component.</summary>
 	public  float GetLinearDamping()
 	{
 		CheckIsValid();
@@ -159,6 +214,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLinearDamping(IntPtr _this,float InDamping);
+	
+	/// <summary>Sets the linear damping of this component.</summary>
 	public  void SetLinearDamping(float InDamping)
 	{
 		CheckIsValid();
@@ -168,6 +225,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsGravityEnabled(IntPtr _this);
+	
+	/// <summary>Returns whether this component is affected by gravity. Returns always false if the component is not simulated.</summary>
 	public  bool IsGravityEnabled()
 	{
 		CheckIsValid();
@@ -178,6 +237,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetEnableGravity(IntPtr _this,int bGravityEnabled);
+	
+	/// <summary>Enables/disables whether this component is affected by gravity. This applies only to components with bSimulatePhysics set to true.</summary>
 	public  void SetEnableGravity(bool bGravityEnabled)
 	{
 		CheckIsValid();
@@ -187,6 +248,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void WakeAllRigidBodies(IntPtr _this);
+	
+	/// <summary>Ensure simulation is running for all bodies in this component.</summary>
 	public  void WakeAllRigidBodies()
 	{
 		CheckIsValid();
@@ -196,6 +259,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAllPhysicsAngularVelocity(IntPtr _this,ref FVector NewAngVel,int bAddToCurrent);
+	
+	/// <summary>
+	/// Set the angular velocity of all bodies in this component.
+	/// @param NewAngVel                New angular velocity to apply to physics, in degrees per second.
+	/// @param bAddToCurrent    If true, NewAngVel is added to the existing angular velocity of all bodies.
+	/// </summary>
 	public  void SetAllPhysicsAngularVelocity(FVector NewAngVel,bool bAddToCurrent=false)
 	{
 		CheckIsValid();
@@ -205,6 +274,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetCollisionObjectType(IntPtr _this);
+	
+	/// <summary>Gets the collision object type</summary>
 	public  ECollisionChannel GetCollisionObjectType()
 	{
 		CheckIsValid();
@@ -215,6 +286,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetCollisionResponseToChannel(IntPtr _this,int Channel);
+	
+	/// <summary>Gets the response type given a specific channel</summary>
 	public  ECollisionResponse GetCollisionResponseToChannel(ECollisionChannel Channel)
 	{
 		CheckIsValid();
@@ -225,6 +298,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int K2_IsPhysicsCollisionEnabled(IntPtr _this);
+	
+	/// <summary>Utility to see if there is any physics collision enabled on this component.</summary>
 	public  bool K2_IsPhysicsCollisionEnabled()
 	{
 		CheckIsValid();
@@ -235,6 +310,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int K2_IsQueryCollisionEnabled(IntPtr _this);
+	
+	/// <summary>Utility to see if there is any query collision enabled on this component.</summary>
 	public  bool K2_IsQueryCollisionEnabled()
 	{
 		CheckIsValid();
@@ -245,6 +322,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int K2_IsCollisionEnabled(IntPtr _this);
+	
+	/// <summary>Utility to see if there is any form of collision (query or physics) enabled on this component.</summary>
 	public  bool K2_IsCollisionEnabled()
 	{
 		CheckIsValid();
@@ -255,6 +334,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetCollisionEnabled(IntPtr _this);
+	
+	/// <summary>Returns the form of collision for this component</summary>
 	public  ECollisionEnabled GetCollisionEnabled()
 	{
 		CheckIsValid();
@@ -265,6 +346,16 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetClosestPointOnCollision(IntPtr _this,ref FVector Point,out FVector OutPointOnBody,string BoneName);
+	
+	/// <summary>
+	/// Returns the distance and closest point to the collision surface.
+	/// Component must have simple collision to be queried for closest point.
+	/// @param Point                          World 3D vector
+	/// @param OutPointOnBody         Point on the surface of collision closest to Point
+	/// @param BoneName                       If a SkeletalMeshComponent, name of body to set center of mass of. 'None' indicates root body.
+	/// @return               Success if returns > 0.f, if returns 0.f, it is either not convex or inside of the point
+	///                               If returns < 0.f, this primitive does not have collsion
+	/// </summary>
 	public  float GetClosestPointOnCollision(FVector Point,out FVector OutPointOnBody,string BoneName="None")
 	{
 		CheckIsValid();
@@ -275,6 +366,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumMaterials(IntPtr _this);
+	
+	/// <summary>@return number of material elements in this primitive</summary>
 	public  int GetNumMaterials()
 	{
 		CheckIsValid();
@@ -285,6 +378,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRenderInMono(IntPtr _this,int bValue);
+	
+	/// <summary>Sets bRenderInMono property and marks the render state dirty.</summary>
 	public  void SetRenderInMono(bool bValue)
 	{
 		CheckIsValid();
@@ -294,6 +389,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRenderInMainPass(IntPtr _this,int bValue);
+	
+	/// <summary>Sets bRenderInMainPass property and marks the render state dirty.</summary>
 	public  void SetRenderInMainPass(bool bValue)
 	{
 		CheckIsValid();
@@ -303,6 +400,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCustomDepthStencilValue(IntPtr _this,int Value);
+	
+	/// <summary>Sets the CustomDepth stencil value (0 - 255) and marks the render state dirty.</summary>
 	public  void SetCustomDepthStencilValue(int Value)
 	{
 		CheckIsValid();
@@ -312,6 +411,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetRenderCustomDepth(IntPtr _this,int bValue);
+	
+	/// <summary>Sets the bRenderCustomDepth property and marks the render state dirty.</summary>
 	public  void SetRenderCustomDepth(bool bValue)
 	{
 		CheckIsValid();
@@ -321,6 +422,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int K2_LineTraceComponent(IntPtr _this,ref FVector TraceStart,ref FVector TraceEnd,int bTraceComplex,int bShowTrace,out FVector HitLocation,out FVector HitNormal,out string BoneName,out FHitResult OutHit);
+	
+	/// <summary>Perform a line trace against a single component</summary>
 	public  bool K2_LineTraceComponent(FVector TraceStart,FVector TraceEnd,bool bTraceComplex,bool bShowTrace,out FVector HitLocation,out FVector HitNormal,out string BoneName,out FHitResult OutHit)
 	{
 		CheckIsValid();
@@ -331,6 +434,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCollisionObjectType(IntPtr _this,int Channel);
+	
+	/// <summary>
+	/// Changes the collision channel that this object uses when it moves
+	/// @param      Channel     The new channel for this component to use
+	/// </summary>
 	public  void SetCollisionObjectType(ECollisionChannel Channel)
 	{
 		CheckIsValid();
@@ -340,6 +448,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetCollisionProfileName(IntPtr _this);
+	
+	/// <summary>Get the collision profile name</summary>
 	public  string GetCollisionProfileName()
 	{
 		CheckIsValid();
@@ -350,6 +460,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCollisionProfileName(IntPtr _this,string InCollisionProfileName);
+	
+	/// <summary>
+	/// Set Collision Profile Name
+	/// This function is called by constructors when they set ProfileName
+	/// This will change current CollisionProfileName to be this, and overwrite Collision Setting
+	/// @param InCollisionProfileName : New Profile Name
+	/// </summary>
 	public  void SetCollisionProfileName(string InCollisionProfileName)
 	{
 		CheckIsValid();
@@ -359,6 +476,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCollisionEnabled(IntPtr _this,int NewType);
+	
+	/// <summary>Controls what kind of collision is enabled for this body</summary>
 	public  void SetCollisionEnabled(ECollisionEnabled NewType)
 	{
 		CheckIsValid();
@@ -368,6 +487,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTranslucentSortPriority(IntPtr _this,int NewTranslucentSortPriority);
+	
+	/// <summary>Changes the value of TranslucentSortPriority.</summary>
 	public  void SetTranslucentSortPriority(int NewTranslucentSortPriority)
 	{
 		CheckIsValid();
@@ -377,6 +498,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCastShadow(IntPtr _this,int NewCastShadow);
+	
+	/// <summary>Changes the value of CastShadow.</summary>
 	public  void SetCastShadow(bool NewCastShadow)
 	{
 		CheckIsValid();
@@ -386,6 +509,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOnlyOwnerSee(IntPtr _this,int bNewOnlyOwnerSee);
+	
+	/// <summary>Changes the value of bOnlyOwnerSee.</summary>
 	public  void SetOnlyOwnerSee(bool bNewOnlyOwnerSee)
 	{
 		CheckIsValid();
@@ -395,6 +520,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOwnerNoSee(IntPtr _this,int bNewOwnerNoSee);
+	
+	/// <summary>Changes the value of bOwnerNoSee.</summary>
 	public  void SetOwnerNoSee(bool bNewOwnerNoSee)
 	{
 		CheckIsValid();
@@ -404,6 +531,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetNotifyRigidBodyCollision(IntPtr _this,int bNewNotifyRigidBodyCollision);
+	
+	/// <summary>
+	/// Changes the value of bNotifyRigidBodyCollision
+	/// @param bNewNotifyRigidBodyCollision - The value to assign to bNotifyRigidBodyCollision
+	/// </summary>
 	public  void SetNotifyRigidBodyCollision(bool bNewNotifyRigidBodyCollision)
 	{
 		CheckIsValid();
@@ -413,6 +545,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PutRigidBodyToSleep(IntPtr _this,string BoneName);
+	
+	/// <summary>
+	/// Force a single body back to sleep.
+	/// @param  BoneName        If a SkeletalMeshComponent, name of body to put to sleep. 'None' indicates root body.
+	/// </summary>
 	public  void PutRigidBodyToSleep(string BoneName="None")
 	{
 		CheckIsValid();
@@ -422,6 +559,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void WakeRigidBody(IntPtr _this,string BoneName);
+	
+	/// <summary>
+	/// 'Wake' physics simulation for a single body.
+	/// @param  BoneName        If a SkeletalMeshComponent, name of body to wake. 'None' indicates root body.
+	/// </summary>
 	public  void WakeRigidBody(string BoneName="None")
 	{
 		CheckIsValid();
@@ -431,6 +573,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCenterOfMass(IntPtr _this,ref FVector CenterOfMassOffset,string BoneName);
+	
+	/// <summary>
+	/// Set the center of mass of a single body. This will offset the physx-calculated center of mass.
+	/// Note that in the case where multiple bodies are attached together, the center of mass will be set for the entire group.
+	/// @param CenterOfMassOffset               User specified offset for the center of mass of this object, from the calculated location.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to set center of mass of. 'None' indicates root body.
+	/// </summary>
 	public  void SetCenterOfMass(FVector CenterOfMassOffset,string BoneName="None")
 	{
 		CheckIsValid();
@@ -440,6 +589,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetCenterOfMass(IntPtr _this,string BoneName);
+	
+	/// <summary>
+	/// Get the center of mass of a single body. In the case of a welded body this will return the center of mass of the entire welded body (including its parent and children)
+	/// Objects that are not simulated return (0,0,0) as they do not have COM
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to get center of mass of. 'None' indicates root body.
+	/// </summary>
 	public  FVector GetCenterOfMass(string BoneName="None")
 	{
 		CheckIsValid();
@@ -450,6 +605,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetPhysicsAngularVelocity(IntPtr _this,string BoneName);
+	
+	/// <summary>
+	/// Get the angular velocity of a single body, in degrees per second.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
+	/// </summary>
 	public  FVector GetPhysicsAngularVelocity(string BoneName="None")
 	{
 		CheckIsValid();
@@ -460,6 +620,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPhysicsMaxAngularVelocity(IntPtr _this,float NewMaxAngVel,int bAddToCurrent,string BoneName);
+	
+	/// <summary>
+	/// Set the maximum angular velocity of a single body.
+	/// @param NewMaxAngVel             New maximum angular velocity to apply to body, in degrees per second.
+	/// @param bAddToCurrent    If true, NewMaxAngVel is added to the existing maximum angular velocity of the body.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to modify maximum angular velocity of. 'None' indicates root body.
+	/// </summary>
 	public  void SetPhysicsMaxAngularVelocity(float NewMaxAngVel,bool bAddToCurrent=false,string BoneName="None")
 	{
 		CheckIsValid();
@@ -469,6 +636,14 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPhysicsAngularVelocity(IntPtr _this,ref FVector NewAngVel,int bAddToCurrent,string BoneName);
+	
+	/// <summary>
+	/// Set the angular velocity of a single body.
+	/// This should be used cautiously - it may be better to use AddTorque or AddImpulse.
+	/// @param NewAngVel                New angular velocity to apply to body, in degrees per second.
+	/// @param bAddToCurrent    If true, NewAngVel is added to the existing angular velocity of the body.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to modify angular velocity of. 'None' indicates root body.
+	/// </summary>
 	public  void SetPhysicsAngularVelocity(FVector NewAngVel,bool bAddToCurrent=false,string BoneName="None")
 	{
 		CheckIsValid();
@@ -478,6 +653,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAllPhysicsLinearVelocity(IntPtr _this,ref FVector NewVel,int bAddToCurrent);
+	
+	/// <summary>
+	/// Set the linear velocity of all bodies in this component.
+	/// @param NewVel                   New linear velocity to apply to physics.
+	/// @param bAddToCurrent    If true, NewVel is added to the existing velocity of the body.
+	/// </summary>
 	public  void SetAllPhysicsLinearVelocity(FVector NewVel,bool bAddToCurrent=false)
 	{
 		CheckIsValid();
@@ -487,6 +668,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetPhysicsLinearVelocityAtPoint(IntPtr _this,ref FVector Point,string BoneName);
+	
+	/// <summary>
+	/// Get the linear velocity of a point on a single body.
+	/// @param Point                    Point is specified in world space.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
+	/// </summary>
 	public  FVector GetPhysicsLinearVelocityAtPoint(FVector Point,string BoneName="None")
 	{
 		CheckIsValid();
@@ -497,6 +684,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetPhysicsLinearVelocity(IntPtr _this,string BoneName);
+	
+	/// <summary>
+	/// Get the linear velocity of a single body.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
+	/// </summary>
 	public  FVector GetPhysicsLinearVelocity(string BoneName="None")
 	{
 		CheckIsValid();
@@ -507,6 +699,14 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPhysicsLinearVelocity(IntPtr _this,ref FVector NewVel,int bAddToCurrent,string BoneName);
+	
+	/// <summary>
+	/// Set the linear velocity of a single body.
+	/// This should be used cautiously - it may be better to use AddForce or AddImpulse.
+	/// @param NewVel                   New linear velocity to apply to physics.
+	/// @param bAddToCurrent    If true, NewVel is added to the existing velocity of the body.
+	/// @param BoneName                 If a SkeletalMeshComponent, name of body to modify velocity of. 'None' indicates root body.
+	/// </summary>
 	public  void SetPhysicsLinearVelocity(FVector NewVel,bool bAddToCurrent=false,string BoneName="None")
 	{
 		CheckIsValid();
@@ -516,6 +716,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddTorque(IntPtr _this,ref FVector Torque,string BoneName,int bAccelChange);
+	
+	/// <summary>
+	/// Add a torque to a single rigid body.
+	/// @param Torque           Torque to apply. Direction is axis of rotation and magnitude is strength of torque.
+	/// @param BoneName         If a SkeletalMeshComponent, name of body to apply torque to. 'None' indicates root body.
+	/// @param bAccelChange If true, Torque is taken as a change in angular acceleration instead of a physical torque (i.e. mass will have no affect).
+	/// </summary>
 	public  void AddTorque(FVector Torque,string BoneName="None",bool bAccelChange=false)
 	{
 		CheckIsValid();
@@ -525,6 +732,15 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddRadialForce(IntPtr _this,ref FVector Origin,float Radius,float Strength,int Falloff,int bAccelChange);
+	
+	/// <summary>
+	/// Add a force to all bodies in this component, originating from the supplied world-space location.
+	/// @param Origin           Origin of force in world space.
+	/// @param Radius           Radius within which to apply the force.
+	/// @param Strength         Strength of force to apply.
+	/// @param Falloff              Allows you to control the strength of the force as a function of distance from Origin.
+	/// @param bAccelChange If true, Strength is taken as a change in acceleration instead of a physical force (i.e. mass will have no affect).
+	/// </summary>
 	public  void AddRadialForce(FVector Origin,float Radius,float Strength,ERadialImpulseFalloff Falloff,bool bAccelChange=false)
 	{
 		CheckIsValid();
@@ -534,6 +750,14 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddForceAtLocationLocal(IntPtr _this,ref FVector Force,ref FVector Location,string BoneName);
+	
+	/// <summary>
+	/// Add a force to a single rigid body at a particular location. Both Force and Location should be in body space.
+	/// This is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.
+	/// @param Force            Force vector to apply. Magnitude indicates strength of force.
+	/// @param Location         Location to apply force, in component space.
+	/// @param BoneName         If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.
+	/// </summary>
 	public  void AddForceAtLocationLocal(FVector Force,FVector Location,string BoneName="None")
 	{
 		CheckIsValid();
@@ -543,6 +767,14 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddForceAtLocation(IntPtr _this,ref FVector Force,ref FVector Location,string BoneName);
+	
+	/// <summary>
+	/// Add a force to a single rigid body at a particular location in world space.
+	/// This is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.
+	/// @param Force            Force vector to apply. Magnitude indicates strength of force.
+	/// @param Location         Location to apply force, in world space.
+	/// @param BoneName         If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.
+	/// </summary>
 	public  void AddForceAtLocation(FVector Force,FVector Location,string BoneName="None")
 	{
 		CheckIsValid();
@@ -552,6 +784,14 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddForce(IntPtr _this,ref FVector Force,string BoneName,int bAccelChange);
+	
+	/// <summary>
+	/// Add a force to a single rigid body.
+	/// This is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.
+	/// @param  Force            Force vector to apply. Magnitude indicates strength of force.
+	/// @param  BoneName         If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.
+	/// @param  bAccelChange If true, Force is taken as a change in acceleration instead of a physical force (i.e. mass will have no affect).
+	/// </summary>
 	public  void AddForce(FVector Force,string BoneName="None",bool bAccelChange=false)
 	{
 		CheckIsValid();
@@ -561,6 +801,15 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddRadialImpulse(IntPtr _this,ref FVector Origin,float Radius,float Strength,int Falloff,int bVelChange);
+	
+	/// <summary>
+	/// Add an impulse to all rigid bodies in this component, radiating out from the specified position.
+	/// @param Origin                Point of origin for the radial impulse blast, in world space
+	/// @param Radius                Size of radial impulse. Beyond this distance from Origin, there will be no affect.
+	/// @param Strength              Maximum strength of impulse applied to body.
+	/// @param Falloff               Allows you to control the strength of the impulse as a function of distance from Origin.
+	/// @param bVelChange    If true, the Strength is taken as a change in velocity instead of an impulse (ie. mass will have no affect).
+	/// </summary>
 	public  void AddRadialImpulse(FVector Origin,float Radius,float Strength,ERadialImpulseFalloff Falloff,bool bVelChange=false)
 	{
 		CheckIsValid();
@@ -570,6 +819,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddImpulseAtLocation(IntPtr _this,ref FVector Impulse,ref FVector Location,string BoneName);
+	
+	/// <summary>
+	/// Add an impulse to a single rigid body at a specific location.
+	/// @param  Impulse         Magnitude and direction of impulse to apply.
+	/// @param  Location        Point in world space to apply impulse at.
+	/// @param  BoneName        If a SkeletalMeshComponent, name of bone to apply impulse to. 'None' indicates root body.
+	/// </summary>
 	public  void AddImpulseAtLocation(FVector Impulse,FVector Location,string BoneName="None")
 	{
 		CheckIsValid();
@@ -579,6 +835,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddAngularImpulse(IntPtr _this,ref FVector Impulse,string BoneName,int bVelChange);
+	
+	/// <summary>
+	/// Add an angular impulse to a single rigid body. Good for one time instant burst.
+	/// @param  AngularImpulse  Magnitude and direction of impulse to apply. Direction is axis of rotation.
+	/// @param  BoneName        If a SkeletalMeshComponent, name of body to apply angular impulse to. 'None' indicates root body.
+	/// @param  bVelChange      If true, the Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no affect).
+	/// </summary>
 	public  void AddAngularImpulse(FVector Impulse,string BoneName="None",bool bVelChange=false)
 	{
 		CheckIsValid();
@@ -588,6 +851,13 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddImpulse(IntPtr _this,ref FVector Impulse,string BoneName,int bVelChange);
+	
+	/// <summary>
+	/// Add an impulse to a single rigid body. Good for one time instant burst.
+	/// @param  Impulse         Magnitude and direction of impulse to apply.
+	/// @param  BoneName        If a SkeletalMeshComponent, name of body to apply impulse to. 'None' indicates root body.
+	/// @param  bVelChange      If true, the Strength is taken as a change in velocity instead of an impulse (ie. mass will have no affect).
+	/// </summary>
 	public  void AddImpulse(FVector Impulse,string BoneName="None",bool bVelChange=false)
 	{
 		CheckIsValid();
@@ -597,6 +867,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetConstraintMode(IntPtr _this,int ConstraintMode);
+	
+	/// <summary>
+	/// Sets the constraint mode of the component.
+	/// @param ConstraintMode        The type of constraint to use.
+	/// </summary>
 	public  void SetConstraintMode(EDOFMode ConstraintMode)
 	{
 		CheckIsValid();
@@ -606,6 +881,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSimulatePhysics(IntPtr _this,int bSimulate);
+	
+	/// <summary>
+	/// Sets whether or not a single body should use physics simulation, or should be 'fixed' (kinematic).
+	/// @param  bSimulate       New simulation state for single body
+	/// </summary>
 	public  void SetSimulatePhysics(bool bSimulate)
 	{
 		CheckIsValid();
@@ -615,6 +895,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetWalkableSlopeOverride(IntPtr _this,ref FWalkableSlopeOverride NewOverride);
+	
+	/// <summary>Sets a new slope override for this component instance.</summary>
 	public  void SetWalkableSlopeOverride(FWalkableSlopeOverride NewOverride)
 	{
 		CheckIsValid();
@@ -624,6 +906,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FWalkableSlopeOverride GetWalkableSlopeOverride(IntPtr _this);
+	
+	/// <summary>Returns the slope override struct for this component.</summary>
 	public  FWalkableSlopeOverride GetWalkableSlopeOverride()
 	{
 		CheckIsValid();
@@ -634,6 +918,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetMaterialFromCollisionFaceIndex(IntPtr _this,int FaceIndex);
+	
+	/// <summary>Try and retrieve the material applied to a particular collision face of mesh. Used with face index returned from collision trace.</summary>
 	public  UMaterialInterface GetMaterialFromCollisionFaceIndex(int FaceIndex)
 	{
 		CheckIsValid();
@@ -644,6 +930,11 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr CreateDynamicMaterialInstance(IntPtr _this,int ElementIndex,IntPtr SourceMaterial);
+	
+	/// <summary>
+	/// Creates a Dynamic Material Instance for the specified element index, optionally from the supplied material.
+	/// @param ElementIndex - The index of the skin to replace the material for.  If invalid, the material is unchanged and NULL is returned.
+	/// </summary>
 	public  UMaterialInstanceDynamic CreateDynamicMaterialInstance(int ElementIndex,UMaterialInterface SourceMaterial)
 	{
 		CheckIsValid();
@@ -654,6 +945,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaterialByName(IntPtr _this,string MaterialSlotName,IntPtr Material);
+	
+	/// <summary>
+	/// Changes the material applied to an element of the mesh.
+	/// @param MaterialSlotName - The slot name to access the material of.
+	/// @return the material used by the indexed element of this mesh.
+	/// </summary>
 	public  void SetMaterialByName(string MaterialSlotName,UMaterialInterface Material)
 	{
 		CheckIsValid();
@@ -663,6 +960,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaterial(IntPtr _this,int ElementIndex,IntPtr Material);
+	
+	/// <summary>
+	/// Changes the material applied to an element of the mesh.
+	/// @param ElementIndex - The element to access the material of.
+	/// @return the material used by the indexed element of this mesh.
+	/// </summary>
 	public  void SetMaterial(int ElementIndex,UMaterialInterface Material)
 	{
 		CheckIsValid();
@@ -672,6 +975,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetMaterial(IntPtr _this,int ElementIndex);
+	
+	/// <summary>
+	/// Returns the material used by the element at the specified index
+	/// @param ElementIndex - The element to access the material of.
+	/// @return the material used by the indexed element of this mesh.
+	/// </summary>
 	public  UMaterialInterface GetMaterial(int ElementIndex)
 	{
 		CheckIsValid();
@@ -682,6 +991,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBoundsScale(IntPtr _this,float NewBoundsScale);
+	
+	/// <summary>Scale the bounds of this object, used for frustum culling. Useful for features like WorldPositionOffset.</summary>
 	public  void SetBoundsScale(float NewBoundsScale=1.000000f)
 	{
 		CheckIsValid();
@@ -691,6 +1002,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FOverlapInfo[] GetOverlapInfos(IntPtr _this);
+	
+	/// <summary>Returns list of components this component is overlapping.</summary>
 	public  FOverlapInfo[] GetOverlapInfos()
 	{
 		CheckIsValid();
@@ -701,6 +1014,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetOverlappingComponents(IntPtr _this,out IntPtr[] InOverlappingComponents);
+	
+	/// <summary>Returns list of components this component is overlapping.</summary>
 	public  void GetOverlappingComponents(out UPrimitiveComponent[] InOverlappingComponents)
 	{
 		CheckIsValid();
@@ -712,6 +1027,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetOverlappingActors(IntPtr _this,out IntPtr[] OverlappingActors,IntPtr ClassFilter);
+	
+	/// <summary>
+	/// Returns a list of actors that this component is overlapping.
+	/// @param OverlappingActors             [out] Returned list of overlapping actors
+	/// @param ClassFilter                   [optional] If set, only returns actors of this class or subclasses
+	/// </summary>
 	public  void GetOverlappingActors(out AActor[] OverlappingActors,TSubclassOf<AActor>  ClassFilter)
 	{
 		CheckIsValid();
@@ -723,6 +1044,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsOverlappingActor(IntPtr _this,IntPtr Other);
+	
+	/// <summary>
+	/// Check whether this component is overlapping any component of the given Actor.
+	/// @param Other Actor to test this component against.
+	/// @return Whether this component is overlapping any component of the given Actor.
+	/// </summary>
 	public  bool IsOverlappingActor(AActor Other)
 	{
 		CheckIsValid();
@@ -733,6 +1060,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsOverlappingComponent(IntPtr _this,IntPtr OtherComp);
+	
+	/// <summary>
+	/// Check whether this component is overlapping another component.
+	/// @param OtherComp Component to test this component against.
+	/// @return Whether this component is overlapping another component.
+	/// </summary>
 	public  bool IsOverlappingComponent(UPrimitiveComponent OtherComp)
 	{
 		CheckIsValid();
@@ -743,6 +1076,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMoveIgnoreComponents(IntPtr _this);
+	
+	/// <summary>Clear the list of components we ignore when moving.</summary>
 	public  void ClearMoveIgnoreComponents()
 	{
 		CheckIsValid();
@@ -752,6 +1087,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr[] CopyArrayOfMoveIgnoreComponents(IntPtr _this);
+	
+	/// <summary>Returns the list of actors we currently ignore when moving.</summary>
 	public  UPrimitiveComponent[] CopyArrayOfMoveIgnoreComponents()
 	{
 		CheckIsValid();
@@ -762,6 +1099,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void IgnoreComponentWhenMoving(IntPtr _this,IntPtr Component,int bShouldIgnore);
+	
+	/// <summary>
+	/// Tells this component whether to ignore collision with another component when this component is moved.
+	/// The other components may also need to be told to do the same when they move.
+	/// Does not affect movement of this component when simulating physics.
+	/// </summary>
 	public  void IgnoreComponentWhenMoving(UPrimitiveComponent Component,bool bShouldIgnore)
 	{
 		CheckIsValid();
@@ -771,6 +1114,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearMoveIgnoreActors(IntPtr _this);
+	
+	/// <summary>Clear the list of actors we ignore when moving.</summary>
 	public  void ClearMoveIgnoreActors()
 	{
 		CheckIsValid();
@@ -780,6 +1125,8 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr[] CopyArrayOfMoveIgnoreActors(IntPtr _this);
+	
+	/// <summary>Returns the list of actors we currently ignore when moving.</summary>
 	public  AActor[] CopyArrayOfMoveIgnoreActors()
 	{
 		CheckIsValid();
@@ -790,6 +1137,12 @@ public partial class UPrimitiveComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void IgnoreActorWhenMoving(IntPtr _this,IntPtr Actor,int bShouldIgnore);
+	
+	/// <summary>
+	/// Tells this component whether to ignore collision with all components of a specific Actor when this component is moved.
+	/// Components on the other Actor may also need to be told to do the same when they move.
+	/// Does not affect movement of this component when simulating physics.
+	/// </summary>
 	public  void IgnoreActorWhenMoving(AActor Actor,bool bShouldIgnore)
 	{
 		CheckIsValid();
@@ -797,7 +1150,7 @@ public partial class UPrimitiveComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

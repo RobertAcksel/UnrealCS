@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UAnimSingleNodeInstance:UAnimInstance 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPreviewCurveOverride(IntPtr _this,string PoseName,float Value,int bRemoveIfZero);
+	
+	/// <summary>Set pose value</summary>
 	public  void SetPreviewCurveOverride(string PoseName,float Value,bool bRemoveIfZero)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAnimationAsset(IntPtr _this,IntPtr NewAsset,int bIsLooping,float InPlayRate);
+	
+	/// <summary>Set New Asset - calls InitializeAnimation, for now we need MeshComponent *</summary>
 	public  void SetAnimationAsset(UAnimationAsset NewAsset,bool bIsLooping=true,float InPlayRate=1.000000f)
 	{
 		CheckIsValid();
@@ -25,6 +29,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAnim(IntPtr _this);
+	
 	public  void StopAnim()
 	{
 		CheckIsValid();
@@ -34,6 +39,8 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PlayAnim(IntPtr _this,int bIsLooping,float InPlayRate,float InStartPosition);
+	
+	/// <summary>For AnimSequence specific *</summary>
 	public  void PlayAnim(bool bIsLooping=false,float InPlayRate=1.000000f,float InStartPosition=0.000000f)
 	{
 		CheckIsValid();
@@ -43,6 +50,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetLength(IntPtr _this);
+	
 	public  float GetLength()
 	{
 		CheckIsValid();
@@ -53,6 +61,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaying(IntPtr _this,int bIsPlaying);
+	
 	public  void SetPlaying(bool bIsPlaying)
 	{
 		CheckIsValid();
@@ -62,6 +71,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBlendSpaceInput(IntPtr _this,ref FVector InBlendInput);
+	
 	public  void SetBlendSpaceInput(FVector InBlendInput)
 	{
 		CheckIsValid();
@@ -71,6 +81,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPositionWithPreviousTime(IntPtr _this,float InPosition,float InPreviousTime,int bFireNotifies);
+	
 	public  void SetPositionWithPreviousTime(float InPosition,float InPreviousTime,bool bFireNotifies=true)
 	{
 		CheckIsValid();
@@ -80,6 +91,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPosition(IntPtr _this,float InPosition,int bFireNotifies);
+	
 	public  void SetPosition(float InPosition,bool bFireNotifies=true)
 	{
 		CheckIsValid();
@@ -89,6 +101,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetReverse(IntPtr _this,int bInReverse);
+	
 	public  void SetReverse(bool bInReverse)
 	{
 		CheckIsValid();
@@ -98,6 +111,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlayRate(IntPtr _this,float InPlayRate);
+	
 	public  void SetPlayRate(float InPlayRate)
 	{
 		CheckIsValid();
@@ -107,6 +121,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLooping(IntPtr _this,int bIsLooping);
+	
 	public  void SetLooping(bool bIsLooping)
 	{
 		CheckIsValid();
@@ -114,7 +129,7 @@ public partial class UAnimSingleNodeInstance:UAnimInstance
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

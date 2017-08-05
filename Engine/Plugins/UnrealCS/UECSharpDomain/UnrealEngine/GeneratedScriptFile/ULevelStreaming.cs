@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ULevelStreaming:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetLevelScriptActor(IntPtr _this);
+	
+	/// <summary>Returns the Level Script Actor of the level if the level is loaded and valid</summary>
 	public  ALevelScriptActor GetLevelScriptActor()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class ULevelStreaming:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsStreamingStatePending(IntPtr _this);
+	
+	/// <summary>Returns whether level has streaming state change pending</summary>
 	public  bool IsStreamingStatePending()
 	{
 		CheckIsValid();
@@ -27,6 +31,8 @@ public partial class ULevelStreaming:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsLevelLoaded(IntPtr _this);
+	
+	/// <summary>Returns whether streaming level is loaded</summary>
 	public  bool IsLevelLoaded()
 	{
 		CheckIsValid();
@@ -37,6 +43,8 @@ public partial class ULevelStreaming:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsLevelVisible(IntPtr _this);
+	
+	/// <summary>Returns whether streaming level is visible</summary>
 	public  bool IsLevelVisible()
 	{
 		CheckIsValid();
@@ -45,7 +53,7 @@ public partial class ULevelStreaming:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

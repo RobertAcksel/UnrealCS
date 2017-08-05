@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UEditableText:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsReadOnly(IntPtr _this,int InbIsReadyOnly);
+	
 	public  void SetIsReadOnly(bool InbIsReadyOnly)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UEditableText:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetHintText(IntPtr _this,string InHintText);
+	
 	public  void SetHintText(string InHintText)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UEditableText:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsPassword(IntPtr _this,int InbIsPassword);
+	
 	public  void SetIsPassword(bool InbIsPassword)
 	{
 		CheckIsValid();
@@ -34,6 +37,12 @@ public partial class UEditableText:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetText(IntPtr _this,string InText);
+	
+	/// <summary>
+	/// Directly sets the widget text.
+	/// Warning: This will wipe any binding created for the Text property!
+	/// @param InText The text to assign to the widget
+	/// </summary>
 	public  void SetText(string InText)
 	{
 		CheckIsValid();
@@ -43,6 +52,11 @@ public partial class UEditableText:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern string GetText(IntPtr _this);
+	
+	/// <summary>
+	/// Gets the widget text
+	/// @return The widget text
+	/// </summary>
 	public  string GetText()
 	{
 		CheckIsValid();
@@ -51,7 +65,7 @@ public partial class UEditableText:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

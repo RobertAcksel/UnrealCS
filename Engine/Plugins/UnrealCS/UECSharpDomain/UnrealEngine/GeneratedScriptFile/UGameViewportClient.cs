@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UGameViewportClient:UScriptViewportClient 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetConsoleTarget(IntPtr _this,int PlayerIndex);
+	
+	/// <summary>Sets the player which console commands will be executed in the context of.</summary>
 	public  void SetConsoleTarget(int PlayerIndex)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UGameViewportClient:UScriptViewportClient
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ShowTitleSafeArea(IntPtr _this);
+	
+	/// <summary>Exec for toggling the display of the title safe area</summary>
 	public  void ShowTitleSafeArea()
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UGameViewportClient:UScriptViewportClient
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SSSwapControllers(IntPtr _this);
+	
+	/// <summary>Rotates controller ids among gameplayers, useful for testing splitscreen with only one controller.</summary>
 	public  void SSSwapControllers()
 	{
 		CheckIsValid();
@@ -32,7 +38,7 @@ public partial class UGameViewportClient:UScriptViewportClient
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

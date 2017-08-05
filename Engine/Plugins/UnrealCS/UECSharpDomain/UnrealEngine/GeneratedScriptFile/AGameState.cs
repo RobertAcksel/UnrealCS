@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class AGameState:AGameStateBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_ElapsedTime(IntPtr _this);
+	
+	/// <summary>Gives clients the chance to do something when time gets updates</summary>
 	public  void OnRep_ElapsedTime()
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class AGameState:AGameStateBase
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnRep_MatchState(IntPtr _this);
+	
+	/// <summary>Match state has changed</summary>
 	public  void OnRep_MatchState()
 	{
 		CheckIsValid();
@@ -23,7 +27,7 @@ public partial class AGameState:AGameStateBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

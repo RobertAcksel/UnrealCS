@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Cascade-related</summary>
 	public enum EEmitterRenderMode:byte
 	{
 		ERM_Normal=0,

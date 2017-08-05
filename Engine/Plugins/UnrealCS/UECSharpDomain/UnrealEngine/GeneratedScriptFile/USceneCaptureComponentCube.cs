@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class USceneCaptureComponentCube:USceneCaptureComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void CaptureScene(IntPtr _this);
+	
+	/// <summary>
+	/// Render the scene to the texture target immediately.
+	/// This should not be used if bCaptureEveryFrame is enabled, or the scene capture will render redundantly.
+	/// </summary>
 	public  void CaptureScene()
 	{
 		CheckIsValid();
@@ -14,7 +19,7 @@ public partial class USceneCaptureComponentCube:USceneCaptureComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

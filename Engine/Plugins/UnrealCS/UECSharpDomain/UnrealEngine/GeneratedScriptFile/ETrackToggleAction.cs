@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enumeration indicating toggle action</summary>
 	public enum ETrackToggleAction:byte
 	{
 		ETTA_Off=0,

@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UExpandableArea:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsExpanded_Animated(IntPtr _this,int IsExpanded);
+	
 	public  void SetIsExpanded_Animated(bool IsExpanded)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UExpandableArea:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetIsExpanded(IntPtr _this,int IsExpanded);
+	
 	public  void SetIsExpanded(bool IsExpanded)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UExpandableArea:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetIsExpanded(IntPtr _this);
+	
 	public  bool GetIsExpanded()
 	{
 		CheckIsValid();
@@ -33,7 +36,7 @@ public partial class UExpandableArea:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

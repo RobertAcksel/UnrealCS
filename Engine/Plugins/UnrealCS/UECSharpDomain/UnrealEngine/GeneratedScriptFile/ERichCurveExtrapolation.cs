@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enumerates extrapolation options.</summary>
 	public enum ERichCurveExtrapolation:byte
 	{
 		RCCE_Cycle=0,

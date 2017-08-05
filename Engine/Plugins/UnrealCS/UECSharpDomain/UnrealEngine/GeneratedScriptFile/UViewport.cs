@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UViewport:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr Spawn(IntPtr _this,IntPtr ActorClass);
+	
 	public  AActor Spawn(TSubclassOf<AActor>  ActorClass)
 	{
 		CheckIsValid();
@@ -17,6 +18,7 @@ public partial class UViewport:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetViewRotation(IntPtr _this,ref FRotator Rotation);
+	
 	public  void SetViewRotation(FRotator Rotation)
 	{
 		CheckIsValid();
@@ -26,6 +28,7 @@ public partial class UViewport:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FRotator GetViewRotation(IntPtr _this);
+	
 	public  FRotator GetViewRotation()
 	{
 		CheckIsValid();
@@ -36,6 +39,7 @@ public partial class UViewport:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetViewLocation(IntPtr _this,ref FVector Location);
+	
 	public  void SetViewLocation(FVector Location)
 	{
 		CheckIsValid();
@@ -45,6 +49,7 @@ public partial class UViewport:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetViewLocation(IntPtr _this);
+	
 	public  FVector GetViewLocation()
 	{
 		CheckIsValid();
@@ -55,6 +60,7 @@ public partial class UViewport:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetViewportWorld(IntPtr _this);
+	
 	public  UWorld GetViewportWorld()
 	{
 		CheckIsValid();
@@ -63,7 +69,7 @@ public partial class UViewport:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

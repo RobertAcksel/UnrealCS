@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Beam Tapering Variables.</summary>
 	public enum EBeamTaperMethod:byte
 	{
 		PEBTM_None=0,

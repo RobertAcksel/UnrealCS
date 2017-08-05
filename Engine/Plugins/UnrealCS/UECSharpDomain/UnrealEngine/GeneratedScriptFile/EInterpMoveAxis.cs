@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>List of axies this track can use</summary>
 	public enum EInterpMoveAxis:byte
 	{
 		AXIS_TranslationX=0,

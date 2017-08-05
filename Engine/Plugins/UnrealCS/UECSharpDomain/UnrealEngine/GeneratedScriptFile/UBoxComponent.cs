@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UBoxComponent:UShapeComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetUnscaledBoxExtent(IntPtr _this);
+	
+	/// <summary>@return the box extent, ignoring component scale.</summary>
 	public  FVector GetUnscaledBoxExtent()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UBoxComponent:UShapeComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetScaledBoxExtent(IntPtr _this);
+	
+	/// <summary>@return the box extent, scaled by the component scale.</summary>
 	public  FVector GetScaledBoxExtent()
 	{
 		CheckIsValid();
@@ -27,6 +31,12 @@ public partial class UBoxComponent:UShapeComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBoxExtent(IntPtr _this,ref FVector InBoxExtent,int bUpdateOverlaps);
+	
+	/// <summary>
+	/// Change the box extent size. This is the unscaled size, before component scale is applied.
+	/// @param       InBoxExtent: new extent (radius) for the box.
+	/// @param       bUpdateOverlaps: if true and this shape is registered and collides, updates touching array for owner actor.
+	/// </summary>
 	public  void SetBoxExtent(FVector InBoxExtent,bool bUpdateOverlaps=true)
 	{
 		CheckIsValid();
@@ -34,7 +44,7 @@ public partial class UBoxComponent:UShapeComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

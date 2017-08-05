@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>SubUV-related</summary>
 	public enum EParticleSubUVInterpMethod:byte
 	{
 		PSUVIM_None=0,

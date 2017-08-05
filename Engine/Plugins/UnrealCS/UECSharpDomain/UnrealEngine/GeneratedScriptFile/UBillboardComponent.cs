@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UBillboardComponent:UPrimitiveComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSpriteAndUV(IntPtr _this,IntPtr NewSprite,int NewU,int NewUL,int NewV,int NewVL);
+	
+	/// <summary>Change the sprite texture and the UV's used by this component</summary>
 	public  void SetSpriteAndUV(UTexture2D NewSprite,int NewU,int NewUL,int NewV,int NewVL)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UBillboardComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetUV(IntPtr _this,int NewU,int NewUL,int NewV,int NewVL);
+	
+	/// <summary>Change the sprite's UVs</summary>
 	public  void SetUV(int NewU,int NewUL,int NewV,int NewVL)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UBillboardComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetSprite(IntPtr _this,IntPtr NewSprite);
+	
+	/// <summary>Change the sprite texture used by this component</summary>
 	public  void SetSprite(UTexture2D NewSprite)
 	{
 		CheckIsValid();
@@ -32,7 +38,7 @@ public partial class UBillboardComponent:UPrimitiveComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

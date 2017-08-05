@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UUserWidget:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPlayingAnimation(IntPtr _this);
+	
+	/// <summary>Are we currently playing any animations?</summary>
 	public  bool IsPlayingAnimation()
 	{
 		CheckIsValid();
@@ -17,6 +19,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ReverseAnimation(IntPtr _this,IntPtr InAnimation);
+	
+	/// <summary>
+	/// If an animation is playing, this function will reverse the playback.
+	/// @param InAnimation The playing animation that we want to reverse
+	/// </summary>
 	public  void ReverseAnimation(UWidgetAnimation InAnimation)
 	{
 		CheckIsValid();
@@ -26,6 +33,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaybackSpeed(IntPtr _this,IntPtr InAnimation,float PlaybackSpeed);
+	
+	/// <summary>
+	/// Changes the playback rate of a playing animation
+	/// @param InAnimation The animation that is already playing
+	/// @param PlaybackRate Playback rate multiplier (1 is default)
+	/// </summary>
 	public  void SetPlaybackSpeed(UWidgetAnimation InAnimation,float PlaybackSpeed=1.000000f)
 	{
 		CheckIsValid();
@@ -35,6 +48,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetNumLoopsToPlay(IntPtr _this,IntPtr InAnimation,int NumLoopsToPlay);
+	
+	/// <summary>
+	/// Changes the number of loops to play given a playing animation
+	/// @param InAnimation The animation that is already playing
+	/// @param NumLoopsToPlay The number of loops to play. (0 to loop indefinitely)
+	/// </summary>
 	public  void SetNumLoopsToPlay(UWidgetAnimation InAnimation,int NumLoopsToPlay)
 	{
 		CheckIsValid();
@@ -44,6 +63,8 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsAnyAnimationPlaying(IntPtr _this);
+	
+	/// <summary>@return True if any animation is currently playing</summary>
 	public  bool IsAnyAnimationPlaying()
 	{
 		CheckIsValid();
@@ -54,6 +75,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsAnimationPlaying(IntPtr _this,IntPtr InAnimation);
+	
+	/// <summary>
+	/// Gets whether an animation is currently playing on this widget.
+	/// @param InAnimation The animation to check the playback status of
+	/// @return True if the animation is currently playing
+	/// </summary>
 	public  bool IsAnimationPlaying(UWidgetAnimation InAnimation)
 	{
 		CheckIsValid();
@@ -64,6 +91,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetAnimationCurrentTime(IntPtr _this,IntPtr InAnimation);
+	
+	/// <summary>
+	/// Gets the current time of the animation in this widget
+	/// @param The name of the animation to get the current time for
+	/// @return the current time of the animation.
+	/// </summary>
 	public  float GetAnimationCurrentTime(UWidgetAnimation InAnimation)
 	{
 		CheckIsValid();
@@ -74,6 +107,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float PauseAnimation(IntPtr _this,IntPtr InAnimation);
+	
+	/// <summary>
+	/// Pauses an already running animation in this widget
+	/// @param The name of the animation to pause
+	/// @return the time point the animation was at when it was paused, relative to its start position.  Use this as the StartAtTime when you trigger PlayAnimation.
+	/// </summary>
 	public  float PauseAnimation(UWidgetAnimation InAnimation)
 	{
 		CheckIsValid();
@@ -84,6 +123,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopAnimation(IntPtr _this,IntPtr InAnimation);
+	
+	/// <summary>
+	/// Stops an already running animation in this widget
+	/// @param The name of the animation to stop
+	/// </summary>
 	public  void StopAnimation(UWidgetAnimation InAnimation)
 	{
 		CheckIsValid();
@@ -93,6 +137,16 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PlayAnimationTo(IntPtr _this,IntPtr InAnimation,float StartAtTime,float EndAtTime,int NumLoopsToPlay,int PlayMode,float PlaybackSpeed);
+	
+	/// <summary>
+	/// Plays an animation in this widget a specified number of times stoping at a specified time
+	/// @param InAnimation The animation to play
+	/// @param StartAtTime The time in the animation from which to start playing, relative to the start position. For looped animations, this will only affect the first playback of the animation.
+	/// @param EndAtTime The absolute time in the animation where to stop, this is only considered in the last loop.
+	/// @param NumLoopsToPlay The number of times to loop this animation (0 to loop indefinitely)
+	/// @param PlaybackSpeed The speed at which the animation should play
+	/// @param PlayMode Specifies the playback mode
+	/// </summary>
 	public  void PlayAnimationTo(UWidgetAnimation InAnimation,float StartAtTime=0.000000f,float EndAtTime=0.000000f,int NumLoopsToPlay=1,EUMGSequencePlayMode PlayMode=EUMGSequencePlayMode.Forward,float PlaybackSpeed=1.000000f)
 	{
 		CheckIsValid();
@@ -102,6 +156,15 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PlayAnimation(IntPtr _this,IntPtr InAnimation,float StartAtTime,int NumLoopsToPlay,int PlayMode,float PlaybackSpeed);
+	
+	/// <summary>
+	/// Plays an animation in this widget a specified number of times
+	/// @param InAnimation The animation to play
+	/// @param StartAtTime The time in the animation from which to start playing, relative to the start position. For looped animations, this will only affect the first playback of the animation.
+	/// @param NumLoopsToPlay The number of times to loop this animation (0 to loop indefinitely)
+	/// @param PlaybackSpeed The speed at which the animation should play
+	/// @param PlayMode Specifies the playback mode
+	/// </summary>
 	public  void PlayAnimation(UWidgetAnimation InAnimation,float StartAtTime=0.000000f,int NumLoopsToPlay=1,EUMGSequencePlayMode PlayMode=EUMGSequencePlayMode.Forward,float PlaybackSpeed=1.000000f)
 	{
 		CheckIsValid();
@@ -111,6 +174,7 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPadding(IntPtr _this,ref FMargin InPadding);
+	
 	public  void SetPadding(FMargin InPadding)
 	{
 		CheckIsValid();
@@ -120,6 +184,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetForegroundColor(IntPtr _this,ref FSlateColor InForegroundColor);
+	
+	/// <summary>
+	/// Sets the foreground color of the widget, this is inherited by sub widgets.  Any color property
+	/// that is marked as inherit will use this color.
+	/// @param InForegroundColor     The foreground color.
+	/// </summary>
 	public  void SetForegroundColor(FSlateColor InForegroundColor)
 	{
 		CheckIsValid();
@@ -129,6 +199,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColorAndOpacity(IntPtr _this,ref FLinearColor InColorAndOpacity);
+	
+	/// <summary>
+	/// Sets the tint of the widget, this affects all child widgets.
+	/// @param InColorAndOpacity     The tint to apply to all child widgets.
+	/// </summary>
 	public  void SetColorAndOpacity(FLinearColor InColorAndOpacity)
 	{
 		CheckIsValid();
@@ -138,6 +213,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetOwningPlayerPawn(IntPtr _this);
+	
+	/// <summary>
+	/// Gets the player pawn associated with this UI.
+	/// @return Gets the owning player pawn that's owned by the player controller assigned to this widget.
+	/// </summary>
 	public  APawn GetOwningPlayerPawn()
 	{
 		CheckIsValid();
@@ -148,6 +228,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOwningPlayer(IntPtr _this,IntPtr LocalPlayerController);
+	
+	/// <summary>
+	/// Sets the local player associated with this UI via PlayerController reference.
+	/// @param LocalPlayerController The PlayerController of the local player you want to be the conceptual owner of this UI.
+	/// </summary>
 	public  void SetOwningPlayer(APlayerController LocalPlayerController)
 	{
 		CheckIsValid();
@@ -157,6 +242,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetOwningPlayer(IntPtr _this);
+	
+	/// <summary>
+	/// Gets the player controller associated with this UI.
+	/// @return The player controller that owns the UI.
+	/// </summary>
 	public  APlayerController GetOwningPlayer()
 	{
 		CheckIsValid();
@@ -167,6 +257,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOwningLocalPlayer(IntPtr _this,IntPtr LocalPlayer);
+	
+	/// <summary>
+	/// Sets the player associated with this UI via LocalPlayer reference.
+	/// @param LocalPlayer The local player you want to be the conceptual owner of this UI.
+	/// </summary>
 	public  void SetOwningLocalPlayer(ULocalPlayer LocalPlayer)
 	{
 		CheckIsValid();
@@ -176,6 +271,11 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetOwningLocalPlayer(IntPtr _this);
+	
+	/// <summary>
+	/// Gets the local player associated with this UI.
+	/// @return The owning local player.
+	/// </summary>
 	public  ULocalPlayer GetOwningLocalPlayer()
 	{
 		CheckIsValid();
@@ -186,6 +286,8 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsInViewport(IntPtr _this);
+	
+	/// <summary>@return true if the widget was added to the viewport using AddToViewport.</summary>
 	public  bool IsInViewport()
 	{
 		CheckIsValid();
@@ -196,6 +298,7 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector2D GetAlignmentInViewport(IntPtr _this);
+	
 	public  FVector2D GetAlignmentInViewport()
 	{
 		CheckIsValid();
@@ -206,6 +309,7 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FAnchors GetAnchorsInViewport(IntPtr _this);
+	
 	public  FAnchors GetAnchorsInViewport()
 	{
 		CheckIsValid();
@@ -216,6 +320,7 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAlignmentInViewport(IntPtr _this,ref FVector2D Alignment);
+	
 	public  void SetAlignmentInViewport(FVector2D Alignment)
 	{
 		CheckIsValid();
@@ -225,6 +330,7 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAnchorsInViewport(IntPtr _this,ref FAnchors Anchors);
+	
 	public  void SetAnchorsInViewport(FAnchors Anchors)
 	{
 		CheckIsValid();
@@ -234,6 +340,7 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDesiredSizeInViewport(IntPtr _this,ref FVector2D Size);
+	
 	public  void SetDesiredSizeInViewport(FVector2D Size)
 	{
 		CheckIsValid();
@@ -243,6 +350,14 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPositionInViewport(IntPtr _this,ref FVector2D Position,int bRemoveDPIScale);
+	
+	/// <summary>
+	/// Sets the widgets position in the viewport.
+	/// @param Position The 2D position to set the widget to in the viewport.
+	/// @param bRemoveDPIScale If you've already calculated inverse DPI, set this to false.
+	/// Otherwise inverse DPI is applied to the position so that when the location is scaled
+	/// by DPI, it ends up in the expected position.
+	/// </summary>
 	public  void SetPositionInViewport(FVector2D Position,bool bRemoveDPIScale=true)
 	{
 		CheckIsValid();
@@ -252,6 +367,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int AddToPlayerScreen(IntPtr _this,int ZOrder);
+	
+	/// <summary>
+	/// Adds the widget to the game's viewport in a section dedicated to the player.  This is valuable in a split screen
+	/// game where you need to only show a widget over a player's portion of the viewport.
+	/// @param ZOrder The higher the number, the more on top this widget will be.
+	/// </summary>
 	public  bool AddToPlayerScreen(int ZOrder=0)
 	{
 		CheckIsValid();
@@ -262,6 +383,12 @@ public partial class UUserWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddToViewport(IntPtr _this,int ZOrder);
+	
+	/// <summary>
+	/// Adds it to the game's viewport and fills the entire screen, unless SetDesiredSizeInViewport is called
+	/// to explicitly set the size.
+	/// @param ZOrder The higher the number, the more on top this widget will be.
+	/// </summary>
 	public  void AddToViewport(int ZOrder=0)
 	{
 		CheckIsValid();
@@ -269,7 +396,7 @@ public partial class UUserWidget:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

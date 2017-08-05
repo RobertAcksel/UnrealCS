@@ -5,8 +5,14 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UWidgetAnimation:UMovieSceneSequence 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetEndTime(IntPtr _this);
+	
+	/// <summary>
+	/// Get the end time of this animation.
+	/// @return End time in seconds.
+	/// @see GetStartTime
+	/// </summary>
 	public  float GetEndTime()
 	{
 		CheckIsValid();
@@ -17,6 +23,12 @@ public partial class UWidgetAnimation:UMovieSceneSequence
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetStartTime(IntPtr _this);
+	
+	/// <summary>
+	/// Get the start time of this animation.
+	/// @return Start time in seconds.
+	/// @see GetEndTime
+	/// </summary>
 	public  float GetStartTime()
 	{
 		CheckIsValid();
@@ -25,7 +37,7 @@ public partial class UWidgetAnimation:UMovieSceneSequence
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

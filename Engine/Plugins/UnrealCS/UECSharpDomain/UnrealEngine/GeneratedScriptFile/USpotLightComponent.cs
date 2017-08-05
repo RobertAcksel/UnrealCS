@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class USpotLightComponent:UPointLightComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetOuterConeAngle(IntPtr _this,float NewOuterConeAngle);
+	
 	public  void SetOuterConeAngle(float NewOuterConeAngle)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class USpotLightComponent:UPointLightComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetInnerConeAngle(IntPtr _this,float NewInnerConeAngle);
+	
 	public  void SetInnerConeAngle(float NewInnerConeAngle)
 	{
 		CheckIsValid();
@@ -23,7 +25,7 @@ public partial class USpotLightComponent:UPointLightComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

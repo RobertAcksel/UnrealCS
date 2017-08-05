@@ -5,8 +5,15 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class APlayerController:AController 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetFocalLocation(IntPtr _this);
+	
+	/// <summary>
+	/// Returns the location the PlayerController is focused on.
+	/// If there is a possessed Pawn, returns the Pawn's location.
+	/// If there is a spectator Pawn, returns that Pawn's location.
+	/// Otherwise, returns the PlayerController's spawn location (usually the last known Pawn location after it has died).
+	/// </summary>
 	public  FVector GetFocalLocation()
 	{
 		CheckIsValid();
@@ -17,6 +24,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetSpectatorPawn(IntPtr _this);
+	
+	/// <summary>Get the Pawn used when spectating. NULL when not spectating.</summary>
 	public  ASpectatorPawn GetSpectatorPawn()
 	{
 		CheckIsValid();
@@ -27,6 +36,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void OnServerStartedVisualLogger(IntPtr _this,int bIsLogging);
+	
+	/// <summary>Notify from server that Visual Logger is recording, to show that information on client about possible performance issues</summary>
 	public  void OnServerStartedVisualLogger(bool bIsLogging)
 	{
 		CheckIsValid();
@@ -36,6 +47,16 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetCinematicMode(IntPtr _this,int bInCinematicMode,int bHidePlayer,int bAffectsHUD,int bAffectsMovement,int bAffectsTurning);
+	
+	/// <summary>
+	/// Server/SP only function for changing whether the player is in cinematic mode.  Updates values of various state variables, then replicates the call to the client
+	/// to sync the current cinematic mode.
+	/// @param       bInCinematicMode        specify true if the player is entering cinematic mode; false if the player is leaving cinematic mode.
+	/// @param       bHidePlayer                     specify true to hide the player's pawn (only relevant if bInCinematicMode is true)
+	/// @param       bAffectsHUD                     specify true if we should show/hide the HUD to match the value of bCinematicMode
+	/// @param       bAffectsMovement        specify true to disable movement in cinematic mode, enable it when leaving
+	/// @param       bAffectsTurning         specify true to disable turning in cinematic mode or enable it when leaving
+	/// </summary>
 	public  void SetCinematicMode(bool bInCinematicMode,bool bHidePlayer,bool bAffectsHUD,bool bAffectsMovement,bool bAffectsTurning)
 	{
 		CheckIsValid();
@@ -45,6 +66,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearAudioListenerOverride(IntPtr _this);
+	
+	/// <summary>Clear any overrides that have been applied to audio listener</summary>
 	public  void ClearAudioListenerOverride()
 	{
 		CheckIsValid();
@@ -54,6 +77,13 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetAudioListenerOverride(IntPtr _this,IntPtr AttachToComponent,ref FVector Location,ref FRotator Rotation);
+	
+	/// <summary>
+	/// Used to override the default positioning of the audio listener
+	/// @param AttachToComponent Optional component to attach the audio listener to
+	/// @param Location Depending on whether Component is attached this is either an offset from its location or an absolute position
+	/// @param Rotation Depending on whether Component is attached this is either an offset from its rotation or an absolute rotation
+	/// </summary>
 	public  void SetAudioListenerOverride(USceneComponent AttachToComponent,FVector Location,FRotator Rotation)
 	{
 		CheckIsValid();
@@ -63,6 +93,15 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetViewTargetWithBlend(IntPtr _this,IntPtr NewViewTarget,float BlendTime,int BlendFunc,float BlendExp,int bLockOutgoing);
+	
+	/// <summary>
+	/// Set the view target blending with variable control
+	/// @param NewViewTarget - new actor to set as view target
+	/// @param BlendTime - time taken to blend
+	/// @param BlendFunc - Cubic, Linear etc functions for blending
+	/// @param BlendExp -  Exponent, used by certain blend functions to control the shape of the curve.
+	/// @param bLockOutgoing - If true, lock outgoing viewtarget to last frame's camera position for the remainder of the blend.
+	/// </summary>
 	public  void SetViewTargetWithBlend(AActor NewViewTarget,float BlendTime=0.000000f,EViewTargetBlendFunction BlendFunc=EViewTargetBlendFunction.VTBlend_Linear,float BlendExp=0.000000f,bool bLockOutgoing=false)
 	{
 		CheckIsValid();
@@ -72,6 +111,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Camera(IntPtr _this,string NewMode);
+	
+	/// <summary>
+	/// Change Camera mode
+	/// @param       New camera mode to set
+	/// </summary>
 	public  void Camera(string NewMode)
 	{
 		CheckIsValid();
@@ -81,6 +125,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVirtualJoystickVisibility(IntPtr _this,int bVisible);
+	
+	/// <summary>Set the virtual joystick visibility.</summary>
 	public  void SetVirtualJoystickVisibility(bool bVisible)
 	{
 		CheckIsValid();
@@ -90,6 +136,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ActivateTouchInterface(IntPtr _this,IntPtr NewTouchInterface);
+	
+	/// <summary>Activates a new touch interface for this player controller</summary>
 	public  void ActivateTouchInterface(UTouchInterface NewTouchInterface)
 	{
 		CheckIsValid();
@@ -99,6 +147,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetInputAnalogStickState(IntPtr _this,int WhichStick,out float StickX,out float StickY);
+	
+	/// <summary>Retrieves the X and Y displacement of the given analog stick.</summary>
 	public  void GetInputAnalogStickState(EControllerAnalogStick WhichStick,out float StickX,out float StickY)
 	{
 		CheckIsValid();
@@ -108,6 +158,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetInputMouseDelta(IntPtr _this,out float DeltaX,out float DeltaY);
+	
+	/// <summary>Retrieves how far the mouse moved this frame.</summary>
 	public  void GetInputMouseDelta(out float DeltaX,out float DeltaY)
 	{
 		CheckIsValid();
@@ -117,6 +169,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetInputKeyTimeDown(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Returns how long the given key/button has been down.  Returns 0 if it's up or it just went down this frame.</summary>
 	public  float GetInputKeyTimeDown(FKey Key)
 	{
 		CheckIsValid();
@@ -127,6 +181,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetMousePosition(IntPtr _this,out float LocationX,out float LocationY);
+	
+	/// <summary>Retrieves the X and Y screen coordinates of the mouse cursor. Returns false if there is no associated mouse device</summary>
 	public  bool GetMousePosition(out float LocationX,out float LocationY)
 	{
 		CheckIsValid();
@@ -137,6 +193,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetInputMotionState(IntPtr _this,out FVector Tilt,out FVector RotationRate,out FVector Gravity,out FVector Acceleration);
+	
+	/// <summary>Retrieves the current motion state of the player's input device</summary>
 	public  void GetInputMotionState(out FVector Tilt,out FVector RotationRate,out FVector Gravity,out FVector Acceleration)
 	{
 		CheckIsValid();
@@ -146,6 +204,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetInputTouchState(IntPtr _this,int FingerIndex,out float LocationX,out float LocationY,out int bIsCurrentlyPressed);
+	
+	/// <summary>Retrieves the X and Y screen coordinates of the specified touch key. Returns false if the touch index is not down</summary>
 	public  void GetInputTouchState(ETouchIndex FingerIndex,out float LocationX,out float LocationY,out bool bIsCurrentlyPressed)
 	{
 		CheckIsValid();
@@ -157,6 +217,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetInputVectorKeyState(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Returns the vector value for the given key/button.</summary>
 	public  FVector GetInputVectorKeyState(FKey Key)
 	{
 		CheckIsValid();
@@ -167,6 +229,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetInputAnalogKeyState(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Returns the analog value for the given key/button.  If analog isn't supported, returns 1 for down and 0 for up.</summary>
 	public  float GetInputAnalogKeyState(FKey Key)
 	{
 		CheckIsValid();
@@ -177,6 +241,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int WasInputKeyJustReleased(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Returns true if the given key/button was down last frame and up this frame.</summary>
 	public  bool WasInputKeyJustReleased(FKey Key)
 	{
 		CheckIsValid();
@@ -187,6 +253,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int WasInputKeyJustPressed(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Returns true if the given key/button was up last frame and down this frame.</summary>
 	public  bool WasInputKeyJustPressed(FKey Key)
 	{
 		CheckIsValid();
@@ -197,6 +265,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsInputKeyDown(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Returns true if the given key/button is pressed on the input of the controller (if present)</summary>
 	public  bool IsInputKeyDown(FKey Key)
 	{
 		CheckIsValid();
@@ -207,6 +277,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddRollInput(IntPtr _this,float Val);
+	
+	/// <summary>
+	/// Add Roll input. This value is multiplied by InputRollScale.
+	/// @param Val Amount to add to Roll. This value is multiplied by InputRollScale.
+	/// </summary>
 	public  void AddRollInput(float Val)
 	{
 		CheckIsValid();
@@ -216,6 +291,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddYawInput(IntPtr _this,float Val);
+	
+	/// <summary>
+	/// Add Yaw (turn) input. This value is multiplied by InputYawScale.
+	/// @param Val Amount to add to Yaw. This value is multiplied by InputYawScale.
+	/// </summary>
 	public  void AddYawInput(float Val)
 	{
 		CheckIsValid();
@@ -225,6 +305,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddPitchInput(IntPtr _this,float Val);
+	
+	/// <summary>
+	/// Add Pitch (look up) input. This value is multiplied by InputPitchScale.
+	/// @param Val Amount to add to Pitch. This value is multiplied by InputPitchScale.
+	/// </summary>
 	public  void AddPitchInput(float Val)
 	{
 		CheckIsValid();
@@ -234,6 +319,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerToggleAILogging(IntPtr _this);
+	
+	/// <summary>Used by UGameplayDebuggingControllerComponent to replicate messages for AI debugging in network games.</summary>
 	public  void ServerToggleAILogging()
 	{
 		CheckIsValid();
@@ -243,6 +330,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientTeamMessage(IntPtr _this,IntPtr SenderPlayerState,string S,string Type,float MsgLifeTime);
+	
+	/// <summary>@todo document</summary>
 	public  void ClientTeamMessage(APlayerState SenderPlayerState,string S,string Type,float MsgLifeTime)
 	{
 		CheckIsValid();
@@ -252,6 +341,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerViewSelf(IntPtr _this,ref FViewTargetTransitionParams TransitionParams);
+	
+	/// <summary>Move camera to current user</summary>
 	public  void ServerViewSelf(FViewTargetTransitionParams TransitionParams)
 	{
 		CheckIsValid();
@@ -261,6 +352,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerViewPrevPlayer(IntPtr _this);
+	
+	/// <summary>Move camera to previous player on round ended or spectating</summary>
 	public  void ServerViewPrevPlayer()
 	{
 		CheckIsValid();
@@ -270,6 +363,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerViewNextPlayer(IntPtr _this);
+	
+	/// <summary>Move camera to next player on round ended or spectating</summary>
 	public  void ServerViewNextPlayer()
 	{
 		CheckIsValid();
@@ -279,6 +374,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerVerifyViewTarget(IntPtr _this);
+	
+	/// <summary>Used by client to request server to confirm current viewtarget (server will respond with ClientSetViewTarget() ).</summary>
 	public  void ServerVerifyViewTarget()
 	{
 		CheckIsValid();
@@ -288,6 +385,13 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerUpdateLevelVisibility(IntPtr _this,string PackageName,int bIsVisible);
+	
+	/// <summary>
+	/// Called when the client adds/removes a streamed level
+	/// the server will only replicate references to Actors in visible levels so that it's impossible to send references to
+	/// Actors the client has not initialized
+	/// @param PackageName the name of the package for the level whose status changed
+	/// </summary>
 	public  void ServerUpdateLevelVisibility(string PackageName,bool bIsVisible)
 	{
 		CheckIsValid();
@@ -297,6 +401,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerUpdateCamera(IntPtr _this,ref FVector_NetQuantize CamLoc,int CamPitchAndYaw);
+	
+	/// <summary>If PlayerCamera.bUseClientSideCameraUpdates is set, client will replicate camera positions to the server. // @TODO - combine pitch/yaw into one int, maybe also send location compressed</summary>
 	public  void ServerUpdateCamera(FVector_NetQuantize CamLoc,int CamPitchAndYaw)
 	{
 		CheckIsValid();
@@ -306,6 +412,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerShortTimeout(IntPtr _this);
+	
+	/// <summary>Notifies the server that the client has ticked gameplay code, and should no longer get the extended "still loading" timeout grace period</summary>
 	public  void ServerShortTimeout()
 	{
 		CheckIsValid();
@@ -315,6 +423,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerCheckClientPossessionReliable(IntPtr _this);
+	
+	/// <summary>Reliable version of ServerCheckClientPossession to be used when there is no likely danger of spamming the network.</summary>
 	public  void ServerCheckClientPossessionReliable()
 	{
 		CheckIsValid();
@@ -324,6 +434,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerCheckClientPossession(IntPtr _this);
+	
+	/// <summary>Tells the server to make sure the possessed pawn is in sync with the client.</summary>
 	public  void ServerCheckClientPossession()
 	{
 		CheckIsValid();
@@ -333,6 +445,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerSetSpectatorLocation(IntPtr _this,ref FVector NewLoc,ref FRotator NewRot);
+	
+	/// <summary>When spectating, updates spectator location/rotation and pings the server to make sure spectating should continue.</summary>
 	public  void ServerSetSpectatorLocation(FVector NewLoc,FRotator NewRot)
 	{
 		CheckIsValid();
@@ -342,6 +456,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerRestartPlayer(IntPtr _this);
+	
+	/// <summary>Attempts to restart this player, generally called from the client upon respawn request.</summary>
 	public  void ServerRestartPlayer()
 	{
 		CheckIsValid();
@@ -351,6 +467,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerPause(IntPtr _this);
+	
+	/// <summary>Replicate pause request to the server</summary>
 	public  void ServerPause()
 	{
 		CheckIsValid();
@@ -360,6 +478,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerNotifyLoadedWorld(IntPtr _this,string WorldPackageName);
+	
+	/// <summary>
+	/// Called to notify the server when the client has loaded a new world via seamless traveling
+	/// @param WorldPackageName the name of the world package that was loaded
+	/// </summary>
 	public  void ServerNotifyLoadedWorld(string WorldPackageName)
 	{
 		CheckIsValid();
@@ -369,6 +492,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerChangeName(IntPtr _this,string S);
+	
+	/// <summary>Change name of server</summary>
 	public  void ServerChangeName(string S)
 	{
 		CheckIsValid();
@@ -378,6 +503,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerCamera(IntPtr _this,string NewMode);
+	
+	/// <summary>change mode of camera</summary>
 	public  void ServerCamera(string NewMode)
 	{
 		CheckIsValid();
@@ -387,6 +514,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerAcknowledgePossession(IntPtr _this,IntPtr P);
+	
+	/// <summary>acknowledge possession of pawn</summary>
 	public  void ServerAcknowledgePossession(APawn P)
 	{
 		CheckIsValid();
@@ -396,6 +525,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientReceiveLocalizedMessage(IntPtr _this,IntPtr Message,int Switch,IntPtr RelatedPlayerState_1,IntPtr RelatedPlayerState_2,IntPtr OptionalObject);
+	
+	/// <summary>send client localized message id</summary>
 	public  void ClientReceiveLocalizedMessage(TSubclassOf<ULocalMessage>  Message,int Switch,APlayerState RelatedPlayerState_1,APlayerState RelatedPlayerState_2,UObject OptionalObject)
 	{
 		CheckIsValid();
@@ -405,6 +536,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientRetryClientRestart(IntPtr _this,IntPtr NewPawn);
+	
+	/// <summary>Assign Pawn to player, but avoid calling ClientRestart if we have already accepted this pawn</summary>
 	public  void ClientRetryClientRestart(APawn NewPawn)
 	{
 		CheckIsValid();
@@ -414,6 +547,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientEndOnlineSession(IntPtr _this);
+	
+	/// <summary>Notify client that the session is about to start</summary>
 	public  void ClientEndOnlineSession()
 	{
 		CheckIsValid();
@@ -423,6 +558,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientStartOnlineSession(IntPtr _this);
+	
+	/// <summary>Notify client that the session is starting</summary>
 	public  void ClientStartOnlineSession()
 	{
 		CheckIsValid();
@@ -432,6 +569,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientWasKicked(IntPtr _this,string KickReason);
+	
+	/// <summary>Notify client they were kicked from the server</summary>
 	public  void ClientWasKicked(string KickReason)
 	{
 		CheckIsValid();
@@ -441,6 +580,15 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientUpdateLevelStreamingStatus(IntPtr _this,string PackageName,int bNewShouldBeLoaded,int bNewShouldBeVisible,int bNewShouldBlockOnLoad,int LODIndex);
+	
+	/// <summary>
+	/// Replicated Update streaming status
+	/// @param PackageName - Name of the level package name used for loading.
+	/// @param bNewShouldBeLoaded - Whether the level should be loaded
+	/// @param bNewShouldBeVisible - Whether the level should be visible if it is loaded
+	/// @param bNewShouldBlockOnLoad - Whether we want to force a blocking load
+	/// @param LODIndex                              - Current LOD index for a streaming level
+	/// </summary>
 	public  void ClientUpdateLevelStreamingStatus(string PackageName,bool bNewShouldBeLoaded,bool bNewShouldBeVisible,bool bNewShouldBlockOnLoad,int LODIndex)
 	{
 		CheckIsValid();
@@ -450,6 +598,16 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientTravelInternal(IntPtr _this,string URL,int TravelType,int bSeamless,ref FGuid MapPackageGuid);
+	
+	/// <summary>
+	/// Internal clientside implementation of ClientTravel - use ClientTravel to call this
+	/// @param URL                           A string containing the mapname (or IP address) to travel to, along with option key/value pairs
+	/// @param TravelType            specifies whether the client should append URL options used in previous travels; if true is specified
+	///                                                      for the bSeamlesss parameter, this value must be TRAVEL_Relative.
+	/// @param bSeamless                     Indicates whether to use seamless travel (requires TravelType of TRAVEL_Relative)
+	/// @param MapPackageGuid        The GUID of the map package to travel to - this is used to find the file when it has been autodownloaded,
+	///                                                      so it is only needed for clients
+	/// </summary>
 	public  void ClientTravelInternal(string URL,ETravelType TravelType,bool bSeamless,FGuid MapPackageGuid)
 	{
 		CheckIsValid();
@@ -459,6 +617,17 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientTravel(IntPtr _this,string URL,int TravelType,int bSeamless,ref FGuid MapPackageGuid);
+	
+	/// <summary>
+	/// Travel to a different map or IP address. Calls the PreClientTravel event before doing anything.
+	/// NOTE: This is implemented as a locally executed wrapper for ClientTravelInternal, to avoid API compatability breakage
+	/// @param URL                           A string containing the mapname (or IP address) to travel to, along with option key/value pairs
+	/// @param TravelType            specifies whether the client should append URL options used in previous travels; if true is specified
+	///                                                      for the bSeamlesss parameter, this value must be TRAVEL_Relative.
+	/// @param bSeamless                     Indicates whether to use seamless travel (requires TravelType of TRAVEL_Relative)
+	/// @param MapPackageGuid        The GUID of the map package to travel to - this is used to find the file when it has been autodownloaded,
+	///                                                      so it is only needed for clients
+	/// </summary>
 	public  void ClientTravel(string URL,ETravelType TravelType,bool bSeamless,FGuid MapPackageGuid)
 	{
 		CheckIsValid();
@@ -468,6 +637,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetControllerLightColor(IntPtr _this,ref FColor Color);
+	
+	/// <summary>
+	/// Sets the light color of the player's controller
+	/// @param        Color                                   The color for the light to be
+	/// </summary>
 	public  void SetControllerLightColor(FColor Color)
 	{
 		CheckIsValid();
@@ -477,6 +651,19 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PlayDynamicForceFeedback(IntPtr _this,float Intensity,float Duration,int bAffectsLeftLarge,int bAffectsLeftSmall,int bAffectsRightLarge,int bAffectsRightSmall,int Action,ref FLatentActionInfo LatentInfo);
+	
+	/// <summary>
+	/// Latent action that controls the playing of force feedback
+	/// Begins playing when Start is called.  Calling Update or Stop if the feedback is not active will have no effect.
+	/// Completed will execute when Stop is called or the duration ends.
+	/// When Update is called the Intensity, Duration, and affect values will be updated with the current inputs
+	/// @param       Intensity                               How strong the feedback should be.  Valid values are between 0.0 and 1.0
+	/// @param       Duration                                How long the feedback should play for.  If the value is negative it will play until stopped
+	/// @param   bAffectsLeftLarge           Whether the intensity should be applied to the large left servo
+	/// @param   bAffectsLeftSmall           Whether the intensity should be applied to the small left servo
+	/// @param   bAffectsRightLarge          Whether the intensity should be applied to the large right servo
+	/// @param   bAffectsRightSmall          Whether the intensity should be applied to the small right servo
+	/// </summary>
 	public  void PlayDynamicForceFeedback(float Intensity,float Duration,bool bAffectsLeftLarge,bool bAffectsLeftSmall,bool bAffectsRightLarge,bool bAffectsRightSmall,EDynamicForceFeedbackAction Action,FLatentActionInfo LatentInfo)
 	{
 		CheckIsValid();
@@ -486,6 +673,12 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientStopForceFeedback(IntPtr _this,IntPtr ForceFeedbackEffect,string Tag);
+	
+	/// <summary>
+	/// Stops a playing force feedback pattern
+	/// @param       ForceFeedbackEffect             If set only patterns from that effect will be stopped
+	/// @param       Tag                                             If not none only the pattern with this tag will be stopped
+	/// </summary>
 	public  void ClientStopForceFeedback(UForceFeedbackEffect ForceFeedbackEffect,string Tag)
 	{
 		CheckIsValid();
@@ -495,6 +688,13 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPlayForceFeedback(IntPtr _this,IntPtr ForceFeedbackEffect,int bLooping,string Tag);
+	
+	/// <summary>
+	/// Play a force feedback pattern on the player's controller
+	/// @param       ForceFeedbackEffect             The force feedback pattern to play
+	/// @param       bLooping                                Whether the pattern should be played repeatedly or be a single one shot
+	/// @param       Tag                                             A tag that allows stopping of an effect.  If another effect with this Tag is playing, it will be stopped and replaced
+	/// </summary>
 	public  void ClientPlayForceFeedback(UForceFeedbackEffect ForceFeedbackEffect,bool bLooping,string Tag)
 	{
 		CheckIsValid();
@@ -504,6 +704,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientStopCameraShake(IntPtr _this,IntPtr Shake,int bImmediately);
+	
+	/// <summary>Stop camera shake on client.</summary>
 	public  void ClientStopCameraShake(TSubclassOf<UCameraShake>  Shake,bool bImmediately=true)
 	{
 		CheckIsValid();
@@ -513,6 +715,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientStopCameraAnim(IntPtr _this,IntPtr AnimToStop);
+	
+	/// <summary>Stop camera animation on client.</summary>
 	public  void ClientStopCameraAnim(UCameraAnim AnimToStop)
 	{
 		CheckIsValid();
@@ -522,6 +726,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientClearCameraLensEffects(IntPtr _this);
+	
+	/// <summary>Removes all Camera Lens Effects.</summary>
 	public  void ClientClearCameraLensEffects()
 	{
 		CheckIsValid();
@@ -531,6 +737,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSpawnCameraLensEffect(IntPtr _this,IntPtr LensEffectEmitterClass);
+	
+	/// <summary>Spawn a camera lens effect (e.g. blood).</summary>
 	public  void ClientSpawnCameraLensEffect(TSubclassOf<AEmitterCameraLensEffectBase>  LensEffectEmitterClass)
 	{
 		CheckIsValid();
@@ -540,6 +748,12 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetViewTarget(IntPtr _this,IntPtr A,ref FViewTargetTransitionParams TransitionParams);
+	
+	/// <summary>
+	/// Set the view target
+	/// @param A - new actor to set as view target
+	/// @param TransitionParams - parameters to use for controlling the transition
+	/// </summary>
 	public  void ClientSetViewTarget(AActor A,FViewTargetTransitionParams TransitionParams)
 	{
 		CheckIsValid();
@@ -549,6 +763,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetHUD(IntPtr _this);
+	
+	/// <summary>Gets the HUD currently being used by this player controller</summary>
 	public  AHUD GetHUD()
 	{
 		CheckIsValid();
@@ -559,6 +775,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GetViewportSize(IntPtr _this,out int SizeX,out int SizeY);
+	
+	/// <summary>Helper to get the size of the HUD canvas for this player controller.  Returns 0 if there is no HUD</summary>
 	public  void GetViewportSize(out int SizeX,out int SizeY)
 	{
 		CheckIsValid();
@@ -568,6 +786,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetHUD(IntPtr _this,IntPtr NewHUDClass);
+	
+	/// <summary>Set the client's class of HUD and spawns a new instance of it. If there was already a HUD active, it is destroyed.</summary>
 	public  void ClientSetHUD(TSubclassOf<AHUD>  NewHUDClass)
 	{
 		CheckIsValid();
@@ -577,6 +797,14 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetForceMipLevelsToBeResident(IntPtr _this,IntPtr Material,float ForceDuration,int CinematicTextureGroups);
+	
+	/// <summary>
+	/// Forces the streaming system to disregard the normal logic for the specified duration and
+	/// instead always load all mip-levels for all textures used by the specified material.
+	/// @param Material              - The material whose textures should be forced into memory.
+	/// @param ForceDuration - Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic.
+	/// @param CinematicTextureGroups        - Bitfield indicating which texture groups that use extra high-resolution mips
+	/// </summary>
 	public  void ClientSetForceMipLevelsToBeResident(UMaterialInterface Material,float ForceDuration,int CinematicTextureGroups)
 	{
 		CheckIsValid();
@@ -586,6 +814,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetCinematicMode(IntPtr _this,int bInCinematicMode,int bAffectsMovement,int bAffectsTurning,int bAffectsHUD);
+	
+	/// <summary>Called by the server to synchronize cinematic transitions with the client</summary>
 	public  void ClientSetCinematicMode(bool bInCinematicMode,bool bAffectsMovement,bool bAffectsTurning,bool bAffectsHUD)
 	{
 		CheckIsValid();
@@ -595,6 +825,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetCameraMode(IntPtr _this,string NewCamMode);
+	
+	/// <summary>
+	/// Replicated function to set camera style on client
+	/// @param       NewCamMode, name defining the new camera mode
+	/// </summary>
 	public  void ClientSetCameraMode(string NewCamMode)
 	{
 		CheckIsValid();
@@ -604,6 +839,15 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetCameraFade(IntPtr _this,int bEnableFading,ref FColor FadeColor,ref FVector2D FadeAlpha,float FadeTime,int bFadeAudio);
+	
+	/// <summary>
+	/// Tell client to fade camera
+	/// @Param bEnableFading - true if we should apply FadeColor/FadeAmount to the screen
+	/// @Param FadeColor - Color to fade to
+	/// @Param FadeAlpha - Amount of fading to apply
+	/// @Param FadeTime - length of time for fade to occur over
+	/// @Param bFadeAudio - true to apply fading of audio alongside the video
+	/// </summary>
 	public  void ClientSetCameraFade(bool bEnableFading,FColor FadeColor,FVector2D FadeAlpha,float FadeTime,bool bFadeAudio)
 	{
 		CheckIsValid();
@@ -613,6 +857,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetBlockOnAsyncLoading(IntPtr _this);
+	
+	/// <summary>
+	/// Tells the client to block until all pending level streaming actions are complete.
+	/// Happens at the end of the tick primarily used to force update the client ASAP at join time.
+	/// </summary>
 	public  void ClientSetBlockOnAsyncLoading()
 	{
 		CheckIsValid();
@@ -622,6 +871,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientRestart(IntPtr _this,IntPtr NewPawn);
+	
+	/// <summary>Tell client to restart the level</summary>
 	public  void ClientRestart(APawn NewPawn)
 	{
 		CheckIsValid();
@@ -631,6 +882,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientReset(IntPtr _this);
+	
+	/// <summary>Tell client to reset the PlayerController</summary>
 	public  void ClientReset()
 	{
 		CheckIsValid();
@@ -640,6 +893,15 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPrestreamTextures(IntPtr _this,IntPtr ForcedActor,float ForceDuration,int bEnableStreaming,int CinematicTextureGroups);
+	
+	/// <summary>
+	/// Forces the streaming system to disregard the normal logic for the specified duration and
+	/// instead always load all mip-levels for all textures used by the specified actor.
+	/// @param ForcedActor           - The actor whose textures should be forced into memory.
+	/// @param ForceDuration         - Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic.
+	/// @param bEnableStreaming      - Whether to start (true) or stop (false) streaming
+	/// @param CinematicTextureGroups        - Bitfield indicating which texture groups that use extra high-resolution mips
+	/// </summary>
 	public  void ClientPrestreamTextures(AActor ForcedActor,float ForceDuration,bool bEnableStreaming,int CinematicTextureGroups)
 	{
 		CheckIsValid();
@@ -649,6 +911,14 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPrepareMapChange(IntPtr _this,string LevelName,int bFirst,int bLast);
+	
+	/// <summary>
+	/// Asynchronously loads the given level in preparation for a streaming map transition.
+	/// the server sends one function per level name since dynamic arrays can't be replicated
+	/// @param LevelNames - the names of the level packages to load. LevelNames[0] will be the new persistent (primary) level
+	/// @param bFirst - whether this is the first item in the list (so clear the list first)
+	/// @param bLast - whether this is the last item in the list (so start preparing the change after receiving it)
+	/// </summary>
 	public  void ClientPrepareMapChange(string LevelName,bool bFirst,bool bLast)
 	{
 		CheckIsValid();
@@ -658,6 +928,14 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPlaySoundAtLocation(IntPtr _this,IntPtr Sound,ref FVector Location,float VolumeMultiplier,float PitchMultiplier);
+	
+	/// <summary>
+	/// Play sound client-side at the specified location
+	/// @param Sound - Sound to play
+	/// @param Location - Location to play the sound at
+	/// @param VolumeMultiplier - Volume multiplier to apply to the sound
+	/// @param PitchMultiplier - Pitch multiplier to apply to the sound
+	/// </summary>
 	public  void ClientPlaySoundAtLocation(USoundBase Sound,FVector Location,float VolumeMultiplier,float PitchMultiplier)
 	{
 		CheckIsValid();
@@ -667,6 +945,13 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPlaySound(IntPtr _this,IntPtr Sound,float VolumeMultiplier,float PitchMultiplier);
+	
+	/// <summary>
+	/// Play sound client-side (so only the client will hear it)
+	/// @param Sound - Sound to play
+	/// @param VolumeMultiplier - Volume multiplier to apply to the sound
+	/// @param PitchMultiplier - Pitch multiplier to apply to the sound
+	/// </summary>
 	public  void ClientPlaySound(USoundBase Sound,float VolumeMultiplier,float PitchMultiplier)
 	{
 		CheckIsValid();
@@ -676,6 +961,14 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPlayCameraShake(IntPtr _this,IntPtr Shake,float Scale,int PlaySpace,ref FRotator UserPlaySpaceRot);
+	
+	/// <summary>
+	/// Play Camera Shake
+	/// @param Shake - Camera shake animation to play
+	/// @param Scale - Scalar defining how "intense" to play the anim
+	/// @param PlaySpace - Which coordinate system to play the shake in (used for CameraAnims within the shake).
+	/// @param UserPlaySpaceRot - Matrix used when PlaySpace = CAPS_UserDefined
+	/// </summary>
 	public  void ClientPlayCameraShake(TSubclassOf<UCameraShake>  Shake,float Scale=1.000000f,ECameraAnimPlaySpace PlaySpace=ECameraAnimPlaySpace.CameraLocal,FRotator UserPlaySpaceRot=default(FRotator))
 	{
 		CheckIsValid();
@@ -685,6 +978,19 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientPlayCameraAnim(IntPtr _this,IntPtr AnimToPlay,float Scale,float Rate,float BlendInTime,float BlendOutTime,int bLoop,int bRandomStartTime,int Space,ref FRotator CustomPlaySpace);
+	
+	/// <summary>
+	/// Play the indicated CameraAnim on this camera.
+	/// @param AnimToPlay - Camera animation to play
+	/// @param Scale - "Intensity" scalar.  This is the scale at which the anim was first played.
+	/// @param Rate -  Multiplier for playback rate.  1.0 = normal.
+	/// @param BlendInTime - Time to interpolate in from zero, for smooth starts
+	/// @param BlendOutTime - Time to interpolate out to zero, for smooth finishes
+	/// @param bLoop - True if the animation should loop, false otherwise
+	/// @param bRandomStartTime - Whether or not to choose a random time to start playing.  Only really makes sense for bLoop = true
+	/// @param Space - Animation play area
+	/// @param CustomPlaySpace - Matrix used when Space = CAPS_UserDefined
+	/// </summary>
 	public  void ClientPlayCameraAnim(UCameraAnim AnimToPlay,float Scale=1.000000f,float Rate=1.000000f,float BlendInTime=0.000000f,float BlendOutTime=0.000000f,bool bLoop=false,bool bRandomStartTime=false,ECameraAnimPlaySpace Space=ECameraAnimPlaySpace.CameraLocal,FRotator CustomPlaySpace=default(FRotator))
 	{
 		CheckIsValid();
@@ -694,6 +1000,13 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientMessage(IntPtr _this,string S,string Type,float MsgLifeTime);
+	
+	/// <summary>
+	/// Outputs a message to HUD
+	/// @param S - message to display
+	/// @param Type - @todo document
+	/// @param MsgLifeTime - Optional length of time to display 0 = default time
+	/// </summary>
 	public  void ClientMessage(string S,string Type,float MsgLifeTime)
 	{
 		CheckIsValid();
@@ -703,6 +1016,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientIgnoreMoveInput(IntPtr _this,int bIgnore);
+	
+	/// <summary>calls IgnoreMoveInput on client</summary>
 	public  void ClientIgnoreMoveInput(bool bIgnore)
 	{
 		CheckIsValid();
@@ -712,6 +1027,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientIgnoreLookInput(IntPtr _this,int bIgnore);
+	
+	/// <summary>calls IgnoreLookInput on client</summary>
 	public  void ClientIgnoreLookInput(bool bIgnore)
 	{
 		CheckIsValid();
@@ -721,6 +1038,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientGotoState(IntPtr _this,string NewState);
+	
+	/// <summary>
+	/// Server uses this to force client into NewState .
+	/// @Note ALL STATE NAMES NEED TO BE DEFINED IN name table in UnrealNames.h to be correctly replicated (so they are mapped to the same thing on client and server).
+	/// </summary>
 	public  void ClientGotoState(string NewState)
 	{
 		CheckIsValid();
@@ -730,6 +1052,12 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientGameEnded(IntPtr _this,IntPtr EndGameFocus,int bIsWinner);
+	
+	/// <summary>
+	/// Replicated function called by GameHasEnded().
+	/// @param       EndGameFocus - actor to view with camera
+	/// @param       bIsWinner - true if this controller is on winning team
+	/// </summary>
 	public  void ClientGameEnded(AActor EndGameFocus,bool bIsWinner)
 	{
 		CheckIsValid();
@@ -739,6 +1067,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientForceGarbageCollection(IntPtr _this);
+	
+	/// <summary>Forces GC at the end of the tick on the client</summary>
 	public  void ClientForceGarbageCollection()
 	{
 		CheckIsValid();
@@ -748,6 +1078,12 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientFlushLevelStreaming(IntPtr _this);
+	
+	/// <summary>
+	/// Tells the client to block until all pending level streaming actions are complete
+	/// happens at the end of the tick
+	/// primarily used to force update the client ASAP at join time
+	/// </summary>
 	public  void ClientFlushLevelStreaming()
 	{
 		CheckIsValid();
@@ -757,6 +1093,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientCommitMapChange(IntPtr _this);
+	
+	/// <summary>Actually performs the level transition prepared by PrepareMapChange().</summary>
 	public  void ClientCommitMapChange()
 	{
 		CheckIsValid();
@@ -766,6 +1104,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientCapBandwidth(IntPtr _this,int Cap);
+	
+	/// <summary>Set CurrentNetSpeed to the lower of its current value and Cap.</summary>
 	public  void ClientCapBandwidth(int Cap)
 	{
 		CheckIsValid();
@@ -775,6 +1115,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientCancelPendingMapChange(IntPtr _this);
+	
+	/// <summary>Tells client to cancel any pending map change.</summary>
 	public  void ClientCancelPendingMapChange()
 	{
 		CheckIsValid();
@@ -784,6 +1126,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientAddTextureStreamingLoc(IntPtr _this,ref FVector InLoc,float Duration,int bOverrideLocation);
+	
+	/// <summary>Adds a location to the texture streaming system for the specified duration.</summary>
 	public  void ClientAddTextureStreamingLoc(FVector InLoc,float Duration,bool bOverrideLocation)
 	{
 		CheckIsValid();
@@ -793,6 +1137,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SendToConsole(IntPtr _this,string Command);
+	
+	/// <summary>Sends a command to the console to execute if not shipping version</summary>
 	public  void SendToConsole(string Command)
 	{
 		CheckIsValid();
@@ -802,6 +1148,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ConsoleKey(IntPtr _this,ref FKey Key);
+	
+	/// <summary>Console control commands, useful when remote debugging so you can't touch the console the normal way</summary>
 	public  void ConsoleKey(FKey Key)
 	{
 		CheckIsValid();
@@ -811,6 +1159,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientUnmutePlayer(IntPtr _this,ref FUniqueNetIdRepl PlayerId);
+	
+	/// <summary>
+	/// Tell the client to unmute a player for this controller
+	/// @param PlayerId player id to unmute
+	/// </summary>
 	public  void ClientUnmutePlayer(FUniqueNetIdRepl PlayerId)
 	{
 		CheckIsValid();
@@ -820,6 +1173,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientMutePlayer(IntPtr _this,ref FUniqueNetIdRepl PlayerId);
+	
+	/// <summary>
+	/// Tell the client to mute a player for this controller
+	/// @param PlayerId player id to mute
+	/// </summary>
 	public  void ClientMutePlayer(FUniqueNetIdRepl PlayerId)
 	{
 		CheckIsValid();
@@ -829,6 +1187,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerUnmutePlayer(IntPtr _this,ref FUniqueNetIdRepl PlayerId);
+	
+	/// <summary>
+	/// Tell the server to unmute a player for this controller
+	/// @param PlayerId player id to unmute
+	/// </summary>
 	public  void ServerUnmutePlayer(FUniqueNetIdRepl PlayerId)
 	{
 		CheckIsValid();
@@ -838,6 +1201,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerMutePlayer(IntPtr _this,ref FUniqueNetIdRepl PlayerId);
+	
+	/// <summary>
+	/// Tell the server to mute a player for this controller
+	/// @param PlayerId player id to mute
+	/// </summary>
 	public  void ServerMutePlayer(FUniqueNetIdRepl PlayerId)
 	{
 		CheckIsValid();
@@ -847,6 +1215,13 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientVoiceHandshakeComplete(IntPtr _this);
+	
+	/// <summary>
+	/// Tells the client that the server has all the information it needs and that it
+	/// is ok to start sending voice packets. The server will already send voice packets
+	/// when this function is called, since it is set server side and then forwarded
+	/// NOTE: This is done as an RPC instead of variable replication because ordering matters
+	/// </summary>
 	public  void ClientVoiceHandshakeComplete()
 	{
 		CheckIsValid();
@@ -856,6 +1231,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ToggleSpeaking(IntPtr _this,int bInSpeaking);
+	
+	/// <summary>
+	/// Toggle voice chat on and off
+	/// @param bSpeaking enable or disable voice chat
+	/// </summary>
 	public  void ToggleSpeaking(bool bInSpeaking)
 	{
 		CheckIsValid();
@@ -865,6 +1245,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientEnableNetworkVoice(IntPtr _this,int bEnable);
+	
+	/// <summary>
+	/// Tell the client to enable or disable voice chat (not muting)
+	/// @param bEnable enable or disable voice chat
+	/// </summary>
 	public  void ClientEnableNetworkVoice(bool bEnable)
 	{
 		CheckIsValid();
@@ -874,6 +1259,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StartFire(IntPtr _this,int FireModeNum);
+	
+	/// <summary>Fire the player's currently selected weapon with the optional firemode.</summary>
 	public  void StartFire(byte FireModeNum=0)
 	{
 		CheckIsValid();
@@ -883,6 +1270,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMouseLocation(IntPtr _this,int X,int Y);
+	
+	/// <summary>Positions the mouse cursor in screen space, in pixels.</summary>
 	public  void SetMouseLocation(int X,int Y)
 	{
 		CheckIsValid();
@@ -892,6 +1281,11 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int ProjectWorldLocationToScreen(IntPtr _this,ref FVector WorldLocation,out FVector2D ScreenLocation,int bPlayerViewportRelative);
+	
+	/// <summary>
+	/// Convert a World Space 3D position into a 2D Screen Space position.
+	/// @return true if the world coordinate was successfully projected to the screen.
+	/// </summary>
 	public  bool ProjectWorldLocationToScreen(FVector WorldLocation,out FVector2D ScreenLocation,bool bPlayerViewportRelative=false)
 	{
 		CheckIsValid();
@@ -902,6 +1296,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int DeprojectScreenPositionToWorld(IntPtr _this,float ScreenX,float ScreenY,out FVector WorldLocation,out FVector WorldDirection);
+	
+	/// <summary>Convert current mouse 2D position to World Space 3D position and direction. Returns false if unable to determine value. *</summary>
 	public  bool DeprojectScreenPositionToWorld(float ScreenX,float ScreenY,out FVector WorldLocation,out FVector WorldDirection)
 	{
 		CheckIsValid();
@@ -912,6 +1308,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int DeprojectMousePositionToWorld(IntPtr _this,out FVector WorldLocation,out FVector WorldDirection);
+	
+	/// <summary>Convert current mouse 2D position to World Space 3D position and direction. Returns false if unable to determine value. *</summary>
 	public  bool DeprojectMousePositionToWorld(out FVector WorldLocation,out FVector WorldDirection)
 	{
 		CheckIsValid();
@@ -922,6 +1320,7 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetHitResultUnderFingerForObjects(IntPtr _this,int FingerIndex,EObjectTypeQuery[] ObjectTypes,int bTraceComplex,out FHitResult HitResult);
+	
 	public  bool GetHitResultUnderFingerForObjects(ETouchIndex FingerIndex,EObjectTypeQuery[] ObjectTypes,bool bTraceComplex,out FHitResult HitResult)
 	{
 		CheckIsValid();
@@ -932,6 +1331,7 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetHitResultUnderFingerByChannel(IntPtr _this,int FingerIndex,int TraceChannel,int bTraceComplex,out FHitResult HitResult);
+	
 	public  bool GetHitResultUnderFingerByChannel(ETouchIndex FingerIndex,ETraceTypeQuery TraceChannel,bool bTraceComplex,out FHitResult HitResult)
 	{
 		CheckIsValid();
@@ -942,6 +1342,7 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetHitResultUnderCursorForObjects(IntPtr _this,EObjectTypeQuery[] ObjectTypes,int bTraceComplex,out FHitResult HitResult);
+	
 	public  bool GetHitResultUnderCursorForObjects(EObjectTypeQuery[] ObjectTypes,bool bTraceComplex,out FHitResult HitResult)
 	{
 		CheckIsValid();
@@ -952,6 +1353,7 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetHitResultUnderCursorByChannel(IntPtr _this,int TraceChannel,int bTraceComplex,out FHitResult HitResult);
+	
 	public  bool GetHitResultUnderCursorByChannel(ETraceTypeQuery TraceChannel,bool bTraceComplex,out FHitResult HitResult)
 	{
 		CheckIsValid();
@@ -962,6 +1364,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SwitchLevel(IntPtr _this,string URL);
+	
+	/// <summary>SwitchLevel to the given MapURL.</summary>
 	public  void SwitchLevel(string URL)
 	{
 		CheckIsValid();
@@ -971,6 +1375,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetName(IntPtr _this,string S);
+	
+	/// <summary>Trys to set the player's name to the given name.</summary>
 	public  void SetName(string S)
 	{
 		CheckIsValid();
@@ -980,6 +1386,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Pause(IntPtr _this);
+	
+	/// <summary>Command to try to pause the game.</summary>
 	public  void Pause()
 	{
 		CheckIsValid();
@@ -989,6 +1397,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientRepObjRef(IntPtr _this,IntPtr Object);
+	
+	/// <summary>Development RPC for testing object reference replication</summary>
 	public  void ClientRepObjRef(UObject Object)
 	{
 		CheckIsValid();
@@ -998,6 +1408,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientReturnToMainMenu(IntPtr _this,string ReturnReason);
+	
+	/// <summary>Return the client to the main menu gracefully</summary>
 	public  void ClientReturnToMainMenu(string ReturnReason)
 	{
 		CheckIsValid();
@@ -1007,6 +1419,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void LocalTravel(IntPtr _this,string URL);
+	
+	/// <summary>Causes the client to travel to the given URL</summary>
 	public  void LocalTravel(string URL)
 	{
 		CheckIsValid();
@@ -1016,6 +1430,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RestartLevel(IntPtr _this);
+	
+	/// <summary>Restarts the current level</summary>
 	public  void RestartLevel()
 	{
 		CheckIsValid();
@@ -1025,6 +1441,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void FOV(IntPtr _this,float NewFOV);
+	
+	/// <summary>Set the field of view to NewFOV</summary>
 	public  void FOV(float NewFOV)
 	{
 		CheckIsValid();
@@ -1034,6 +1452,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void EnableCheats(IntPtr _this);
+	
+	/// <summary>Enables cheats within the game</summary>
 	public  void EnableCheats()
 	{
 		CheckIsValid();
@@ -1043,6 +1463,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClientSetSpectatorWaiting(IntPtr _this,int bWaiting);
+	
+	/// <summary>Indicate that the Spectator is waiting to join/respawn.</summary>
 	public  void ClientSetSpectatorWaiting(bool bWaiting)
 	{
 		CheckIsValid();
@@ -1052,6 +1474,8 @@ public partial class APlayerController:AController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ServerSetSpectatorWaiting(IntPtr _this,int bWaiting);
+	
+	/// <summary>Indicate that the Spectator is waiting to join/respawn.</summary>
 	public  void ServerSetSpectatorWaiting(bool bWaiting)
 	{
 		CheckIsValid();
@@ -1059,7 +1483,7 @@ public partial class APlayerController:AController
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

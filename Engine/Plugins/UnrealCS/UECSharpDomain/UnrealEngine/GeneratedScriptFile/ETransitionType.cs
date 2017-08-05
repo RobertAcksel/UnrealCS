@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Enumerates transition types.</summary>
 	public enum ETransitionType:byte
 	{
 		TT_None=0,

@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>The importance of a mesh feature when automatically generating mesh LODs.</summary>
 	public enum EMeshFeatureImportance:byte
 	{
 		Off=0,

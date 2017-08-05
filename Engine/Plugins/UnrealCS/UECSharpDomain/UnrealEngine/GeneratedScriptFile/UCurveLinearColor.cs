@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCurveLinearColor:UCurveBase 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FLinearColor GetLinearColorValue(IntPtr _this,float InTime);
+	
 	public  FLinearColor GetLinearColorValue(float InTime)
 	{
 		CheckIsValid();
@@ -15,7 +16,7 @@ public partial class UCurveLinearColor:UCurveBase
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

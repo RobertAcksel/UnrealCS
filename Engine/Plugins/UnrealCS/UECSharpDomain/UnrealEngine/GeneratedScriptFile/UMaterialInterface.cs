@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UMaterialInterface:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetPhysicalMaterial(IntPtr _this);
+	
+	/// <summary>
+	/// Return a pointer to the physical material used by this material instance.
+	/// @return The physical material.
+	/// </summary>
 	public  UPhysicalMaterial GetPhysicalMaterial()
 	{
 		CheckIsValid();
@@ -17,6 +22,8 @@ public partial class UMaterialInterface:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetBaseMaterial(IntPtr _this);
+	
+	/// <summary>Walks up parent chain and finds the base Material that this is an instance of. Just calls the virtual GetMaterial()</summary>
 	public  UMaterial GetBaseMaterial()
 	{
 		CheckIsValid();
@@ -25,7 +32,7 @@ public partial class UMaterialInterface:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

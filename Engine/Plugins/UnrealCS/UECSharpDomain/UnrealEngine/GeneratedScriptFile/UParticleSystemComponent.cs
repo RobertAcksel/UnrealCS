@@ -5,8 +5,17 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UParticleSystemComponent:UPrimitiveComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void GenerateParticleEvent(IntPtr _this,string InEventName,float InEmitterTime,ref FVector InLocation,ref FVector InDirection,ref FVector InVelocity);
+	
+	/// <summary>
+	/// Record a kismet event.
+	/// @param  InEventName                             The name of the event that fired.
+	/// @param  InEmitterTime                   The emitter time when the event fired.
+	/// @param  InLocation                              The location of the particle when the event fired.
+	/// @param  InVelocity                              The velocity of the particle when the event fired.
+	/// @param  InNormal                                Normal vector of the collision in coordinate system of the returner. Zero=none.
+	/// </summary>
 	public  void GenerateParticleEvent(string InEventName,float InEmitterTime,FVector InLocation,FVector InDirection,FVector InVelocity)
 	{
 		CheckIsValid();
@@ -16,6 +25,8 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetNamedMaterial(IntPtr _this,string InName);
+	
+	/// <summary>Returns a named material. If this named material is not found, returns NULL.</summary>
 	public  UMaterialInterface GetNamedMaterial(string InName)
 	{
 		CheckIsValid();
@@ -26,6 +37,11 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr CreateNamedDynamicMaterialInstance(IntPtr _this,string InName,IntPtr SourceMaterial);
+	
+	/// <summary>
+	/// Creates a Dynamic Material Instance for the specified named material override, optionally from the supplied material.
+	/// @param Name - The slot name of the material to replace.  If invalid, the material is unchanged and NULL is returned.
+	/// </summary>
 	public  UMaterialInstanceDynamic CreateNamedDynamicMaterialInstance(string InName,UMaterialInterface SourceMaterial)
 	{
 		CheckIsValid();
@@ -36,6 +52,14 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTrailSourceData(IntPtr _this,string InFirstSocketName,string InSecondSocketName,int InWidthMode,float InWidth);
+	
+	/// <summary>
+	/// Sets the defining data for all trails in this component.
+	/// @param        InFirstSocketName       The name of the first socket for the trail.
+	/// @param        InSecondSocketName      The name of the second socket for the trail.
+	/// @param        InWidthMode                     How the width value is applied to the trail.
+	/// @param        InWidth                         The width of the trail.
+	/// </summary>
 	public  void SetTrailSourceData(string InFirstSocketName,string InSecondSocketName,ETrailWidthMode InWidthMode,float InWidth)
 	{
 		CheckIsValid();
@@ -45,6 +69,8 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void EndTrails(IntPtr _this);
+	
+	/// <summary>Ends all trail emitters in this component.</summary>
 	public  void EndTrails()
 	{
 		CheckIsValid();
@@ -54,6 +80,14 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void BeginTrails(IntPtr _this,string InFirstSocketName,string InSecondSocketName,int InWidthMode,float InWidth);
+	
+	/// <summary>
+	/// Begins all trail emitters in this component.
+	/// @param        InFirstSocketName       The name of the first socket for the trail.
+	/// @param        InSecondSocketName      The name of the second socket for the trail.
+	/// @param        InWidthMode                     How the width value is applied to the trail.
+	/// @param        InWidth                         The width of the trail.
+	/// </summary>
 	public  void BeginTrails(string InFirstSocketName,string InSecondSocketName,ETrailWidthMode InWidthMode,float InWidth)
 	{
 		CheckIsValid();
@@ -63,6 +97,8 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumActiveParticles(IntPtr _this);
+	
+	/// <summary>Get the current number of active particles in this system</summary>
 	public  int GetNumActiveParticles()
 	{
 		CheckIsValid();
@@ -73,6 +109,8 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetTemplate(IntPtr _this,IntPtr NewTemplate);
+	
+	/// <summary>Change the ParticleSystem used by this ParticleSystemComponent</summary>
 	public  void SetTemplate(UParticleSystem NewTemplate)
 	{
 		CheckIsValid();
@@ -82,6 +120,11 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetMaterialParameter(IntPtr _this,string ParameterName,IntPtr Param);
+	
+	/// <summary>
+	/// Set a named material instance parameter on this ParticleSystemComponent.
+	/// Updates the parameter if it already exists, or creates a new entry if not.
+	/// </summary>
 	public  void SetMaterialParameter(string ParameterName,UMaterialInterface Param)
 	{
 		CheckIsValid();
@@ -91,6 +134,11 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetActorParameter(IntPtr _this,string ParameterName,IntPtr Param);
+	
+	/// <summary>
+	/// Set a named actor instance parameter on this ParticleSystemComponent.
+	/// Updates the parameter if it already exists, or creates a new entry if not.
+	/// </summary>
 	public  void SetActorParameter(string ParameterName,AActor Param)
 	{
 		CheckIsValid();
@@ -100,6 +148,11 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetColorParameter(IntPtr _this,string ParameterName,ref FLinearColor Param);
+	
+	/// <summary>
+	/// Set a named color instance parameter on this ParticleSystemComponent.
+	/// Updates the parameter if it already exists, or creates a new entry if not.
+	/// </summary>
 	public  void SetColorParameter(string ParameterName,FLinearColor Param)
 	{
 		CheckIsValid();
@@ -109,6 +162,11 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVectorParameter(IntPtr _this,string ParameterName,ref FVector Param);
+	
+	/// <summary>
+	/// Set a named vector instance parameter on this ParticleSystemComponent.
+	/// Updates the parameter if it already exists, or creates a new entry if not.
+	/// </summary>
 	public  void SetVectorParameter(string ParameterName,FVector Param)
 	{
 		CheckIsValid();
@@ -118,6 +176,8 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetFloatParameter(IntPtr _this,string ParameterName,float Param);
+	
+	/// <summary>Change a named float parameter</summary>
 	public  void SetFloatParameter(string ParameterName,float Param)
 	{
 		CheckIsValid();
@@ -127,6 +187,12 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetEmitterEnable(IntPtr _this,string EmitterName,int bNewEnableState);
+	
+	/// <summary>
+	/// Enables/Disables a sub-emitter
+	/// @param  EmitterName                     The name of the sub-emitter to set it on
+	/// @param  bNewEnableState         The value to set it to
+	/// </summary>
 	public  void SetEmitterEnable(string EmitterName,bool bNewEnableState)
 	{
 		CheckIsValid();
@@ -136,6 +202,15 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamTargetStrength(IntPtr _this,int EmitterIndex,int TargetIndex,out float OutTargetStrength);
+	
+	/// <summary>
+	/// Get the beam target strength
+	/// @param  EmitterIndex            The index of the emitter to get
+	/// @param  TargetIndex                     Which beam within the emitter to get
+	/// @param  OutTargetStrength       Value of target tangent
+	/// @return true            EmitterIndex and TargetIndex are valid - OutTargetStrength is valid
+	///                 false           EmitterIndex or TargetIndex is invalid - OutTargetStrength is invalid
+	/// </summary>
 	public  bool GetBeamTargetStrength(int EmitterIndex,int TargetIndex,out float OutTargetStrength)
 	{
 		CheckIsValid();
@@ -146,6 +221,15 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamTargetTangent(IntPtr _this,int EmitterIndex,int TargetIndex,out FVector OutTangentPoint);
+	
+	/// <summary>
+	/// Get the beam target tangent
+	/// @param  EmitterIndex            The index of the emitter to get
+	/// @param  TargetIndex                     Which beam within the emitter to get
+	/// @param  OutTangentPoint         Value of target tangent
+	/// @return true            EmitterIndex and TargetIndex are valid - OutTangentPoint is valid
+	///                 false           EmitterIndex or TargetIndex is invalid - OutTangentPoint is invalid
+	/// </summary>
 	public  bool GetBeamTargetTangent(int EmitterIndex,int TargetIndex,out FVector OutTangentPoint)
 	{
 		CheckIsValid();
@@ -156,6 +240,15 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamTargetPoint(IntPtr _this,int EmitterIndex,int TargetIndex,out FVector OutTargetPoint);
+	
+	/// <summary>
+	/// Get the beam target point
+	/// @param  EmitterIndex            The index of the emitter to get
+	/// @param  TargetIndex                     Which beam within the emitter to get
+	/// @param  OutTargetPoint          Value of target point
+	/// @return true            EmitterIndex and TargetIndex are valid - OutTargetPoint is valid
+	///                 false           EmitterIndex or TargetIndex is invalid - OutTargetPoint is invalid
+	/// </summary>
 	public  bool GetBeamTargetPoint(int EmitterIndex,int TargetIndex,out FVector OutTargetPoint)
 	{
 		CheckIsValid();
@@ -166,6 +259,15 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamSourceStrength(IntPtr _this,int EmitterIndex,int SourceIndex,out float OutSourceStrength);
+	
+	/// <summary>
+	/// Get the beam source strength
+	/// @param  EmitterIndex            The index of the emitter to get
+	/// @param  SourceIndex                     Which beam within the emitter to get
+	/// @param  OutSourceStrength               Value of source tangent
+	/// @return true            EmitterIndex and SourceIndex are valid - OutSourceStrength is valid
+	///                 false           EmitterIndex or SourceIndex is invalid - OutSourceStrength is invalid
+	/// </summary>
 	public  bool GetBeamSourceStrength(int EmitterIndex,int SourceIndex,out float OutSourceStrength)
 	{
 		CheckIsValid();
@@ -176,6 +278,15 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamSourceTangent(IntPtr _this,int EmitterIndex,int SourceIndex,out FVector OutTangentPoint);
+	
+	/// <summary>
+	/// Get the beam source tangent
+	/// @param  EmitterIndex            The index of the emitter to get
+	/// @param  SourceIndex                     Which beam within the emitter to get
+	/// @param  OutTangentPoint         Value of source tangent
+	/// @return true            EmitterIndex and SourceIndex are valid - OutTangentPoint is valid
+	///                 false           EmitterIndex or SourceIndex is invalid - OutTangentPoint is invalid
+	/// </summary>
 	public  bool GetBeamSourceTangent(int EmitterIndex,int SourceIndex,out FVector OutTangentPoint)
 	{
 		CheckIsValid();
@@ -186,6 +297,15 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamSourcePoint(IntPtr _this,int EmitterIndex,int SourceIndex,out FVector OutSourcePoint);
+	
+	/// <summary>
+	/// Get the beam source point
+	/// @param  EmitterIndex            The index of the emitter to get
+	/// @param  SourceIndex                     Which beam within the emitter to get
+	/// @param  OutSourcePoint          Value of source point
+	/// @return true            EmitterIndex and SourceIndex are valid - OutSourcePoint is valid
+	///                 false           EmitterIndex or SourceIndex is invalid - OutSourcePoint is invalid
+	/// </summary>
 	public  bool GetBeamSourcePoint(int EmitterIndex,int SourceIndex,out FVector OutSourcePoint)
 	{
 		CheckIsValid();
@@ -196,6 +316,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetBeamEndPoint(IntPtr _this,int EmitterIndex,out FVector OutEndPoint);
+	
+	/// <summary>
+	/// Get the beam end point
+	/// @param  EmitterIndex            The index of the emitter to get the value of
+	/// @return true            EmitterIndex is valid and End point is set - OutEndPoint is valid
+	///                 false           EmitterIndex invalid or End point is not set - OutEndPoint is invalid
+	/// </summary>
 	public  bool GetBeamEndPoint(int EmitterIndex,out FVector OutEndPoint)
 	{
 		CheckIsValid();
@@ -206,6 +333,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamTargetStrength(IntPtr _this,int EmitterIndex,float NewTargetStrength,int TargetIndex);
+	
+	/// <summary>
+	/// Set the beam target strength
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewTargetStrength       The value to set it to
+	/// @param  TargetIndex                     Which beam within the emitter to set it on
+	/// </summary>
 	public  void SetBeamTargetStrength(int EmitterIndex,float NewTargetStrength,int TargetIndex)
 	{
 		CheckIsValid();
@@ -215,6 +349,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamTargetTangent(IntPtr _this,int EmitterIndex,ref FVector NewTangentPoint,int TargetIndex);
+	
+	/// <summary>
+	/// Set the beam target tangent
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewTangentPoint         The value to set it to
+	/// @param  TargetIndex                     Which beam within the emitter to set it on
+	/// </summary>
 	public  void SetBeamTargetTangent(int EmitterIndex,FVector NewTangentPoint,int TargetIndex)
 	{
 		CheckIsValid();
@@ -224,6 +365,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamTargetPoint(IntPtr _this,int EmitterIndex,ref FVector NewTargetPoint,int TargetIndex);
+	
+	/// <summary>
+	/// Set the beam target point
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewTargetPoint          The value to set it to
+	/// @param  TargetIndex                     Which beam within the emitter to set it on
+	/// </summary>
 	public  void SetBeamTargetPoint(int EmitterIndex,FVector NewTargetPoint,int TargetIndex)
 	{
 		CheckIsValid();
@@ -233,6 +381,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamSourceStrength(IntPtr _this,int EmitterIndex,float NewSourceStrength,int SourceIndex);
+	
+	/// <summary>
+	/// Set the beam source strength
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewSourceStrength       The value to set it to
+	/// @param  SourceIndex                     Which beam within the emitter to set it on
+	/// </summary>
 	public  void SetBeamSourceStrength(int EmitterIndex,float NewSourceStrength,int SourceIndex)
 	{
 		CheckIsValid();
@@ -242,6 +397,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamSourceTangent(IntPtr _this,int EmitterIndex,ref FVector NewTangentPoint,int SourceIndex);
+	
+	/// <summary>
+	/// Set the beam source tangent
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewTangentPoint         The value to set it to
+	/// @param  SourceIndex                     Which beam within the emitter to set it on
+	/// </summary>
 	public  void SetBeamSourceTangent(int EmitterIndex,FVector NewTangentPoint,int SourceIndex)
 	{
 		CheckIsValid();
@@ -251,6 +413,13 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamSourcePoint(IntPtr _this,int EmitterIndex,ref FVector NewSourcePoint,int SourceIndex);
+	
+	/// <summary>
+	/// Set the beam source point
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewSourcePoint          The value to set it to
+	/// @param  SourceIndex                     Which beam within the emitter to set it on
+	/// </summary>
 	public  void SetBeamSourcePoint(int EmitterIndex,FVector NewSourcePoint,int SourceIndex)
 	{
 		CheckIsValid();
@@ -260,6 +429,12 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBeamEndPoint(IntPtr _this,int EmitterIndex,ref FVector NewEndPoint);
+	
+	/// <summary>
+	/// Set the beam end point
+	/// @param  EmitterIndex            The index of the emitter to set it on
+	/// @param  NewEndPoint                     The value to set it to
+	/// </summary>
 	public  void SetBeamEndPoint(int EmitterIndex,FVector NewEndPoint)
 	{
 		CheckIsValid();
@@ -267,7 +442,7 @@ public partial class UParticleSystemComponent:UPrimitiveComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

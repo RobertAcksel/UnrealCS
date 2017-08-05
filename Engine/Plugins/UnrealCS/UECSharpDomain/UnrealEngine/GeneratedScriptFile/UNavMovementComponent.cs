@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UNavMovementComponent:UMovementComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsFlying(IntPtr _this);
+	
+	/// <summary>@return true if currently flying (moving through a non-fluid volume without resting on the ground)</summary>
 	public  bool IsFlying()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UNavMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsSwimming(IntPtr _this);
+	
+	/// <summary>@return true if currently swimming (moving through a fluid volume)</summary>
 	public  bool IsSwimming()
 	{
 		CheckIsValid();
@@ -27,6 +31,8 @@ public partial class UNavMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsMovingOnGround(IntPtr _this);
+	
+	/// <summary>@return true if currently moving on the ground (e.g. walking or driving)</summary>
 	public  bool IsMovingOnGround()
 	{
 		CheckIsValid();
@@ -37,6 +43,8 @@ public partial class UNavMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsFalling(IntPtr _this);
+	
+	/// <summary>@return true if currently falling (not flying, in a non-fluid volume, and not on the ground)</summary>
 	public  bool IsFalling()
 	{
 		CheckIsValid();
@@ -47,6 +55,8 @@ public partial class UNavMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsCrouching(IntPtr _this);
+	
+	/// <summary>@return true if currently crouching</summary>
 	public  bool IsCrouching()
 	{
 		CheckIsValid();
@@ -57,6 +67,8 @@ public partial class UNavMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopMovementKeepPathing(IntPtr _this);
+	
+	/// <summary>Stops movement immediately (reset velocity) but keeps following current path</summary>
 	public  void StopMovementKeepPathing()
 	{
 		CheckIsValid();
@@ -66,6 +78,8 @@ public partial class UNavMovementComponent:UMovementComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopActiveMovement(IntPtr _this);
+	
+	/// <summary>Stops applying further movement (usually zeros acceleration).</summary>
 	public  void StopActiveMovement()
 	{
 		CheckIsValid();
@@ -73,7 +87,7 @@ public partial class UNavMovementComponent:UMovementComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

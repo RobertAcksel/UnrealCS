@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Used by FPostProcessSettings Depth of Fields</summary>
 	public enum EDepthOfFieldMethod:byte
 	{
 		DOFM_BokehDOF=0,

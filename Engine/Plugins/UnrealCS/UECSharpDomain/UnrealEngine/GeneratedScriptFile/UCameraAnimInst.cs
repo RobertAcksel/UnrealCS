@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UCameraAnimInst:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetScale(IntPtr _this,float NewDuration);
+	
+	/// <summary>Changes the scale of the animation while playing.</summary>
 	public  void SetScale(float NewDuration)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UCameraAnimInst:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetDuration(IntPtr _this,float NewDuration);
+	
+	/// <summary>Changes the running duration of this active anim, while maintaining playback position.</summary>
 	public  void SetDuration(float NewDuration)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class UCameraAnimInst:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Stop(IntPtr _this,int bImmediate);
+	
+	/// <summary>Stops this instance playing whatever animation it is playing.</summary>
 	public  void Stop(bool bImmediate=false)
 	{
 		CheckIsValid();
@@ -32,7 +38,7 @@ public partial class UCameraAnimInst:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

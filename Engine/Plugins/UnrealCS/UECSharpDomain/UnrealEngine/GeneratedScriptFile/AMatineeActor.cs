@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class AMatineeActor:AActor 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLoopingState(IntPtr _this,int bNewLooping);
+	
+	/// <summary>Change the looping behaviour of this matinee</summary>
 	public  void SetLoopingState(bool bNewLooping)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class AMatineeActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ChangePlaybackDirection(IntPtr _this);
+	
+	/// <summary>Changes the direction of playback (go in reverse if it was going forward, or vice versa)</summary>
 	public  void ChangePlaybackDirection()
 	{
 		CheckIsValid();
@@ -25,6 +29,13 @@ public partial class AMatineeActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPosition(IntPtr _this,float NewPosition,int bJump);
+	
+	/// <summary>
+	/// Set the position of the interpolation.
+	/// @note if the interpolation is not currently active, this function doesn't send any Kismet events
+	/// @param NewPosition the new position to set the interpolation to
+	/// @param bJump if true, teleport to the new position (don't trigger any events between the old and new positions, etc)
+	/// </summary>
 	public  void SetPosition(float NewPosition,bool bJump=false)
 	{
 		CheckIsValid();
@@ -34,6 +45,8 @@ public partial class AMatineeActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Pause(IntPtr _this);
+	
+	/// <summary>Hold playback at its current position. Calling Pause again will continue playback in its current direction.</summary>
 	public  void Pause()
 	{
 		CheckIsValid();
@@ -43,6 +56,8 @@ public partial class AMatineeActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Reverse(IntPtr _this);
+	
+	/// <summary>Similar to play, but the playback will go backwards until the beginning of the sequence is reached.</summary>
 	public  void Reverse()
 	{
 		CheckIsValid();
@@ -52,6 +67,8 @@ public partial class AMatineeActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Stop(IntPtr _this);
+	
+	/// <summary>Stops playback at the current position</summary>
 	public  void Stop()
 	{
 		CheckIsValid();
@@ -61,6 +78,11 @@ public partial class AMatineeActor:AActor
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Play(IntPtr _this);
+	
+	/// <summary>
+	/// Begin playback of the matinee. Only called in game.
+	/// Will then advance Position by (PlayRate * Deltatime) each time the matinee is ticked.
+	/// </summary>
 	public  void Play()
 	{
 		CheckIsValid();
@@ -68,7 +90,7 @@ public partial class AMatineeActor:AActor
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

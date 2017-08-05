@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>EInputEvent</summary>
 	public enum EInputEvent:byte
 	{
 		IE_Pressed=0,

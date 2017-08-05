@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UColorBinding:UPropertyBinding 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FLinearColor GetLinearValue(IntPtr _this);
+	
 	public  FLinearColor GetLinearValue()
 	{
 		CheckIsValid();
@@ -17,6 +18,7 @@ public partial class UColorBinding:UPropertyBinding
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FSlateColor GetSlateValue(IntPtr _this);
+	
 	public  FSlateColor GetSlateValue()
 	{
 		CheckIsValid();
@@ -25,7 +27,7 @@ public partial class UColorBinding:UPropertyBinding
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

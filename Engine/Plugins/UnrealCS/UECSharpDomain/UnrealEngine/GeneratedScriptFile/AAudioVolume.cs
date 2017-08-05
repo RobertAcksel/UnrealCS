@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class AAudioVolume:AVolume 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetInteriorSettings(IntPtr _this,ref FInteriorSettings NewInteriorSettings);
+	
 	public  void SetInteriorSettings(FInteriorSettings NewInteriorSettings)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class AAudioVolume:AVolume
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetReverbSettings(IntPtr _this,ref FReverbSettings NewReverbSettings);
+	
 	public  void SetReverbSettings(FReverbSettings NewReverbSettings)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class AAudioVolume:AVolume
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetEnabled(IntPtr _this,int bNewEnabled);
+	
 	public  void SetEnabled(bool bNewEnabled)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class AAudioVolume:AVolume
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPriority(IntPtr _this,float NewPriority);
+	
 	public  void SetPriority(float NewPriority)
 	{
 		CheckIsValid();
@@ -41,7 +45,7 @@ public partial class AAudioVolume:AVolume
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

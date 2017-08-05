@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class AGameModeBase:AInfo 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RestartPlayerAtTransform(IntPtr _this,IntPtr NewPlayer,ref FTransform SpawnTransform);
+	
+	/// <summary>Tries to spawn the player's pawn at a specific location</summary>
 	public  void RestartPlayerAtTransform(AController NewPlayer,FTransform SpawnTransform)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RestartPlayerAtPlayerStart(IntPtr _this,IntPtr NewPlayer,IntPtr StartSpot);
+	
+	/// <summary>Tries to spawn the player's pawn at the specified actor's location</summary>
 	public  void RestartPlayerAtPlayerStart(AController NewPlayer,AActor StartSpot)
 	{
 		CheckIsValid();
@@ -25,6 +29,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void RestartPlayer(IntPtr _this,IntPtr NewPlayer);
+	
+	/// <summary>Tries to spawn the player's pawn, at the location returned by FindPlayerStart</summary>
 	public  void RestartPlayer(AController NewPlayer)
 	{
 		CheckIsValid();
@@ -34,6 +40,14 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr K2_FindPlayerStart(IntPtr _this,IntPtr Player,string IncomingName);
+	
+	/// <summary>
+	/// Return the specific player start actor that should be used for the next spawn
+	/// This will either use a previously saved startactor, or calls ChoosePlayerStart
+	/// @param Player The AController for whom we are choosing a Player Start
+	/// @param IncomingName Specifies the tag of a Player Start to use
+	/// @returns Actor chosen as player start (usually a PlayerStart)
+	/// </summary>
 	public  AActor K2_FindPlayerStart(AController Player,string IncomingName)
 	{
 		CheckIsValid();
@@ -44,6 +58,13 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ChangeName(IntPtr _this,IntPtr Controller,string NewName,int bNameChange);
+	
+	/// <summary>
+	/// Sets the name for a controller
+	/// @param Controller    The controller of the player to change the name of
+	/// @param NewName               The name to set the player to
+	/// @param bNameChange   Whether the name is changing or if this is the first time it has been set
+	/// </summary>
 	public  void ChangeName(AController Controller,string NewName,bool bNameChange)
 	{
 		CheckIsValid();
@@ -53,6 +74,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ReturnToMainMenuHost(IntPtr _this);
+	
+	/// <summary>Return to main menu, and disconnect any players</summary>
 	public  void ReturnToMainMenuHost()
 	{
 		CheckIsValid();
@@ -62,6 +85,11 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ResetLevel(IntPtr _this);
+	
+	/// <summary>
+	/// Overridable function called when resetting level. This is used to reset the game state while staying in the same map
+	/// Default implementation calls Reset() on all actors except GameMode and Controllers
+	/// </summary>
 	public  void ResetLevel()
 	{
 		CheckIsValid();
@@ -71,6 +99,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int HasMatchStarted(IntPtr _this);
+	
+	/// <summary>Returns true if the match start callbacks have been called</summary>
 	public  bool HasMatchStarted()
 	{
 		CheckIsValid();
@@ -81,6 +111,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StartPlay(IntPtr _this);
+	
+	/// <summary>Transitions to calls BeginPlay on actors.</summary>
 	public  void StartPlay()
 	{
 		CheckIsValid();
@@ -90,6 +122,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumSpectators(IntPtr _this);
+	
+	/// <summary>Returns number of human players currently spectating</summary>
 	public  int GetNumSpectators()
 	{
 		CheckIsValid();
@@ -100,6 +134,8 @@ public partial class AGameModeBase:AInfo
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetNumPlayers(IntPtr _this);
+	
+	/// <summary>Returns number of active human players, excluding spectators</summary>
 	public  int GetNumPlayers()
 	{
 		CheckIsValid();
@@ -108,7 +144,7 @@ public partial class AGameModeBase:AInfo
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UMovementComponent:UActorComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SnapUpdatedComponentToPlane(IntPtr _this);
+	
+	/// <summary>Snap the updated component to the plane constraint, if enabled.</summary>
 	public  void SnapUpdatedComponentToPlane()
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector ConstrainNormalToPlane(IntPtr _this,ref FVector Normal);
+	
+	/// <summary>Constrain a normal vector (of unit length) to the plane constraint, if enabled.</summary>
 	public  FVector ConstrainNormalToPlane(FVector Normal)
 	{
 		CheckIsValid();
@@ -26,6 +30,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector ConstrainLocationToPlane(IntPtr _this,ref FVector Location);
+	
+	/// <summary>Constrain a position vector to the plane constraint, if enabled.</summary>
 	public  FVector ConstrainLocationToPlane(FVector Location)
 	{
 		CheckIsValid();
@@ -36,6 +42,11 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector ConstrainDirectionToPlane(IntPtr _this,ref FVector Direction);
+	
+	/// <summary>
+	/// Constrain a direction vector to the plane constraint, if enabled.
+	/// @see SetPlaneConstraint
+	/// </summary>
 	public  FVector ConstrainDirectionToPlane(FVector Direction)
 	{
 		CheckIsValid();
@@ -46,6 +57,11 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetPlaneConstraintOrigin(IntPtr _this);
+	
+	/// <summary>
+	/// Get the plane constraint origin. This defines the behavior of snapping a position to the plane, such as by SnapUpdatedComponentToPlane().
+	/// @return The origin of the plane that constrains movement, if the plane constraint is enabled.
+	/// </summary>
 	public  FVector GetPlaneConstraintOrigin()
 	{
 		CheckIsValid();
@@ -56,6 +72,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetPlaneConstraintNormal(IntPtr _this);
+	
+	/// <summary>@return The normal of the plane that constrains movement, enforced if the plane constraint is enabled.</summary>
 	public  FVector GetPlaneConstraintNormal()
 	{
 		CheckIsValid();
@@ -66,6 +84,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaneConstraintEnabled(IntPtr _this,int bEnabled);
+	
+	/// <summary>Sets whether or not the plane constraint is enabled.</summary>
 	public  void SetPlaneConstraintEnabled(bool bEnabled)
 	{
 		CheckIsValid();
@@ -75,6 +95,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaneConstraintOrigin(IntPtr _this,ref FVector PlaneOrigin);
+	
+	/// <summary>Sets the origin of the plane that constrains movement, enforced if the plane constraint is enabled.</summary>
 	public  void SetPlaneConstraintOrigin(FVector PlaneOrigin)
 	{
 		CheckIsValid();
@@ -84,6 +106,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaneConstraintFromVectors(IntPtr _this,ref FVector Forward,ref FVector Up);
+	
+	/// <summary>Uses the Forward and Up vectors to compute the plane that constrains movement, enforced if the plane constraint is enabled.</summary>
 	public  void SetPlaneConstraintFromVectors(FVector Forward,FVector Up)
 	{
 		CheckIsValid();
@@ -93,6 +117,12 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaneConstraintNormal(IntPtr _this,ref FVector PlaneNormal);
+	
+	/// <summary>
+	/// Sets the normal of the plane that constrains movement, enforced if the plane constraint is enabled.
+	/// Changing the normal automatically sets PlaneConstraintAxisSetting to "Custom".
+	/// @param PlaneNormal   The normal of the plane. If non-zero in length, it will be normalized.
+	/// </summary>
 	public  void SetPlaneConstraintNormal(FVector PlaneNormal)
 	{
 		CheckIsValid();
@@ -102,6 +132,12 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int K2_MoveUpdatedComponent(IntPtr _this,ref FVector Delta,ref FRotator NewRotation,out FHitResult OutHit,int bSweep,int bTeleport);
+	
+	/// <summary>
+	/// Moves our UpdatedComponent by the given Delta, and sets rotation to NewRotation.
+	/// Respects the plane constraint, if enabled.
+	/// @return True if some movement occurred, false if no movement occurred. Result of any impact will be stored in OutHit.
+	/// </summary>
 	public  bool K2_MoveUpdatedComponent(FVector Delta,FRotator NewRotation,out FHitResult OutHit,bool bSweep=true,bool bTeleport=false)
 	{
 		CheckIsValid();
@@ -112,6 +148,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetUpdatedComponent(IntPtr _this,IntPtr NewUpdatedComponent);
+	
+	/// <summary>Assign the component we move and update.</summary>
 	public  void SetUpdatedComponent(USceneComponent NewUpdatedComponent)
 	{
 		CheckIsValid();
@@ -121,6 +159,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PhysicsVolumeChanged(IntPtr _this,IntPtr NewVolume);
+	
+	/// <summary>Delegate when PhysicsVolume of UpdatedComponent has been changed *</summary>
 	public  void PhysicsVolumeChanged(APhysicsVolume NewVolume)
 	{
 		CheckIsValid();
@@ -130,6 +170,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetPhysicsVolume(IntPtr _this);
+	
+	/// <summary>@return PhysicsVolume this MovementComponent is using, or the world's default physics volume if none. *</summary>
 	public  APhysicsVolume GetPhysicsVolume()
 	{
 		CheckIsValid();
@@ -140,6 +182,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StopMovementImmediately(IntPtr _this);
+	
+	/// <summary>Stops movement immediately (zeroes velocity, usually zeros acceleration for components with acceleration).</summary>
 	public  void StopMovementImmediately()
 	{
 		CheckIsValid();
@@ -149,6 +193,12 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsExceedingMaxSpeed(IntPtr _this,float MaxSpeed);
+	
+	/// <summary>
+	/// Returns true if the current velocity is exceeding the given max speed (usually the result of GetMaxSpeed()), within a small error tolerance.
+	/// Note that under normal circumstances updates cause by acceleration will not cause this to be true, however external forces or changes in the max speed limit
+	/// can cause the max speed to be violated.
+	/// </summary>
 	public  bool IsExceedingMaxSpeed(float MaxSpeed)
 	{
 		CheckIsValid();
@@ -159,6 +209,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float K2_GetModifiedMaxSpeed(IntPtr _this);
+	
+	/// <summary>@return the result of GetMaxSpeed() * GetMaxSpeedModifier().</summary>
 	public  float K2_GetModifiedMaxSpeed()
 	{
 		CheckIsValid();
@@ -169,6 +221,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetMaxSpeed(IntPtr _this);
+	
+	/// <summary>@return Maximum speed of component in current movement mode.</summary>
 	public  float GetMaxSpeed()
 	{
 		CheckIsValid();
@@ -179,6 +233,8 @@ public partial class UMovementComponent:UActorComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetGravityZ(IntPtr _this);
+	
+	/// <summary>@return gravity that affects this component</summary>
 	public  float GetGravityZ()
 	{
 		CheckIsValid();
@@ -187,7 +243,7 @@ public partial class UMovementComponent:UActorComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

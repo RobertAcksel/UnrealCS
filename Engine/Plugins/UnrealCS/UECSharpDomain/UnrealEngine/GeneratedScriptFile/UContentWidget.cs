@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UContentWidget:UPanelWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetContent(IntPtr _this);
+	
 	public  UWidget GetContent()
 	{
 		CheckIsValid();
@@ -17,6 +18,7 @@ public partial class UContentWidget:UPanelWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr SetContent(IntPtr _this,IntPtr Content);
+	
 	public  UPanelSlot SetContent(UWidget Content)
 	{
 		CheckIsValid();
@@ -27,6 +29,7 @@ public partial class UContentWidget:UPanelWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetContentSlot(IntPtr _this);
+	
 	public  UPanelSlot GetContentSlot()
 	{
 		CheckIsValid();
@@ -35,7 +38,7 @@ public partial class UContentWidget:UPanelWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

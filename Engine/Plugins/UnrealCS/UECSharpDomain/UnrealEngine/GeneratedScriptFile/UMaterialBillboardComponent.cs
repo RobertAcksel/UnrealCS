@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UMaterialBillboardComponent:UPrimitiveComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void AddElement(IntPtr _this,IntPtr Material,IntPtr DistanceToOpacityCurve,int bSizeIsInScreenSpace,float BaseSizeX,float BaseSizeY,IntPtr DistanceToSizeCurve);
+	
+	/// <summary>Adds an element to the sprite.</summary>
 	public  void AddElement(UMaterialInterface Material,UCurveFloat DistanceToOpacityCurve,bool bSizeIsInScreenSpace,float BaseSizeX,float BaseSizeY,UCurveFloat DistanceToSizeCurve)
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UMaterialBillboardComponent:UPrimitiveComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetElements(IntPtr _this,FMaterialSpriteElement[] NewElements);
+	
+	/// <summary>Set all elements of this material billboard component</summary>
 	public  void SetElements(FMaterialSpriteElement[] NewElements)
 	{
 		CheckIsValid();
@@ -23,7 +27,7 @@ public partial class UMaterialBillboardComponent:UPrimitiveComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

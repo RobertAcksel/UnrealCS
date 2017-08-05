@@ -5,8 +5,13 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UGameInstance:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void DebugRemovePlayer(IntPtr _this,int ControllerId);
+	
+	/// <summary>
+	/// Debug console command to remove the player with a given controller ID.
+	/// @param ControllerId - The controller ID to search for.
+	/// </summary>
 	public  void DebugRemovePlayer(int ControllerId)
 	{
 		CheckIsValid();
@@ -16,6 +21,11 @@ public partial class UGameInstance:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void DebugCreatePlayer(IntPtr _this,int ControllerId);
+	
+	/// <summary>
+	/// Debug console command to create a player.
+	/// @param ControllerId - The controller ID the player should accept input from.
+	/// </summary>
 	public  void DebugCreatePlayer(int ControllerId)
 	{
 		CheckIsValid();
@@ -23,7 +33,7 @@ public partial class UGameInstance:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

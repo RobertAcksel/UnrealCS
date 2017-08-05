@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPhysicsSpringComponent:USceneComponent 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetSpringDirection(IntPtr _this);
+	
+	/// <summary>Returns the spring direction from start to resting point</summary>
 	public  FVector GetSpringDirection()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UPhysicsSpringComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetSpringCurrentEndPoint(IntPtr _this);
+	
+	/// <summary>Returns the spring current end point in world space.</summary>
 	public  FVector GetSpringCurrentEndPoint()
 	{
 		CheckIsValid();
@@ -27,6 +31,8 @@ public partial class UPhysicsSpringComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern FVector GetSpringRestingPoint(IntPtr _this);
+	
+	/// <summary>Returns the spring resting point in world space.</summary>
 	public  FVector GetSpringRestingPoint()
 	{
 		CheckIsValid();
@@ -37,6 +43,12 @@ public partial class UPhysicsSpringComponent:USceneComponent
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetNormalizedCompressionScalar(IntPtr _this);
+	
+	/// <summary>
+	/// Returns the spring compression as a normalized scalar along spring direction.
+	/// 0 implies spring is at rest
+	/// 1 implies fully compressed
+	/// </summary>
 	public  float GetNormalizedCompressionScalar()
 	{
 		CheckIsValid();
@@ -45,7 +57,7 @@ public partial class UPhysicsSpringComponent:USceneComponent
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

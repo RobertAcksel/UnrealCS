@@ -8,6 +8,7 @@ namespace UnrealEngine
 		TF_Nearest=0,
 		TF_Bilinear=1,
 		TF_Trilinear=2,
+		/// <summary>Use setting from the Texture Group.</summary>
 		TF_Default=3,
 		TF_MAX=4,
 		

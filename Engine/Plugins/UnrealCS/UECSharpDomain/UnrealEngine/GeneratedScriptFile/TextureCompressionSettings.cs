@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>This needs to be mirrored in EditorFactories.cpp.</summary>
 	public enum TextureCompressionSettings:byte
 	{
 		TC_Default=0,

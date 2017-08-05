@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>Permitted spline point types for SplineComponent.</summary>
 	public enum ESplinePointType:byte
 	{
 		Linear=0,

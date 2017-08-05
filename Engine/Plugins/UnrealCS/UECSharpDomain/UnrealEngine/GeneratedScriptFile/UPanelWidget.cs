@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UPanelWidget:UWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ClearChildren(IntPtr _this);
+	
+	/// <summary>Remove all child widgets from the panel widget.</summary>
 	public  void ClearChildren()
 	{
 		CheckIsValid();
@@ -16,6 +18,8 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int HasAnyChildren(IntPtr _this);
+	
+	/// <summary>@return true if there are any child widgets in the panel</summary>
 	public  bool HasAnyChildren()
 	{
 		CheckIsValid();
@@ -26,6 +30,11 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int RemoveChild(IntPtr _this,IntPtr Content);
+	
+	/// <summary>
+	/// Removes a specific widget from the container.
+	/// @return true if the widget was found and removed.
+	/// </summary>
 	public  bool RemoveChild(UWidget Content)
 	{
 		CheckIsValid();
@@ -36,6 +45,11 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr AddChild(IntPtr _this,IntPtr Content);
+	
+	/// <summary>
+	/// Adds a new child widget to the container.  Returns the base slot type,
+	/// requires casting to turn it into the type specific to the container.
+	/// </summary>
 	public  UPanelSlot AddChild(UWidget Content)
 	{
 		CheckIsValid();
@@ -46,6 +60,8 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int RemoveChildAt(IntPtr _this,int Index);
+	
+	/// <summary>Removes a child by it's index.</summary>
 	public  bool RemoveChildAt(int Index)
 	{
 		CheckIsValid();
@@ -56,6 +72,8 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int HasChild(IntPtr _this,IntPtr Content);
+	
+	/// <summary>@return true if panel contains this widget</summary>
 	public  bool HasChild(UWidget Content)
 	{
 		CheckIsValid();
@@ -66,6 +84,8 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetChildIndex(IntPtr _this,IntPtr Content);
+	
+	/// <summary>Gets the index of a specific child widget</summary>
 	public  int GetChildIndex(UWidget Content)
 	{
 		CheckIsValid();
@@ -76,6 +96,12 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetChildAt(IntPtr _this,int Index);
+	
+	/// <summary>
+	/// Gets the widget at an index.
+	/// @param Index The index of the widget.
+	/// @return The widget at the given index, or nothing if there is no widget there.
+	/// </summary>
 	public  UWidget GetChildAt(int Index)
 	{
 		CheckIsValid();
@@ -86,6 +112,8 @@ public partial class UPanelWidget:UWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int GetChildrenCount(IntPtr _this);
+	
+	/// <summary>Gets number of child widgets in the container.</summary>
 	public  int GetChildrenCount()
 	{
 		CheckIsValid();
@@ -94,7 +122,7 @@ public partial class UPanelWidget:UWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

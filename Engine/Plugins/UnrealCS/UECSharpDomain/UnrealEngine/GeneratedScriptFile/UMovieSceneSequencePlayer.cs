@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UMovieSceneSequencePlayer:UObject 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetPlaybackEnd(IntPtr _this);
+	
+	/// <summary>Get the offset within the level sequence to finish playing</summary>
 	public  float GetPlaybackEnd()
 	{
 		CheckIsValid();
@@ -17,6 +19,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetPlaybackStart(IntPtr _this);
+	
+	/// <summary>Get the offset within the level sequence to start playing</summary>
 	public  float GetPlaybackStart()
 	{
 		CheckIsValid();
@@ -27,6 +31,12 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaybackRange(IntPtr _this,float NewStartTime,float NewEndTime);
+	
+	/// <summary>
+	/// Sets the range in time to be played back by this player, overriding the default range stored in the asset
+	/// @param       NewStartTime    The new starting time for playback
+	/// @param       NewEndTime              The new ending time for playback.  Must be larger than the start time.
+	/// </summary>
 	public  void SetPlaybackRange(float NewStartTime,float NewEndTime)
 	{
 		CheckIsValid();
@@ -36,6 +46,11 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlayRate(IntPtr _this,float PlayRate);
+	
+	/// <summary>
+	/// Set the playback rate of this player. Negative values will play the animation in reverse.
+	/// @param PlayRate - The new rate of playback for the animation.
+	/// </summary>
 	public  void SetPlayRate(float PlayRate)
 	{
 		CheckIsValid();
@@ -45,6 +60,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetPlayRate(IntPtr _this);
+	
+	/// <summary>Get the playback rate of this player.</summary>
 	public  float GetPlayRate()
 	{
 		CheckIsValid();
@@ -55,6 +72,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetLength(IntPtr _this);
+	
+	/// <summary>Get the playback length of the sequence</summary>
 	public  float GetLength()
 	{
 		CheckIsValid();
@@ -65,6 +84,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern int IsPlaying(IntPtr _this);
+	
+	/// <summary>Check whether the sequence is actively playing.</summary>
 	public  bool IsPlaying()
 	{
 		CheckIsValid();
@@ -75,6 +96,12 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPlaybackPosition(IntPtr _this,float NewPlaybackPosition);
+	
+	/// <summary>
+	/// Set the current playback position
+	/// @param NewPlaybackPosition - The new playback position to set.
+	/// If the animation is currently playing, it will continue to do so from the new position
+	/// </summary>
 	public  void SetPlaybackPosition(float NewPlaybackPosition)
 	{
 		CheckIsValid();
@@ -84,6 +111,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern float GetPlaybackPosition(IntPtr _this);
+	
+	/// <summary>Get the current playback position</summary>
 	public  float GetPlaybackPosition()
 	{
 		CheckIsValid();
@@ -94,6 +123,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Stop(IntPtr _this);
+	
+	/// <summary>Stop playback.</summary>
 	public  void Stop()
 	{
 		CheckIsValid();
@@ -103,6 +134,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Pause(IntPtr _this);
+	
+	/// <summary>Pause playback.</summary>
 	public  void Pause()
 	{
 		CheckIsValid();
@@ -112,6 +145,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void StartPlayingNextTick(IntPtr _this);
+	
+	/// <summary>Start playback from the current time cursor position, using the current play rate. Does not update the animation until next tick.</summary>
 	public  void StartPlayingNextTick()
 	{
 		CheckIsValid();
@@ -121,6 +156,11 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PlayLooping(IntPtr _this,int NumLoops);
+	
+	/// <summary>
+	/// Start playback from the current time cursor position, looping the specified number of times.
+	/// @param NumLoops - The number of loops to play. -1 indicates infinite looping.
+	/// </summary>
 	public  void PlayLooping(int NumLoops=-1)
 	{
 		CheckIsValid();
@@ -130,6 +170,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ChangePlaybackDirection(IntPtr _this);
+	
+	/// <summary>Changes the direction of playback (go in reverse if it was going forward, or vice versa)</summary>
 	public  void ChangePlaybackDirection()
 	{
 		CheckIsValid();
@@ -139,6 +181,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void PlayReverse(IntPtr _this);
+	
+	/// <summary>Reverse playback.</summary>
 	public  void PlayReverse()
 	{
 		CheckIsValid();
@@ -148,6 +192,8 @@ public partial class UMovieSceneSequencePlayer:UObject
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void Play(IntPtr _this);
+	
+	/// <summary>Start playback forwards from the current time cursor position, using the current play rate.</summary>
 	public  void Play()
 	{
 		CheckIsValid();
@@ -155,7 +201,7 @@ public partial class UMovieSceneSequencePlayer:UObject
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

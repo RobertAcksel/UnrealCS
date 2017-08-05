@@ -3,6 +3,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 namespace UnrealEngine
 {
+	/// <summary>
+	/// DEPRECATED: Exists for backwards compatibility
+	/// Indicates a reverb preset to use.
+	/// </summary>
 	public enum ReverbPreset:byte
 	{
 		REVERB_Default=0,

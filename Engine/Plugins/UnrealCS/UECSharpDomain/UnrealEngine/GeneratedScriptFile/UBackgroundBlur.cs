@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class UBackgroundBlur:UContentWidget 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetLowQualityFallbackBrush(IntPtr _this,ref FSlateBrush InBrush);
+	
 	public  void SetLowQualityFallbackBrush(FSlateBrush InBrush)
 	{
 		CheckIsValid();
@@ -16,6 +17,7 @@ public partial class UBackgroundBlur:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBlurStrength(IntPtr _this,float InStrength);
+	
 	public  void SetBlurStrength(float InStrength)
 	{
 		CheckIsValid();
@@ -25,6 +27,7 @@ public partial class UBackgroundBlur:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetBlurRadius(IntPtr _this,int InBlurRadius);
+	
 	public  void SetBlurRadius(int InBlurRadius)
 	{
 		CheckIsValid();
@@ -34,6 +37,7 @@ public partial class UBackgroundBlur:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetApplyAlphaToBlur(IntPtr _this,int bInApplyAlphaToBlur);
+	
 	public  void SetApplyAlphaToBlur(bool bInApplyAlphaToBlur)
 	{
 		CheckIsValid();
@@ -43,6 +47,7 @@ public partial class UBackgroundBlur:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetVerticalAlignment(IntPtr _this,int InVerticalAlignment);
+	
 	public  void SetVerticalAlignment(EVerticalAlignment InVerticalAlignment)
 	{
 		CheckIsValid();
@@ -52,6 +57,7 @@ public partial class UBackgroundBlur:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetHorizontalAlignment(IntPtr _this,int InHorizontalAlignment);
+	
 	public  void SetHorizontalAlignment(EHorizontalAlignment InHorizontalAlignment)
 	{
 		CheckIsValid();
@@ -61,6 +67,7 @@ public partial class UBackgroundBlur:UContentWidget
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPadding(IntPtr _this,ref FMargin InPadding);
+	
 	public  void SetPadding(FMargin InPadding)
 	{
 		CheckIsValid();
@@ -68,7 +75,7 @@ public partial class UBackgroundBlur:UContentWidget
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }

@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 namespace UnrealEngine{
 public partial class ADebugCameraController:APlayerController 
 {
-[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void SetPawnMovementSpeedScale(IntPtr _this,float NewSpeedScale);
+	
+	/// <summary>Sets the pawn movement speed scale.</summary>
 	public  void SetPawnMovementSpeedScale(float NewSpeedScale)
 	{
 		CheckIsValid();
@@ -16,6 +18,7 @@ public partial class ADebugCameraController:APlayerController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern IntPtr GetSelectedActor(IntPtr _this);
+	
 	public  AActor GetSelectedActor()
 	{
 		CheckIsValid();
@@ -26,6 +29,8 @@ public partial class ADebugCameraController:APlayerController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ToggleDisplay(IntPtr _this);
+	
+	/// <summary>Toggles the display of debug info and input commands for the Debug Camera.</summary>
 	public  void ToggleDisplay()
 	{
 		CheckIsValid();
@@ -35,6 +40,8 @@ public partial class ADebugCameraController:APlayerController
 	
 	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	static extern void ShowDebugSelectedInfo(IntPtr _this);
+	
+	/// <summary>@todo document</summary>
 	public  void ShowDebugSelectedInfo()
 	{
 		CheckIsValid();
@@ -42,7 +49,7 @@ public partial class ADebugCameraController:APlayerController
 		
 	}
 	
-		[MethodImplAttribute(MethodImplOptions.InternalCall)]
+	[MethodImplAttribute(MethodImplOptions.InternalCall)]
 	public static extern new IntPtr StaticClass();
 }
 }
