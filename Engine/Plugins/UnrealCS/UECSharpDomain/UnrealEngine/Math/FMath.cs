@@ -110,7 +110,8 @@
         {
             return UKismetMathLibrary.FClamp(A, max, min);
         }
-        public static new int Clamp(int A, int min, int max)
+
+        public new static int Clamp(int A, int min, int max)
         {
             return UKismetMathLibrary.Clamp(A, max, min);
         }

@@ -3,14 +3,14 @@
     public partial struct FLinearColor
     {
         // Common colors.	
-        static public readonly FLinearColor White = new FLinearColor(1.0f, 1.0f, 1.0f);
-        static public readonly FLinearColor Gray = new FLinearColor(0.5f, 0.5f, 0.5f);
-        static public readonly FLinearColor Black = new FLinearColor(0, 0, 0);
-        static public readonly FLinearColor Transparent = new FLinearColor(0, 0, 0, 0);
-        static public readonly FLinearColor Red = new FLinearColor(1.0f, 0, 0);
-        static public readonly FLinearColor Green = new FLinearColor(0, 1.0f, 0);
-        static public readonly FLinearColor Blue = new FLinearColor(0, 0, 1.0f);
-        static public readonly FLinearColor Yellow = new FLinearColor(1.0f, 1.0f, 0);
+        public static readonly FLinearColor White = new FLinearColor(1.0f, 1.0f, 1.0f);
+        public static readonly FLinearColor Gray = new FLinearColor(0.5f, 0.5f, 0.5f);
+        public static readonly FLinearColor Black = new FLinearColor(0, 0, 0);
+        public static readonly FLinearColor Transparent = new FLinearColor(0, 0, 0, 0);
+        public static readonly FLinearColor Red = new FLinearColor(1.0f, 0, 0);
+        public static readonly FLinearColor Green = new FLinearColor(0, 1.0f, 0);
+        public static readonly FLinearColor Blue = new FLinearColor(0, 0, 1.0f);
+        public static readonly FLinearColor Yellow = new FLinearColor(1.0f, 1.0f, 0);
 
         public FLinearColor(float InR, float InG, float InB, float InA = 1.0f)
         {

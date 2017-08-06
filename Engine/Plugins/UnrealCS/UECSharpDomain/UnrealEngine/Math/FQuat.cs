@@ -4,7 +4,7 @@ namespace UnrealEngine
 {
     public partial struct FQuat
     {
-        public readonly static FQuat Identity = new FQuat(0, 0, 0, 1);
+        public static readonly FQuat Identity = new FQuat(0, 0, 0, 1);
 
         //public FQuat() { X = 0; Y = 0; Z = 0; W = 0; }
 
@@ -100,7 +100,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FQuat Multiply(ref FQuat _this,ref FQuat Other);
+        static extern FQuat Multiply(ref FQuat _this,ref FQuat Other);
         /**
          * Gets the result of multiplying this by another quaternion (this * Q).
          *
@@ -205,7 +205,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FQuat MakeFromMatrix(ref FMatrix Matrix);
+        static extern FQuat MakeFromMatrix(ref FMatrix Matrix);
         public static FQuat MakeFromMatrix(FMatrix Matrix)
         {
             return MakeFromMatrix(ref Matrix);
@@ -466,7 +466,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FRotator Rotator(ref FQuat _this);
+        static extern FRotator Rotator(ref FQuat _this);
         /** Get the FRotator representation of this Quaternion. */
         public FRotator Rotator()
         {

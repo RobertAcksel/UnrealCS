@@ -5,7 +5,7 @@ namespace UnrealEngine
 {
     public partial struct FMatrix
     {
-        public readonly static FMatrix Identity = new FMatrix(EForceInit.ForceInit);
+        public static readonly FMatrix Identity = new FMatrix(EForceInit.ForceInit);
 
         public FMatrix(EForceInit Init) 
         {
@@ -88,7 +88,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FMatrix Multiply(ref FMatrix This,ref FMatrix Other);
+        static extern FMatrix Multiply(ref FMatrix This,ref FMatrix Other);
 
         /**
          * Gets the result of multiplying a Matrix to this.
@@ -189,7 +189,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FVector4 TransformFVector4(ref FMatrix This,ref FVector4 V);
+        static extern FVector4 TransformFVector4(ref FMatrix This,ref FVector4 V);
         // Homogeneous transform.
         public FVector4 TransformFVector4(FVector4 V)
         {
@@ -293,7 +293,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FMatrix InverseFast(ref FMatrix This);
+        static extern FMatrix InverseFast(ref FMatrix This);
         /** Fast path, doesn't check for nil matrices in final release builds */
         public FMatrix InverseFast()
         {
@@ -301,7 +301,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FMatrix Inverse(ref FMatrix This);
+        static extern FMatrix Inverse(ref FMatrix This);
         /** Fast path, and handles nil matrices. */
         public FMatrix Inverse()
         {
@@ -309,14 +309,14 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FMatrix TransposeAdjoint(ref FMatrix This);
+        static extern FMatrix TransposeAdjoint(ref FMatrix This);
         public FMatrix TransposeAdjoint()
         {
             return TransposeAdjoint(ref this);
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static void RemoveScaling(ref FMatrix This, float Tolerance);
+        static extern void RemoveScaling(ref FMatrix This, float Tolerance);
         // NOTE: There is some compiler optimization issues with WIN64 that cause FORCEINLINE to cause a crash
         // Remove any scaling from this matrix (ie magnitude of each row is 1) with error Tolerance
         public void RemoveScaling(float Tolerance=Const.SMALL_NUMBER)
@@ -333,7 +333,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FVector ExtractScaling(ref FMatrix This,float Tolerance);
+        static extern FVector ExtractScaling(ref FMatrix This,float Tolerance);
         /** Remove any scaling from this matrix (ie magnitude of each row is 1) and return the 3D scale vector that was initially present with error Tolerance */
         public FVector ExtractScaling(float Tolerance=Const.SMALL_NUMBER)
         {
@@ -373,7 +373,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static FMatrix ConcatTranslation(ref FMatrix This,ref FVector Translation);
+        static extern FMatrix ConcatTranslation(ref FMatrix This,ref FVector Translation);
         /** Returns a matrix with an additional translation concatenated. */
         public FMatrix ConcatTranslation(FVector Translation)
         {
@@ -401,7 +401,7 @@ namespace UnrealEngine
 	        return (float)FMath.Sqrt(MaxRowScaleSquared);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  FMatrix ApplyScale(ref FMatrix This,float Scale);
+        static extern  FMatrix ApplyScale(ref FMatrix This,float Scale);
         /** Apply Scale to this matrix **/
         public FMatrix ApplyScale(float Scale)
         {
@@ -510,7 +510,7 @@ namespace UnrealEngine
             return new FVector(this[0,i], this[1,i], this[2,i]);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  FRotator Rotator(ref FMatrix This);
+        static extern  FRotator Rotator(ref FMatrix This);
         /** @return rotator representation of this matrix */
         public FRotator Rotator()
         {
@@ -529,7 +529,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  bool GetFrustumNearPlane(ref FMatrix This,out FPlane OutPlane);
+        static extern  bool GetFrustumNearPlane(ref FMatrix This,out FPlane OutPlane);
         // Frustum plane extraction.
         /** @param OutPlane the near plane of the Frustum of this matrix */
         public bool GetFrustumNearPlane(out FPlane OutPlane)
@@ -537,35 +537,35 @@ namespace UnrealEngine
             return GetFrustumNearPlane(ref this,out OutPlane);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  bool GetFrustumFarPlane(ref FMatrix This,out FPlane OutPlane);
+        static extern  bool GetFrustumFarPlane(ref FMatrix This,out FPlane OutPlane);
         /** @param OutPlane the far plane of the Frustum of this matrix */
         public bool GetFrustumFarPlane(out FPlane OutPlane)
         {
             return GetFrustumFarPlane(ref this,out OutPlane);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  bool GetFrustumLeftPlane(ref FMatrix This,out FPlane OutPlane);
+        static extern  bool GetFrustumLeftPlane(ref FMatrix This,out FPlane OutPlane);
         /** @param OutPlane the left plane of the Frustum of this matrix */
         public bool GetFrustumLeftPlane(out FPlane OutPlane)
         {
             return GetFrustumLeftPlane(ref this,out OutPlane);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  bool GetFrustumRightPlane(ref FMatrix This,out FPlane OutPlane);
+        static extern  bool GetFrustumRightPlane(ref FMatrix This,out FPlane OutPlane);
         /** @param OutPlane the right plane of the Frustum of this matrix */
         public bool GetFrustumRightPlane(out FPlane OutPlane)
         {
             return GetFrustumRightPlane(ref this,out OutPlane);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  bool GetFrustumTopPlane(ref FMatrix This,out FPlane OutPlane);
+        static extern  bool GetFrustumTopPlane(ref FMatrix This,out FPlane OutPlane);
         /** @param OutPlane the top plane of the Frustum of this matrix */
         public bool GetFrustumTopPlane(out FPlane OutPlane)
         {
             return GetFrustumTopPlane(ref this,out OutPlane);
         }
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static  bool GetFrustumBottomPlane(ref FMatrix This,out FPlane OutPlane);
+        static extern  bool GetFrustumBottomPlane(ref FMatrix This,out FPlane OutPlane);
         /** @param OutPlane the bottom plane of the Frustum of this matrix */
         public bool GetFrustumBottomPlane(out FPlane OutPlane)
         {
@@ -573,7 +573,7 @@ namespace UnrealEngine
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static void Mirror(ref FMatrix This, int MirrorAxis, int FlipAxis);
+        static extern void Mirror(ref FMatrix This, int MirrorAxis, int FlipAxis);
         /**
          * Utility for mirroring this transform across a certain plane, and flipping one of the axis as well.
          */

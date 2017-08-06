@@ -9,9 +9,9 @@ namespace UnrealEngine
         public FScriptArray Data;
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        extern static string ToString(ref FString str);
+        private static extern string ToString(ref FString str);
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static FString FromString(string ret);
+        public static extern FString FromString(string ret);
 
         public override string ToString()
         {
