@@ -80,8 +80,7 @@ public:
 	virtual void* Invoke(void* method, void** args)=0;
 
 	// Property accessors
-
-	/*virtual bool SetFloatProperty(const FString& PropertyName, float NewValue) = 0;
+	virtual bool SetFloatProperty(const FString& PropertyName, float NewValue) = 0;
 	virtual float GetFloatProperty(const FString& PropertyName) = 0;
 	virtual bool SetIntProperty(const FString& PropertyName, int32 NewValue) = 0;
 	virtual int32 GetIntProperty(const FString& PropertyName) = 0;
@@ -95,7 +94,7 @@ public:
 	virtual bool GetArrayProperty(const FString& PropertyName, UObject* CppObj, UArrayProperty* Property) = 0;
 	virtual bool SetStructProperty(const FString& PropertyName, const UObject* CppObj, UStructProperty* Property) = 0;
 	virtual bool GetStructProperty(const FString& PropertyName, UObject* CppObj, UStructProperty* Property) = 0;
-*/
+
 	//virtual bool SetProperty(const FString& PropertyName, const UObject* CppObj, UProperty* Property) = 0;
 	//virtual bool GetProperty(const FString& PropertyName, UObject* CppObj, UProperty* Property) = 0;
 

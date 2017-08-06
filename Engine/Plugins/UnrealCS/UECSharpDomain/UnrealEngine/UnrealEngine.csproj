@@ -111,9 +111,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AMonoAIController.cs" />
-    <Compile Include="AMonoGameMode.cs" />
-    <Compile Include="AMonoPlayerController.cs" />
     <Compile Include="BoolWrap.cs" />
     <Compile Include="FApp.cs" />
     <Compile Include="FKey.cs" />
@@ -4886,11 +4883,10 @@
     <Compile Include="TSubclassOf.cs" />
     <Compile Include="UClass_Ext.cs" />
     <Compile Include="UMonoActorComponent.cs" />
-    <Compile Include="AMonoCharacter.cs" />
     <Compile Include="UObject.cs" />
     <Compile Include="UWidgetTree.cs" />
-    <Compile Include="_AActor.cs" />
-    <Compile Include="_UWorld.cs" />
+    <Compile Include="AActor.cs" />
+    <Compile Include="UWorld.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

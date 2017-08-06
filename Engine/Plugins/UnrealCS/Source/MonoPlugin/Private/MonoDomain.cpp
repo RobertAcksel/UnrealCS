@@ -316,9 +316,12 @@ void FMonoDomain::InstallTemplatesToGameDir()
     //TODO: instead of installing all assemblies into the content dir of the game we should use the content dir of the plugin. this would require the plugins content dir to be deployed on builds but this should be the case no matter if the plugin is engine installed or game installed... check this! the game assemblies will still need to be copyed since they will be overridden by copy.exe
 
     auto PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
-	//Copy Scripts/GameAssemblies to Game Contents directory
+	//Copy copy assemblies if not present
     auto gameDestinationDir = FPaths::Combine(*FPaths::GameContentDir(), unrealCSContentFolderName);
-    if (!FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("GameAssemblies"))))
+    if (!FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("GameAssemblies"))) 
+        || !FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("framework")))
+        || !FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("EngineAssemblies")))
+    )
 	{
 		//Copy the content template to the content directory
         auto unrealCsAssemblyDir = FPaths::Combine(*PluginDir, unrealCSContentFolderName);

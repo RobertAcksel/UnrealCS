@@ -38,7 +38,7 @@ public:
 	FMonoContext();
 	virtual ~FMonoContext();
 
-	MonoObject* GetManagedObject() { return Obj; }
+	MonoObject* GetManagedObject() const { return Obj; }
 
 	// FScriptContextBase interface
 	virtual bool Initialize(const FString& Code, UObject* Owner) override;
@@ -47,20 +47,21 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void Destroy() override;
 
-	virtual bool SetFloatProperty(const FString& PropertyName, float NewValue);
-	virtual float GetFloatProperty(const FString& PropertyName);
-	virtual bool SetIntProperty(const FString& PropertyName, int32 NewValue);
-	virtual int32 GetIntProperty(const FString& PropertyName);
-	virtual bool SetObjectProperty(const FString& PropertyName, UObject* NewValue);
-	virtual UObject* GetObjectProperty(const FString& PropertyName);
-	virtual bool SetBoolProperty(const FString& PropertyName, bool NewValue);
-	virtual bool GetBoolProperty(const FString& PropertyName);
-	virtual bool SetStringProperty(const FString& PropertyName, const FString& NewValue);
-	virtual FString GetStringProperty(const FString& PropertyName);
-	virtual bool SetArrayProperty(const FString& PropertyName, const  UObject* CppObj, UArrayProperty* Property);
-	virtual bool GetArrayProperty(const FString& PropertyName, UObject* CppObj, UArrayProperty* Property);
-	virtual bool SetStructProperty(const FString& PropertyName, const UObject* CppObj, UStructProperty* Property);
-	virtual bool GetStructProperty(const FString& PropertyName, UObject* CppObj, UStructProperty* Property);
+	virtual bool SetFloatProperty(const FString& PropertyName, float NewValue) override;
+	virtual float GetFloatProperty(const FString& PropertyName) override;
+	virtual bool SetIntProperty(const FString& PropertyName, int32 NewValue) override;
+	virtual int32 GetIntProperty(const FString& PropertyName) override;
+    virtual bool SetObjectProperty(const FString& PropertyName, UObject* NewValue) override;
+	virtual UObject* GetObjectProperty(const FString& PropertyName) override;
+	virtual bool SetBoolProperty(const FString& PropertyName, bool NewValue) override;
+	virtual bool GetBoolProperty(const FString& PropertyName) override;
+	virtual bool SetStringProperty(const FString& PropertyName, const FString& NewValue) override;
+	virtual FString GetStringProperty(const FString& PropertyName) override;
+	virtual bool SetArrayProperty(const FString& PropertyName, const  UObject* CppObj, UArrayProperty* Property) override;
+	virtual bool GetArrayProperty(const FString& PropertyName, UObject* CppObj, UArrayProperty* Property) override;
+	virtual bool SetStructProperty(const FString& PropertyName, const UObject* CppObj, UStructProperty* Property) override;
+	virtual bool GetStructProperty(const FString& PropertyName, UObject* CppObj, UStructProperty* Property) override;
+
 	virtual bool SetClassProperty(const FString& PropertyName, UClass* NewValue);
 	virtual UClass* GetClassProperty(const FString& PropertyName);
 
