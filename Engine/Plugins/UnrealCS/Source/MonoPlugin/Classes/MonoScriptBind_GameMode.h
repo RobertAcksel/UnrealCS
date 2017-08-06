@@ -2,23 +2,25 @@
 // For details, see LICENSE.txt
 
 #pragma once
+
+#include "GameFramework/GameMode.h"
 #include "MonoScriptBind_GameMode.generated.h"
 
 UCLASS()
 class MONOPLUGIN_API AMonoScriptBind_GameMode : public AGameMode
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	AMonoScriptBind_GameMode();
-	virtual void BeginPlay() override;
-	virtual void Tick(float DeltaSeconds) override;
-	virtual void BeginDestroy() override;
+    AMonoScriptBind_GameMode();
+    virtual void BeginPlay() override;
+    virtual void Tick(float DeltaSeconds) override;
+    virtual void BeginDestroy() override;
 
 
 #if WITH_MONO_HOTRELOAD
 	void HotReload();
 #endif
 protected:
-	TUniquePtr<FScriptContextBase> Context;
+    TUniquePtr<FScriptContextBase> Context;
 };

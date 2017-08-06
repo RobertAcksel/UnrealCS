@@ -41,7 +41,7 @@ void UMonoScriptBind_Component::OnRegister()
 		else
 		{
 
-			//初始化的时候，同步一次属性
+			//When initializing, synchronize the attribute once
 			Context->PushScriptPropertyValues(ScriptClass, this);
 
 			HotReloadData();
@@ -55,7 +55,7 @@ void UMonoScriptBind_Component::OnRegister()
 	}
 }
 
-//初始化默认参数
+//Initialize the default parameters
 void UMonoScriptBind_Component::InitDefault()
 {
 	auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
@@ -91,6 +91,7 @@ void UMonoScriptBind_Component::OnUnregister()
 	}
 	Super::OnUnregister();
 }
+
 void UMonoScriptBind_Component::InitializeComponent()
 {
 	Super::InitializeComponent();

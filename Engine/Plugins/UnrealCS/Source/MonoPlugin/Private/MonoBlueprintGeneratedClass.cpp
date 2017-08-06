@@ -110,14 +110,13 @@ void UMonoScriptClass::Init(FScriptContextBase* Context)
 
 UObject* UMonoScriptClass::CreateDefaultObject()
 {
-	return Super::CreateDefaultObject();
-	if (ClassDefaultObject != nullptr && !InSerialize)
-	{
-		UMonoScriptBind_Component* Com = Cast<UMonoScriptBind_Component>(ClassDefaultObject);
+	auto obj = Super::CreateDefaultObject();
+	if (obj != nullptr && !InSerialize)	{
+        //its a possibility to perform custom init code for specialized classes.
+		UMonoScriptBind_Component* Com = Cast<UMonoScriptBind_Component>(obj);
 	    if(Com) {
-	        
+    		Com->InitDefault();
 	    }
-		Com->InitDefault();
 	}
-	return ClassDefaultObject;
+	return obj;
 }
