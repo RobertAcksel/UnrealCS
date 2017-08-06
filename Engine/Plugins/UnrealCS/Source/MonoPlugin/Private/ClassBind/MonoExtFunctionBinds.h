@@ -13,10 +13,6 @@
 #include "_IFileManager.h"
 #include "_FMulticastScriptDelegate.h"
 
-#include "_AMonoScriptBind_AIController.h"
-#include "_AMonoScriptBind_Character.h"
-#include "_AMonoScriptBind_GameMode.h"
-#include "_AMonoScriptBind_PlayerController.h"
 #include "_UMonoScriptBind_Component.h"
 #include "_UInputComponent_Ext.h"
 
@@ -49,10 +45,6 @@ namespace UnrealEngine
 
 
 		_UMonoScriptBind_Component::BindFunctions();
-		_AMonoScriptBind_Character::BindFunctions();
-		_AMonoScriptBind_GameMode::BindFunctions();
-		_AMonoScriptBind_PlayerController::BindFunctions();
-		_AMonoScriptBind_AIController::BindFunctions();
 		_UInputComponent_Ext::BindFunctions();
 
 		//ÊýÑ§¿â
