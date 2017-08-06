@@ -66,12 +66,12 @@ public:
 
 	//Send command to MainDoman.dll
 	void SendCommand(const FString& cmd) const;
-
-	//When open the project for the first time, install the necessary files to the project folder
-	static void Install();
 	
 #if WITH_EDITOR
-	void OnBeginPIE(const bool bIsSimulating);
+	//When open the project for the first time, install the necessary files to the project folder
+	static void InstallTemplatesToGameDir();
+
+    void OnBeginPIE(const bool bIsSimulating);
 	void OnEndPIE(const bool bIsSimulating);
 	void OnPausePIE(const bool bIsSimulating);
 #endif

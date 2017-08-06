@@ -88,7 +88,7 @@ static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assem
 
 		MonoImageOpenStatus status;
 		MonoAssembly *loaded_asm = nullptr;
-		//Editor环境下，尝试用IFileManager的方案打开（中文路径也是打不开的）
+		//Editor environment, try to use IFileManager program to open (the Chinese path is not open)
 #if WITH_EDITOR
 		if (i != 0)
 #endif
@@ -238,6 +238,7 @@ void FMonoDomain::Init()
     mono_jit_set_aot_only(true);
 #endif
     
+    //this is where dll's will be looked up when they are requested
     RuntimeAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework"));
 	GameAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName,TEXT("GameAssemblies"));
 	EngineAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies"));
@@ -310,17 +311,20 @@ void CopyFolder(const TCHAR* Dest, const  TCHAR* Src)
 	}
 }
 
-void FMonoDomain::Install()
+void FMonoDomain::InstallTemplatesToGameDir()
 {
+    //TODO: instead of installing all assemblies into the content dir of the game we should use the content dir of the plugin. this would require the plugins content dir to be deployed on builds but this should be the case no matter if the plugin is engine installed or game installed... check this! the game assemblies will still need to be copyed since they will be overridden by copy.exe
+
     auto PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
 	//Copy Scripts/GameAssemblies to Game Contents directory
-	if (!FPaths::DirectoryExists(FPaths::Combine(*FPaths::GameContentDir(), unrealCSContentFolderName, TEXT("GameAssemblies"))))
+    auto gameDestinationDir = FPaths::Combine(*FPaths::GameContentDir(), unrealCSContentFolderName);
+    if (!FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("GameAssemblies"))))
 	{
 		//Copy the content template to the content directory
-	    auto sourceDir = FPaths::Combine(*PluginDir, unrealCSContentFolderName);
-        auto destination = FPaths::Combine(*FPaths::GameContentDir(), unrealCSContentFolderName);
-		CopyFolder(*destination, *sourceDir);
+        auto unrealCsAssemblyDir = FPaths::Combine(*PluginDir, unrealCSContentFolderName);
+		CopyFolder(*gameDestinationDir, *unrealCsAssemblyDir);
 	}
+
     auto engineMonoDir = FPaths::Combine(*FPaths::EngineDir(), TEXT("Binaries"), TEXT("ThirdParty"), TEXT("EMono"));
 	//Copy UnrealCS/EMono to  Binaries/ThirdParty/EMono
 	if (!FPaths::DirectoryExists(FPaths::Combine(*engineMonoDir))){
@@ -334,6 +338,11 @@ void FMonoDomain::Install()
 	    auto ProjectDir = FPaths::Combine(*PluginDir, TEXT("Project"));
 		CopyFolder(*projectDestinationPath, *ProjectDir);
 	}
+
+    auto engineAssemblySourcePath = FPaths::Combine(*PluginDir, TEXT("Scripts/EngineAssemblies/Editor_64bits"));
+    auto engineAssemblyDestinationPath = FPaths::Combine(*projectDestinationPath, TEXT("bin"));
+    //always copy the unreal engine dll. the user may whipe this path out. or the plugin might have been updated.
+    CopyFolder(*engineAssemblySourcePath, *engineAssemblyDestinationPath);
 }
 
 MonoDomain* LastDomain = nullptr;
@@ -359,11 +368,6 @@ void FMonoDomain::OnPausePIE(const bool bIsSimulating)
 {
 }
 
-
-#else
-void FMonoDomain::Install()
-{
-}
 #endif
 
 #if	WITH_MONO_HOTRELOAD

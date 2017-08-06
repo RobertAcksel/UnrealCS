@@ -48,7 +48,7 @@ void FScriptPlugin::StartupModule()
 {
 #if WITH_EDITOR
 	DocHelper::InitializeToolTipLocalization();
-	FMonoDomain::Install();
+	FMonoDomain::InstallTemplatesToGameDir();
 #endif
 
 	Mono::LoadMonoDLL();
