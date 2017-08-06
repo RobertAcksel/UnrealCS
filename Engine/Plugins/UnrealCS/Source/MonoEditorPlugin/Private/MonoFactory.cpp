@@ -3,7 +3,7 @@
 #include "MonoFactory.h"
 #include "MonoEditorPluginPrivatePCH.h"
 
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoScriptBind_Component.h"
 #include "MonoBlueprint.h"
 #include "Kismet2/KismetEditorUtilities.h"
@@ -99,7 +99,7 @@ UObject* UMonoFactory::FactoryCreateNew(UClass* InClass, UObject* InParent, FNam
 	}
 	else
 	{
-        //默认蓝图父类为UMonoConpententClass
+        //The default blueprint for the parent class is UMonoConpententClass
         UClass* ParentClassNew =ParentClass;
         //如果有新父类
         if(NewParentClass!=nullptr)

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoDomain.h"
 
 #if WITH_MONO

@@ -32,9 +32,14 @@ namespace UnrealEngine
             return objs;
         }
 
-
+        /// <summary>
+        /// Used by the native hot reload code to create managed instance by name
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <returns></returns>
         public static object CreateInstance(string typeName)
         {
+            //todo: this will only find types in the same assembly. it will not work with other assemblies loaded into the domain
             Type type = Type.GetType(typeName);
             if (type == null)
                 return null;
@@ -44,6 +49,7 @@ namespace UnrealEngine
 
         public static object CreateArray(string typeName, int len)
         {
+            //todo: this will only find types in the same assembly. it will not work with other assemblies loaded into the domain
             Type type = Type.GetType(typeName);
             if (type == null)
                 return null;

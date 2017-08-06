@@ -67,7 +67,7 @@
 
 
 #include "Framework/MultiBox/MultiBoxBuilder.h"
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoFactory.h"
 //#include "ReimportScriptFactory.h"
 #include "AssetTypeActions_Base.h"

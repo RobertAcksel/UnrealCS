@@ -3,7 +3,7 @@
 #include "MonoBlueprintCompiler.h"
 #include "MonoEditorPluginPrivatePCH.h"
 #include "MonoBlueprint.h"
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoScriptBind_Component.h"
 
 #include "Kismet2NameValidators.h"

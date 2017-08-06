@@ -1,6 +1,6 @@
 ﻿// Copyright xg_55,All Rights Reserved.Support E-mail: xg_55@126.com
 // For details, see LICENSE.txt
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoPluginPrivatePCH.h"
 
 #include "MonoIntegration.h"
@@ -23,6 +23,7 @@ void UMonoScriptClass::AddUniqueNativeFunction(const FName& InName, Native InPoi
 			return;
 		}
 	}
+    //TODO:what is this??? where does it go? it seems to just to leak!
 	new(NativeFunctionLookupTable)FNativeFunctionLookup(InName, InPointer);
 }
 
@@ -47,10 +48,12 @@ void UMonoScriptClass::Link(FArchive& Ar, bool bRelinkExistingProperties)
 	}
 	Super::Link(Ar, bRelinkExistingProperties);
 }
+
 void UMonoScriptClass::Bind()
 {
 	Super::Bind();
 }
+
 void UMonoScriptClass::PurgeClass(bool bRecompilingOnLoad)
 {
 	Super::PurgeClass(bRecompilingOnLoad);
@@ -96,7 +99,6 @@ void UMonoScriptClass::PostLoad()
 	InSerialize = false;
 }
 #if WITH_EDITOR
-//初始化所有方法
 void UMonoScriptClass::Init(FScriptContextBase* Context)
 {
 	ScriptFunctions.Empty();
@@ -108,10 +110,13 @@ void UMonoScriptClass::Init(FScriptContextBase* Context)
 
 UObject* UMonoScriptClass::CreateDefaultObject()
 {
-	Super::CreateDefaultObject();
+	return Super::CreateDefaultObject();
 	if (ClassDefaultObject != nullptr && !InSerialize)
 	{
 		UMonoScriptBind_Component* Com = Cast<UMonoScriptBind_Component>(ClassDefaultObject);
+	    if(Com) {
+	        
+	    }
 		Com->InitDefault();
 	}
 	return ClassDefaultObject;

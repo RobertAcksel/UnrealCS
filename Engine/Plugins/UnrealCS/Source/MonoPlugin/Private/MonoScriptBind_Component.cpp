@@ -5,7 +5,6 @@
 
 //#if WITH_MONO
 #include "MonoDomain.h"
-#include "MonoScriptClass.h"
 #include "MonoIntegration.h"
 
 UMonoScriptBind_Component::UMonoScriptBind_Component(const FObjectInitializer& ObjectInitializer)
@@ -74,7 +73,7 @@ void UMonoScriptBind_Component::InitDefault()
 			if (HasAnyFlags(RF_ClassDefaultObject))
 				TempContext->FetchScriptPropertyValues(ScriptClass, this);
 
-			//移除上下文，这样就不必要热更新了（默认对象只需要属性）
+			//Remove the context, so there is no need to hot update (the default object only need attributes)
 			TempContext = nullptr;
 		}
 	}

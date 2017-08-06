@@ -5,7 +5,7 @@
 #include "MonoIntegration.h"
 #include "MonoPluginPrivatePCH.h"
 
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoDomain.h"
 #include "MonoScriptBind_Component.h"
 #include "MonoScriptBindHelper.h"

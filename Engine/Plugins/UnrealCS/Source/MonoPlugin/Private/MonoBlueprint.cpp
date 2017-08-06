@@ -3,7 +3,7 @@
 #include "MonoBlueprint.h"
 #include "MonoPluginPrivatePCH.h"
 
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #if WITH_EDITOR
 #include "BlueprintEditorUtils.h"
 #endif

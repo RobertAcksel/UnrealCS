@@ -65,7 +65,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogMono, Log, All);
 #define MONO_GAME_NAMESPACE "Game"
 
 
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoDomain.h"
 
 #endif

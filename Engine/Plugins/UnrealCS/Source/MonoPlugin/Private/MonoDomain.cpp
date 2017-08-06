@@ -6,7 +6,7 @@
 #include "MonoDomain.h"
 #include "MonoPluginPrivatePCH.h"
 
-#include "MonoScriptClass.h"
+#include "MonoBlueprintGeneratedClass.h"
 #include "MonoScriptBindHelper.h"
 #include "ClassBind/MonoExtFunctionBinds.h"
 #include "IPluginManager.h"

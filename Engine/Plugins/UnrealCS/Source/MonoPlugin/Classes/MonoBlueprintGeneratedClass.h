@@ -4,7 +4,7 @@
 #pragma once
 #include "Engine/EngineTypes.h"
 #include "Engine/BlueprintGeneratedClass.h"
-#include "MonoScriptClass.generated.h"
+#include "MonoBlueprintGeneratedClass.generated.h"
 
 class UMonoScriptClass;
 
@@ -129,6 +129,7 @@ public:
 
 /**
 * Script generated class
+* This class serves as the proxy object for scripting engine created classes (CSharp classes).
 */
 UCLASS()
 class MONOPLUGIN_API UMonoScriptClass : public UBlueprintGeneratedClass
@@ -185,6 +186,6 @@ public:
 
 protected:
 	virtual UObject* CreateDefaultObject() override;
-	//是否已经序列化完成的标记。正在序列化过程不能设置属性值.
+	//Whether the serialization has been completed. The serialization process can not set the attribute value
 	bool InSerialize;
 };
