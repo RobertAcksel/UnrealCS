@@ -13,29 +13,99 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_64x_Editor|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\Project\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PLATFORM_64BITS,WITH_EDITOR</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\Project\bin\</OutputPath>
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR</DefineConstants>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_64x_Editor|x64'">
+    <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591,1570</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_64x|x64'">
+    <OutputPath>..\..\Scripts\EngineAssemblies\Game_64bits\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_GAME</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_64bits\UnrealEngine.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591,1570</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_32x|x64'">
+    <OutputPath>bin\x64\Release_32x\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_GAME</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>bin\Release\UnrealEngine.XML</DocumentationFile>
+    <Optimize>true</Optimize>
     <NoWarn>1591,1570</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_64x_Editor|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug_64x_Editor\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PLATFORM_32BITS,WITH_EDITOR</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>..\..\Project\bin\UnrealEngine.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_64x_Editor|x86'">
+    <OutputPath>bin\x86\Release_64x_Editor\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\UnrealEngine.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591,1570</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_64x|x86'">
+    <OutputPath>..\..\Scripts\EngineAssemblies\Game_32bits\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_GAME</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_32bits\UnrealEngine.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591,1570</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_32x|x86'">
+    <OutputPath>..\..\Scripts\EngineAssemblies\Game_32bits\</OutputPath>
+    <DefineConstants>TRACE;PLATFORM_32BITS,WITH_GAME</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_32bits\UnrealEngine.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591,1570</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
