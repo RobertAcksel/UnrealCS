@@ -17,9 +17,7 @@ class MONOEDITORPLUGIN_API UMonoFactory : public UFactory
 public:
 
 	UPROPERTY(EditAnywhere, Category = ScriptFactory, meta = (AllowAbstract = "", BlueprintBaseOnly = ""))
-		TSubclassOf<class UObject> ParentClass;
-
-    UClass* NewParentClass;
+	TSubclassOf<class UObject> ParentClass;
     
 	// Begin UFactory Interface
 	virtual bool ConfigureProperties() override;

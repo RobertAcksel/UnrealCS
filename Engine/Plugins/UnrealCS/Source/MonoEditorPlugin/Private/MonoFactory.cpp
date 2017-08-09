@@ -7,6 +7,7 @@
 #include "MonoScriptBind_Component.h"
 #include "MonoBlueprint.h"
 #include "Kismet2/KismetEditorUtilities.h"
+#include "AssetRegistryModule.h"
 
 UMonoFactory::UMonoFactory(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -89,25 +90,42 @@ bool UMonoFactory::DoesSupportClass(UClass* Class)
 //	return NewBlueprint;
 //}
 
+UPackage* FindOrCreatePackage(const FString& Name)
+{
+    FString PackageName = TEXT("/Game/Scripts/Blueprints/") + Name;
+    UPackage* ClassPackage = LoadPackage(NULL, *PackageName, 0);
+    if (ClassPackage == NULL)
+    {
+        UE_LOG(LogMonoEditor, Log, TEXT("Create New Packgage %s"), *PackageName);
+        ClassPackage = CreatePackage(NULL, *PackageName);
+        ClassPackage->AddToRoot();
+    }
+
+    return ClassPackage;
+}
+
 UObject* UMonoFactory::FactoryCreateNew(UClass* InClass, UObject* InParent, FName InName, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn)
 {
-	UMonoBlueprint* NewBlueprint = nullptr;
-	NewBlueprint = Cast<UMonoBlueprint>(FindObject<UBlueprint>(InParent, *InName.ToString()));
-	if (NewBlueprint != nullptr)
-	{
+    //TODO: here we have to integrate support for rename and rebind functionality in case the user renames his class. the user may need to give us a hint what the old name was or another hint to unique identify a class. a unique id would be usefull here which could be done via an csharp attribute
+
+    auto nameString = InName.ToString();
+    UPackage* ClassPackage = FindOrCreatePackage(nameString);
+
+    UMonoBlueprint* NewBlueprint = Cast<UMonoBlueprint>(FindObject<UBlueprint>(ClassPackage, *nameString));
+	if (NewBlueprint != nullptr)	{
 		NewBlueprint->Modify();
 	}
 	else
 	{
-        //The default blueprint for the parent class is UMonoConpententClass
-        UClass* ParentClassNew =ParentClass;
-        //如果有新父类
-        if(NewParentClass!=nullptr)
-        {
-            ParentClassNew = NewParentClass;
+        //If there is a concrete parent class
+        UClass* ParentClassNew = Cast<UClass>(InParent);
+        if(ParentClassNew == nullptr)        {
+            //The default blueprint for the parent class is UMonoConpententClass
+            //TODO: evaluate this and change this
+            ParentClassNew = ParentClass;
         }
 
-		NewBlueprint = CastChecked<UMonoBlueprint>(FKismetEditorUtilities::CreateBlueprint(ParentClassNew, InParent, InName, BPTYPE_Normal, UMonoBlueprint::StaticClass(), UMonoScriptClass::StaticClass(), "UMonoFactory"));
+		NewBlueprint = CastChecked<UMonoBlueprint>(FKismetEditorUtilities::CreateBlueprint(ParentClassNew, ClassPackage, InName, BPTYPE_Normal, UMonoBlueprint::StaticClass(), UMonoScriptClass::StaticClass(), "UMonoFactory"));
 	}
     //NewBlueprint->AssetImportData->Update(CurrentFilename);
 	//NewBlueprint->SourceFilePath = FReimportManager::SanitizeImportFilename(CurrentFilename, NewBlueprint);
@@ -118,5 +136,18 @@ UObject* UMonoFactory::FactoryCreateNew(UClass* InClass, UObject* InParent, FNam
 	FKismetEditorUtilities::CompileBlueprint(NewBlueprint);
 	
 	FEditorDelegates::OnAssetPostImport.Broadcast(this, NewBlueprint);
-	return NewBlueprint;
+
+    if (NewBlueprint)
+    {
+        // Notify the asset registry
+        FAssetRegistryModule::AssetCreated(NewBlueprint);
+
+        // analytics create record
+        //FAssetTools::OnNewCreateRecord(ClassToUse, false);
+
+        // Mark the package dirty...
+        ClassPackage->MarkPackageDirty();
+    }
+
+    return NewBlueprint;
 }

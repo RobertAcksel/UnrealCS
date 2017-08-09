@@ -8,6 +8,9 @@ namespace UnrealEngine
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         static extern void Destroy(IntPtr _this);
 
+        [AssemblyRemoved]
+        public virtual void BeginPlay() { }
+
         public void Destroy()
         {
             CheckIsValid();

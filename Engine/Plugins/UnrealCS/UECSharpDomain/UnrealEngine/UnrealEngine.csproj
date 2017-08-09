@@ -4875,6 +4875,7 @@
     <Compile Include="Math\FVector.cs" />
     <Compile Include="Math\FVector2D.cs" />
     <Compile Include="Math\FVector4.cs" />
+    <Compile Include="Attributes\AssemblyRemoved.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SctuctWrap.cs" />
     <Compile Include="TArray.cs" />

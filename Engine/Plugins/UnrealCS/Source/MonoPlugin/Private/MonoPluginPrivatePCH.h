@@ -22,12 +22,6 @@
 
 #if WITH_MONO
 
-#if WITH_EDITOR
-#define WITH_MONO_HOTRELOAD 1
-#else
-#define WITH_MONO_HOTRELOAD 0
-#endif
-
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable:4510) // disable "default constructor could not be generated" - triggered by C style struct defs

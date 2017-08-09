@@ -113,7 +113,7 @@ UObject* UMonoScriptClass::CreateDefaultObject()
 	auto obj = Super::CreateDefaultObject();
 	if (obj != nullptr && !InSerialize)	{
         //its a possibility to perform custom init code for specialized classes.
-		UMonoScriptBind_Component* Com = Cast<UMonoScriptBind_Component>(obj);
+	    auto Com = Cast<UMonoScriptBind_Component>(obj);
 	    if(Com) {
     		Com->InitDefault();
 	    }
