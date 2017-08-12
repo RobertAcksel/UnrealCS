@@ -4,3 +4,8 @@ Intermediate/
 obj
 Script/Script.VC.db
 bin
+/Engine/Plugins/UnrealCS/Project/bin/Game.pdb
+/Engine/Plugins/UnrealCS/Project/bin/copy.exe
+/Engine/Plugins/UnrealCS/Project/bin/copy.exe.config
+/Engine/Plugins/UnrealCS/Project/bin/copy.pdb
+/Engine/Plugins/UnrealCS/Project/bin/Game.dll

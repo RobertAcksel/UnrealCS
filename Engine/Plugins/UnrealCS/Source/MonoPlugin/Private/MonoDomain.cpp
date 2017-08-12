@@ -15,6 +15,10 @@
 #include "ios_predefine.h"
 #endif
 
+#include <string>
+#include <vector>
+#include <thread>
+
 namespace UnrealEngine
 {
     extern void MonoBindFunctions();
@@ -84,8 +88,8 @@ static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assem
         }
 
         FString AbsoluteAssemblyPath = IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*AsmPath);
-        
-        UE_LOG(LogMono, Log, TEXT("Found assembly %s %s at path '%s'."),ANSI_TO_TCHAR(name), *AsmName, *AsmPath);
+        auto timeStamp = IFileManager::Get().GetTimeStamp(*AbsoluteAssemblyPath);
+        UE_LOG(LogMono, Log, TEXT("Found assembly %s %s at path '%s'. TimeStamp: %s"),ANSI_TO_TCHAR(name), *AsmName, *AsmPath, *timeStamp.ToString());
 
         MonoImageOpenStatus status;
         MonoAssembly *loaded_asm = nullptr;
@@ -102,9 +106,7 @@ static MonoAssembly* assembly_preload_hook(MonoAssemblyName *aname, char **assem
             }
         }
 
-        MonoImage *image = nullptr;
-        
-        image = mono_image_loaded(name);
+        MonoImage *image = mono_image_loaded(name);
         
         if(image == nullptr)
         {
@@ -236,60 +238,6 @@ void G_NativeReinitsystem()
 #endif
 }
 
-void FMonoDomain::Init()
-{
-    //this is where dll's will be looked up when they are requested
-    RuntimeAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework"));
-    GameAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("GameAssemblies"));
-    EngineAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies"));
-
-    //On the IOS platform, run in AOT mode
-#if PLATFORM_IOS
-    RegisterMonoModules();
-    mono_jit_set_aot_only(true);
-#endif   
-
-    mono_trace_set_log_handler(MonoLog, nullptr);
-    mono_trace_set_print_handler(MonoPrintf);
-    mono_trace_set_printerr_handler(MonoPrintf);
-
-    install_preload_hook(RuntimeAssemblyDirectory, GameAssemblyDirectory, EngineAssemblyDirectory);
-
-#if PLATFORM_IOS
-    FCommandLine::Append(TEXT(" MONOARGS=--optimize=aot"));
-#endif
-    FString MonoArgs;
-    if (FParse::Value(FCommandLine::Get(), TEXT("MONOARGS="), MonoArgs))
-    {
-        TArray<ANSICHAR*> Options;
-        FString Token;
-        const TCHAR* MonoArgsPtr = *MonoArgs;
-        while (FParse::Token(MonoArgsPtr, Token, false))
-        {
-            auto s = new ANSICHAR[Token.Len() + 1];
-            FCStringAnsi::Strcpy(s, Token.Len() + 1, TCHAR_TO_ANSI(*Token));
-            Options.Add(s);
-        }
-        mono_jit_parse_options(Options.Num(), Options.GetData());
-
-        for (auto s : Options)
-        {
-            delete[] s;
-        }
-    }
-#if !UE_BUILD_SHIPPING
-    if (!mono_debug_enabled()) {
-        mono_debug_init(MONO_DEBUG_FORMAT_MONO);
-    }
-#endif
-
-#if WITH_EDITOR
-    FEditorDelegates::BeginPIE.AddRaw(this, &FMonoDomain::OnBeginPIE);
-    FEditorDelegates::EndPIE.AddRaw(this, &FMonoDomain::OnEndPIE);
-    FEditorDelegates::PausePIE.AddRaw(this, &FMonoDomain::OnPausePIE);
-#endif
-}
-
 #if WITH_EDITOR
 //help function
 void CopyFolder(const TCHAR* Dest, const  TCHAR* Src)
@@ -306,7 +254,6 @@ void CopyFolder(const TCHAR* Dest, const  TCHAR* Src)
         CopyFolder(*FPaths::Combine(Dest, *sub), *FPaths::Combine(Src,*sub));
     }
         
-
     // 文件
     TArray<FString> Files;
     IFileManager::Get().FindFiles(Files, *(FString() + Src + "/*"), true, false);
@@ -445,6 +392,8 @@ MonoDomain* FMonoDomain::CreateGameDomain() const {
 }
 #endif
 
+static FString GameName;
+
 FMonoDomain::FMonoDomain()
 {
     Domain = nullptr;
@@ -461,9 +410,14 @@ FMonoDomain::FMonoDomain()
     methodCreateInstance = nullptr;
     methodCreateArray = nullptr;
     
-    Init();
+    GameName = FApp::GetGameName();
+    if (GameName.Len() == 0) {
+        GameName = "AppGame";
+    }
 
-    if (SetupBindings() && UpdateMainDomain()) {
+    Init();
+    
+    if (SetupMono()) {
         HotReload();
         check(Instance == nullptr);
         Instance = this;
@@ -473,27 +427,77 @@ FMonoDomain::FMonoDomain()
 FMonoDomain::~FMonoDomain()
 {
     Instance = nullptr;
-    ShutDownMainDomain();
+    ShutDownMono();
 #if WITH_EDITOR
     FEditorDelegates::BeginPIE.RemoveAll(this);
 #endif
 }
 
-bool FMonoDomain::SetupBindings()
+void FMonoDomain::Init()
 {
-    FString GameName = FApp::GetGameName();
-    if (GameName.Len() == 0){
-        GameName = "AppGame";
-    }
+    //this is where dll's will be looked up when they are requested
+    RuntimeAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework"));
+    GameAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("GameAssemblies"));
+    EngineAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies"));
+
+#if WITH_EDITOR
+    FEditorDelegates::BeginPIE.AddRaw(this, &FMonoDomain::OnBeginPIE);
+    FEditorDelegates::EndPIE.AddRaw(this, &FMonoDomain::OnEndPIE);
+    FEditorDelegates::PausePIE.AddRaw(this, &FMonoDomain::OnPausePIE);
+#endif
+}
+
+bool FMonoDomain::SetupMono()
+{
     FString monoVersion;
     if (!GConfig->GetString(TEXT("MonoPlugin"), TEXT("MonoRuntimeVersion"), monoVersion, GEngineIni))	{
         monoVersion = "mobile";
     }
 
+    //On the IOS platform, run in AOT mode
+#if PLATFORM_IOS
+    RegisterMonoModules();
+    mono_jit_set_aot_only(true);
+#endif   
+
+    mono_trace_set_log_handler(MonoLog, nullptr);
+    mono_trace_set_print_handler(MonoPrintf);
+    mono_trace_set_printerr_handler(MonoPrintf);
+
+    install_preload_hook(RuntimeAssemblyDirectory, GameAssemblyDirectory, EngineAssemblyDirectory);
+
+#if !UE_BUILD_SHIPPING
+    if (!mono_debug_enabled()) {
+        mono_debug_init(MONO_DEBUG_FORMAT_MONO);
+    }
+#endif
+
+    std::vector<char*> options = {
+#if PLATFORM_IOS
+        "--optimize=aot",
+#endif
+#if !UE_BUILD_SHIPPING
+//        "--soft-breakpoints",
+//        "--debugger-agent=transport=dt_socket,address=127.0.0.1:13001,server=y",
+#endif
+    };
+    if (options.size() > 0) {
+        mono_jit_parse_options(options.size(), options.data());
+    }
+
     //mono_trace_set_mask_string("all");
     //mono_trace_set_level_string("debug");
-    MainDomain = mono_jit_init_version(TCHAR_TO_ANSI(*GameName), TCHAR_TO_ANSI(*monoVersion));
+
+    // initialize the root domain which will hold corlib and will always be alive
+//    MainDomain = mono_jit_init_version(TCHAR_TO_ANSI(*GameName), TCHAR_TO_ANSI(*monoVersion));
+    MainDomain = mono_jit_init(TCHAR_TO_ANSI(*GameName));
     check(MainDomain);
+
+    // soft debugger needs this
+    mono_thread_set_main(mono_thread_current());
+//    mono_thread_detach_if_exiting();
+
+    mono_debug_domain_create(MainDomain);
 
 #if PLATFORM_MAC
     FModuleStatus MonoRuntimeStatus;
@@ -501,44 +505,29 @@ bool FMonoDomain::SetupBindings()
     mono_dllmap_insert(nullptr, "__Internal", nullptr, TCHAR_TO_ANSI(*MonoRuntimeStatus.FilePath), nullptr);
 #endif
 
-//    if (!UpdateMainDomain()) {
-//        return false;
-//    };
-
     //bind native method
     UnrealEngine::MonoBindFunctions();
     UnrealEngine::ExtFunctionBinds();
     mono_add_internal_call("MainDomain.Main::NativeReload", (const void*)G_NativeReload);
     mono_add_internal_call("MainDomain.Main::NativeReinitsystem", (const void*)G_NativeReinitsystem);
-    return true;
+    return UpdateMainDomain();
 }
 
-void FMonoDomain::ShutDownMainDomain()
+void FMonoDomain::ShutDownMono()
 {
     if (MainDomain != nullptr)
     {
-//        mono_trace_set_log_handler(nullptr, nullptr);
-//        mono_trace_set_print_handler(nullptr);
-//        mono_trace_set_printerr_handler(nullptr);
-
         mono_gchandle_free(mainObjectHandle);
-
         mono_jit_cleanup(MainDomain);
 
 #if !UE_BUILD_SHIPPING
         mono_debug_cleanup();
 #endif
-
         MainDomain = nullptr;
     }
 }
 
 bool FMonoDomain::UpdateMainDomain() {
-    FString GameName = FApp::GetGameName();
-    if (GameName.Len() == 0) {
-        GameName = "AppGame";
-    }
-
     FString AssemblyName = "MainDomain";
     MonoAssembly* MainAssembly = OpenMonoAssembly(MainDomain, TCHAR_TO_ANSI(*AssemblyName));
     if (nullptr == MainAssembly) {
@@ -549,46 +538,39 @@ bool FMonoDomain::UpdateMainDomain() {
 
     //call MainDomain.Initialize
     MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
-    if (AssemblyMainClass != nullptr)
-    {
-        MonoMethod* methodInitialize = mono_class_get_method_from_name(AssemblyMainClass, "Initialize", -1);
-        if (methodInitialize != nullptr)
-        {
-            MonoObject* exception = nullptr;
-            FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
-            MonoString* monoStr_gameDir = FStringToMonoString(GameName, MainDomain);
-            MonoString* monoStr_PluginDir = FStringToMonoString(PluginDir, MainDomain);
-            MonoString* monoStr_GameAssemblyDirectory = FStringToMonoString(IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*GameAssemblyDirectory), MainDomain);
-            MonoString* monoStr_EngineAssemblyDirectory = FStringToMonoString(IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*EngineAssemblyDirectory), MainDomain);
-            MonoString* monoStr_ShadowCopyDirectory = FStringToMonoString(IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*FPaths::Combine(*FPaths::GameSavedDir(), TEXT("MonoRuntime"))), MainDomain);
-#if WITH_EDITOR
-            int withEditor = 1;
-#else
-            int withEditor = 0;
-#endif
-
-            void* args[] = { monoStr_gameDir, monoStr_PluginDir, monoStr_EngineAssemblyDirectory,monoStr_GameAssemblyDirectory,monoStr_ShadowCopyDirectory,&withEditor };
-            mainObject = mono_runtime_invoke(methodInitialize, nullptr, args, &exception);
-
-            if (exception)
-            {
-                mono_print_unhandled_exception(exception);
-                return false;
-            }
-            mainObjectHandle = mono_gchandle_new(mainObject, 1);
-        }
+    if (AssemblyMainClass == nullptr){
+        return false;
     }
+    
+    MonoMethod* methodInitialize = mono_class_get_method_from_name(AssemblyMainClass, "Initialize", -1);
+    if (methodInitialize == nullptr){
+        return false;
+    }
+
+    MonoObject* exception = nullptr;
+    FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
+    MonoString* monoStr_gameDir = FStringToMonoString(GameName, MainDomain);
+    MonoString* monoStr_PluginDir = FStringToMonoString(PluginDir, MainDomain);
+    MonoString* monoStr_GameAssemblyDirectory = FStringToMonoString(IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*GameAssemblyDirectory), MainDomain);
+    MonoString* monoStr_EngineAssemblyDirectory = FStringToMonoString(IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*EngineAssemblyDirectory), MainDomain);
+    MonoString* monoStr_ShadowCopyDirectory = FStringToMonoString(IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*FPaths::Combine(*FPaths::GameSavedDir(), TEXT("MonoRuntime"))), MainDomain);
+    int withEditor = 0;
+#if WITH_EDITOR
+    withEditor = 1;
+#endif
+    void* args[] = { monoStr_gameDir, monoStr_PluginDir, monoStr_EngineAssemblyDirectory,monoStr_GameAssemblyDirectory,monoStr_ShadowCopyDirectory,&withEditor };
+    mainObject = mono_runtime_invoke(methodInitialize, nullptr, args, &exception);
+    if (exception)
+    {
+        mono_print_unhandled_exception(exception);
+        return false;
+    }
+    mainObjectHandle = mono_gchandle_new(mainObject, 1);
     return true;
 }
 
 void FMonoDomain::NativeHotReload()
 {
-#if WITH_MONO_HOTRELOAD
-    if(Instance) {
-//        UpdateMainDomain();
-    }
-#endif
-
     TArray<FString> files;
     IFileManager::Get().FindFiles(files, *FPaths::Combine(*GameAssemblyDirectory, TEXT("*")), true, false);
     if (files.Num() == 0)
@@ -770,16 +752,18 @@ bool FMonoDomain::RemoveTickableObject(MonoObject* obj)
 
 void FMonoDomain::Tick(float DeltaTime)
 {
-
 #if WITH_MONO_HOTRELOAD
     if(NeedCompleteReload) {
-        UE_LOG(LogMono, Log, TEXT("Start MainDomain reload"));
+        UE_LOG(LogMono, Log, TEXT("trigger MainDomain reload"));
 
         InstallTemplatesToGameDir();
         NeedCompleteReload = false;
+#if WITH_MONO_HOTRELOAD
+        if (Instance) {
+            UpdateMainDomain();
+        }
+#endif
         NeedHotReload = true;
-
-        UE_LOG(LogMono, Log, TEXT("Finished MainDomain reload"));
     }
 
     //if NeedHotReload from MainDomain.dll

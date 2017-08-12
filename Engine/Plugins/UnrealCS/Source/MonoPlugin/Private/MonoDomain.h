@@ -92,8 +92,8 @@ private:
 	FString EngineAssemblyDirectory;
 	FString RuntimeAssemblyDirectory;
 
-	bool SetupBindings();
-	void ShutDownMainDomain();
+	bool SetupMono();
+	void ShutDownMono();
     bool UpdateMainDomain();
 
     //GameDomain

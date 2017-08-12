@@ -37748,13 +37748,6 @@
              
              @return	filename using absolute path
         </member>
-        <member name="M:UnrealEngine.MarshalUtil.CreateInstance(System.String)">
-            <summary>
-            Used by the native hot reload code to create managed instance by name
-            </summary>
-            <param name="typeName"></param>
-            <returns></returns>
-        </member>
         <member name="F:UnrealEngine.Const.FLOAT_NORMAL_THRESH">
             Lengths of normalized vectors (These are half their maximum values
             to assure that dot products with normalized vectors don't overflow).
@@ -37771,11 +37764,6 @@
              @param ScalarSin	Pointer to where the Sin result should be stored
              @param ScalarCos	Pointer to where the Cos result should be stored
              @param Value  input angles 
-        </member>
-        <member name="T:UnrealEngine.AssemblyRemoved">
-            <summary>
-            Attribute to mark a method as not invokeable by unreal engine. Unreal will never call methods with this attribute. The attribute is not inherited.
-            </summary>
         </member>
         <member name="M:UnrealEngine.FScriptMap.AddUninitialized(UnrealEngine.FScriptMap@,UnrealEngine.FScriptMapLayout@)">
              Adds an uninitialized object to the map.

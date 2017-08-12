@@ -81,7 +81,36 @@ namespace MainDomain{
         }
 
         private void Fsw_EngineAssembliesUpdated(object sender, FileSystemEventArgs e){
-            UnrealEngine.UObject.LogInfo("reload'" + engineAssembliesDir + "'");
+            //this will move dlls in use to a temporary folder
+            var files = Directory.GetFiles(engineAssembliesDir, "*.dll", SearchOption.AllDirectories);
+            foreach (var filePath in files){
+                var fileInfo = new FileInfo(filePath);
+                if (IsFileLocked(fileInfo)){
+//                    UObject.LogInfo($"Moved old file to '{anotherName}'");
+                    var fileName = fileInfo.FullName.Replace(engineAssembliesDir, "");
+                    var tempPath = Path.Combine(Path.GetTempPath(), "UnrealEditor_CSharp_dlls");
+                    var destFileName = tempPath + fileName;
+                    if (File.Exists(destFileName)){
+                        try{
+                            File.Delete(destFileName);
+                        } catch{
+                            var count = 0;
+                            while (true){
+                                var anotherName = destFileName + (count++);
+                                try{
+                                    File.Move(destFileName, anotherName);
+                                    UObject.LogWarning($"Moved old file to '{anotherName}'");
+                                    break;
+                                } catch{ // ignored 
+                                }
+                            }
+                        }
+                    }
+                    fileInfo.MoveTo(destFileName);
+                }
+            }
+
+            UnrealEngine.UObject.LogInfo("reload' " + engineAssembliesDir + "'");
             NativeReinitsystem();
         }
 
@@ -285,6 +314,30 @@ namespace MainDomain{
                 instance.End();
                 instance = null;
             }
+        }
+
+        public static bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally{
+                stream?.Close();
+            }
+
+            //file is not locked
+            return false;
         }
     }
 }
