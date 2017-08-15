@@ -345,7 +345,7 @@ MonoDomain* FMonoDomain::CreateGameDomain() const {
         }
 
         //调用初始化方法
-        MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
+        MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "MainClass");
         if (AssemblyMainClass == nullptr)
             return nullptr;
         //内部使用
@@ -364,7 +364,7 @@ MonoDomain* FMonoDomain::CreateGameDomain() const {
     }
 
     {
-        MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
+        MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "MainClass");
         MonoClassField* Field_gameDomain = mono_class_get_field_from_name(AssemblyMainClass, "gameDomain");
         MonoObject* gameDomain = nullptr;
         mono_field_get_value(mainObject, Field_gameDomain, &gameDomain);
@@ -508,8 +508,8 @@ bool FMonoDomain::SetupMono()
     //bind native method
     UnrealEngine::MonoBindFunctions();
     UnrealEngine::ExtFunctionBinds();
-    mono_add_internal_call("MainDomain.Main::NativeReload", (const void*)G_NativeReload);
-    mono_add_internal_call("MainDomain.Main::NativeReinitsystem", (const void*)G_NativeReinitsystem);
+    mono_add_internal_call("MainDomain.MainClass::NativeReload", (const void*)G_NativeReload);
+    mono_add_internal_call("MainDomain.MainClass::NativeReinitsystem", (const void*)G_NativeReinitsystem);
     return UpdateMainDomain();
 }
 
@@ -537,7 +537,7 @@ bool FMonoDomain::UpdateMainDomain() {
     MainImage = mono_assembly_get_image(MainAssembly);
 
     //call MainDomain.Initialize
-    MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
+    MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "MainClass");
     if (AssemblyMainClass == nullptr){
         return false;
     }
@@ -851,7 +851,7 @@ void FMonoDomain::SendCommand(const FString& cmd) const {
         PreviousDomain = nullptr;
     }
 
-    MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "Main");
+    MonoClass* AssemblyMainClass = mono_class_from_name(MainImage, "MainDomain", "MainClass");
     if (AssemblyMainClass != nullptr)
     {
         MonoMethod* methodOnCommand = mono_class_get_method_from_name(AssemblyMainClass, "OnCommand", -1);

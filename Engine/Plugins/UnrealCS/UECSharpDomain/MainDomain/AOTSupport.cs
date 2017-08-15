@@ -6,10 +6,10 @@ using UnrealEngine;
 
 namespace MainDomain{
     internal class AOTSupport{
-        private readonly Main main;
+        private readonly MainClass main;
         private List<string> aotFilenameList = null;
 
-        public AOTSupport(Main main){
+        public AOTSupport(MainClass main){
             this.main = main;
         }
 
@@ -109,8 +109,8 @@ namespace MainDomain{
                             proc.StartInfo.UseShellExecute = false;
                             proc.StartInfo.RedirectStandardOutput = true;
                             proc.StartInfo.RedirectStandardError = true;
-                            proc.OutputDataReceived += Main.OutputHandler;
-                            proc.ErrorDataReceived += Main.ErrorHandler;
+                            proc.OutputDataReceived += MainClass.OutputHandler;
+                            proc.ErrorDataReceived += MainClass.ErrorHandler;
 
                             UObject.LogInfo("aot {0}", proc.StartInfo.Arguments);
                             proc.Start();
@@ -142,8 +142,8 @@ namespace MainDomain{
                                 //proc.StartInfo.FileName = "as";
                                 //proc.StartInfo.Arguments = string.Format("-arch {2} -march=armv7-a -mno-thumb -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -o {0}.o {1}.s", filename, filename, aot_target);
 
-                                proc.OutputDataReceived += Main.OutputHandler;
-                                proc.ErrorDataReceived += Main.ErrorHandler;
+                                proc.OutputDataReceived += MainClass.OutputHandler;
+                                proc.ErrorDataReceived += MainClass.ErrorHandler;
 
                                 UObject.LogInfo("as {0}", proc.StartInfo.Arguments);
                                 proc.Start();
@@ -172,8 +172,8 @@ namespace MainDomain{
                                 //proc.StartInfo.Arguments = string.Format("-r \"{0}.a\" {1}.o", Path.GetFullPath(Path.Combine(outpath, filename)), filename);
 
 
-                                proc.OutputDataReceived += Main.OutputHandler;
-                                proc.ErrorDataReceived += Main.ErrorHandler;
+                                proc.OutputDataReceived += MainClass.OutputHandler;
+                                proc.ErrorDataReceived += MainClass.ErrorHandler;
 
                                 UObject.LogInfo("ar {0}", proc.StartInfo.Arguments);
                                 proc.Start();

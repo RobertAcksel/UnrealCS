@@ -9,8 +9,14 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace MainDomain{
-    public class Main{
-        private static Main instance;
+    public class MainClass{
+        public static void Main(string[] args){
+            while (true){
+                
+            }
+        }
+
+        private static MainClass instance;
 
         private readonly bool withEidtor;
         private readonly string gameName;
@@ -29,7 +35,7 @@ namespace MainDomain{
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern void NativeReinitsystem();
 
-        public Main(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
+        public MainClass(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
             this.withEidtor = withEidtor != 0;
             this.gameName = gameName;
             this.pluginBaseDir = pluginBaseDir;
@@ -304,8 +310,8 @@ namespace MainDomain{
             Start();
         }
 
-        public static Main Initialize(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
-            instance = new Main(gameName, pluginBaseDir, engineAssembliesDir, gameAssembliesDir, shadowCopyDirectory, withEidtor);
+        public static MainClass Initialize(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
+            instance = new MainClass(gameName, pluginBaseDir, engineAssembliesDir, gameAssembliesDir, shadowCopyDirectory, withEidtor);
             return instance;
         }
 
