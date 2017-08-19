@@ -7,6 +7,8 @@
 
 class FCoreClrHost final : public FTickableGameObject {
 public:
+    static wchar_t const * const UnrealCSContentFolderName;
+
     FCoreClrHost();
     virtual ~FCoreClrHost();
 

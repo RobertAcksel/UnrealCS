@@ -1,4 +1,4 @@
-#include "CoreClrHost.h"
+﻿#include "CoreClrHost.h"
 
 #include <string>
 #include <stdio.h>
@@ -7,13 +7,19 @@
 #include "Paths.h"
 #include <thread>
 #include <cassert>
+#include "IPluginManager.h"
+#include "FileManager.h"
 
-DEFINE_LOG_CATEGORY(LogClr);
+DEFINE_LOG_CATEGORY(LogClr)
 
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #pragma warning(disable:4996) //_CRT_SECURE_NO_WARNINGS
 #endif
+namespace CoreClr {
+}
+
+using namespace CoreClr;
 
 class FCoreClrHostPImpl {
 public:
@@ -22,6 +28,81 @@ public:
     DWORD RunntimeDomainId;
     std::unique_ptr<std::thread> ptr;
 };
+
+wchar_t const * const FCoreClrHost::UnrealCSContentFolderName = TEXT("Scripts");
+
+#if WITH_EDITOR
+//help function
+extern void CopyFolder(const TCHAR* Dest, const  TCHAR* Src);
+//{
+//    if (!FPaths::DirectoryExists(Dest))
+//        IFileManager::Get().MakeDirectory(Dest);
+//
+//    // 子文件夹
+//    TArray<FString> Dirs;
+//    IFileManager::Get().FindFiles(Dirs, *(FString() + Src + "/*"), false, true);
+//
+//    for (auto sub : Dirs)
+//    {
+//        CopyFolder(*FPaths::Combine(Dest, *sub), *FPaths::Combine(Src, *sub));
+//    }
+//
+//    // 文件
+//    TArray<FString> Files;
+//    IFileManager::Get().FindFiles(Files, *(FString() + Src + "/*"), true, false);
+//    for (auto file : Files)
+//    {
+//        IFileManager::Get().Copy(*FPaths::Combine(Dest, *file), *FPaths::Combine(Src, *file), true);
+//    }
+//}
+
+extern void InstallTemplatesToGameDir();
+//{
+//    //TODO: instead of installing all assemblies into the content dir of the game we should use the content dir of the plugin. this would require the plugins content dir to be deployed on builds but this should be the case no matter if the plugin is engine installed or game installed... check this! the game assemblies will still need to be copyed since they will be overridden by copy.exe
+//
+//    auto PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();
+//    //Copy copy assemblies if not present
+//    auto gameDestinationDir = FPaths::Combine(*FPaths::GameContentDir(), FCoreClrHost::UnrealCSContentFolderName);
+//    if (!FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("GameAssemblies")))
+//        || !FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("framework")))
+//        || !FPaths::DirectoryExists(FPaths::Combine(*gameDestinationDir, TEXT("EngineAssemblies")))
+//    )
+//    {
+//        //Copy the content template to the content directory
+//        auto unrealCsAssemblyDir = FPaths::Combine(*PluginDir, FCoreClrHost::UnrealCSContentFolderName);
+//        CopyFolder(*gameDestinationDir, *unrealCsAssemblyDir);
+//    }
+//
+//
+//    //always install the lates EngineAssemblies into the game content dir
+//    {
+//        auto engineAssemblyName = TEXT("Scripts/EngineAssemblies");
+//        auto engineAssemblysSourcePath = FPaths::Combine(*PluginDir, engineAssemblyName);
+//        auto engineAssemblysDestinationPath = FPaths::Combine(*FPaths::GameContentDir(), engineAssemblyName);
+//        //always copy the unreal engine dll. the user may whipe this path out. or the plugin might have been updated.
+//        CopyFolder(*engineAssemblysDestinationPath, *engineAssemblysSourcePath);
+//    }
+//
+//    auto engineMonoDir = FPaths::Combine(*FPaths::EngineDir(), TEXT("Binaries"), TEXT("ThirdParty"), TEXT("EMono"));
+//    //Copy UnrealCS/EMono to  Binaries/ThirdParty/EMono
+//    if (!FPaths::DirectoryExists(FPaths::Combine(*engineMonoDir))) {
+//        auto BinDir = FPaths::Combine(*PluginDir, TEXT("EMono"));
+//        CopyFolder(*engineMonoDir, *BinDir);
+//    }
+//
+//    auto projectDestinationPath = FPaths::Combine(*FPaths::GameDir(), TEXT("Project"));
+//    if (!FPaths::DirectoryExists(projectDestinationPath)) {
+//        //Copy the CSharp template to the project directory
+//        auto ProjectDir = FPaths::Combine(*PluginDir, TEXT("Project"));
+//        CopyFolder(*projectDestinationPath, *ProjectDir);
+//    }
+//
+//    //always copy the UnrealEngine.dll. the user may whipe this path out. or the plugin might have been updated.
+//    auto unrealEngineAssemblySourcePath = FPaths::Combine(*PluginDir, TEXT("Scripts/EngineAssemblies/Editor_64bits"));
+//    auto unrealEngineAssemblyDestinationPath = FPaths::Combine(*projectDestinationPath, TEXT("bin"));
+//    CopyFolder(*unrealEngineAssemblySourcePath, *unrealEngineAssemblyDestinationPath);
+//}
+#endif
 
 // The host must be able to find CoreCLR.dll to start the runtime.
 // This string is used as a common, known location for a centrally installed CoreCLR.dll on Windows.
@@ -172,10 +253,10 @@ bool StartupRunntime(FCoreClrHostPImpl * pimpl) {
     return true;
 }
 
-void ShutdownRunntime(FCoreClrHostPImpl * pimpl) {
+bool ShutdownRunntime(FCoreClrHostPImpl * const pimpl) {
     auto runtimeHost = pimpl->RuntimeHostInterface;
     if(!runtimeHost) {
-        return;
+        return true;
     }
     auto domainId = pimpl->RunntimeDomainId;
 
@@ -185,9 +266,47 @@ void ShutdownRunntime(FCoreClrHostPImpl * pimpl) {
     runtimeHost->UnloadAppDomain(domainId, true /* Wait until unload complete */);
     runtimeHost->Stop();
     runtimeHost->Release();
+    pimpl->RuntimeHostInterface = nullptr;
 
+    pimpl->ptr->join();
     printf("\nDone\n");
+
+    return true;
 }
+
+//#include "Headers_Core.h"
+//#include "Headers_CoreUObject.h"
+//#include "Headers_Engine.h"
+//#include "fcall.h"
+//#include "ecalllist.h"
+//#include "object.h"
+
+//void RunReleaseMethod(AActor * psh)
+//{
+//    CONTRACTL{
+//        THROWS;
+//        GC_TRIGGERS;
+//        MODE_COOPERATIVE;
+//    } CONTRACTL_END;
+//
+//    SAFEHANDLEREF sh(psh);
+//
+//    GCPROTECT_BEGIN(sh);
+//
+//    MethodDescCallSite releaseHandle(s_pReleaseHandleMethod, METHOD__SAFE_HANDLE__RELEASE_HANDLE, (OBJECTREF*)&sh, TypeHandle(), TRUE);
+//
+//    ARG_SLOT releaseArgs[] = { ObjToArgSlot(sh) };
+//    if (!(BOOL)releaseHandle.Call_RetBool(releaseArgs)) {
+//        MDA_TRIGGER_ASSISTANT(ReleaseHandleFailed, ReportViolation)(sh->GetTypeHandle(), sh->m_handle);
+//    }
+//
+//    GCPROTECT_END();
+//}
+//
+//FCFuncStart(gStringBufferFuncs)
+//    FCFuncElement("ReplaceBufferInternal", COMStringBuffer::ReplaceBufferInternal)
+//    FCFuncElement("ReplaceBufferAnsiInternal", COMStringBuffer::ReplaceBufferAnsiInternal)
+//FCFuncEnd()
 
 bool FCoreClrHost::run() {
     printf("Sample CoreCLR Host\n\n");
@@ -237,10 +356,8 @@ bool FCoreClrHost::run() {
     //TODO remove
     platfromPathExtension = TEXT("Editor_64bits");
 
-    auto const unrealCSContentFolderName = TEXT("Scripts");
-
-    auto RuntimeAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework")));
-    auto EngineAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies")));
+    auto RuntimeAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), FCoreClrHost::UnrealCSContentFolderName, TEXT("framework")));
+    auto EngineAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), FCoreClrHost::UnrealCSContentFolderName, TEXT("EngineAssemblies")));
 
     auto platformPath = FPaths::Combine(EngineAssemblyDirectory, platfromPathExtension, netstandard);
     LookupAssemliesInFolder(*platformPath, trustedPlatformAssemblies);
@@ -276,7 +393,7 @@ bool FCoreClrHost::run() {
     // Native dll search directories are paths that the runtime will probe for native DLLs called via PInvoke
     auto nativeDllSearchDirectories = appPaths + L";" + coreRoot;
 
-    auto GameAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("GameAssemblies")));
+    auto GameAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), FCoreClrHost::UnrealCSContentFolderName, TEXT("GameAssemblies")));
     // PLATFORM_RESOURCE_ROOTS
     // Platform resource roots are paths to probe in for resource assemblies (in culture-specific sub-directories)
     auto platformResourceRoots = std::wstring(appPaths) + L";";
@@ -360,8 +477,8 @@ bool FCoreClrHost::run() {
 
     this->pImpl->RunntimeDomainId = domainId;
 
-    hr = runtimeHost->ExecuteAssembly(domainId, L"F:/Projects/Microsoft/docs/samples/core/console-apps/HelloMsBuild/bin/Debug/netcoreapp2.0/Hello.dll", 1, argv, &exitCode);
-    //hr = runtimeHost->ExecuteAssembly(domainId, targetApp.c_str(), 1, argv, &exitCode);
+    //    hr = runtimeHost->ExecuteAssembly(domainId, L"F:/Projects/Microsoft/docs/samples/core/console-apps/HelloMsBuild/bin/Debug/netcoreapp2.0/Hello.dll", 1, argv, &exitCode);
+    hr = runtimeHost->ExecuteAssembly(domainId, targetApp.c_str(), 1, argv, &exitCode);
     runtimeRunning = false;
     // </Snippet8>
 
@@ -380,10 +497,9 @@ bool FCoreClrHost::run() {
     if (FAILED(hr))
     {
         //        printf("ERROR - Failed to create delegate.\nError code:%x\n", hr);
+        UE_LOG(LogClr, Log, TEXT("ERROR - Failed to create delegate.\nError code: %s\n"), getComErrorMSg(hr));
         return false;
     }
-    //    void * c = nullptr;
-    //    runtimeHost->ExecuteInAppDomain(domainId, FExecuteInAppDomainCallback(pfnDelegate), c);
 
     // Function pointer type to be used if this sample is modified to use CreateDelegate to
     // call into a static managed method (with signature void (string[])). This would be
@@ -425,7 +541,5 @@ bool FCoreClrHost::Start() {
 }
 
 bool FCoreClrHost::Shutdown() {
-    ShutdownRunntime(this->pImpl.get());
-    this->pImpl->ptr->join();
-    return true;
+    return ShutdownRunntime(this->pImpl.get());
 }
