@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -11,15 +11,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\Scripts\EngineAssemblies\</OutputPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NETCore.Runtime" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NETCore.Runtime.CoreCLR" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NETCore.Runtime.Native" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NETCore.Targets" Version="2.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UnrealEngine\UnrealEngine.csproj" />

@@ -1,63 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>UnrealEngine</AssemblyName>
     <RootNamespace>UnrealEngine</RootNamespace>
+    <Configurations>Debug_64x_Editor;Release_32x;Release_64x;Release_64x_Editor</Configurations>
+    <Platforms>x86;x64</Platforms>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_64x_Editor|x86'">
-    <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
-    <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine3.xml</DocumentationFile>
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR;RELEASE;NETSTANDARD1_4</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_64x|x86'">
-    <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
-    <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine3.xml</DocumentationFile>
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR;RELEASE;NETSTANDARD1_4</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_32x|x86'">
-    <OutputPath>..\..\Scripts\EngineAssemblies\Game_32bits\</OutputPath>
-    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_32bits\UnrealEngine3.xml</DocumentationFile>
-    <DefineConstants>TRACE;PLATFORM_32BITS;WITH_GAME;RELEASE;NETSTANDARD1_4;RELEASE_32X;NETSTANDARD1_4</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_64x_Editor|AnyCPU'">
+    <DefineConstants>TRACE;PLATFORM_64BITS;WITH_EDITOR;RELEASE_64X_EDITOR;NETCOREAPP2_0</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_64x_Editor|x64'">
     <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
     <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine.xml</DocumentationFile>
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR;RELEASE;NETSTANDARD1_4</DefineConstants>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <DefineConstants>TRACE;PLATFORM_64BITS;WITH_EDITOR;RELEASE_64X_EDITOR;NETCOREAPP2_0</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_32x|x86'">
+    <OutputPath>..\..\Scripts\EngineAssemblies\Game_32bits\</OutputPath>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_32bits\UnrealEngine.xml</DocumentationFile>
+    <DefineConstants>TRACE;PLATFORM_32BITS;WITH_GAME;RELEASE;NETCOREAPP2_0;RELEASE_32X</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_64x|x64'">
     <OutputPath>..\..\Scripts\EngineAssemblies\Game_64bits\</OutputPath>
-    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_64bits\UnrealEngine3.xml</DocumentationFile>
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_GAME;RELEASE;NETSTANDARD1_4;RELEASE_64X;NETSTANDARD1_4</DefineConstants>
+    <DocumentationFile>..\..\Scripts\EngineAssemblies\Game_64bits\UnrealEngine.xml</DocumentationFile>
+    <DefineConstants>TRACE;PLATFORM_64BITS;WITH_GAME;RELEASE;NETCOREAPP2_0;RELEASE_64X</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_32x|x64'">
-    <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
-    <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine3.xml</DocumentationFile>
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR;RELEASE;NETSTANDARD1_4</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_64x_Editor|AnyCPU'" />
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_64x_Editor|x64'">
-    <DefineConstants>TRACE;PLATFORM_64BITS,WITH_EDITOR;DEBUG_64X_EDITOR;NETSTANDARD1_4</DefineConstants>
+    <DefineConstants>TRACE;PLATFORM_64BITS;WITH_EDITOR;DEBUG_64X_EDITOR;NETCOREAPP2_0</DefineConstants>
     <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
     <DocumentationFile>..\..\Scripts\EngineAssemblies\Editor_64bits\UnrealEngine.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NETCore.Runtime" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NETCore.Runtime.CoreCLR" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NETCore.Runtime.Native" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NETCore.Targets" Version="2.0.0" />
-  </ItemGroup>
 
 </Project>

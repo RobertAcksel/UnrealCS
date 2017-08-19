@@ -5,11 +5,23 @@
 #include "mscoree.h"	// Generated from mscoree.idl
 #include <filesystem>
 #include "Paths.h"
+#include <thread>
+#include <cassert>
+
+DEFINE_LOG_CATEGORY(LogClr);
 
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #pragma warning(disable:4996) //_CRT_SECURE_NO_WARNINGS
 #endif
+
+class FCoreClrHostPImpl {
+public:
+    ICLRRuntimeHost2 * RuntimeHostInterface = nullptr;
+    std::wstring RunntimeRootPath;
+    DWORD RunntimeDomainId;
+    std::unique_ptr<std::thread> ptr;
+};
 
 // The host must be able to find CoreCLR.dll to start the runtime.
 // This string is used as a common, known location for a centrally installed CoreCLR.dll on Windows.
@@ -19,172 +31,24 @@
 // CoreCLR.dll next to them. Still others may rely on an environment variable being set to indicate where
 // the library can be found. In the end, every host will have its own heuristics for finding the core runtime
 // library, but it must always be findable in order to start the CLR.
-static auto const coreCLRInstallDirectory = L"%programfiles%\\dotnet\\shared\\Microsoft.NETCore.App\\1.1.2";
+static auto const coreCLRInstallDirectory = TEXT("%programfiles%\\dotnet\\shared\\Microsoft.NETCore.App\\2.0.0");
 
 // Main clr library to load
 // Note that on Linux and Mac platforms, this library will
 // be called libcoreclr.so or libcoreclr.dylib, respectively
 static auto const coreCLRDll = L"coreclr.dll";
+auto netstandard = TEXT("netcoreapp2.0");
 
 // Helper method to check for CoreCLR.dll in a given path and load it, if possible
 // Check for CoreCLR.dll in a given path and load it, if possible
-auto LoadCoreCLR(const std::wstring directoryPath)
-{
+auto LoadCoreCLR(const std::wstring directoryPath){
     auto coreDllPath = directoryPath + L"/" + coreCLRDll;
-    // <Snippet2>
+    //TODO: cross platfrom
     auto ret = LoadLibraryExW(coreDllPath.c_str(), nullptr, 0);
-    // </Snippet2>
     return ret;
 }
 
-
-// Function pointer type to be used if this sample is modified to use CreateDelegate to
-// call into a static managed method (with signature void (string[])). This would be
-// an alternative to using the ICLRRuntimeHost2::ExecuteAssembly helper function which
-// loads and executes a managed assembly's entry point directly.
-typedef void (STDMETHODCALLTYPE MainMethodFp)(wchar_t ** args);
-
-// One large main method to keep this sample streamlined.
-// 
-// This function demonstrates how to start the .NET Core runtime,
-// create an AppDomain, and execute managed code.
-//
-// It is meant as an educational sample, so not all error paths are checked,
-// cross-platform functionality is not yet implemented, and some design
-// decisions have been made to emphasize readability over efficiency.
-int wmain(int argc, wchar_t* argv[])
-{
-}
-
-FCoreClrHost::FCoreClrHost() {    
-    Init();
-    Start();
-}
-
-FCoreClrHost::~FCoreClrHost() {
-    Shutdown();
-}
-
-bool FCoreClrHost::Init() { return true; }
-
-bool FCoreClrHost::Start() {
-    printf("Sample CoreCLR Host\n\n");
-    auto const unrealCSContentFolderName = TEXT("Scripts");
-
-    auto EngineAssemblyDirectory = FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies"));
-    auto startAssembly = FPaths::ConvertRelativePathToFull(FPaths::Combine(EngineAssemblyDirectory, TEXT("MainDomain.dll")));
-
-    // The managed application to run should be the first command-line parameter.
-    // Subsequent command line parameters will be passed to the managed app later in this host.
-    auto targetApp = std::wstring(*startAssembly);
-
-    // Also note the directory the target app is in, as it will be referenced later.
-    auto targetAppPath = std::wstring(std::experimental::filesystem::path(targetApp).remove_filename().c_str());
-
-    auto coreRoot = targetAppPath;
-
-    auto coreCLRModule = LoadCoreCLR(coreRoot);
-
-    // If CoreCLR.dll wasn't in %CORE_ROOT% or next to the app, 
-    // look in the common 1.1.0 install directory
-    if (!coreCLRModule)
-    {
-        wchar_t coreRootx[MAX_PATH];
-        ::ExpandEnvironmentStringsW(coreCLRInstallDirectory, coreRootx, MAX_PATH);
-        coreCLRModule = LoadCoreCLR(coreRoot = coreRootx);
-    }
-
-    if (!coreCLRModule)
-    {
-        printf("ERROR - CoreCLR.dll could not be found");
-        return false;
-    }
-    wprintf(L"CoreCLR loaded from %s\n", coreRoot.c_str());
-
-
-    //
-    // STEP 3: Get ICLRRuntimeHost2 instance
-    //
-
-    // <Snippet3>
-    ICLRRuntimeHost2* runtimeHost;
-    FnGetCLRRuntimeHost pfnGetCLRRuntimeHost = (FnGetCLRRuntimeHost)::GetProcAddress(coreCLRModule, "GetCLRRuntimeHost");
-
-    if (!pfnGetCLRRuntimeHost)
-    {
-        printf("ERROR - GetCLRRuntimeHost not found");
-        return false;
-    }
-
-    // Get the hosting interface
-    auto hr = pfnGetCLRRuntimeHost(IID_ICLRRuntimeHost2, (IUnknown**)&runtimeHost);
-    // </Snippet3>
-
-    if (FAILED(hr))
-    {
-//        printf("ERROR - Failed to get ICLRRuntimeHost2 instance.\nError code:%x\n", hr);
-        return false;
-    }
-
-    //
-    // STEP 4: Set desired startup flags and start the CLR
-    //
-
-    // <Snippet4>
-    hr = runtimeHost->SetStartupFlags(
-        // These startup flags control runtime-wide behaviors.
-        // A complete list of STARTUP_FLAGS can be found in mscoree.h,
-        // but some of the more common ones are listed below.
-        static_cast<STARTUP_FLAGS>(
-            // STARTUP_FLAGS::STARTUP_SERVER_GC |								// Use server GC
-            // STARTUP_FLAGS::STARTUP_LOADER_OPTIMIZATION_MULTI_DOMAIN |		// Maximize domain-neutral loading
-            // STARTUP_FLAGS::STARTUP_LOADER_OPTIMIZATION_MULTI_DOMAIN_HOST |	// Domain-neutral loading for strongly-named assemblies
-            STARTUP_FLAGS::STARTUP_CONCURRENT_GC |						// Use concurrent GC
-            STARTUP_FLAGS::STARTUP_SINGLE_APPDOMAIN |					// All code executes in the default AppDomain 
-                                                                        // (required to use the runtimeHost->ExecuteAssembly helper function)
-            STARTUP_FLAGS::STARTUP_LOADER_OPTIMIZATION_SINGLE_DOMAIN	// Prevents domain-neutral loading
-            )
-    );
-    // </Snippet4>
-
-    if (FAILED(hr))
-    {
-//        printf("ERROR - Failed to set startup flags.\nError code:%x\n", hr);
-        return false;
-    }
-
-    // Starting the runtime will initialize the JIT, GC, loader, etc.
-    hr = runtimeHost->Start();
-    if (FAILED(hr))
-    {
-//        printf("ERROR - Failed to start the runtime.\nError code:%x\n", hr);
-        return false;
-    }
-    printf("Runtime started\b");
-
-
-    //
-    // STEP 5: Prepare properties for the AppDomain we will create
-    //
-
-    // Flags
-    // <Snippet5>
-    auto appDomainFlags =
-        // APPDOMAIN_FORCE_TRIVIAL_WAIT_OPERATIONS |		// Do not pump messages during wait
-        // APPDOMAIN_SECURITY_SANDBOXED |					// Causes assemblies not from the TPA list to be loaded as partially trusted
-        APPDOMAIN_ENABLE_PLATFORM_SPECIFIC_APPS |			// Enable platform-specific assemblies to run
-        APPDOMAIN_ENABLE_PINVOKE_AND_CLASSIC_COMINTEROP |	// Allow PInvoking from non-TPA assemblies
-        APPDOMAIN_DISABLE_TRANSPARENCY_ENFORCEMENT;			// Entirely disables transparency checks 
-                                                            // </Snippet5>
-
-                                                            // <Snippet6>
-                                                            // TRUSTED_PLATFORM_ASSEMBLIES
-                                                            // "Trusted Platform Assemblies" are prioritized by the loader and always loaded with full trust.
-                                                            // A common pattern is to include any assemblies next to CoreCLR.dll as platform assemblies.
-                                                            // More sophisticated hosts may also include their own Framework extensions (such as AppDomain managers)
-                                                            // in this list.
-    std::wstring trustedPlatformAssemblies;
-
+void LookupAssemliesInFolder(std::wstring const & coreRoot, std::wstring & trustedPlatformAssemblies) {
     // Extensions to probe for when finding TPA list files
     wchar_t *tpaExtensions[] = {
         L"*.dll",
@@ -225,6 +89,172 @@ bool FCoreClrHost::Start() {
             FindClose(fileHandle);
         }
     }
+}
+
+bool runtimeRunning = true;
+
+#if WIN32
+#include "comdef.h"
+auto getComErrorMSg(HRESULT hr) {
+    _com_error err(hr);
+    return err.ErrorMessage();
+}
+#else
+auto getComErrorMSg(HRESULT hr) {
+//TODO
+    return L"";
+}
+#endif
+
+bool StartupRunntime(FCoreClrHostPImpl * pimpl) {
+    auto outCoreRoot = std::wstring(coreCLRInstallDirectory);
+    auto coreCLRModule = LoadCoreCLR(outCoreRoot);
+
+    // If CoreCLR.dll wasn't in %CORE_ROOT% or next to the app, 
+    // look in the common 1.1.0 install directory
+    if (!coreCLRModule){
+        wchar_t coreRootx[MAX_PATH];
+        ::ExpandEnvironmentStringsW(coreCLRInstallDirectory, coreRootx, MAX_PATH);
+        coreCLRModule = LoadCoreCLR(outCoreRoot = coreRootx);
+    }
+
+    if (!coreCLRModule){
+        printf("ERROR - CoreCLR.dll could not be found");
+        return false;
+    }
+    wprintf(L"CoreCLR loaded from %s\n", outCoreRoot.c_str());
+
+    // STEP 3: Get ICLRRuntimeHost2 instance
+    FnGetCLRRuntimeHost pfnGetCLRRuntimeHost = (FnGetCLRRuntimeHost)::GetProcAddress(coreCLRModule, "GetCLRRuntimeHost");
+    if (!pfnGetCLRRuntimeHost){
+        printf("ERROR - GetCLRRuntimeHost not found");
+        return false;
+    }
+    ICLRRuntimeHost2 * outRuntimeHost;
+    auto hr = pfnGetCLRRuntimeHost(IID_ICLRRuntimeHost2, (IUnknown**)&outRuntimeHost);
+
+    if (FAILED(hr)){
+        UE_LOG(LogClr, Log, TEXT("ERROR - Failed to get ICLRRuntimeHost2 instance.\nError code: %s\n"), getComErrorMSg(hr));
+        //        printf("ERROR - Failed to get ICLRRuntimeHost2 instance.\nError code:%x\n", hr);
+        return false;
+    }
+
+    // STEP 4: Set desired startup flags and start the CLR
+    hr = outRuntimeHost->SetStartupFlags(
+        // These startup flags control runtime-wide behaviors.
+        // A complete list of STARTUP_FLAGS can be found in mscoree.h,
+        // but some of the more common ones are listed below.
+        static_cast<STARTUP_FLAGS>(
+            // STARTUP_FLAGS::STARTUP_SERVER_GC |								// Use server GC
+            // STARTUP_FLAGS::STARTUP_LOADER_OPTIMIZATION_MULTI_DOMAIN |		// Maximize domain-neutral loading
+            // STARTUP_FLAGS::STARTUP_LOADER_OPTIMIZATION_MULTI_DOMAIN_HOST |	// Domain-neutral loading for strongly-named assemblies
+            STARTUP_FLAGS::STARTUP_CONCURRENT_GC |						// Use concurrent GC
+            STARTUP_FLAGS::STARTUP_SINGLE_APPDOMAIN |					// All code executes in the default AppDomain 
+            // (required to use the runtimeHost->ExecuteAssembly helper function)
+            STARTUP_FLAGS::STARTUP_LOADER_OPTIMIZATION_SINGLE_DOMAIN	// Prevents domain-neutral loading
+        )
+    );
+
+    if (FAILED(hr)){
+        //        printf("ERROR - Failed to set startup flags.\nError code:%x\n", hr);
+        return false;
+    }
+
+    // Starting the runtime will initialize the JIT, GC, loader, etc.
+    hr = outRuntimeHost->Start();
+    if (FAILED(hr)){
+        //        printf("ERROR - Failed to start the runtime.\nError code:%d\n", hr);
+        return false;
+    }
+    printf("Runtime started\b");
+    pimpl->RuntimeHostInterface = outRuntimeHost;
+    pimpl->RunntimeRootPath = outCoreRoot;
+    return true;
+}
+
+void ShutdownRunntime(FCoreClrHostPImpl * pimpl) {
+    auto runtimeHost = pimpl->RuntimeHostInterface;
+    if(!runtimeHost) {
+        return;
+    }
+    auto domainId = pimpl->RunntimeDomainId;
+
+    //
+    // STEP 8: Clean up
+    //
+    runtimeHost->UnloadAppDomain(domainId, true /* Wait until unload complete */);
+    runtimeHost->Stop();
+    runtimeHost->Release();
+
+    printf("\nDone\n");
+}
+
+bool FCoreClrHost::run() {
+    printf("Sample CoreCLR Host\n\n");
+    std::wstring coreRoot = this->pImpl->RunntimeRootPath;
+    ICLRRuntimeHost2 * runtimeHost = this->pImpl->RuntimeHostInterface;
+
+    assert(runtimeHost);
+
+    //
+    // STEP 5: Prepare properties for the AppDomain we will create
+    //
+
+    // Flags
+    // <Snippet5>
+    auto appDomainFlags =
+            // APPDOMAIN_FORCE_TRIVIAL_WAIT_OPERATIONS |		// Do not pump messages during wait
+            // APPDOMAIN_SECURITY_SANDBOXED |					// Causes assemblies not from the TPA list to be loaded as partially trusted
+            APPDOMAIN_IGNORE_UNHANDLED_EXCEPTIONS |
+            APPDOMAIN_ENABLE_PLATFORM_SPECIFIC_APPS |			// Enable platform-specific assemblies to run
+            APPDOMAIN_ENABLE_PINVOKE_AND_CLASSIC_COMINTEROP |	// Allow PInvoking from non-TPA assemblies
+            APPDOMAIN_DISABLE_TRANSPARENCY_ENFORCEMENT;			// Entirely disables transparency checks 
+    // </Snippet5>
+
+    // <Snippet6>
+    // TRUSTED_PLATFORM_ASSEMBLIES
+    // "Trusted Platform Assemblies" are prioritized by the loader and always loaded with full trust.
+    // A common pattern is to include any assemblies next to CoreCLR.dll as platform assemblies.
+    // More sophisticated hosts may also include their own Framework extensions (such as AppDomain managers)
+    // in this list.
+    std::wstring trustedPlatformAssemblies;
+    LookupAssemliesInFolder(coreRoot, trustedPlatformAssemblies);
+
+    auto platfromPathExtension = TEXT("Editor_64bits"); 
+#if WITH_EDITOR
+#if PLATFORM_64BITS
+    platfromPathExtension = TEXT("Editor_64bits");
+#else
+    platfromPathExtension = TEXT("Editor_32bits");
+#endif
+#else
+#if PLATFORM_64BITS
+    platfromPathExtension = TEXT("Game_64bits");
+#else
+    platfromPathExtension = TEXT("Game_32bits");
+#endif
+#endif
+    //TODO remove
+    platfromPathExtension = TEXT("Editor_64bits");
+
+    auto const unrealCSContentFolderName = TEXT("Scripts");
+
+    auto RuntimeAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework")));
+    auto EngineAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("EngineAssemblies")));
+
+    auto platformPath = FPaths::Combine(EngineAssemblyDirectory, platfromPathExtension, netstandard);
+    LookupAssemliesInFolder(*platformPath, trustedPlatformAssemblies);
+    auto engineCoreDir = FPaths::ConvertRelativePathToFull(FPaths::Combine(EngineAssemblyDirectory), netstandard);
+    LookupAssemliesInFolder(*engineCoreDir, trustedPlatformAssemblies);
+
+    auto startAssembly = FPaths::ConvertRelativePathToFull(FPaths::Combine(EngineAssemblyDirectory, netstandard, TEXT("MainDomain.dll")));
+
+    // The managed application to run should be the first command-line parameter.
+    // Subsequent command line parameters will be passed to the managed app later in this host.
+    auto targetApp = std::wstring(*startAssembly);
+
+    // Also note the directory the target app is in, as it will be referenced later.
+    auto targetAppPath = std::wstring(std::experimental::filesystem::path(targetApp).remove_filename().c_str());
 
     // APP_PATHS
     // App paths are directories to probe in for assemblies which are not one of the well-known Framework assemblies
@@ -247,7 +277,6 @@ bool FCoreClrHost::Start() {
     auto nativeDllSearchDirectories = appPaths + L";" + coreRoot;
 
     auto GameAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("GameAssemblies")));
-    auto RuntimeAssemblyDirectory = FPaths::ConvertRelativePathToFull(FPaths::Combine(*FPaths::GameDir(), TEXT("Content"), unrealCSContentFolderName, TEXT("framework")));
     // PLATFORM_RESOURCE_ROOTS
     // Platform resource roots are paths to probe in for resource assemblies (in culture-specific sub-directories)
     auto platformResourceRoots = std::wstring(appPaths) + L";";
@@ -295,7 +324,7 @@ bool FCoreClrHost::Start() {
     };
 
     // Create the AppDomain
-    hr = runtimeHost->CreateAppDomainWithManager(
+    auto hr = runtimeHost->CreateAppDomainWithManager(
         L"Sample Host AppDomain",		// Friendly AD name
         appDomainFlags,
         nullptr,							// Optional AppDomain manager assembly name
@@ -308,7 +337,7 @@ bool FCoreClrHost::Start() {
 
     if (FAILED(hr))
     {
-//        printf("ERROR - Failed to create AppDomain.\nError code:%x\n", hr);
+        //        printf("ERROR - Failed to create AppDomain.\nError code:%x\n", hr);
         return false;
     }
     printf("AppDomain %d created\n\n", (int)domainId);
@@ -327,46 +356,76 @@ bool FCoreClrHost::Start() {
 
     // <Snippet8>
     DWORD exitCode = -1;
-    hr = runtimeHost->ExecuteAssembly(domainId, targetApp.c_str(), 1, (&argv[0]), &exitCode);
-    // </Snippet8>
+    runtimeRunning = true;
 
-    if (FAILED(hr))
-    {
-//        wprintf(L"ERROR - Failed to execute %s.\nError code:%x\n", targetApp.c_str(), hr);
-        return false;
-    }
+    this->pImpl->RunntimeDomainId = domainId;
+
+    hr = runtimeHost->ExecuteAssembly(domainId, L"F:/Projects/Microsoft/docs/samples/core/console-apps/HelloMsBuild/bin/Debug/netcoreapp2.0/Hello.dll", 1, argv, &exitCode);
+    //hr = runtimeHost->ExecuteAssembly(domainId, targetApp.c_str(), 1, argv, &exitCode);
+    runtimeRunning = false;
+    // </Snippet8>
 
     // Alternatively, to start managed code execution with a method other than an assembly's entrypoint,
     // runtimeHost->CreateDelegate can be used to create a pointer to an arbitrary static managed method
     // which can then be executed directly or via runtimeHost->ExecuteInAppDomain.
-    //
-    //  void *pfnDelegate = NULL;
-    //  hr = runtimeHost->CreateDelegate(
-    //	  domainId,
-    //	  L"HW, Version=1.0.0.0, Culture=neutral",	// Target managed assembly
-    //	  L"ConsoleApplication.Program",				// Target managed type
-    //	  L"Main",									// Target entry point (static method)
-    //	  (INT_PTR*)&pfnDelegate);
-    //  if (FAILED(hr))
-    //  {
-    //	  printf("ERROR - Failed to create delegate.\nError code:%x\n", hr);
-    //	  return -1;
-    //  }
-    //  ((MainMethodFp*)pfnDelegate)(NULL);
+    //    void *pfnDelegate = nullptr;
+    //    hr = runtimeHost->CreateDelegate(
+    //        domainId,
+    //        L"HW, Version=1.0.0.0, Culture=neutral",	// Target managed assembly
+    //        L"Hello.Program",				            // Target managed type
+    //        L"Main",									// Target entry point (static method)
+    //        (INT_PTR*)&pfnDelegate
+    //    );
 
+    if (FAILED(hr))
+    {
+        //        printf("ERROR - Failed to create delegate.\nError code:%x\n", hr);
+        return false;
+    }
+    //    void * c = nullptr;
+    //    runtimeHost->ExecuteInAppDomain(domainId, FExecuteInAppDomainCallback(pfnDelegate), c);
 
+    // Function pointer type to be used if this sample is modified to use CreateDelegate to
+    // call into a static managed method (with signature void (string[])). This would be
+    // an alternative to using the ICLRRuntimeHost2::ExecuteAssembly helper function which
+    // loads and executes a managed assembly's entry point directly.
+    //    typedef void (STDMETHODCALLTYPE MainMethodFp)(wchar_t ** args);
+    //    ((MainMethodFp*)pfnDelegate)(nullptr);
 
-    //
-    // STEP 8: Clean up
-    //
+    if (FAILED(hr))
+    {
+        //        wprintf(L"ERROR - Failed to execute %s.\nError code:%x\n", targetApp.c_str(), hr);
+        return false;
+    }
 
-    // <Snippet9>
-    runtimeHost->UnloadAppDomain(domainId, true /* Wait until unload complete */);
-    runtimeHost->Stop();
-    runtimeHost->Release();
-    // </Snippet9>
+    return true;   
+}
 
-    printf("\nDone\n");
+FCoreClrHost::FCoreClrHost() {
+    pImpl = std::make_unique<FCoreClrHostPImpl>();
+    if (Init()) {
+        Start();
+    }
+}
 
+FCoreClrHost::~FCoreClrHost() {
+    Shutdown();
+}
+
+bool FCoreClrHost::Init() {
+    return StartupRunntime(this->pImpl.get());
+}
+
+bool FCoreClrHost::Start() {
+    this->pImpl->ptr = std::make_unique<std::thread>([this] { run(); });
+    while(!runtimeRunning) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+    return true;
+}
+
+bool FCoreClrHost::Shutdown() {
+    ShutdownRunntime(this->pImpl.get());
+    this->pImpl->ptr->join();
     return true;
 }

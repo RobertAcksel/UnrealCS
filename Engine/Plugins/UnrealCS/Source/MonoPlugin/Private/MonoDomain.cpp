@@ -410,6 +410,8 @@ FMonoDomain::FMonoDomain()
     methodCreateInstance = nullptr;
     methodCreateArray = nullptr;
     
+    return;
+
     GameName = FApp::GetGameName();
     if (GameName.Len() == 0) {
         GameName = "AppGame";

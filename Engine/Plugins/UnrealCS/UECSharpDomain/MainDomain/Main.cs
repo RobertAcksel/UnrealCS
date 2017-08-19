@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+//using System.Runtime.CompilerServices;
+//using System.Runtime.InteropServices;
 using System.IO;
 using UnrealEngine;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Linq;
+using System.Threading;
+
+//using System.Linq;
+//using System.Reflection;
 
 namespace MainDomain{
     public class MainClass{
         public static void Main(string[] args){
             while (true){
-                
+                Thread.Sleep(1000);
+                if (Debugger.IsAttached){
+                    //                    Method();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Write an empty line! You may test to attach a debugger?");
+                }
             }
         }
 
@@ -24,16 +32,16 @@ namespace MainDomain{
         internal readonly string engineAssembliesDir;
         internal readonly string gameAssembliesDir;
         private string shadowCopyDirectory;
-        internal AOTSupport AotSupport { get; }
+//        internal AOTSupport AotSupport { get; }
 
         private AppDomain gameDomain;
         private readonly List<FileSystemWatcher> fileWatchers = new List<FileSystemWatcher>();
 
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void NativeReload();
-
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void NativeReinitsystem();
+//        [MethodImpl(MethodImplOptions.InternalCall)]
+//        public static extern void NativeReload();
+//
+//        [MethodImpl(MethodImplOptions.InternalCall)]
+//        public static extern void NativeReinitsystem();
 
         public MainClass(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
             this.withEidtor = withEidtor != 0;
@@ -45,7 +53,7 @@ namespace MainDomain{
 
             if (this.withEidtor)
                 CreateFileWatcher();
-            AotSupport = new AOTSupport(this);
+//            AotSupport = new AOTSupport(this);
         }
 
         private void CreateFileWatcher(){
@@ -117,7 +125,7 @@ namespace MainDomain{
             }
 
             UnrealEngine.UObject.LogInfo("reload' " + engineAssembliesDir + "'");
-            NativeReinitsystem();
+//            NativeReinitsystem();
         }
 
         private void Fsw_Renamed(object sender, RenamedEventArgs e){
@@ -137,12 +145,12 @@ namespace MainDomain{
             if (withEidtor){
                 CecilHook.PostProcessAssembly(e);
             }
-            NativeReload();
+//            NativeReload();
         }
 
         private void Fsw_Changed(object sender, FileSystemEventArgs e){
             UnrealEngine.UObject.LogInfo("Fsw_Changed:" + e.Name);
-            NativeReload();
+//            NativeReload();
         }
 
         public void OnCommand(string cmd){
@@ -151,7 +159,7 @@ namespace MainDomain{
                     OpenProject();
                     break;
                 case "AOT":
-                    AotSupport.AOT();
+//                    AotSupport.AOT();
                     break;
                 default:
                     break;
@@ -211,12 +219,12 @@ namespace MainDomain{
             }
 
             if (UGameplayStatics.GetPlatformName() == "Windows"){
-                var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",null, "").ToString();
-                if (string.IsNullOrEmpty(installDir)){
-                    UObject.LogError("Can't find devenv.exe");
-                    return;
-                }
-                Process.Start(installDir, solutionPath);
+//                var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",null, "").ToString();
+//                if (string.IsNullOrEmpty(installDir)){
+//                    UObject.LogError("Can't find devenv.exe");
+//                    return;
+//                }
+//                Process.Start(installDir, solutionPath);
             } else{
                 //No tool to display item location
                 UObject.LogWarning("C# script solution file located at " + solutionPath);
@@ -230,7 +238,7 @@ namespace MainDomain{
 
                 var m = r.Match(outLine.Data);
                 if (m.Success){
-                    instance.AotSupport.AotFilenameList.Add(m.ToString());
+//                    instance.AotSupport.AotFilenameList.Add(m.ToString());
                 }
                 UObject.LogWarning(outLine.Data);
             }
@@ -245,14 +253,17 @@ namespace MainDomain{
 
         private void Start(){
             if (gameDomain == null){
-                var domaininfo = new AppDomainSetup{
-                    ApplicationName = gameName,
-                    DisallowApplicationBaseProbing = true
-                };
+//                var domaininfo = new AppDomainSetup{
+//                    ApplicationName = gameName,
+//                    DisallowApplicationBaseProbing = true
+//                };
+
+//                var loadFile = Assembly.LoadFile();
+
                 //domaininfo.ShadowCopyDirectories = gameAssembliesDir;// string.Join(System.IO.Path.PathSeparator.ToString(), engineAssembliesDir, gameAssembliesDir);
                 //domaininfo.ShadowCopyFiles = "true";
                 //domaininfo.CachePath = shadowCopyDirectory;
-                gameDomain = AppDomain.CreateDomain("Game", AppDomain.CurrentDomain.Evidence, domaininfo);
+//                gameDomain = AppDomain.CreateDomain("Game", AppDomain.CurrentDomain.Evidence, domaininfo);
                 //gameDomain = AppDomain.CreateDomain("Game");
             }
         }
