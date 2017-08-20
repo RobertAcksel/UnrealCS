@@ -9,3 +9,4 @@ bin
 /Engine/Plugins/UnrealCS/Project/bin/copy.exe.config
 /Engine/Plugins/UnrealCS/Project/bin/copy.pdb
 /Engine/Plugins/UnrealCS/Project/bin/Game.dll
+.vs/
