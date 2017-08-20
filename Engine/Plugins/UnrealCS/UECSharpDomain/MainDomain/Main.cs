@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.IO;
 using UnrealEngine;
 using System.Diagnostics;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 
@@ -14,13 +14,20 @@ namespace MainDomain{
 
         private readonly bool withEidtor;
         private readonly string gameName;
-        private readonly string pluginBaseDir;
-        private readonly string engineAssembliesDir;
-        private readonly string gameAssembliesDir;
+        internal readonly string pluginBaseDir;
+        internal readonly string engineAssembliesDir;
+        internal readonly string gameAssembliesDir;
         private string shadowCopyDirectory;
+        internal AOTSupport AotSupport { get; }
 
         private AppDomain gameDomain;
-        private System.IO.FileSystemWatcher fsw;
+        private readonly List<FileSystemWatcher> fileWatchers = new List<FileSystemWatcher>();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void NativeReload();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        public static extern void NativeReinitsystem();
 
         public Main(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
             this.withEidtor = withEidtor != 0;
@@ -32,24 +39,79 @@ namespace MainDomain{
 
             if (this.withEidtor)
                 CreateFileWatcher();
+            AotSupport = new AOTSupport(this);
         }
 
         private void CreateFileWatcher(){
-            //Open the file monitoring service
-            fsw = new FileSystemWatcher(gameAssembliesDir){
-                Filter = "*.dll",
-                NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
-            };
-            //fsw.Changed += Fsw_Changed;
-            fsw.Created += Fsw_Created;
-            //fsw.Deleted += Fsw_Deleted;
-            fsw.Error += Fsw_Error;
-            //fsw.Renamed += Fsw_Renamed;
-            fsw.IncludeSubdirectories = false;
-            fsw.InternalBufferSize = 10240;
-            fsw.EnableRaisingEvents = true;
+            {
+                //Open the file monitoring service
+                var fsw = new FileSystemWatcher(gameAssembliesDir){
+                    Filter = "*.dll",
+                    NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName 
+                };
+                fsw.Created += Fsw_Created;
+                fsw.Error += Fsw_Error;
+                fsw.IncludeSubdirectories = false;
+                fsw.InternalBufferSize = 10240;
+                fsw.EnableRaisingEvents = true;
 
-            UnrealEngine.UObject.LogInfo("Start file hot reload listens at '" + gameAssembliesDir + "Game.dll'");
+                fileWatchers.Add(fsw);
+//                UnrealEngine.UObject.LogInfo("Start file hot reload listens at '" + fsw.Path + "Game.dll'");
+            }
+
+            {
+                //Open the file monitoring service
+                var fsw = new FileSystemWatcher(pluginBaseDir+ "/Scripts/EngineAssemblies")
+                {
+                    Filter = "*.dll",
+                    NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
+                };
+                fsw.Changed += Fsw_EngineAssembliesUpdated;
+                fsw.Created += Fsw_EngineAssembliesUpdated;
+                //fsw.Deleted += Fsw_Deleted;
+                fsw.Error += Fsw_Error;
+                //fsw.Renamed += Fsw_Renamed;
+                fsw.IncludeSubdirectories = false;
+                fsw.InternalBufferSize = 10240;
+                fsw.EnableRaisingEvents = true;
+
+                fileWatchers.Add(fsw);
+//                UnrealEngine.UObject.LogInfo("Start file reload listens at '" + fsw.Path + "'");
+            }
+        }
+
+        private void Fsw_EngineAssembliesUpdated(object sender, FileSystemEventArgs e){
+            //this will move dlls in use to a temporary folder
+            var files = Directory.GetFiles(engineAssembliesDir, "*.dll", SearchOption.AllDirectories);
+            foreach (var filePath in files){
+                var fileInfo = new FileInfo(filePath);
+                if (IsFileLocked(fileInfo)){
+//                    UObject.LogInfo($"Moved old file to '{anotherName}'");
+                    var fileName = fileInfo.FullName.Replace(engineAssembliesDir, "");
+                    var tempPath = Path.Combine(Path.GetTempPath(), "UnrealEditor_CSharp_dlls");
+                    var destFileName = tempPath + fileName;
+                    if (File.Exists(destFileName)){
+                        try{
+                            File.Delete(destFileName);
+                        } catch{
+                            var count = 0;
+                            while (true){
+                                var anotherName = destFileName + (count++);
+                                try{
+                                    File.Move(destFileName, anotherName);
+                                    UObject.LogWarning($"Moved old file to '{anotherName}'");
+                                    break;
+                                } catch{ // ignored 
+                                }
+                            }
+                        }
+                    }
+                    fileInfo.MoveTo(destFileName);
+                }
+            }
+
+            UnrealEngine.UObject.LogInfo("reload' " + engineAssembliesDir + "'");
+            NativeReinitsystem();
         }
 
         private void Fsw_Renamed(object sender, RenamedEventArgs e){
@@ -66,6 +128,9 @@ namespace MainDomain{
 
         private void Fsw_Created(object sender, FileSystemEventArgs e){
             UnrealEngine.UObject.LogInfo("Fsw_Created:" + e.Name);
+            if (withEidtor){
+                CecilHook.PostProcessAssembly(e);
+            }
             NativeReload();
         }
 
@@ -80,7 +145,7 @@ namespace MainDomain{
                     OpenProject();
                     break;
                 case "AOT":
-                    AOT();
+                    AotSupport.AOT();
                     break;
                 default:
                     break;
@@ -142,7 +207,7 @@ namespace MainDomain{
             if (UGameplayStatics.GetPlatformName() == "Windows"){
                 var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",null, "").ToString();
                 if (string.IsNullOrEmpty(installDir)){
-                    UObject.LogWarning("Can't find devenv.exe");
+                    UObject.LogError("Can't find devenv.exe");
                     return;
                 }
                 Process.Start(installDir, solutionPath);
@@ -152,227 +217,20 @@ namespace MainDomain{
             }
         }
 
-        private List<string> aot_filename_list = null;
-
-        private void AOT(){
-            UObject.LogInfo("AOT Start");
-
-            aot_filename_list = new List<string>();
-            aot_filename_list.Clear();
-
-            var last_work_dir = System.Environment.CurrentDirectory;
-            try{
-                var isWindows = UGameplayStatics.GetPlatformName() == "Windows";
-                var isMac = UGameplayStatics.GetPlatformName() == "Mac";
-
-                if (!isWindows && !isMac)
-                    return;
-
-                //Traverse the directory, aot each file
-                var MAC_AOT_MONO_PATH = Path.GetFullPath(isWindows ? Path.Combine(pluginBaseDir, "mono_aot", "aot_host_windows_target_armv7", "bin") : Path.Combine(pluginBaseDir, "mono_aot", "aot_host_mac_target_armv7", "bin"));
-
-                var aot_target = "armv7";
-                var mscorlib_path = Path.GetFullPath(Path.Combine(pluginBaseDir, "mono_aot", "pre_aot_files", aot_target));
-
-                var ios_predefine_header_file_pathname = Path.GetFullPath(Path.Combine(pluginBaseDir, "Source", "MonoPlugin", "Private", "ios_predefine.h"));
-                var ios_private_path = Path.GetFullPath(Path.Combine(pluginBaseDir, "Source", "MonoPlugin", "Private", "IOS"));
-
-                var outpath = Path.GetFullPath(Path.Combine(pluginBaseDir, "AOT"));
-                var temppath = Path.Combine(outpath, "Temp");
-
-                if (Directory.Exists(outpath))
-                    Directory.Delete(outpath, true);
-                if (Directory.Exists(temppath))
-                    Directory.Delete(temppath, true);
-
-                Directory.CreateDirectory(outpath);
-                Directory.CreateDirectory(temppath);
-
-                //Copy all dll to temp folder
-                {
-                    var dllPath = new List<string>{
-                        engineAssembliesDir,
-                        gameAssembliesDir,
-                        Path.Combine(FPaths.GameDir(), "Content", "Scripts", "framework")
-                    };
-                    foreach (var dir in dllPath){
-                        var files = Directory.GetFiles(dir, "*.dll", SearchOption.AllDirectories);
-                        foreach (var file in files){
-                            var filename = Path.GetFileName(file);
-                            var filepath = file.Substring(0, file.Length - filename.Length);
-                            //Skip invalid UnrealEngine.dll
-                            if (filename == "UnrealEngine.dll"){
-                                if ((aot_target == "armv7" || aot_target == "armv7s") && !filepath.Contains("Game_32bits")){
-                                    continue;
-                                } else if (aot_target == "arm64" && !filepath.Contains("Game_64bits")){
-                                    continue;
-                                }
-                            }
-                            UObject.LogInfo("copy {0} to {1}", filename, outpath);
-                            File.Copy(file, Path.Combine(temppath, filename), true);
-                        }
-                    }
-                }
-
-                //AOT all files for the temp folder
-                {
-                    var files = Directory.GetFiles(temppath, "*.dll", SearchOption.AllDirectories);
-                    foreach (var file in files){
-                        var filename = Path.GetFileName(file);
-                        var filepath = file.Substring(0, file.Length - filename.Length);
-
-                        //Skip this file
-                        if (filename == "mscorlib.dll"){
-                            aot_filename_list.Add("mono_aot_module_mscorlib_info");
-                            //copy mscorlib.dll.a
-                            File.Copy(Path.Combine(mscorlib_path, "mscorlib.dll.a"), Path.Combine(outpath, "mscorlib.dll.a"));
-                            //File.Copy(Path.Combine(mscorlib_path, "mscorlib.dll.s"), Path.Combine(ios_private_path, "mscorlib.dll.s"),true);
-                            continue;
-                        }
-
-                        //AOT
-                        {
-                            System.Environment.CurrentDirectory = MAC_AOT_MONO_PATH;
-
-                            var proc = new System.Diagnostics.Process();
-                            proc.StartInfo.WorkingDirectory = MAC_AOT_MONO_PATH;
-                            if (isWindows){
-                                proc.StartInfo.FileName = Path.Combine(MAC_AOT_MONO_PATH, "mono-sgen.exe");
-                                proc.StartInfo.Arguments = $" --aot=full,asmonly,static \"{file}\"";
-                            } else{
-                                proc.StartInfo.FileName = "./armv7-apple-darwin-mono-sgen";
-                                proc.StartInfo.Arguments = $"--aot=full,asmonly,static,nrgctx-trampolines=8096,nimt-trampolines=8096,ntrampolines=4048 \"{file}\"";
-                            }
-
-                            proc.StartInfo.CreateNoWindow = true;
-                            proc.StartInfo.UseShellExecute = false;
-                            proc.StartInfo.RedirectStandardOutput = true;
-                            proc.StartInfo.RedirectStandardError = true;
-                            proc.OutputDataReceived += OutputHandler;
-                            proc.ErrorDataReceived += ErrorHandler;
-
-                            UObject.LogInfo("aot {0}", proc.StartInfo.Arguments);
-                            proc.Start();
-
-                            proc.BeginOutputReadLine();
-                            proc.BeginErrorReadLine();
-
-                            proc.WaitForExit();
-                            proc.Close();
-
-                            //Copy to the Private / IOS directory
-                            //File.Copy(file+".s", Path.Combine(ios_private_path, filename +".s"), true);
-                        }
-
-                        if (isMac){
-                            //AS
-                            {
-                                var proc = new Process{
-                                    StartInfo = {
-                                        WorkingDirectory = filepath,
-                                        FileName = "xcrun",
-                                        Arguments = string.Format("-sdk iphoneos as -arch {2} -mno-thumb -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -o {0}.o {1}.s", filename, filename, aot_target),
-                                        CreateNoWindow = true,
-                                        UseShellExecute = false,
-                                        RedirectStandardOutput = true,
-                                        RedirectStandardError = true
-                                    }
-                                };
-                                //proc.StartInfo.FileName = "as";
-                                //proc.StartInfo.Arguments = string.Format("-arch {2} -march=armv7-a -mno-thumb -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -o {0}.o {1}.s", filename, filename, aot_target);
-
-                                proc.OutputDataReceived += OutputHandler;
-                                proc.ErrorDataReceived += ErrorHandler;
-
-                                UObject.LogInfo("as {0}", proc.StartInfo.Arguments);
-                                proc.Start();
-
-                                proc.BeginOutputReadLine();
-                                proc.BeginErrorReadLine();
-
-                                proc.WaitForExit();
-                                proc.Close();
-                            }
-
-                            //ar
-                            {
-                                var proc = new Process{
-                                    StartInfo = {
-                                        WorkingDirectory = filepath,
-                                        FileName = "xcrun",
-                                        Arguments = $"-sdk iphoneos ar rcu \"{Path.GetFullPath(Path.Combine(outpath, filename))}.a\" {filename}.o",
-                                        CreateNoWindow = true,
-                                        UseShellExecute = false,
-                                        RedirectStandardOutput = true,
-                                        RedirectStandardError = true
-                                    }
-                                };
-                                //proc.StartInfo.FileName = "ar";
-                                //proc.StartInfo.Arguments = string.Format("-r \"{0}.a\" {1}.o", Path.GetFullPath(Path.Combine(outpath, filename)), filename);
-
-
-                                proc.OutputDataReceived += OutputHandler;
-                                proc.ErrorDataReceived += ErrorHandler;
-
-                                UObject.LogInfo("ar {0}", proc.StartInfo.Arguments);
-                                proc.Start();
-
-                                proc.BeginOutputReadLine();
-                                proc.BeginErrorReadLine();
-
-                                proc.WaitForExit();
-                                proc.Close();
-                            }
-                        }
-                    }
-                }
-
-                //Delete the temp folder
-                {
-                    Directory.Delete(temppath, true);
-                }
-
-                //Build ios pre-defined header files
-                var sb = new System.Text.StringBuilder();
-                sb.AppendLine("extern \"C\"{");
-                sb.AppendLine("\tvoid mono_aot_register_module(void* pt);");
-                foreach (var filename in aot_filename_list){
-                    sb.AppendFormat("\textern void* {0};", filename);
-                    sb.AppendLine();
-                }
-                sb.AppendLine("}");
-
-                sb.AppendLine("void RegisterMonoModules(){");
-                foreach (var filename in aot_filename_list){
-                    sb.AppendFormat("\tmono_aot_register_module({0});", filename);
-                    sb.AppendLine();
-                }
-                sb.AppendLine("}");
-                aot_filename_list.Clear();
-                //写入文件
-                File.WriteAllText(ios_predefine_header_file_pathname, sb.ToString(), System.Text.Encoding.UTF8);
-            } catch (Exception e){
-                UObject.LogError(e.Message);
-                UObject.LogError(e.StackTrace);
-            } finally{
-                System.Environment.CurrentDirectory = last_work_dir;
-            }
-        }
-
-        private static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine){
+        internal static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine){
             // Collect the sort command output.
             if (!string.IsNullOrEmpty(outLine.Data)){
                 var r = new Regex("mono_aot_module_[\\s\\S]*_info");
 
                 var m = r.Match(outLine.Data);
                 if (m.Success){
-                    instance.aot_filename_list.Add(m.ToString());
+                    instance.AotSupport.AotFilenameList.Add(m.ToString());
                 }
                 UObject.LogWarning(outLine.Data);
             }
         }
 
-        private static void ErrorHandler(object sendingProcess, DataReceivedEventArgs outLine){
+        internal static void ErrorHandler(object sendingProcess, DataReceivedEventArgs outLine){
             // Collect the sort command output.
             if (!string.IsNullOrEmpty(outLine.Data)){
                 UObject.LogError(outLine.Data);
@@ -446,9 +304,6 @@ namespace MainDomain{
             Start();
         }
 
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        public static extern void NativeReload();
-
         public static Main Initialize(string gameName, string pluginBaseDir, string engineAssembliesDir, string gameAssembliesDir, string shadowCopyDirectory, int withEidtor){
             instance = new Main(gameName, pluginBaseDir, engineAssembliesDir, gameAssembliesDir, shadowCopyDirectory, withEidtor);
             return instance;
@@ -459,6 +314,30 @@ namespace MainDomain{
                 instance.End();
                 instance = null;
             }
+        }
+
+        public static bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally{
+                stream?.Close();
+            }
+
+            //file is not locked
+            return false;
         }
     }
 }

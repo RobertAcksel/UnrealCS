@@ -55,8 +55,7 @@ FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath,
     BlackList.AddFunction("KismetRenderingLibrary", "BreakSkinWeightInfo");
     BlackList.AddFunction("KismetRenderingLibrary", "MakeSkinWeightInfo");
 
-    BlackList.AddFunction("SkinnedMeshComponent", "SetSkinWeightOverride");
-    
+    BlackList.AddFunction("SkinnedMeshComponent", "SetSkinWeightOverride");    
 }
 
 void FMonoScriptCodeGenerator::FinishExport()

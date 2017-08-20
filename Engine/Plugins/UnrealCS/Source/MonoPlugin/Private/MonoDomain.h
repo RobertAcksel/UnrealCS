@@ -39,7 +39,7 @@ public:
 	static FMonoDomain* Get(){ return Instance; }
 
 	//Open an .Net dll file
-	MonoAssembly* Open(MonoDomain* domain,const FString& AssemblyName) const;
+	MonoAssembly* OpenMonoAssembly(MonoDomain* domain,const FString& AssemblyName) const;
 
 	//Create an C# object by type name
 	MonoObject* CreateInstance(const FString& TypeName) const;
@@ -80,8 +80,9 @@ public:
 	DECLARE_MULTICAST_DELEGATE(FOnHotReload);
 	FOnHotReload eventBeginHotReload;
 	FOnHotReload eventEndHotReload;
-	bool NeedHotReload;
-	MonoDomain* CreateGameDomain();
+	bool NeedHotReload = false;
+    bool NeedCompleteReload = false;
+	MonoDomain* CreateGameDomain() const;
 #endif
 
 private:
@@ -91,10 +92,11 @@ private:
 	FString EngineAssemblyDirectory;
 	FString RuntimeAssemblyDirectory;
 
-	void InitCreateMainDomain();
-	void ShutDownMainDomain();
+	bool SetupMono();
+	void ShutDownMono();
+    bool UpdateMainDomain();
 
-	//GameDomain
+    //GameDomain
 	MonoDomain* Domain;
 
 	//Game Image

@@ -122,47 +122,11 @@ void FScriptEditorPlugin::ShutdownModule()
 	IMonoPlugin::Get().Event_OnNewClass().RemoveAll(this);
 }
 
-UPackage* FindOrCreatePackage(const FString& Name)
-{
-	FString PackageName = TEXT("/Game/Scripts/Blueprints/")+Name;
-	UPackage* ClassPackage = LoadPackage(NULL, *PackageName, 0);
-	if (ClassPackage == NULL)
-	{
-		UE_LOG(LogMonoEditor, Log, TEXT("Create New Packgage %s"), *PackageName);
-		ClassPackage = CreatePackage(NULL, *PackageName);
-		ClassPackage->AddToRoot();
-	}
-	
-	return ClassPackage;
-}
-
-
 void FScriptEditorPlugin::Event_OnNewClass(const FString& ClassName,UClass* NewParent)
 {
-	
-	
 	UClass* ClassToUse = Factory->GetSupportedClass();
-
-	UPackage* ClassPackage = FindOrCreatePackage(ClassName);
-
-	UObject* NewObj = NULL;
 	EObjectFlags Flags = RF_Public | RF_Standalone;
-
-    Factory->NewParentClass =NewParent;
-	NewObj = Factory->FactoryCreateNew(ClassToUse, ClassPackage, FName(*ClassName), Flags, NULL, GWarn/*, FName(TEXT("MonoEditor")*/);
-
-	if (NewObj)
-	{
-		// Notify the asset registry
-		FAssetRegistryModule::AssetCreated(NewObj);
-
-		// analytics create record
-		//FAssetTools::OnNewCreateRecord(ClassToUse, false);
-
-		// Mark the package dirty...
-		ClassPackage->MarkPackageDirty();
-	}
-
+	Factory->FactoryCreateNew(ClassToUse, NewParent, FName(*ClassName), Flags, NULL, GWarn/*, FName(TEXT("MonoEditor")*/);
 }
 
 bool FScriptEditorPlugin::CanCompile(const UBlueprint* Blueprint)

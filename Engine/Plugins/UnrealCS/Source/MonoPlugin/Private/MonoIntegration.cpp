@@ -11,14 +11,13 @@
 #include "MonoScriptBindHelper.h"
 
 
-FMonoContext::FMonoContext()
-{
-	Obj = NULL;
-	method_BeginPlay = NULL;
-	method_Tick = NULL;
-	method_EndPlay = NULL;
-	method_Destroy = NULL;
-	Class = NULL;
+FMonoContext::FMonoContext(): handle(0) {
+    Obj = NULL;
+    method_BeginPlay = NULL;
+    method_Tick = NULL;
+    method_EndPlay = NULL;
+    method_Destroy = NULL;
+    Class = NULL;
 }
 
 FMonoContext::~FMonoContext()

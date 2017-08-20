@@ -189,10 +189,8 @@ namespace UnrealBuildTool.Rules
 						"UnrealEd", 
 					}
                 );
-
             }
-
-
+            
             DynamicallyLoadedModuleNames.AddRange(
                 new string[]
 				{
@@ -203,6 +201,9 @@ namespace UnrealBuildTool.Rules
             {
                 LoadMono(Target);
                 Definitions.Add("WITH_MONO=1");
+                if (UEBuildConfiguration.bBuildEditor == true){
+                    Definitions.Add("WITH_MONO_HOTRELOAD=1");
+                }
             }
 
         }
