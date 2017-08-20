@@ -11,3 +11,5 @@ bin
 /Engine/Plugins/UnrealCS/Project/bin/Game.dll
 /Engine/Plugins/UnrealCS/UECSharpDomain/packages
 Engine/Plugins/UnrealCS/UECSharpDomain/.vs/
+Engine/Plugins/UnrealCS/Scripts/EngineAssemblies/netcoreapp2.0/MainDomain.runtimeconfig.dev.json
+Engine/Plugins/UnrealCS/Scripts/EngineAssemblies/netcoreapp2.0/MainDomain.runtimeconfig.json
