@@ -1,0 +1,24 @@
+//see Mono Debug on https://marketplace.visualstudio.com/items?itemName=ms-vscode.mono-debug#overview
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Launch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "F:/UnrealEngineSource/Engine/Binaries/Win64/UE4Editor.exe",
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": [
+                "-monoServ"
+            ]
+        },
+        {
+            "name": "Attach",
+            "type": "mono",
+            "request": "attach",
+            "address": "localhost",
+            "port": 13001
+        }
+    ]
+}
