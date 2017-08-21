@@ -142,7 +142,7 @@ namespace MainDomain{
         public void OnCommand(string cmd){
             switch (cmd){
                 case "OpenProject":
-                    OpenProject();
+                    EditorCommands.OpenProject(pluginBaseDir);
                     break;
                 case "AOT":
                     AotSupport.AOT();
@@ -150,10 +150,6 @@ namespace MainDomain{
                 default:
                     break;
             }
-        }
-
-        private void OpenProject(){
-            UnrealEngine.EditorCommands.OpenProject(pluginBaseDir);
         }
 
         internal static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine){

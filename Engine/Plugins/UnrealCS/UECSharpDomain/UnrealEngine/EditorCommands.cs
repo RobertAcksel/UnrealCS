@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace UnrealEngine{
-    internal class EditorCommands{
-        internal static void OpenProject(string pluginBaseDir){
+    public class EditorCommands{
+        public static void OpenProject(string pluginBaseDir){
 #if WITH_EDITOR
             var sourceDir = Path.Combine(pluginBaseDir, "Project");
             var destinationDir = Path.Combine(FPaths.GameDir(), "Project");
