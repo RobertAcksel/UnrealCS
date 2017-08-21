@@ -4,6 +4,7 @@
 #pragma once
 
 #include "MonoBlueprint.h"
+#include "Factories/Factory.h"
 #include "MonoFactory.generated.h"
 
 /**

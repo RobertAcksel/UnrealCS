@@ -1,10 +1,13 @@
 // Copyright xg_55,All Rights Reserved.Support E-mail: xg_55@126.com
 // For details, see LICENSE.txt
 #pragma once
-#include "KismetCompiler.h"
 
+struct FScriptField;
 class UMonoBlueprint;
 class UMonoScriptClass;
+class FScriptContextBase;
+
+#include "KismetCompiler.h"
 
 /**
 * Script Blueprint Compiler
@@ -21,7 +24,8 @@ public:
 
 	// FKismetCompilerContext
 	virtual void PreCompile() override;
-	// End FKismetCompilerContext
+    virtual void PostCompile() override;
+    // End FKismetCompilerContext
 
 protected:
 	UMonoBlueprint* ScriptBlueprint() const { return Cast<UMonoBlueprint>(Blueprint); }

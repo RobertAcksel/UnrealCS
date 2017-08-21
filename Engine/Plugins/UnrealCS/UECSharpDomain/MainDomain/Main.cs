@@ -218,12 +218,17 @@ namespace MainDomain{
                 } catch (Exception e){ }
             }
 
+            lastFileName = Path.GetFullPath(lastFileName);
+
             if (max_number >= 0){
                 //Delete the previous file
                 foreach (var f in files){
-                    if (f != lastFileName){
-                        UnrealEngine.UObject.LogInfo("DeleteFile " + f);
-                        File.Delete(f);
+                    var pdbFile = Path.Combine(Path.GetDirectoryName(lastFileName), Path.GetFileNameWithoutExtension(lastFileName)) + ".pdb";
+                    var fNormalized = Path.GetFullPath(f);
+
+                    if (fNormalized != lastFileName && fNormalized != pdbFile){
+                        UnrealEngine.UObject.LogInfo("DeleteFile " + fNormalized);
+                        File.Delete(fNormalized);
                     }
                 }
                 //UnrealEngine.UObject.Log("Move " + lastFileName);

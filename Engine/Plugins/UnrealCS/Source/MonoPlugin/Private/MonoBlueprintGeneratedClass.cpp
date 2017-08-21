@@ -62,8 +62,7 @@ void UMonoScriptClass::PurgeClass(bool bRecompilingOnLoad)
 
 FScriptContextBase* FScriptContextBase::CreateContext(const FString& SourceCode, UMonoScriptClass* Class, UObject* Owner)
 {
-	FScriptContextBase* NewContext = NULL;
-	NewContext = new FMonoContext();
+	FScriptContextBase* NewContext = new FMonoContext();
 	if (NewContext)
 	{
 		if (NewContext->Initialize(SourceCode, Owner))

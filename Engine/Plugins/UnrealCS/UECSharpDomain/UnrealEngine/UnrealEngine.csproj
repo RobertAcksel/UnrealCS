@@ -4885,6 +4885,7 @@
     <Compile Include="UnrealTypes\TSet.cs" />
     <Compile Include="UnrealTypes\TSubclassOf.cs" />
     <Compile Include="UClass_Ext.cs" />
+    <Compile Include="UnrealTypes\UClass.cs" />
     <Compile Include="UnrealTypes\UMonoActorComponent.cs" />
     <Compile Include="UnrealTypes\UObject.cs" />
     <Compile Include="UnrealTypes\UWidgetTree.cs" />

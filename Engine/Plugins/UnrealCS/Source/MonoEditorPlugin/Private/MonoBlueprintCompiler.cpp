@@ -220,7 +220,7 @@ void FMonoBlueprintCompiler::FinishCompilingClass(UClass* Class)
 void FMonoBlueprintCompiler::PreCompile()
 {
 	ScriptBlueprint()->UpdateSourceCodeIfChanged();
-	ScriptContext.Reset(FScriptContextBase::CreateContext(ScriptBlueprint()->ClassName, NULL, NULL));
+	ScriptContext.Reset(FScriptContextBase::CreateContext(ScriptBlueprint()->ClassName, nullptr, nullptr));
 	bool Result = true;
 	if (ScriptContext.IsValid())
 	{
@@ -231,9 +231,12 @@ void FMonoBlueprintCompiler::PreCompile()
 	{
 		return;
 	}
-	ContextProperty = NULL;
+	ContextProperty = nullptr;
 
 	Super::PreCompile();
+}
+
+void FMonoBlueprintCompiler::PostCompile() {
 }
 
 void FMonoBlueprintCompiler::EnsureProperGeneratedClass(UClass*& TargetUClass)

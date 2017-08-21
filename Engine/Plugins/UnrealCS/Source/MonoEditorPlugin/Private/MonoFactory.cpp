@@ -13,7 +13,7 @@ UMonoFactory::UMonoFactory(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	SupportedClass = UMonoBlueprint::StaticClass();
-	ParentClass = UMonoScriptBind_Component::StaticClass();
+//	ParentClass = UMonoScriptBind_Component::StaticClass();
 
 	//FScriptContextBase::GetSupportedScriptFileFormats(Formats);
 
@@ -134,7 +134,7 @@ UObject* UMonoFactory::FactoryCreateNew(UClass* InClass, UObject* InParent, FNam
 	
 	// Need to make sure we compile with the new source code
 	FKismetEditorUtilities::CompileBlueprint(NewBlueprint);
-	
+
 	FEditorDelegates::OnAssetPostImport.Broadcast(this, NewBlueprint);
 
     if (NewBlueprint)
