@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace MainDomain{
-    public class Main{
+    internal class Main{
         private static Main instance;
 
         private readonly bool withEidtor;
@@ -152,69 +152,8 @@ namespace MainDomain{
             }
         }
 
-        private void CopyFolder(string Dest, string Src){
-            if (!(Dest.EndsWith("\\") || Dest.EndsWith("/")))
-                Dest += "/";
-            if (!(Src.EndsWith("\\") || Src.EndsWith("/")))
-                Src += "/";
-            if (!Directory.Exists(Dest))
-                Directory.CreateDirectory(Dest);
-
-            // subfolders
-            foreach (var sub in Directory.GetDirectories(Src, "*", SearchOption.TopDirectoryOnly)){
-                var name = Path.GetFileName(sub);
-                CopyFolder(Path.Combine(Dest, name), Path.Combine(Src, name));
-            }
-
-            // files
-            foreach (var file in Directory.GetFiles(Src, "*", SearchOption.TopDirectoryOnly)){
-                var name = Path.GetFileName(file);
-                File.Copy(Path.Combine(Src, name), Path.Combine(Dest, name), true);
-            }
-        }
-
         private void OpenProject(){
-            var sourceDir = Path.Combine(pluginBaseDir, "Project");
-            var destinationDir = Path.Combine(FPaths.GameDir(), "Project");
-            var solutionPath = Path.Combine(FPaths.GameDir(), "Project", "Script.sln");
-            //Check the script works
-            if (!Directory.Exists(destinationDir)){
-                //Copy the script template to the project directory
-                UObject.LogInfo($"Copy script project template from '{sourceDir}' to '{destinationDir}'");
-                CopyFolder(destinationDir, sourceDir);
-
-                ////Rename the static library, otherwise the package will fail
-                //string MonoHelperFilePathName = Path.Combine(FPaths.GamePluginsDir(), "Mono", "Binaries", "Win64", "UE4-MonoHelper.lib");
-                //if(File.Exists(MonoHelperFilePathName))
-                //{
-                //    File.Move(MonoHelperFilePathName, Path.Combine(FPaths.GamePluginsDir(), "Mono", "Binaries", "Win64", gameName + "-MonoHelper.lib"));
-                //}
-                //else
-                //{
-                //    UObject.LogWarning("File Not Found:"+ MonoHelperFilePathName);
-                //}
-                //string MonoPluginFilePathName = Path.Combine(FPaths.GamePluginsDir(), "Mono", "Binaries", "Win64", "UE4-MonoPlugin.lib");
-                //if (File.Exists(MonoPluginFilePathName))
-                //{
-                //    File.Move(MonoPluginFilePathName, Path.Combine(FPaths.GamePluginsDir(), "Mono", "Binaries", "Win64", gameName + "-MonoPlugin.lib"));
-                //}
-                //else
-                //{
-                //    UObject.LogWarning("File Not Found:" + MonoPluginFilePathName);
-                //}
-            }
-
-            if (UGameplayStatics.GetPlatformName() == "Windows"){
-                var installDir = Microsoft.Win32.Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe",null, "").ToString();
-                if (string.IsNullOrEmpty(installDir)){
-                    UObject.LogError("Can't find devenv.exe");
-                    return;
-                }
-                Process.Start(installDir, solutionPath);
-            } else{
-                //No tool to display item location
-                UObject.LogWarning("C# script solution file located at " + solutionPath);
-            }
+            UnrealEngine.EditorCommands.OpenProject(pluginBaseDir);
         }
 
         internal static void OutputHandler(object sendingProcess, DataReceivedEventArgs outLine){

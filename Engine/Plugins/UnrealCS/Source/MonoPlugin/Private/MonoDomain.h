@@ -7,22 +7,6 @@
 
 class FMonoDomain : public FTickableGameObject
 {
-private:
-	//C# Object Tickable Support
-	struct TickObject
-	{
-		//C# Object Pointer
-		MonoObject* Obj;
-		//C# Object Handle
-		uint32 gc_handle;
-		//C# Object Tick Method
-		MonoMethod* TickMethod;
-		//If Marked As Removed
-		bool removed;
-	};
-
-	//Tick Object Array
-	TArray<TickObject> TickObjects;
 public:
 	FMonoDomain();
 	~FMonoDomain();

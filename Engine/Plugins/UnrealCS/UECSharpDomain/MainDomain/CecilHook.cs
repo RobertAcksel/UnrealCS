@@ -1,6 +1,5 @@
 using System.IO;
 using Mono.Cecil;
-using UnrealEngine;
 
 namespace MainDomain{
     internal static class CecilHook{

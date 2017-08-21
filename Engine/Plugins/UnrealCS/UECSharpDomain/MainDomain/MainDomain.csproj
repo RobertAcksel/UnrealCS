@@ -63,9 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\Mono.pdb2mdb.0.1.0.20130128\tools\pdb2mdb.exe">
-      <Link>Tools\pdb2mdb.exe</Link>
-    </Content>
+    <Folder Include="Tools\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

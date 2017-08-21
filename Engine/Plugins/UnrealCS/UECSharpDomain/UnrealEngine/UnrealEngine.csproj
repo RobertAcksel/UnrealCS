@@ -23,7 +23,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>1587</NoWarn>
+    <NoWarn>1591,1587,1570</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_64x_Editor|x64'">
     <OutputPath>..\..\Scripts\EngineAssemblies\Editor_64bits\</OutputPath>
@@ -113,15 +113,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoolWrap.cs" />
-    <Compile Include="FApp.cs" />
-    <Compile Include="FKey.cs" />
-    <Compile Include="FMulticastScriptDelegate.cs" />
-    <Compile Include="FName.cs" />
-    <Compile Include="FPaths.cs" />
-    <Compile Include="FScriptDelegate.cs" />
-    <Compile Include="FString.cs" />
-    <Compile Include="FText.cs" />
-    <Compile Include="FWeakObjectPtr.cs" />
+    <Compile Include="EditorCommands.cs" />
+    <Compile Include="UnrealTypes\FApp.cs" />
+    <Compile Include="UnrealTypes\FKey.cs" />
+    <Compile Include="UnrealTypes\FMulticastScriptDelegate.cs" />
+    <Compile Include="UnrealTypes\FName.cs" />
+    <Compile Include="UnrealTypes\FPaths.cs" />
+    <Compile Include="UnrealTypes\FScriptDelegate.cs" />
+    <Compile Include="UnrealTypes\FString.cs" />
+    <Compile Include="UnrealTypes\FText.cs" />
+    <Compile Include="UnrealTypes\FWeakObjectPtr.cs" />
     <Compile Include="GeneratedScriptFile\AAbstractNavData.cs" />
     <Compile Include="GeneratedScriptFile\AActor.cs" />
     <Compile Include="GeneratedScriptFile\AAmbientSound.cs" />
@@ -4862,7 +4863,7 @@
     <Compile Include="GeneratedScriptFile_Game_64bits\UWorld_FixSize.cs" />
     <Compile Include="GeneratedScriptFile_Game_64bits\UWrapBoxSlot_FixSize.cs" />
     <Compile Include="GeneratedScriptFile_Game_64bits\UWrapBox_FixSize.cs" />
-    <Compile Include="IFileManager.cs" />
+    <Compile Include="UnrealTypes\IFileManager.cs" />
     <Compile Include="MarshalUtil.cs" />
     <Compile Include="Math\Axis.cs" />
     <Compile Include="Math\FColor.cs" />
@@ -4879,20 +4880,18 @@
     <Compile Include="Attributes\AssemblyRemoved.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SctuctWrap.cs" />
-    <Compile Include="TArray.cs" />
-    <Compile Include="TMap.cs" />
-    <Compile Include="TSet.cs" />
-    <Compile Include="TSubclassOf.cs" />
+    <Compile Include="UnrealTypes\TArray.cs" />
+    <Compile Include="UnrealTypes\TMap.cs" />
+    <Compile Include="UnrealTypes\TSet.cs" />
+    <Compile Include="UnrealTypes\TSubclassOf.cs" />
     <Compile Include="UClass_Ext.cs" />
-    <Compile Include="UMonoActorComponent.cs" />
-    <Compile Include="UObject.cs" />
-    <Compile Include="UWidgetTree.cs" />
-    <Compile Include="AActor.cs" />
-    <Compile Include="UWorld.cs" />
+    <Compile Include="UnrealTypes\UMonoActorComponent.cs" />
+    <Compile Include="UnrealTypes\UObject.cs" />
+    <Compile Include="UnrealTypes\UWidgetTree.cs" />
+    <Compile Include="UnrealTypes\AActor.cs" />
+    <Compile Include="UnrealTypes\UWorld.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
