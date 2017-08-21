@@ -421,8 +421,8 @@ bool FMonoDomain::SetupMono() {
 #endif
     };
 #if !UE_BUILD_SHIPPING
-    //        "--soft-breakpoints",
-    //        "--debugger-agent=transport=dt_socket,address=127.0.0.1:13001,server=y",
+    options.push_back("--soft-breakpoints");
+    options.push_back("--debugger-agent=transport=dt_socket,address=127.0.0.1:13001,server=y,suspend=n");
 #endif
     if(options.size() > 0) {
         mono_jit_parse_options(options.size(), options.data());
