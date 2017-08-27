@@ -252,7 +252,7 @@
         <member name="M:UnrealEngine.AActor.GetAttachParentActor">
             <summary>Walk up the attachment chain from RootComponent until we encounter a different actor, and return it. If we are not attached to a component in a different actor, returns NULL</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_TeleportTo(UnrealEngine.FVector,UnrealEngine.FRotator)">
+        <member name="M:UnrealEngine.AActor.TeleportTo(UnrealEngine.FVector,UnrealEngine.FRotator)">
             <summary>
             Teleport this actor to a new location. If the actor doesn't fit exactly at the location specified, tries to slightly move it out of walls and such.
             @param DestLocation The target destination point
@@ -380,13 +380,13 @@
              @param bMaintainWorldTransform     If true, update the relative location/rotation of this component to keep its world position the same
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AttachRootComponentToActor(UnrealEngine.AActor,System.String,UnrealEngine.EAttachLocation,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AttachRootComponentToActor(UnrealEngine.AActor,System.String,UnrealEngine.EAttachLocation,System.Boolean)">
             <summary>
             Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.
              @param AttachLocationType   Type of attachment, AbsoluteWorld to keep its world position, RelativeOffset to keep the object's relative offset and SnapTo to snap to the new parent.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AttachRootComponentTo(UnrealEngine.USceneComponent,System.String,UnrealEngine.EAttachLocation,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AttachRootComponentTo(UnrealEngine.USceneComponent,System.String,UnrealEngine.EAttachLocation,System.Boolean)">
             <summary>
             Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.
              @param AttachLocationType  Type of attachment, AbsoluteWorld to keep its world position, RelativeOffset to keep the object's relative offset and SnapTo to snap to the new parent.
@@ -410,7 +410,7 @@
         <member name="M:UnrealEngine.AActor.HasAuthority">
             <summary>Returns whether this actor has network authority</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_DestroyActor">
+        <member name="M:UnrealEngine.AActor.DestroyActor">
             <summary>Destroy the actor</summary>
         </member>
         <member name="M:UnrealEngine.AActor.GetActorEnableCollision">
@@ -434,7 +434,7 @@
             @param NewRelativeScale      New scale to set the actor's RootComponent to
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorRelativeTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorRelativeTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the actor's RootComponent to the specified relative transform
             @param NewRelativeTransform          New relative transform of the actor's root component
@@ -446,7 +446,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorRelativeRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorRelativeRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the actor's RootComponent to the specified relative rotation
             @param NewRelativeRotation   New relative rotation of the actor's root component
@@ -458,7 +458,7 @@
                                                                          If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorRelativeLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorRelativeLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the actor's RootComponent to the specified relative location.
             @param NewRelativeLocation   New relative location of the actor's root component
@@ -470,7 +470,7 @@
                                                                          If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AddActorLocalTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AddActorLocalTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the transform of this component in its local reference frame
             @param NewTransform          The change in transform in local space.
@@ -482,7 +482,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AddActorLocalRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AddActorLocalRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the rotation of this component in its local reference frame
             @param DeltaRotation         The change in rotation in local space.
@@ -494,7 +494,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AddActorLocalOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AddActorLocalOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the location of this component in its local reference frame.
             @param DelatLocation         The change in location in local space.
@@ -506,7 +506,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the Actors transform to the specified one.
             @param NewTransform          The new transform.
@@ -518,10 +518,10 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire swept volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AddActorWorldTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AddActorWorldTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>Adds a delta to the transform of this actor in world space. Scale is unchanged.</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AddActorWorldRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AddActorWorldRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the rotation of this actor in world space.
             @param DeltaRotation         The change in rotation.
@@ -533,7 +533,7 @@
             @param SweepHitResult        The hit result from the move if swept.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_AddActorWorldOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.AddActorWorldOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the location of this actor in world space.
             @param DeltaLocation         The change in location.
@@ -570,7 +570,7 @@
         <member name="M:UnrealEngine.AActor.SetActorScale3D(UnrealEngine.FVector)">
             <summary>Set the Actor's world-space scale.</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorLocationAndRotation(UnrealEngine.FVector,UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorLocationAndRotation(UnrealEngine.FVector,UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Move the actor instantly to the specified location and rotation.
             @param NewLocation           The new location to teleport the Actor to.
@@ -585,7 +585,7 @@
             @return      Whether the rotation was successfully set.
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorRotation(UnrealEngine.FRotator,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorRotation(UnrealEngine.FRotator,System.Boolean)">
             <summary>
             Set the Actor's rotation instantly to the specified rotation.
             @param       NewRotation     The new rotation for the Actor.
@@ -598,7 +598,7 @@
         <member name="M:UnrealEngine.AActor.GetVelocity">
             <summary>Returns velocity (in cm/s (Unreal Units/second) of the rootcomponent if it is either using physics or has an associated MovementComponent</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_GetRootComponent">
+        <member name="M:UnrealEngine.AActor.GetRootComponent">
             <summary>Returns the RootComponent of this Actor</summary>
         </member>
         <member name="M:UnrealEngine.AActor.GetActorBounds(System.Boolean,UnrealEngine.FVector@,UnrealEngine.FVector@)">
@@ -616,10 +616,10 @@
         <member name="M:UnrealEngine.AActor.GetActorForwardVector">
             <summary>Get the forward (X) vector (length 1.0) from this Actor, in world space.</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_GetActorRotation">
+        <member name="M:UnrealEngine.AActor.GetActorRotation">
             <summary>Returns rotation of the RootComponent of this Actor.</summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_SetActorLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.AActor.SetActorLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Move the Actor to the specified location.
             @param NewLocation   The new location to move the Actor to.
@@ -633,7 +633,7 @@
             @return      Whether the location was successfully set (if not swept), or whether movement occurred at all (if swept).
             </summary>
         </member>
-        <member name="M:UnrealEngine.AActor.K2_GetActorLocation">
+        <member name="M:UnrealEngine.AActor.GetActorLocation">
             <summary>Returns the location of the RootComponent of this Actor</summary>
         </member>
         <member name="M:UnrealEngine.AActor.GetTransform">
@@ -1361,7 +1361,7 @@
         <member name="M:UnrealEngine.AController.GetViewTarget">
             <summary>Get the actor the controller is looking at</summary>
         </member>
-        <member name="M:UnrealEngine.AController.K2_GetPawn">
+        <member name="M:UnrealEngine.AController.GetPawn">
             <summary>Return the Pawn that is currently 'controlled' by this PlayerController</summary>
         </member>
         <member name="M:UnrealEngine.AController.ClientSetRotation(UnrealEngine.FRotator,System.Boolean)">
@@ -1665,7 +1665,7 @@
         <member name="M:UnrealEngine.AGameModeBase.RestartPlayer(UnrealEngine.AController)">
             <summary>Tries to spawn the player's pawn, at the location returned by FindPlayerStart</summary>
         </member>
-        <member name="M:UnrealEngine.AGameModeBase.K2_FindPlayerStart(UnrealEngine.AController,System.String)">
+        <member name="M:UnrealEngine.AGameModeBase.FindPlayerStart(UnrealEngine.AController,System.String)">
             <summary>
             Return the specific player start actor that should be used for the next spawn
             This will either use a previously saved startactor, or calls ChoosePlayerStart
@@ -6613,7 +6613,7 @@
         <member name="M:UnrealEngine.UActorComponent.SetTickGroup(UnrealEngine.ETickingGroup)">
             <summary>Changes the ticking group for this component</summary>
         </member>
-        <member name="M:UnrealEngine.UActorComponent.K2_DestroyComponent(UnrealEngine.UObject)">
+        <member name="M:UnrealEngine.UActorComponent.DestroyComponent(UnrealEngine.UObject)">
             <summary>Unregister and mark for pending kill a component.  This may not be used to destroy a component is owned by an actor other than the one calling the function.</summary>
         </member>
         <member name="M:UnrealEngine.UActorComponent.GetComponentTickInterval">
@@ -8808,7 +8808,7 @@
         <member name="T:UnrealEngine.UCanvas">
             <summary>A drawing canvas.</summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_TextSize(UnrealEngine.UFont,System.String,UnrealEngine.FVector2D)">
+        <member name="M:UnrealEngine.UCanvas.TextSize(UnrealEngine.UFont,System.String,UnrealEngine.FVector2D)">
             <summary>
             Returns the clipped text size in screen space coordinates.
             @param RenderFont                            Font to use when determining the size of the text. If this is null, then a default engine font is used.
@@ -8817,7 +8817,7 @@
             @return                                                      Returns the screen space size of the text.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_StrLen(UnrealEngine.UFont,System.String)">
+        <member name="M:UnrealEngine.UCanvas.StrLen(UnrealEngine.UFont,System.String)">
             <summary>
             Returns the wrapped text size in screen space coordinates.
             @param RenderFont                            Font to use when determining the size of the text. If this is null, then a default engine font is used.
@@ -8825,7 +8825,7 @@
             @return                                                      Returns the screen space size of the text.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_Deproject(UnrealEngine.FVector2D,UnrealEngine.FVector@,UnrealEngine.FVector@)">
+        <member name="M:UnrealEngine.UCanvas.Deproject(UnrealEngine.FVector2D,UnrealEngine.FVector@,UnrealEngine.FVector@)">
             <summary>
             Performs a deprojection of a screen space coordinate using the projection matrix set up for the Canvas.
             @param ScreenPosition                        Screen space position to deproject to the World.
@@ -8833,14 +8833,14 @@
             @param WorldDirection                        Vector which can be used in a trace to determine what is "behind" the screen space position. Useful for object picking.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_Project(UnrealEngine.FVector)">
+        <member name="M:UnrealEngine.UCanvas.Project(UnrealEngine.FVector)">
             <summary>
             Performs a projection of a world space coordinates using the projection matrix set up for the Canvas.
             @param WorldLocation                         World space location to project onto the Canvas rendering plane.
             @return                                                      Returns a vector where X, Y defines a screen space position representing the world space location.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawPolygon(UnrealEngine.UTexture,UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Int32,UnrealEngine.FLinearColor)">
+        <member name="M:UnrealEngine.UCanvas.DrawPolygon(UnrealEngine.UTexture,UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Int32,UnrealEngine.FLinearColor)">
             <summary>
             Draws a polygon on the Canvas.
             @param RenderTexture                         Texture to use when rendering the triangles. If no texture is set, then the default white texture is used.
@@ -8850,21 +8850,21 @@
             @param RenderColor                           Color to tint the polygon.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawMaterialTriangle(UnrealEngine.UMaterialInterface,UnrealEngine.FCanvasUVTri[])">
+        <member name="M:UnrealEngine.UCanvas.DrawMaterialTriangle(UnrealEngine.UMaterialInterface,UnrealEngine.FCanvasUVTri[])">
             <summary>
             Draws a set of triangles on the Canvas.
             @param RenderMaterial                        Material to use when rendering. Remember that only the emissive channel is able to be rendered as no lighting is performed when rendering to the Canvas.
             @param Triangles                                     Triangles to render.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawTriangle(UnrealEngine.UTexture,UnrealEngine.FCanvasUVTri[])">
+        <member name="M:UnrealEngine.UCanvas.DrawTriangle(UnrealEngine.UTexture,UnrealEngine.FCanvasUVTri[])">
             <summary>
             Draws a set of triangles on the Canvas.
             @param RenderTexture                         Texture to use when rendering the triangles. If no texture is set, then the default white texture is used.
             @param Triangles                                     Triangles to render.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawBox(UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single)">
+        <member name="M:UnrealEngine.UCanvas.DrawBox(UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single)">
             <summary>
             Draws an unfilled box on the Canvas.
             @param ScreenPosition                        Screen space position to render the text.
@@ -8872,8 +8872,8 @@
             @param Thickness                                     How many pixels thick the box lines should be.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:UnrealEngine.UCanvas.K2_DrawBorder(UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FLinearColor,UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single,UnrealEngine.FVector2D,UnrealEngine.FVector2D)" -->
-        <member name="M:UnrealEngine.UCanvas.K2_DrawText(UnrealEngine.UFont,System.String,UnrealEngine.FVector2D,UnrealEngine.FLinearColor,System.Single,UnrealEngine.FLinearColor,UnrealEngine.FVector2D,System.Boolean,System.Boolean,System.Boolean,UnrealEngine.FLinearColor)">
+        <!-- Badly formed XML comment ignored for member "M:UnrealEngine.UCanvas.DrawBorder(UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.UTexture,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FLinearColor,UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single,UnrealEngine.FVector2D,UnrealEngine.FVector2D)" -->
+        <member name="M:UnrealEngine.UCanvas.DrawText(UnrealEngine.UFont,System.String,UnrealEngine.FVector2D,UnrealEngine.FLinearColor,System.Single,UnrealEngine.FLinearColor,UnrealEngine.FVector2D,System.Boolean,System.Boolean,System.Boolean,UnrealEngine.FLinearColor)">
             <summary>
             Draws text on the Canvas.
             @param RenderFont                            Font to use when rendering the text. If this is null, then a default engine font is used.
@@ -8889,7 +8889,7 @@
             @param OutlineColor                          Color to render the outline for the text.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawMaterial(UnrealEngine.UMaterialInterface,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single,UnrealEngine.FVector2D)">
+        <member name="M:UnrealEngine.UCanvas.DrawMaterial(UnrealEngine.UMaterialInterface,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single,UnrealEngine.FVector2D)">
             <summary>
             Draws a material on the Canvas.
             @param RenderMaterial                        Material to use when rendering. Remember that only the emissive channel is able to be rendered as no lighting is performed when rendering to the Canvas.
@@ -8901,7 +8901,7 @@
             @param PivotPoint                            Normalized pivot point to use when rotating the texture.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawTexture(UnrealEngine.UTexture,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FLinearColor,UnrealEngine.EBlendMode,System.Single,UnrealEngine.FVector2D)">
+        <member name="M:UnrealEngine.UCanvas.DrawTexture(UnrealEngine.UTexture,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FVector2D,UnrealEngine.FLinearColor,UnrealEngine.EBlendMode,System.Single,UnrealEngine.FVector2D)">
             <summary>
             Draws a texture on the Canvas.
             @param RenderTexture                         Texture to use when rendering. If no texture is set then this will use the default white texture.
@@ -8915,7 +8915,7 @@
             @param PivotPoint                            Normalized pivot point to use when rotating the texture.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UCanvas.K2_DrawLine(UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single,UnrealEngine.FLinearColor)">
+        <member name="M:UnrealEngine.UCanvas.DrawLine(UnrealEngine.FVector2D,UnrealEngine.FVector2D,System.Single,UnrealEngine.FLinearColor)">
             <summary>
             Draws a line on the Canvas.
             @param ScreenPositionA               Starting position of the line in screen space.
@@ -9229,8 +9229,8 @@
         <member name="M:UnrealEngine.UCharacterMovementComponent.ServerMove(System.Single,UnrealEngine.FVector_NetQuantize10,UnrealEngine.FVector_NetQuantize100,System.Byte,System.Byte,System.UInt32,UnrealEngine.UPrimitiveComponent,System.String,System.Byte)">
             <summary>Replicated function sent by client to server - contains client movement and view info.</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:UnrealEngine.UCharacterMovementComponent.K2_ComputeFloorDist(UnrealEngine.FVector,System.Single,System.Single,System.Single,UnrealEngine.FFindFloorResult@)" -->
-        <member name="M:UnrealEngine.UCharacterMovementComponent.K2_FindFloor(UnrealEngine.FVector,UnrealEngine.FFindFloorResult@)">
+        <!-- Badly formed XML comment ignored for member "M:UnrealEngine.UCharacterMovementComponent.ComputeFloorDist(UnrealEngine.FVector,System.Single,System.Single,System.Single,UnrealEngine.FFindFloorResult@)" -->
+        <member name="M:UnrealEngine.UCharacterMovementComponent.FindFloor(UnrealEngine.FVector,UnrealEngine.FFindFloorResult@)">
             <summary>
             Sweeps a vertical trace to find the floor for the capsule at the given location. Will attempt to perch if ShouldComputePerchResult() returns true for the downward sweep result.
             No floor will be found if collision is disabled on the capsule!
@@ -9241,13 +9241,13 @@
         <member name="M:UnrealEngine.UCharacterMovementComponent.SetWalkableFloorZ(System.Single)">
             <summary>Set the Z component of the normal of the steepest walkable surface for the character. Also computes WalkableFloorAngle.</summary>
         </member>
-        <member name="M:UnrealEngine.UCharacterMovementComponent.K2_GetWalkableFloorZ">
+        <member name="M:UnrealEngine.UCharacterMovementComponent.GetWalkableFloorZ">
             <summary>Get the Z component of the normal of the steepest walkable surface for the character. Any lower than this and it is not walkable.</summary>
         </member>
         <member name="M:UnrealEngine.UCharacterMovementComponent.SetWalkableFloorAngle(System.Single)">
             <summary>Set the max angle in degrees of a walkable surface for the character. Also computes WalkableFloorZ.</summary>
         </member>
-        <member name="M:UnrealEngine.UCharacterMovementComponent.K2_GetWalkableFloorAngle">
+        <member name="M:UnrealEngine.UCharacterMovementComponent.GetWalkableFloorAngle">
             <summary>Get the max angle in degrees of a walkable surface for the character.</summary>
         </member>
         <member name="M:UnrealEngine.UCharacterMovementComponent.IsWalkable(UnrealEngine.FHitResult)">
@@ -16696,7 +16696,7 @@
         <member name="M:UnrealEngine.UKismetSystemLibrary.SetIntPropertyByName(UnrealEngine.UObject,System.String,System.Int32)">
             <summary>Set an int32 property by name</summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_GetTimerRemainingTime(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.GetTimerRemainingTime(UnrealEngine.UObject,System.String)">
             <summary>
             Returns time until the timer will next execute its delegate.
             @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
@@ -16704,7 +16704,7 @@
             @return                              How long is remaining in the current iteration of the timer.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_GetTimerElapsedTime(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.GetTimerElapsedTime(UnrealEngine.UObject,System.String)">
             <summary>
             Returns elapsed time for the given delegate (time since current countdown iteration began).
             @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
@@ -16712,7 +16712,7 @@
             @return                              How long has elapsed since the current iteration of the timer began.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_TimerExists(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.TimerExists(UnrealEngine.UObject,System.String)">
             <summary>
             Returns true is a timer for the given delegate exists, false otherwise.
             @param Object         Object that implements the delegate function. Defaults to self (this blueprint)
@@ -16720,7 +16720,7 @@
             @return                               True if the timer exists.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_IsTimerPaused(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.IsTimerPaused(UnrealEngine.UObject,System.String)">
             <summary>
             Returns true if a timer exists and is paused for the given delegate, false otherwise.
             @param Object         Object that implements the delegate function. Defaults to self (this blueprint)
@@ -16728,7 +16728,7 @@
             @return                               True if the timer exists and is paused.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_IsTimerActive(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.IsTimerActive(UnrealEngine.UObject,System.String)">
             <summary>
             Returns true if a timer exists and is active for the given delegate, false otherwise.
             @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
@@ -16736,89 +16736,89 @@
             @return                              True if the timer exists and is active.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_UnPauseTimer(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.UnPauseTimer(UnrealEngine.UObject,System.String)">
             <summary>
             Resumes a paused timer from its current elapsed time.
             @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
             @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_PauseTimer(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.PauseTimer(UnrealEngine.UObject,System.String)">
             <summary>
             Pauses a set timer at its current elapsed time.
             @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
             @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_ClearTimer(UnrealEngine.UObject,System.String)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.ClearTimer(UnrealEngine.UObject,System.String)">
             <summary>
             Clears a set timer.
             @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
             @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:UnrealEngine.UKismetSystemLibrary.K2_SetTimer(UnrealEngine.UObject,System.String,System.Single,System.Boolean)" -->
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_GetTimerRemainingTimeHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <!-- Badly formed XML comment ignored for member "M:UnrealEngine.UKismetSystemLibrary.SetTimer(UnrealEngine.UObject,System.String,System.Single,System.Boolean)" -->
+        <member name="M:UnrealEngine.UKismetSystemLibrary.GetTimerRemainingTimeHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Returns time until the timer will next execute its handle.
             @param Handle                The handle of the timer to time remaining of.
             @return                              How long is remaining in the current iteration of the timer.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_GetTimerElapsedTimeHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.GetTimerElapsedTimeHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Returns elapsed time for the given handle (time since current countdown iteration began).
             @param Handle                The handle of the timer to get the elapsed time of.
             @return                              How long has elapsed since the current iteration of the timer began.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_TimerExistsHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.TimerExistsHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Returns true is a timer for the given handle exists, false otherwise.
             @param Handle                The handle to check whether it exists.
             @return                              True if the timer exists.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_IsTimerPausedHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.IsTimerPausedHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Returns true if a timer exists and is paused for the given handle, false otherwise.
             @param Handle                The handle of the timer to check whether it is paused.
             @return                              True if the timer exists and is paused.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_IsTimerActiveHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.IsTimerActiveHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Returns true if a timer exists and is active for the given handle, false otherwise.
             @param Handle                The handle of the timer to check whether it is active.
             @return                              True if the timer exists and is active.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_UnPauseTimerHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.UnPauseTimerHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Resumes a paused timer from its current elapsed time.
             @param Handle                The handle of the timer to unpause.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_PauseTimerHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.PauseTimerHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle)">
             <summary>
             Pauses a set timer at its current elapsed time.
             @param Handle                The handle of the timer to pause.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_ClearAndInvalidateTimerHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle@)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.ClearAndInvalidateTimerHandle(UnrealEngine.UObject,UnrealEngine.FTimerHandle@)">
             <summary>
             Clears a set timer.
             @param Handle                The handle of the timer to clear.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_InvalidateTimerHandle(UnrealEngine.FTimerHandle@)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.InvalidateTimerHandle(UnrealEngine.FTimerHandle@)">
             <summary>
             Returns whether the timer handle is valid. This does not indicate that there is an active timer that this handle references, but rather that it once referenced a valid timer.
             @param Handle                The handle of the timer to check validity of.
             @return                              Return the invalidated timer handle for convenience.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UKismetSystemLibrary.K2_IsValidTimerHandle(UnrealEngine.FTimerHandle)">
+        <member name="M:UnrealEngine.UKismetSystemLibrary.IsValidTimerHandle(UnrealEngine.FTimerHandle)">
             <summary>
             Returns whether the timer handle is valid. This does not indicate that there is an active timer that this handle references, but rather that it once referenced a valid timer.
             @param Handle                The handle of the timer to check validity of.
@@ -18670,7 +18670,7 @@
             @param PlaneNormal   The normal of the plane. If non-zero in length, it will be normalized.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UMovementComponent.K2_MoveUpdatedComponent(UnrealEngine.FVector,UnrealEngine.FRotator,UnrealEngine.FHitResult@,System.Boolean,System.Boolean)">
+        <member name="M:UnrealEngine.UMovementComponent.MoveUpdatedComponent(UnrealEngine.FVector,UnrealEngine.FRotator,UnrealEngine.FHitResult@,System.Boolean,System.Boolean)">
             <summary>
             Moves our UpdatedComponent by the given Delta, and sets rotation to NewRotation.
             Respects the plane constraint, if enabled.
@@ -18696,7 +18696,7 @@
             can cause the max speed to be violated.
             </summary>
         </member>
-        <member name="M:UnrealEngine.UMovementComponent.K2_GetModifiedMaxSpeed">
+        <member name="M:UnrealEngine.UMovementComponent.GetModifiedMaxSpeed">
             <summary>@return the result of GetMaxSpeed() * GetMaxSpeedModifier().</summary>
         </member>
         <member name="M:UnrealEngine.UMovementComponent.GetMaxSpeed">
@@ -19508,19 +19508,19 @@
         <member name="M:UnrealEngine.UNavigationSystem.GetPathCost(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector,System.Single@,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter})">
             <summary>Potentially expensive. Use with caution. Consider using UPathFollowingComponent::GetRemainingPathCost instead</summary>
         </member>
-        <member name="M:UnrealEngine.UNavigationSystem.K2_GetRandomPointInNavigableRadius(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector@,System.Single,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter})">
+        <member name="M:UnrealEngine.UNavigationSystem.GetRandomPointInNavigableRadius(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector@,System.Single,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter})">
             <summary>
             Generates a random location in navigable space within given radius of Origin.
                 @return Return Value represents if the call was successful
             </summary>
         </member>
-        <member name="M:UnrealEngine.UNavigationSystem.K2_GetRandomReachablePointInRadius(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector@,System.Single,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter})">
+        <member name="M:UnrealEngine.UNavigationSystem.GetRandomReachablePointInRadius(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector@,System.Single,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter})">
             <summary>
             Generates a random location reachable from given Origin location.
                 @return Return Value represents if the call was successful
             </summary>
         </member>
-        <member name="M:UnrealEngine.UNavigationSystem.K2_ProjectPointToNavigation(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector@,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter},UnrealEngine.FVector)">
+        <member name="M:UnrealEngine.UNavigationSystem.ProjectPointToNavigation(UnrealEngine.UObject,UnrealEngine.FVector,UnrealEngine.FVector@,UnrealEngine.ANavigationData,UnrealEngine.TSubclassOf{UnrealEngine.UNavigationQueryFilter},UnrealEngine.FVector)">
             <summary>Project a point onto the NavigationData</summary>
         </member>
         <member name="M:UnrealEngine.UNavigationSystem.GetNavigationSystem(UnrealEngine.UObject)">
@@ -23093,13 +23093,13 @@
         <member name="M:UnrealEngine.UPrimitiveComponent.GetCollisionResponseToChannel(UnrealEngine.ECollisionChannel)">
             <summary>Gets the response type given a specific channel</summary>
         </member>
-        <member name="M:UnrealEngine.UPrimitiveComponent.K2_IsPhysicsCollisionEnabled">
+        <member name="M:UnrealEngine.UPrimitiveComponent.IsPhysicsCollisionEnabled">
             <summary>Utility to see if there is any physics collision enabled on this component.</summary>
         </member>
-        <member name="M:UnrealEngine.UPrimitiveComponent.K2_IsQueryCollisionEnabled">
+        <member name="M:UnrealEngine.UPrimitiveComponent.IsQueryCollisionEnabled">
             <summary>Utility to see if there is any query collision enabled on this component.</summary>
         </member>
-        <member name="M:UnrealEngine.UPrimitiveComponent.K2_IsCollisionEnabled">
+        <member name="M:UnrealEngine.UPrimitiveComponent.IsCollisionEnabled">
             <summary>Utility to see if there is any form of collision (query or physics) enabled on this component.</summary>
         </member>
         <member name="M:UnrealEngine.UPrimitiveComponent.GetCollisionEnabled">
@@ -23121,7 +23121,7 @@
         <member name="M:UnrealEngine.UPrimitiveComponent.SetRenderCustomDepth(System.Boolean)">
             <summary>Sets the bRenderCustomDepth property and marks the render state dirty.</summary>
         </member>
-        <member name="M:UnrealEngine.UPrimitiveComponent.K2_LineTraceComponent(UnrealEngine.FVector,UnrealEngine.FVector,System.Boolean,System.Boolean,UnrealEngine.FVector@,UnrealEngine.FVector@,System.String@,UnrealEngine.FHitResult@)">
+        <member name="M:UnrealEngine.UPrimitiveComponent.LineTraceComponent(UnrealEngine.FVector,UnrealEngine.FVector,System.Boolean,System.Boolean,UnrealEngine.FVector@,UnrealEngine.FVector@,System.String@,UnrealEngine.FHitResult@)">
             <summary>Perform a line trace against a single component</summary>
         </member>
         <member name="M:UnrealEngine.UPrimitiveComponent.SetCollisionObjectType(UnrealEngine.ECollisionChannel)">
@@ -24453,7 +24453,7 @@
             @see [Scene Components](https://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/Actors/Components/index.html#scenecomponents)
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetWorldLocationAndRotation(UnrealEngine.FVector,UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetWorldLocationAndRotation(UnrealEngine.FVector,UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the relative location and rotation of the component to put it at the supplied pose in world space.
             @param NewLocation           New location in world space for the component.
@@ -24470,7 +24470,7 @@
         <member name="M:UnrealEngine.USceneComponent.SetAbsolute(System.Boolean,System.Boolean,System.Boolean)">
             <summary>Set which parts of the relative transform should be relative to parent, and which should be relative to world</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetRelativeLocationAndRotation(UnrealEngine.FVector,UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetRelativeLocationAndRotation(UnrealEngine.FVector,UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the location and rotation of the component relative to its parent
             @param NewLocation           New location of the component relative to its parent.
@@ -24545,7 +24545,7 @@
             @return Get the names of all the sockets on the component.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AttachTo(UnrealEngine.USceneComponent,System.String,UnrealEngine.EAttachLocation,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AttachTo(UnrealEngine.USceneComponent,System.String,UnrealEngine.EAttachLocation,System.Boolean)">
             <summary>
             Attach this component to another scene component, optionally at a named socket. It is valid to call this on components whether or not they have been Registered.
             @param  InParent                             Parent to attach to.
@@ -24592,19 +24592,19 @@
         <member name="M:UnrealEngine.USceneComponent.GetForwardVector">
             <summary>Get the forward (X) unit direction vector from this component, in world space.</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_GetComponentToWorld">
+        <member name="M:UnrealEngine.USceneComponent.GetComponentToWorld">
             <summary>Get the current component-to-world transform for this component</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_GetComponentScale">
+        <member name="M:UnrealEngine.USceneComponent.GetComponentScale">
             <summary>Returns scale of the component, in world space.</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_GetComponentRotation">
+        <member name="M:UnrealEngine.USceneComponent.GetComponentRotation">
             <summary>Returns rotation of the component, in world space.</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_GetComponentLocation">
+        <member name="M:UnrealEngine.USceneComponent.GetComponentLocation">
             <summary>Return location of the component, in world space</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddWorldTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddWorldTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the transform of the component in world space. Scale is unchanged.
             @param DeltaTransform        Change in transform in world space for the component. Scale is unchanged.
@@ -24617,7 +24617,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddWorldRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddWorldRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the rotation of the component in world space.
             @param DeltaRotation         Change in rotation in world space for the component.
@@ -24629,7 +24629,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddWorldOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddWorldOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the location of the component in world space.
             @param DeltaLocation         Change in location in world space for the component.
@@ -24642,7 +24642,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetWorldTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetWorldTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the transform of the component in world space.
             @param NewTransform          New transform in world space for the component.
@@ -24661,7 +24661,7 @@
             @param NewScale              New scale in world space for this component.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetWorldRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetWorldRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             * Put this component at the specified rotation in world space. Updates relative rotation to achieve the final world rotation.
             * @param NewRotation           New rotation in world space for the component.
@@ -24673,7 +24673,7 @@
             *                                                      If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetWorldLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetWorldLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Put this component at the specified location in world space. Updates relative location to achieve the final world location.
             @param NewLocation           New location in world space for the component.
@@ -24686,7 +24686,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddLocalTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddLocalTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the transform of the component in its local reference frame. Scale is unchanged.
             @param DeltaTransform        Change in transform of the component in its local reference frame. Scale is unchanged.
@@ -24699,7 +24699,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddLocalRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddLocalRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the rotation of the component in its local reference frame
             @param DeltaRotation         Change in rotation of the component in its local reference frame.
@@ -24710,7 +24710,7 @@
                                                                  If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddLocalOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddLocalOffset(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the location of the component in its local reference frame
             @param DeltaLocation         Change in location of the component in its local reference frame.
@@ -24723,7 +24723,7 @@
                                                                  If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddRelativeRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddRelativeRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta the rotation of the component relative to its parent
             @param DeltaRotation         Change in rotation of the component relative to is parent.
@@ -24734,7 +24734,7 @@
                                                                  If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_AddRelativeLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.AddRelativeLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Adds a delta to the translation of the component relative to its parent
             @param DeltaLocation         Change in location of the component relative to its parent
@@ -24756,7 +24756,7 @@
         <member name="M:UnrealEngine.USceneComponent.GetRelativeTransform">
             <summary>Returns the transform of the component relative to its parent</summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetRelativeTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetRelativeTransform(UnrealEngine.FTransform,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the transform of the component relative to its parent
             @param NewTransform          New transform of the component relative to its parent.
@@ -24767,7 +24767,7 @@
                                                                  If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetRelativeRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetRelativeRotation(UnrealEngine.FRotator,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the rotation of the component relative to its parent
             @param NewRotation           New rotation of the component relative to its parent
@@ -24778,7 +24778,7 @@
                                                                  If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
             </summary>
         </member>
-        <member name="M:UnrealEngine.USceneComponent.K2_SetRelativeLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
+        <member name="M:UnrealEngine.USceneComponent.SetRelativeLocation(UnrealEngine.FVector,System.Boolean,UnrealEngine.FHitResult@,System.Boolean)">
             <summary>
             Set the location of the component relative to its parent
             @param NewLocation           New location of the component relative to its parent.
@@ -25324,7 +25324,7 @@
             @param bScaleMass       If true, the mass is scaled by the bone's MassScale.
             </summary>
         </member>
-        <member name="M:UnrealEngine.USkeletalMeshComponent.K2_GetClosestPointOnPhysicsAsset(UnrealEngine.FVector,UnrealEngine.FVector@,UnrealEngine.FVector@,System.String@,System.Single@)">
+        <member name="M:UnrealEngine.USkeletalMeshComponent.GetClosestPointOnPhysicsAsset(UnrealEngine.FVector,UnrealEngine.FVector@,UnrealEngine.FVector@,System.String@,System.Single@)">
             <summary>
             Given a world position, find the closest point on the physics asset. Note that this is independent of collision and welding. This is based purely on animation position
             @param      WorldPosition                           The point we want the closest point to (i.e. for all bodies in the physics asset, find the one that has a point closest to WorldPosition)
@@ -27875,7 +27875,7 @@
         <member name="M:UnrealEngine.UTextRenderComponent.SetTextMaterial(UnrealEngine.UMaterialInterface)">
             <summary>Change the text material and signal the primitives to be rebuilt</summary>
         </member>
-        <member name="M:UnrealEngine.UTextRenderComponent.K2_SetText(System.String)">
+        <member name="M:UnrealEngine.UTextRenderComponent.SetText(System.String)">
             <summary>Change the text value and signal the primitives to be rebuilt</summary>
         </member>
         <!-- Badly formed XML comment ignored for member "P:UnrealEngine.UTextRenderComponent.Text" -->

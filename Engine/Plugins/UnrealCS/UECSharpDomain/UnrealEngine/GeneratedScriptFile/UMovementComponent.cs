@@ -138,7 +138,7 @@ public partial class UMovementComponent:UActorComponent
 	/// Respects the plane constraint, if enabled.
 	/// @return True if some movement occurred, false if no movement occurred. Result of any impact will be stored in OutHit.
 	/// </summary>
-	public  bool K2_MoveUpdatedComponent(FVector Delta,FRotator NewRotation,out FHitResult OutHit,bool bSweep=true,bool bTeleport=false)
+	public  bool MoveUpdatedComponent(FVector Delta,FRotator NewRotation,out FHitResult OutHit,bool bSweep=true,bool bTeleport=false)
 	{
 		CheckIsValid();
 		int ___ret = K2_MoveUpdatedComponent(_this.Get(),ref Delta,ref NewRotation,out OutHit,bSweep?1:0,bTeleport?1:0);
@@ -211,7 +211,7 @@ public partial class UMovementComponent:UActorComponent
 	static extern float K2_GetModifiedMaxSpeed(IntPtr _this);
 	
 	/// <summary>@return the result of GetMaxSpeed() * GetMaxSpeedModifier().</summary>
-	public  float K2_GetModifiedMaxSpeed()
+	public  float GetModifiedMaxSpeed()
 	{
 		CheckIsValid();
 		float ___ret = K2_GetModifiedMaxSpeed(_this.Get());

@@ -117,7 +117,7 @@ public partial class UCharacterMovementComponent:UPawnMovementComponent
 	/// @param SweepRadius                    The radius to use for sweep tests. Should be <= capsule radius.
 	/// @param FloorResult                    Result of the floor check
 	/// </summary>
-	public  void K2_ComputeFloorDist(FVector CapsuleLocation,float LineDistance,float SweepDistance,float SweepRadius,out FFindFloorResult FloorResult)
+	public  void ComputeFloorDist(FVector CapsuleLocation,float LineDistance,float SweepDistance,float SweepRadius,out FFindFloorResult FloorResult)
 	{
 		CheckIsValid();
 		K2_ComputeFloorDist(_this.Get(),ref CapsuleLocation,LineDistance,SweepDistance,SweepRadius,out FloorResult);
@@ -133,7 +133,7 @@ public partial class UCharacterMovementComponent:UPawnMovementComponent
 	/// @param CapsuleLocation                Location where the capsule sweep should originate
 	/// @param FloorResult                    Result of the floor check
 	/// </summary>
-	public  void K2_FindFloor(FVector CapsuleLocation,out FFindFloorResult FloorResult)
+	public  void FindFloor(FVector CapsuleLocation,out FFindFloorResult FloorResult)
 	{
 		CheckIsValid();
 		K2_FindFloor(_this.Get(),ref CapsuleLocation,out FloorResult);
@@ -155,7 +155,7 @@ public partial class UCharacterMovementComponent:UPawnMovementComponent
 	static extern float K2_GetWalkableFloorZ(IntPtr _this);
 	
 	/// <summary>Get the Z component of the normal of the steepest walkable surface for the character. Any lower than this and it is not walkable.</summary>
-	public  float K2_GetWalkableFloorZ()
+	public  float GetWalkableFloorZ()
 	{
 		CheckIsValid();
 		float ___ret = K2_GetWalkableFloorZ(_this.Get());
@@ -178,7 +178,7 @@ public partial class UCharacterMovementComponent:UPawnMovementComponent
 	static extern float K2_GetWalkableFloorAngle(IntPtr _this);
 	
 	/// <summary>Get the max angle in degrees of a walkable surface for the character.</summary>
-	public  float K2_GetWalkableFloorAngle()
+	public  float GetWalkableFloorAngle()
 	{
 		CheckIsValid();
 		float ___ret = K2_GetWalkableFloorAngle(_this.Get());

@@ -291,7 +291,7 @@ public partial class USkeletalMeshComponent:USkinnedMeshComponent
 	/// @param      ClosestPointOnPhysicsAsset      The data associated with the closest point (position, normal, etc...)
 	/// @return     true if we found a closest point
 	/// </summary>
-	public  bool K2_GetClosestPointOnPhysicsAsset(FVector WorldPosition,out FVector ClosestWorldPosition,out FVector Normal,out string BoneName,out float Distance)
+	public  bool GetClosestPointOnPhysicsAsset(FVector WorldPosition,out FVector ClosestWorldPosition,out FVector Normal,out string BoneName,out float Distance)
 	{
 		CheckIsValid();
 		int ___ret = K2_GetClosestPointOnPhysicsAsset(_this.Get(),ref WorldPosition,out ClosestWorldPosition,out Normal,out BoneName,out Distance);

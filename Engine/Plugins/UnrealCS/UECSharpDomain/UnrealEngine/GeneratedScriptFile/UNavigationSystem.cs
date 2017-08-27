@@ -183,7 +183,7 @@ public partial class UNavigationSystem:UBlueprintFunctionLibrary
 	/// Generates a random location in navigable space within given radius of Origin.
 	///     @return Return Value represents if the call was successful
 	/// </summary>
-	public static bool K2_GetRandomPointInNavigableRadius(UObject WorldContext,FVector Origin,out FVector RandomLocation,float Radius,ANavigationData NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
+	public static bool GetRandomPointInNavigableRadius(UObject WorldContext,FVector Origin,out FVector RandomLocation,float Radius,ANavigationData NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
 	{
 		int ___ret = K2_GetRandomPointInNavigableRadius(IntPtr.Zero,WorldContext,ref Origin,out RandomLocation,Radius,NavData,FilterClass.NativeClass);
 		return ___ret!=0;
@@ -197,7 +197,7 @@ public partial class UNavigationSystem:UBlueprintFunctionLibrary
 	/// Generates a random location reachable from given Origin location.
 	///     @return Return Value represents if the call was successful
 	/// </summary>
-	public static bool K2_GetRandomReachablePointInRadius(UObject WorldContext,FVector Origin,out FVector RandomLocation,float Radius,ANavigationData NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
+	public static bool GetRandomReachablePointInRadius(UObject WorldContext,FVector Origin,out FVector RandomLocation,float Radius,ANavigationData NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass)
 	{
 		int ___ret = K2_GetRandomReachablePointInRadius(IntPtr.Zero,WorldContext,ref Origin,out RandomLocation,Radius,NavData,FilterClass.NativeClass);
 		return ___ret!=0;
@@ -208,7 +208,7 @@ public partial class UNavigationSystem:UBlueprintFunctionLibrary
 	static extern int K2_ProjectPointToNavigation(IntPtr _this,IntPtr WorldContext,ref FVector Point,out FVector ProjectedLocation,IntPtr NavData,IntPtr FilterClass,ref FVector QueryExtent);
 	
 	/// <summary>Project a point onto the NavigationData</summary>
-	public static bool K2_ProjectPointToNavigation(UObject WorldContext,FVector Point,out FVector ProjectedLocation,ANavigationData NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass,FVector QueryExtent)
+	public static bool ProjectPointToNavigation(UObject WorldContext,FVector Point,out FVector ProjectedLocation,ANavigationData NavData,TSubclassOf<UNavigationQueryFilter>  FilterClass,FVector QueryExtent)
 	{
 		int ___ret = K2_ProjectPointToNavigation(IntPtr.Zero,WorldContext,ref Point,out ProjectedLocation,NavData,FilterClass.NativeClass,ref QueryExtent);
 		return ___ret!=0;

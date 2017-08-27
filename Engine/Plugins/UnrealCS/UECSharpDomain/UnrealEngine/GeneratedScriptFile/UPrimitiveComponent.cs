@@ -300,7 +300,7 @@ public partial class UPrimitiveComponent:USceneComponent
 	static extern int K2_IsPhysicsCollisionEnabled(IntPtr _this);
 	
 	/// <summary>Utility to see if there is any physics collision enabled on this component.</summary>
-	public  bool K2_IsPhysicsCollisionEnabled()
+	public  bool IsPhysicsCollisionEnabled()
 	{
 		CheckIsValid();
 		int ___ret = K2_IsPhysicsCollisionEnabled(_this.Get());
@@ -312,7 +312,7 @@ public partial class UPrimitiveComponent:USceneComponent
 	static extern int K2_IsQueryCollisionEnabled(IntPtr _this);
 	
 	/// <summary>Utility to see if there is any query collision enabled on this component.</summary>
-	public  bool K2_IsQueryCollisionEnabled()
+	public  bool IsQueryCollisionEnabled()
 	{
 		CheckIsValid();
 		int ___ret = K2_IsQueryCollisionEnabled(_this.Get());
@@ -324,7 +324,7 @@ public partial class UPrimitiveComponent:USceneComponent
 	static extern int K2_IsCollisionEnabled(IntPtr _this);
 	
 	/// <summary>Utility to see if there is any form of collision (query or physics) enabled on this component.</summary>
-	public  bool K2_IsCollisionEnabled()
+	public  bool IsCollisionEnabled()
 	{
 		CheckIsValid();
 		int ___ret = K2_IsCollisionEnabled(_this.Get());
@@ -424,7 +424,7 @@ public partial class UPrimitiveComponent:USceneComponent
 	static extern int K2_LineTraceComponent(IntPtr _this,ref FVector TraceStart,ref FVector TraceEnd,int bTraceComplex,int bShowTrace,out FVector HitLocation,out FVector HitNormal,out string BoneName,out FHitResult OutHit);
 	
 	/// <summary>Perform a line trace against a single component</summary>
-	public  bool K2_LineTraceComponent(FVector TraceStart,FVector TraceEnd,bool bTraceComplex,bool bShowTrace,out FVector HitLocation,out FVector HitNormal,out string BoneName,out FHitResult OutHit)
+	public  bool LineTraceComponent(FVector TraceStart,FVector TraceEnd,bool bTraceComplex,bool bShowTrace,out FVector HitLocation,out FVector HitNormal,out string BoneName,out FHitResult OutHit)
 	{
 		CheckIsValid();
 		int ___ret = K2_LineTraceComponent(_this.Get(),ref TraceStart,ref TraceEnd,bTraceComplex?1:0,bShowTrace?1:0,out HitLocation,out HitNormal,out BoneName,out OutHit);

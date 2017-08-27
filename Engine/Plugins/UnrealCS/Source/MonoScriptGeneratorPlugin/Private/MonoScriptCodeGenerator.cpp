@@ -369,7 +369,8 @@ FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNa
         Body_Public.Indent();
 		Body_Public.AppendLine();
 		Body_Public += DocHelper::AppendDocCommentSummary(DocHelper::GetFieldToolTip(*Function));
-		Body_Public.Append(FString::Printf(TEXT("public %s %s %s("), static_func ? TEXT("static") : TEXT(""), ReturnValue ? *Factory.GetCSharpParamTypeName(ReturnValue) : TEXT("void"), *Function->GetName()));
+        auto const friendlyName = Function->GetName().Replace(TEXT("K2_"), TEXT(""), ESearchCase::CaseSensitive);
+		Body_Public.Append(FString::Printf(TEXT("public %s %s %s("), static_func ? TEXT("static") : TEXT(""), ReturnValue ? *Factory.GetCSharpParamTypeName(ReturnValue) : TEXT("void"), *friendlyName));
 
 		FMonoTextBuilder PreCallDeclare;
 		FMonoTextBuilder PostCallSet;

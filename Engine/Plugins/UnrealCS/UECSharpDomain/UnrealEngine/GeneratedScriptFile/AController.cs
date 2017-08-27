@@ -192,7 +192,7 @@ public partial class AController:AActor
 	static extern IntPtr K2_GetPawn(IntPtr _this);
 	
 	/// <summary>Return the Pawn that is currently 'controlled' by this PlayerController</summary>
-	public  APawn K2_GetPawn()
+	public  APawn GetPawn()
 	{
 		CheckIsValid();
 		IntPtr ___ret = K2_GetPawn(_this.Get());

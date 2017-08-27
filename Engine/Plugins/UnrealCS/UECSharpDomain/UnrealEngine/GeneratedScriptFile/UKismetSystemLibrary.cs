@@ -1546,7 +1546,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
 	/// @return                              How long is remaining in the current iteration of the timer.
 	/// </summary>
-	public static float K2_GetTimerRemainingTime(UObject Object,string FunctionName)
+	public static float GetTimerRemainingTime(UObject Object,string FunctionName)
 	{
 		float ___ret = K2_GetTimerRemainingTime(IntPtr.Zero,Object,FunctionName);
 		return ___ret;
@@ -1562,7 +1562,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
 	/// @return                              How long has elapsed since the current iteration of the timer began.
 	/// </summary>
-	public static float K2_GetTimerElapsedTime(UObject Object,string FunctionName)
+	public static float GetTimerElapsedTime(UObject Object,string FunctionName)
 	{
 		float ___ret = K2_GetTimerElapsedTime(IntPtr.Zero,Object,FunctionName);
 		return ___ret;
@@ -1578,7 +1578,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param FunctionName   Delegate function name. Can be a K2 function or a Custom Event.
 	/// @return                               True if the timer exists.
 	/// </summary>
-	public static bool K2_TimerExists(UObject Object,string FunctionName)
+	public static bool TimerExists(UObject Object,string FunctionName)
 	{
 		int ___ret = K2_TimerExists(IntPtr.Zero,Object,FunctionName);
 		return ___ret!=0;
@@ -1594,7 +1594,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param FunctionName   Delegate function name. Can be a K2 function or a Custom Event.
 	/// @return                               True if the timer exists and is paused.
 	/// </summary>
-	public static bool K2_IsTimerPaused(UObject Object,string FunctionName)
+	public static bool IsTimerPaused(UObject Object,string FunctionName)
 	{
 		int ___ret = K2_IsTimerPaused(IntPtr.Zero,Object,FunctionName);
 		return ___ret!=0;
@@ -1610,7 +1610,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
 	/// @return                              True if the timer exists and is active.
 	/// </summary>
-	public static bool K2_IsTimerActive(UObject Object,string FunctionName)
+	public static bool IsTimerActive(UObject Object,string FunctionName)
 	{
 		int ___ret = K2_IsTimerActive(IntPtr.Zero,Object,FunctionName);
 		return ___ret!=0;
@@ -1625,7 +1625,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
 	/// @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
 	/// </summary>
-	public static void K2_UnPauseTimer(UObject Object,string FunctionName)
+	public static void UnPauseTimer(UObject Object,string FunctionName)
 	{
 		K2_UnPauseTimer(IntPtr.Zero,Object,FunctionName);
 		
@@ -1639,7 +1639,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
 	/// @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
 	/// </summary>
-	public static void K2_PauseTimer(UObject Object,string FunctionName)
+	public static void PauseTimer(UObject Object,string FunctionName)
 	{
 		K2_PauseTimer(IntPtr.Zero,Object,FunctionName);
 		
@@ -1653,7 +1653,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Object                Object that implements the delegate function. Defaults to self (this blueprint)
 	/// @param FunctionName  Delegate function name. Can be a K2 function or a Custom Event.
 	/// </summary>
-	public static void K2_ClearTimer(UObject Object,string FunctionName)
+	public static void ClearTimer(UObject Object,string FunctionName)
 	{
 		K2_ClearTimer(IntPtr.Zero,Object,FunctionName);
 		
@@ -1670,7 +1670,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param bLooping              true to keep executing the delegate every Time seconds, false to execute delegate only once.
 	/// @return                              The timer handle to pass to other timer functions to manipulate this timer.
 	/// </summary>
-	public static FTimerHandle K2_SetTimer(UObject Object,string FunctionName,float Time,bool bLooping)
+	public static FTimerHandle SetTimer(UObject Object,string FunctionName,float Time,bool bLooping)
 	{
 		FTimerHandle ___ret = K2_SetTimer(IntPtr.Zero,Object,FunctionName,Time,bLooping?1:0);
 		return ___ret;
@@ -1685,7 +1685,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle of the timer to time remaining of.
 	/// @return                              How long is remaining in the current iteration of the timer.
 	/// </summary>
-	public static float K2_GetTimerRemainingTimeHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static float GetTimerRemainingTimeHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		float ___ret = K2_GetTimerRemainingTimeHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		return ___ret;
@@ -1700,7 +1700,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle of the timer to get the elapsed time of.
 	/// @return                              How long has elapsed since the current iteration of the timer began.
 	/// </summary>
-	public static float K2_GetTimerElapsedTimeHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static float GetTimerElapsedTimeHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		float ___ret = K2_GetTimerElapsedTimeHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		return ___ret;
@@ -1715,7 +1715,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle to check whether it exists.
 	/// @return                              True if the timer exists.
 	/// </summary>
-	public static bool K2_TimerExistsHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static bool TimerExistsHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		int ___ret = K2_TimerExistsHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		return ___ret!=0;
@@ -1730,7 +1730,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle of the timer to check whether it is paused.
 	/// @return                              True if the timer exists and is paused.
 	/// </summary>
-	public static bool K2_IsTimerPausedHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static bool IsTimerPausedHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		int ___ret = K2_IsTimerPausedHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		return ___ret!=0;
@@ -1745,7 +1745,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle of the timer to check whether it is active.
 	/// @return                              True if the timer exists and is active.
 	/// </summary>
-	public static bool K2_IsTimerActiveHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static bool IsTimerActiveHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		int ___ret = K2_IsTimerActiveHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		return ___ret!=0;
@@ -1759,7 +1759,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// Resumes a paused timer from its current elapsed time.
 	/// @param Handle                The handle of the timer to unpause.
 	/// </summary>
-	public static void K2_UnPauseTimerHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static void UnPauseTimerHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		K2_UnPauseTimerHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		
@@ -1772,7 +1772,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// Pauses a set timer at its current elapsed time.
 	/// @param Handle                The handle of the timer to pause.
 	/// </summary>
-	public static void K2_PauseTimerHandle(UObject WorldContextObject,FTimerHandle Handle)
+	public static void PauseTimerHandle(UObject WorldContextObject,FTimerHandle Handle)
 	{
 		K2_PauseTimerHandle(IntPtr.Zero,WorldContextObject,ref Handle);
 		
@@ -1785,7 +1785,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// Clears a set timer.
 	/// @param Handle                The handle of the timer to clear.
 	/// </summary>
-	public static void K2_ClearAndInvalidateTimerHandle(UObject WorldContextObject,out FTimerHandle Handle)
+	public static void ClearAndInvalidateTimerHandle(UObject WorldContextObject,out FTimerHandle Handle)
 	{
 		K2_ClearAndInvalidateTimerHandle(IntPtr.Zero,WorldContextObject,out Handle);
 		
@@ -1799,7 +1799,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle of the timer to check validity of.
 	/// @return                              Return the invalidated timer handle for convenience.
 	/// </summary>
-	public static FTimerHandle K2_InvalidateTimerHandle(out FTimerHandle Handle)
+	public static FTimerHandle InvalidateTimerHandle(out FTimerHandle Handle)
 	{
 		FTimerHandle ___ret = K2_InvalidateTimerHandle(IntPtr.Zero,out Handle);
 		return ___ret;
@@ -1814,7 +1814,7 @@ public partial class UKismetSystemLibrary:UBlueprintFunctionLibrary
 	/// @param Handle                The handle of the timer to check validity of.
 	/// @return                              Whether the timer handle is valid.
 	/// </summary>
-	public static bool K2_IsValidTimerHandle(FTimerHandle Handle)
+	public static bool IsValidTimerHandle(FTimerHandle Handle)
 	{
 		int ___ret = K2_IsValidTimerHandle(IntPtr.Zero,ref Handle);
 		return ___ret!=0;

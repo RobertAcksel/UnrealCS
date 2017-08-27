@@ -64,7 +64,7 @@ public partial class UActorComponent:UObject
 	static extern void K2_DestroyComponent(IntPtr _this,IntPtr Object);
 	
 	/// <summary>Unregister and mark for pending kill a component.  This may not be used to destroy a component is owned by an actor other than the one calling the function.</summary>
-	public  void K2_DestroyComponent(UObject Object)
+	public  void DestroyComponent(UObject Object)
 	{
 		CheckIsValid();
 		K2_DestroyComponent(_this.Get(),Object);

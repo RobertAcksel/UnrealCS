@@ -151,7 +151,7 @@ public partial class AActor:UObject
 	/// @param DestRotation The target rotation at the destination
 	/// @return true if the actor has been successfully moved, or false if it couldn't fit.
 	/// </summary>
-	public  bool K2_TeleportTo(FVector DestLocation,FRotator DestRotation)
+	public  bool TeleportTo(FVector DestLocation,FRotator DestRotation)
 	{
 		CheckIsValid();
 		int ___ret = K2_TeleportTo(_this.Get(),ref DestLocation,ref DestRotation);
@@ -539,7 +539,7 @@ public partial class AActor:UObject
 	/// Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.
 	///  @param AttachLocationType   Type of attachment, AbsoluteWorld to keep its world position, RelativeOffset to keep the object's relative offset and SnapTo to snap to the new parent.
 	/// </summary>
-	public  void K2_AttachRootComponentToActor(AActor InParentActor,string InSocketName="None",EAttachLocation AttachLocationType=EAttachLocation.KeepRelativeOffset,bool bWeldSimulatedBodies=true)
+	public  void AttachRootComponentToActor(AActor InParentActor,string InSocketName="None",EAttachLocation AttachLocationType=EAttachLocation.KeepRelativeOffset,bool bWeldSimulatedBodies=true)
 	{
 		CheckIsValid();
 		K2_AttachRootComponentToActor(_this.Get(),InParentActor,InSocketName,(int)AttachLocationType,bWeldSimulatedBodies?1:0);
@@ -553,7 +553,7 @@ public partial class AActor:UObject
 	/// Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.
 	///  @param AttachLocationType  Type of attachment, AbsoluteWorld to keep its world position, RelativeOffset to keep the object's relative offset and SnapTo to snap to the new parent.
 	/// </summary>
-	public  void K2_AttachRootComponentTo(USceneComponent InParent,string InSocketName="None",EAttachLocation AttachLocationType=EAttachLocation.KeepRelativeOffset,bool bWeldSimulatedBodies=true)
+	public  void AttachRootComponentTo(USceneComponent InParent,string InSocketName="None",EAttachLocation AttachLocationType=EAttachLocation.KeepRelativeOffset,bool bWeldSimulatedBodies=true)
 	{
 		CheckIsValid();
 		K2_AttachRootComponentTo(_this.Get(),InParent,InSocketName,(int)AttachLocationType,bWeldSimulatedBodies?1:0);
@@ -600,7 +600,7 @@ public partial class AActor:UObject
 	static extern void K2_DestroyActor(IntPtr _this);
 	
 	/// <summary>Destroy the actor</summary>
-	public  void K2_DestroyActor()
+	public  void DestroyActor()
 	{
 		CheckIsValid();
 		K2_DestroyActor(_this.Get());
@@ -683,7 +683,7 @@ public partial class AActor:UObject
 	///                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  void K2_SetActorRelativeTransform(FTransform NewRelativeTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void SetActorRelativeTransform(FTransform NewRelativeTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_SetActorRelativeTransform(_this.Get(),ref NewRelativeTransform,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -703,7 +703,7 @@ public partial class AActor:UObject
 	///                                                              If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                              If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  void K2_SetActorRelativeRotation(FRotator NewRelativeRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void SetActorRelativeRotation(FRotator NewRelativeRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_SetActorRelativeRotation(_this.Get(),ref NewRelativeRotation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -723,7 +723,7 @@ public partial class AActor:UObject
 	///                                                              If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                              If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  void K2_SetActorRelativeLocation(FVector NewRelativeLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void SetActorRelativeLocation(FVector NewRelativeLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_SetActorRelativeLocation(_this.Get(),ref NewRelativeLocation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -743,7 +743,7 @@ public partial class AActor:UObject
 	///                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  void K2_AddActorLocalTransform(FTransform NewTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void AddActorLocalTransform(FTransform NewTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_AddActorLocalTransform(_this.Get(),ref NewTransform,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -763,7 +763,7 @@ public partial class AActor:UObject
 	///                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  void K2_AddActorLocalRotation(FRotator DeltaRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void AddActorLocalRotation(FRotator DeltaRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_AddActorLocalRotation(_this.Get(),ref DeltaRotation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -783,7 +783,7 @@ public partial class AActor:UObject
 	///                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  void K2_AddActorLocalOffset(FVector DeltaLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void AddActorLocalOffset(FVector DeltaLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_AddActorLocalOffset(_this.Get(),ref DeltaLocation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -803,7 +803,7 @@ public partial class AActor:UObject
 	///                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// </summary>
-	public  bool K2_SetActorTransform(FTransform NewTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  bool SetActorTransform(FTransform NewTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		int ___ret = K2_SetActorTransform(_this.Get(),ref NewTransform,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -815,7 +815,7 @@ public partial class AActor:UObject
 	static extern void K2_AddActorWorldTransform(IntPtr _this,ref FTransform DeltaTransform,int bSweep,out FHitResult SweepHitResult,int bTeleport);
 	
 	/// <summary>Adds a delta to the transform of this actor in world space. Scale is unchanged.</summary>
-	public  void K2_AddActorWorldTransform(FTransform DeltaTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void AddActorWorldTransform(FTransform DeltaTransform,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_AddActorWorldTransform(_this.Get(),ref DeltaTransform,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -835,7 +835,7 @@ public partial class AActor:UObject
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// @param SweepHitResult        The hit result from the move if swept.
 	/// </summary>
-	public  void K2_AddActorWorldRotation(FRotator DeltaRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void AddActorWorldRotation(FRotator DeltaRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_AddActorWorldRotation(_this.Get(),ref DeltaRotation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -856,7 +856,7 @@ public partial class AActor:UObject
 	///                                                      If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 	/// @param SweepHitResult        The hit result from the move if swept.
 	/// </summary>
-	public  void K2_AddActorWorldOffset(FVector DeltaLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  void AddActorWorldOffset(FVector DeltaLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		K2_AddActorWorldOffset(_this.Get(),ref DeltaLocation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -974,7 +974,7 @@ public partial class AActor:UObject
 	/// @param SweepHitResult        The hit result from the move if swept.
 	/// @return      Whether the rotation was successfully set.
 	/// </summary>
-	public  bool K2_SetActorLocationAndRotation(FVector NewLocation,FRotator NewRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  bool SetActorLocationAndRotation(FVector NewLocation,FRotator NewRotation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		int ___ret = K2_SetActorLocationAndRotation(_this.Get(),ref NewLocation,ref NewRotation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -993,7 +993,7 @@ public partial class AActor:UObject
 	///                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 	/// @return      Whether the rotation was successfully set.
 	/// </summary>
-	public  bool K2_SetActorRotation(FRotator NewRotation,bool bTeleportPhysics)
+	public  bool SetActorRotation(FRotator NewRotation,bool bTeleportPhysics)
 	{
 		CheckIsValid();
 		int ___ret = K2_SetActorRotation(_this.Get(),ref NewRotation,bTeleportPhysics?1:0);
@@ -1017,7 +1017,7 @@ public partial class AActor:UObject
 	static extern IntPtr K2_GetRootComponent(IntPtr _this);
 	
 	/// <summary>Returns the RootComponent of this Actor</summary>
-	public  USceneComponent K2_GetRootComponent()
+	public  USceneComponent GetRootComponent()
 	{
 		CheckIsValid();
 		IntPtr ___ret = K2_GetRootComponent(_this.Get());
@@ -1079,7 +1079,7 @@ public partial class AActor:UObject
 	static extern FRotator K2_GetActorRotation(IntPtr _this);
 	
 	/// <summary>Returns rotation of the RootComponent of this Actor.</summary>
-	public  FRotator K2_GetActorRotation()
+	public  FRotator GetActorRotation()
 	{
 		CheckIsValid();
 		FRotator ___ret = K2_GetActorRotation(_this.Get());
@@ -1102,7 +1102,7 @@ public partial class AActor:UObject
 	/// @param SweepHitResult        The hit result from the move if swept.
 	/// @return      Whether the location was successfully set (if not swept), or whether movement occurred at all (if swept).
 	/// </summary>
-	public  bool K2_SetActorLocation(FVector NewLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
+	public  bool SetActorLocation(FVector NewLocation,bool bSweep,out FHitResult SweepHitResult,bool bTeleport)
 	{
 		CheckIsValid();
 		int ___ret = K2_SetActorLocation(_this.Get(),ref NewLocation,bSweep?1:0,out SweepHitResult,bTeleport?1:0);
@@ -1114,7 +1114,7 @@ public partial class AActor:UObject
 	static extern FVector K2_GetActorLocation(IntPtr _this);
 	
 	/// <summary>Returns the location of the RootComponent of this Actor</summary>
-	public  FVector K2_GetActorLocation()
+	public  FVector GetActorLocation()
 	{
 		CheckIsValid();
 		FVector ___ret = K2_GetActorLocation(_this.Get());

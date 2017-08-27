@@ -143,7 +143,7 @@ public partial class UTextRenderComponent:UPrimitiveComponent
 	static extern void K2_SetText(IntPtr _this,string Value);
 	
 	/// <summary>Change the text value and signal the primitives to be rebuilt</summary>
-	public  void K2_SetText(string Value)
+	public  void SetText(string Value)
 	{
 		CheckIsValid();
 		K2_SetText(_this.Get(),Value);

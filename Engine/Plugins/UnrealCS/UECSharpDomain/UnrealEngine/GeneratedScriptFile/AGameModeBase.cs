@@ -48,7 +48,7 @@ public partial class AGameModeBase:AInfo
 	/// @param IncomingName Specifies the tag of a Player Start to use
 	/// @returns Actor chosen as player start (usually a PlayerStart)
 	/// </summary>
-	public  AActor K2_FindPlayerStart(AController Player,string IncomingName)
+	public  AActor FindPlayerStart(AController Player,string IncomingName)
 	{
 		CheckIsValid();
 		IntPtr ___ret = K2_FindPlayerStart(_this.Get(),Player,IncomingName);
