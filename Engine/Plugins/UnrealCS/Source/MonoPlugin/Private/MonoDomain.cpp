@@ -28,6 +28,22 @@ FMonoDomain * FMonoDomain::Instance = nullptr;
 static FString GameName;
 MonoCallbackScheduler sceduler;
 
+FString getPlatformSpecificFolderName() {
+#if WITH_EDITOR
+#if PLATFORM_64BITS
+    return TEXT("Editor_64bits");
+#else
+    return TEXT("Editor_32bits");
+#endif
+#else
+#if PLATFORM_64BITS
+    return TEXT("Game_64bits");
+#else
+    return TEXT("Game_32bits");
+#endif
+#endif    
+}
+
 static MonoAssembly * assembly_preload_hook(MonoAssemblyName * aname, char ** assemblies_path, void * user_data) {
     const char * name = mono_assembly_name_get_name(aname);
     const char * culture = mono_assembly_name_get_culture(aname);
@@ -51,19 +67,7 @@ static MonoAssembly * assembly_preload_hook(MonoAssemblyName * aname, char ** as
         FString LoadPath = MonoPreloadSearchPaths[i];
 
         if(AsmName == "UnrealEngine.dll") {
-#if WITH_EDITOR
-#if PLATFORM_64BITS
-            LoadPath = FPaths::Combine(*LoadPath, TEXT("Editor_64bits"));
-#else
-            LoadPath = FPaths::Combine(*LoadPath, TEXT("Editor_32bits"));
-#endif
-#else
-#if PLATFORM_64BITS
-            LoadPath = FPaths::Combine(*LoadPath, TEXT("Game_64bits"));
-#else
-            LoadPath = FPaths::Combine(*LoadPath, TEXT("Game_32bits"));
-#endif
-#endif
+            LoadPath = FPaths::Combine(*LoadPath, *getPlatformSpecificFolderName());
         }
 
         //Convert to absolute path
@@ -203,13 +207,13 @@ void G_NativeReinitsystem() {
 
 #if WITH_EDITOR
 //help function
-void CopyFolder(const TCHAR * Dest, const TCHAR * Src) {
+void CopyFolder(const TCHAR * Dest, const TCHAR * Src, const TCHAR * filter = TEXT("/*")) {
     if(!FPaths::DirectoryExists(Dest))
         IFileManager::Get().MakeDirectory(Dest);
 
     // 子文件夹
     TArray<FString> Dirs;
-    IFileManager::Get().FindFiles(Dirs, *(FString() + Src + "/*"), false, true);
+    IFileManager::Get().FindFiles(Dirs, *(FString() + Src + filter), false, true);
 
     for(auto sub : Dirs) {
         CopyFolder(*FPaths::Combine(Dest, *sub), *FPaths::Combine(Src, *sub));
@@ -217,7 +221,7 @@ void CopyFolder(const TCHAR * Dest, const TCHAR * Src) {
 
     // 文件
     TArray<FString> Files;
-    IFileManager::Get().FindFiles(Files, *(FString() + Src + "/*"), true, false);
+    IFileManager::Get().FindFiles(Files, *(FString() + Src + filter), true, false);
     for(auto file : Files) {
         IFileManager::Get().Copy(*FPaths::Combine(Dest, *file), *FPaths::Combine(Src, *file), true);
     }
@@ -262,10 +266,11 @@ void FMonoDomain::InstallTemplatesToGameDir() {
         CopyFolder(*projectDestinationPath, *ProjectDir);
     }
 
-    //always copy the UnrealEngine.dll. the user may whipe this path out. or the plugin might have been updated.
-    auto unrealEngineAssemblySourcePath = FPaths::Combine(*PluginDir, TEXT("Scripts/EngineAssemblies/Editor_64bits"));
+    //always copy the UnrealEngine.dll. the user may whipe this path out by cleaning the bin folder of the project. or the plugin might have been updated. or the target platform have been changed
+    //plugin -> project bin
     auto unrealEngineAssemblyDestinationPath = FPaths::Combine(*projectDestinationPath, TEXT("bin"));
-    CopyFolder(*unrealEngineAssemblySourcePath, *unrealEngineAssemblyDestinationPath);
+    auto unrealEngineAssemblySourcePath = FPaths::Combine(*PluginDir, TEXT("Scripts/EngineAssemblies"), *getPlatformSpecificFolderName());
+    CopyFolder(*unrealEngineAssemblyDestinationPath, *unrealEngineAssemblySourcePath);
 }
 
 MonoDomain * LastDomain = nullptr;
@@ -488,7 +493,7 @@ bool FMonoDomain::UpdateMainDomain() {
         return false;
     }
 
-    auto toAbsolutePath = [](auto dir) { return IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(dir); };
+    auto const toAbsolutePath = [](auto dir) { return IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(dir); };
 
     MonoObject * exception = nullptr;
     FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("UnrealCS"))->GetBaseDir();

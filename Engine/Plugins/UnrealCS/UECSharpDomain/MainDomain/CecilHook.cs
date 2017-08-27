@@ -4,6 +4,7 @@ using Mono.Cecil;
 namespace MainDomain{
     internal static class CecilHook{
         public static void PostProcessAssembly(FileSystemEventArgs fileSystemEventArgs){
+            return;
             var file = fileSystemEventArgs.FullPath;
             var module = ModuleDefinition.ReadModule(file);
             foreach (var type in module.Types){

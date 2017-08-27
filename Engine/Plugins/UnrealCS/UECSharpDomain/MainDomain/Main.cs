@@ -18,7 +18,7 @@ namespace MainDomain{
         internal readonly string engineAssembliesDir;
         internal readonly string gameAssembliesDir;
         private string shadowCopyDirectory;
-        internal AOTSupport AotSupport { get; }
+        internal AOTSupport AotSupport{ get; }
 
         private AppDomain gameDomain;
         private readonly List<FileSystemWatcher> fileWatchers = new List<FileSystemWatcher>();
@@ -47,7 +47,7 @@ namespace MainDomain{
                 //Open the file monitoring service
                 var fsw = new FileSystemWatcher(gameAssembliesDir){
                     Filter = "*.dll",
-                    NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName 
+                    NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
                 };
                 fsw.Created += Fsw_Created;
                 fsw.Error += Fsw_Error;
@@ -56,13 +56,11 @@ namespace MainDomain{
                 fsw.EnableRaisingEvents = true;
 
                 fileWatchers.Add(fsw);
-//                UnrealEngine.UObject.LogInfo("Start file hot reload listens at '" + fsw.Path + "Game.dll'");
             }
 
             {
                 //Open the file monitoring service
-                var fsw = new FileSystemWatcher(pluginBaseDir+ "/Scripts/EngineAssemblies")
-                {
+                var fsw = new FileSystemWatcher(pluginBaseDir + "/Scripts/EngineAssemblies") {
                     Filter = "*.dll",
                     NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.Size | NotifyFilters.FileName
                 };
@@ -76,7 +74,6 @@ namespace MainDomain{
                 fsw.EnableRaisingEvents = true;
 
                 fileWatchers.Add(fsw);
-//                UnrealEngine.UObject.LogInfo("Start file reload listens at '" + fsw.Path + "'");
             }
         }
 
@@ -256,23 +253,18 @@ namespace MainDomain{
             }
         }
 
-        public static bool IsFileLocked(FileInfo file)
-        {
+        public static bool IsFileLocked(FileInfo file){
             FileStream stream = null;
 
-            try
-            {
+            try{
                 stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
-            }
-            catch (IOException)
-            {
+            } catch (IOException){
                 //the file is unavailable because it is:
                 //still being written to
                 //or being processed by another thread
                 //or does not exist (has already been processed)
                 return true;
-            }
-            finally{
+            } finally{
                 stream?.Close();
             }
 
