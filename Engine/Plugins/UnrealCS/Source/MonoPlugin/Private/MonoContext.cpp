@@ -2,7 +2,7 @@
 // For details, see LICENSE.txt
 
 //#if WITH_MONO
-#include "MonoIntegration.h"
+#include "MonoContext.h"
 #include "MonoPluginPrivatePCH.h"
 
 #include "MonoBlueprintGeneratedClass.h"

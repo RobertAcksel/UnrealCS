@@ -3,7 +3,7 @@
 #include "MonoBlueprintGeneratedClass.h"
 #include "MonoPluginPrivatePCH.h"
 
-#include "MonoIntegration.h"
+#include "MonoContext.h"
 #include "MonoScriptBind_Component.h"
 
 UMonoScriptClass::UMonoScriptClass(const FObjectInitializer& ObjectInitializer)

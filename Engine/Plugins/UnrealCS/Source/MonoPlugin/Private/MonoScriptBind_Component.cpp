@@ -5,7 +5,7 @@
 
 //#if WITH_MONO
 #include "MonoDomain.h"
-#include "MonoIntegration.h"
+#include "MonoContext.h"
 
 UMonoScriptBind_Component::UMonoScriptBind_Component(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

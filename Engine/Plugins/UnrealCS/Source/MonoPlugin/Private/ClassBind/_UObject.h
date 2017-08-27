@@ -3,7 +3,7 @@
 
 #pragma once
 #include "MonoScriptBind_Component.h"
-#include "../MonoIntegration.h"
+#include "MonoContext.h"
 
 namespace UnrealEngine
 {
