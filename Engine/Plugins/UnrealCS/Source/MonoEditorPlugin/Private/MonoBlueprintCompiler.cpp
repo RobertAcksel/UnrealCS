@@ -28,7 +28,7 @@ void FMonoBlueprintCompiler::CleanAndSanitizeClass(UBlueprintGeneratedClass* Cla
 
 	// Make sure our typed pointer is set
 	check(ClassToClean == NewClass);	
-	NewScriptBlueprintClass = CastChecked<UMonoScriptClass>((UObject*)NewClass);
+	NewScriptBlueprintClass = CastChecked<UMonoScriptBlueprintGeneratedClass>((UObject*)NewClass);
 	ContextProperty = NULL;
 }
 
@@ -79,7 +79,7 @@ void FMonoBlueprintCompiler::CreateClassVariablesFromBlueprint()
 	Super::CreateClassVariablesFromBlueprint();
 
 	UMonoBlueprint* MyBlueprint = ScriptBlueprint();
-	UMonoScriptClass* NewScripClass = CastChecked<UMonoScriptClass>(NewClass);
+	UMonoScriptBlueprintGeneratedClass* NewScripClass = CastChecked<UMonoScriptBlueprintGeneratedClass>(NewClass);
 	NewScripClass->ScriptProperties.Empty();
 
 	for (auto& Field : ScriptDefinedFields)
@@ -135,7 +135,7 @@ void FMonoBlueprintCompiler::CreateScriptContextProperty()
 void FMonoBlueprintCompiler::CreateFunctionList()
 {
 	//´´½¨º¯Êý
-	UMonoScriptClass* NewScriptClass = CastChecked<UMonoScriptClass>(NewClass);
+	UMonoScriptBlueprintGeneratedClass* NewScriptClass = CastChecked<UMonoScriptBlueprintGeneratedClass>(NewClass);
 	NewScriptClass->Init(ScriptContext.Get());
 
 	Super::CreateFunctionList();
@@ -197,7 +197,7 @@ void FMonoBlueprintCompiler::FinishCompilingClass(UClass* Class)
 {
 	UMonoBlueprint* MyBlueprint = ScriptBlueprint();
 
-	UMonoScriptClass* ScriptClass = CastChecked<UMonoScriptClass>(Class);
+	UMonoScriptBlueprintGeneratedClass* ScriptClass = CastChecked<UMonoScriptBlueprintGeneratedClass>(Class);
 	ScriptClass->ClassName = MyBlueprint->ClassName;
 
 	// Allow Blueprint Components to be used in Blueprints
@@ -241,7 +241,7 @@ void FMonoBlueprintCompiler::PostCompile() {
 
 void FMonoBlueprintCompiler::EnsureProperGeneratedClass(UClass*& TargetUClass)
 {
-	if ( TargetUClass && !( (UObject*)TargetUClass )->IsA(UMonoScriptClass::StaticClass()) )
+	if ( TargetUClass && !( (UObject*)TargetUClass )->IsA(UMonoScriptBlueprintGeneratedClass::StaticClass()) )
 	{
 		FKismetCompilerUtilities::ConsignToOblivion(TargetUClass, Blueprint->bIsRegeneratingOnLoad);
 		TargetUClass = NULL;
@@ -250,11 +250,11 @@ void FMonoBlueprintCompiler::EnsureProperGeneratedClass(UClass*& TargetUClass)
 
 void FMonoBlueprintCompiler::SpawnNewClass(const FString& NewClassName)
 {
-	NewScriptBlueprintClass = FindObject<UMonoScriptClass>(Blueprint->GetOutermost(), *NewClassName);
+	NewScriptBlueprintClass = FindObject<UMonoScriptBlueprintGeneratedClass>(Blueprint->GetOutermost(), *NewClassName);
 
 	if ( NewScriptBlueprintClass == NULL )
 	{
-		NewScriptBlueprintClass = NewObject<UMonoScriptClass>(Blueprint->GetOutermost(), FName(*NewClassName), RF_Public | RF_Transactional);
+		NewScriptBlueprintClass = NewObject<UMonoScriptBlueprintGeneratedClass>(Blueprint->GetOutermost(), FName(*NewClassName), RF_Public | RF_Transactional);
 	}
 	else
 	{

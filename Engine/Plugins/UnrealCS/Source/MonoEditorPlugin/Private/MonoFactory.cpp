@@ -125,7 +125,7 @@ UObject* UMonoFactory::FactoryCreateNew(UClass* InClass, UObject* InParent, FNam
             ParentClassNew = ParentClass;
         }
 
-		NewBlueprint = CastChecked<UMonoBlueprint>(FKismetEditorUtilities::CreateBlueprint(ParentClassNew, ClassPackage, InName, BPTYPE_Normal, UMonoBlueprint::StaticClass(), UMonoScriptClass::StaticClass(), "UMonoFactory"));
+		NewBlueprint = CastChecked<UMonoBlueprint>(FKismetEditorUtilities::CreateBlueprint(ParentClassNew, ClassPackage, InName, BPTYPE_Normal, UMonoBlueprint::StaticClass(), UMonoScriptBlueprintGeneratedClass::StaticClass(), "UMonoFactory"));
 	}
     //NewBlueprint->AssetImportData->Update(CurrentFilename);
 	//NewBlueprint->SourceFilePath = FReimportManager::SanitizeImportFilename(CurrentFilename, NewBlueprint);

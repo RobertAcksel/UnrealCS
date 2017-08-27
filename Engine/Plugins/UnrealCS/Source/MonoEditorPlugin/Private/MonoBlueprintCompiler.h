@@ -4,7 +4,7 @@
 
 struct FScriptField;
 class UMonoBlueprint;
-class UMonoScriptClass;
+class UMonoScriptBlueprintGeneratedClass;
 class FScriptContextBase;
 
 #include "KismetCompiler.h"
@@ -55,7 +55,7 @@ protected:
 	void CreateScriptDefinedFunction(FScriptField& Field);
 
 	/** New script class */
-	UMonoScriptClass* NewScriptBlueprintClass;
+	UMonoScriptBlueprintGeneratedClass* NewScriptBlueprintClass;
 	/** Script context */
 	TUniquePtr<FScriptContextBase> ScriptContext;
 	/** Script-defined properties and functions */

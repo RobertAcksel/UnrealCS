@@ -546,7 +546,7 @@ UClass* FMonoContext::GetClassProperty(const FString& PropertyName)
 	return NewValue;
 }
 
-void FMonoContext::PushScriptPropertyValues(UMonoScriptClass* ScriptClass, const UObject* ThisObj)
+void FMonoContext::PushScriptPropertyValues(UMonoScriptBlueprintGeneratedClass* ScriptClass, const UObject* ThisObj)
 {
 	// @todo: optimize this
 	for (auto Property : ScriptClass->ScriptProperties)
@@ -592,7 +592,7 @@ void FMonoContext::PushScriptPropertyValues(UMonoScriptClass* ScriptClass, const
 	}
 }
 
-void FMonoContext::FetchScriptPropertyValues(UMonoScriptClass* ScriptClass, UObject* ThisObj)
+void FMonoContext::FetchScriptPropertyValues(UMonoScriptBlueprintGeneratedClass* ScriptClass, UObject* ThisObj)
 {
 	// @todo: optimize this
 	for (auto Property : ScriptClass->ScriptProperties)
@@ -1025,7 +1025,7 @@ UProperty* CreateParamFromMonoType(MonoType* type, UStruct* Scope, FName Propert
 
 
 
-void CreateFunction(UMonoScriptClass* NewClass, MonoMethod* method)
+void CreateFunction(UMonoScriptBlueprintGeneratedClass* NewClass, MonoMethod* method)
 {
 	FString KeyName(ANSI_TO_TCHAR(mono_method_get_name(method)));
 	FString InterFuncName = KeyName;
@@ -1128,7 +1128,7 @@ void CreateFunction(UMonoScriptClass* NewClass, MonoMethod* method)
 }
 
 
-void FMonoContext::CreateFunctions(UMonoScriptClass* NewClass)
+void FMonoContext::CreateFunctions(UMonoScriptBlueprintGeneratedClass* NewClass)
 {
 	check(Class);
 	{

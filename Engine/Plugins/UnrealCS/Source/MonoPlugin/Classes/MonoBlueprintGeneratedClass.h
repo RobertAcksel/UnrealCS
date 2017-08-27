@@ -6,7 +6,7 @@
 #include "Engine/BlueprintGeneratedClass.h"
 #include "MonoBlueprintGeneratedClass.generated.h"
 
-class UMonoScriptClass;
+class UMonoScriptBlueprintGeneratedClass;
 
 struct MONOPLUGIN_API FScriptField
 {
@@ -42,7 +42,7 @@ public:
 	/**
 	* Creates a script context object
 	*/
-	static FScriptContextBase* CreateContext(const FString& SourceCode, UMonoScriptClass* Class, UObject* Owner);
+	static FScriptContextBase* CreateContext(const FString& SourceCode, UMonoScriptBlueprintGeneratedClass* Class, UObject* Owner);
 
 	/**
 	* Gets supported script file formats (UFactory formats)
@@ -117,12 +117,12 @@ public:
 	/**
 	* Pushes all property values from class instance to script.
 	*/
-	virtual void PushScriptPropertyValues(UMonoScriptClass* Class, const UObject* Obj) = 0;
+	virtual void PushScriptPropertyValues(UMonoScriptBlueprintGeneratedClass* Class, const UObject* Obj) = 0;
 
 	/**
 	* Fetches all property values from script to class instance.
 	*/
-	virtual void FetchScriptPropertyValues(UMonoScriptClass* Class, UObject* Obj) = 0;
+	virtual void FetchScriptPropertyValues(UMonoScriptBlueprintGeneratedClass* Class, UObject* Obj) = 0;
 };
 
 
@@ -131,7 +131,7 @@ public:
 * This class serves as the proxy object for scripting engine created classes (CSharp classes).
 */
 UCLASS()
-class MONOPLUGIN_API UMonoScriptClass : public UBlueprintGeneratedClass
+class MONOPLUGIN_API UMonoScriptBlueprintGeneratedClass : public UBlueprintGeneratedClass
 {
 	GENERATED_UCLASS_BODY()
 
@@ -166,12 +166,12 @@ public:
 	* Gets UScriptBlueprintGeneratedClass from class hierarchy
 	* @return UScriptBlueprintGeneratedClass or NULL
 	*/
-	FORCEINLINE static UMonoScriptClass* GetScriptGeneratedClass(UClass* InClass)
+	FORCEINLINE static UMonoScriptBlueprintGeneratedClass* GetScriptGeneratedClass(UClass* InClass)
 	{
-		UMonoScriptClass* ScriptClass = NULL;
+		UMonoScriptBlueprintGeneratedClass* ScriptClass = NULL;
 		for (UClass* MyClass = InClass; MyClass && !ScriptClass; MyClass = MyClass->GetSuperClass())
 		{
-			ScriptClass = Cast<UMonoScriptClass>(MyClass);
+			ScriptClass = Cast<UMonoScriptBlueprintGeneratedClass>(MyClass);
 		}
 		return ScriptClass;
 	}

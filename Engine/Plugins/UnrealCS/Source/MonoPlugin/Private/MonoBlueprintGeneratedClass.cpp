@@ -6,13 +6,13 @@
 #include "MonoContext.h"
 #include "MonoScriptBind_Component.h"
 
-UMonoScriptClass::UMonoScriptClass(const FObjectInitializer& ObjectInitializer)
+UMonoScriptBlueprintGeneratedClass::UMonoScriptBlueprintGeneratedClass(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	InSerialize = false;
 }
 
-void UMonoScriptClass::AddUniqueNativeFunction(const FName& InName, Native InPointer)
+void UMonoScriptBlueprintGeneratedClass::AddUniqueNativeFunction(const FName& InName, Native InPointer)
 {
 	// Find the function in the class's native function lookup table.
 	for (int32 FunctionIndex = 0; FunctionIndex < NativeFunctionLookupTable.Num(); ++FunctionIndex)
@@ -27,7 +27,7 @@ void UMonoScriptClass::AddUniqueNativeFunction(const FName& InName, Native InPoi
 	new(NativeFunctionLookupTable)FNativeFunctionLookup(InName, InPointer);
 }
 
-void UMonoScriptClass::RemoveNativeFunction(const FName& InName)
+void UMonoScriptBlueprintGeneratedClass::RemoveNativeFunction(const FName& InName)
 {
 	// Find the function in the class's native function lookup table.
 	for (int32 FunctionIndex = 0; FunctionIndex < NativeFunctionLookupTable.Num(); ++FunctionIndex)
@@ -40,7 +40,7 @@ void UMonoScriptClass::RemoveNativeFunction(const FName& InName)
 		}
 	}
 }
-void UMonoScriptClass::Link(FArchive& Ar, bool bRelinkExistingProperties)
+void UMonoScriptBlueprintGeneratedClass::Link(FArchive& Ar, bool bRelinkExistingProperties)
 {
 	for (auto Function : ScriptFunctions)
 	{
@@ -49,18 +49,18 @@ void UMonoScriptClass::Link(FArchive& Ar, bool bRelinkExistingProperties)
 	Super::Link(Ar, bRelinkExistingProperties);
 }
 
-void UMonoScriptClass::Bind()
+void UMonoScriptBlueprintGeneratedClass::Bind()
 {
 	Super::Bind();
 }
 
-void UMonoScriptClass::PurgeClass(bool bRecompilingOnLoad)
+void UMonoScriptBlueprintGeneratedClass::PurgeClass(bool bRecompilingOnLoad)
 {
 	Super::PurgeClass(bRecompilingOnLoad);
 	ScriptProperties.Empty();
 }
 
-FScriptContextBase* FScriptContextBase::CreateContext(const FString& SourceCode, UMonoScriptClass* Class, UObject* Owner)
+FScriptContextBase* FScriptContextBase::CreateContext(const FString& SourceCode, UMonoScriptBlueprintGeneratedClass* Class, UObject* Owner)
 {
 	FScriptContextBase* NewContext = new FMonoContext();
 	if (NewContext)
@@ -87,18 +87,18 @@ void FScriptContextBase::GetSupportedScriptFileFormats(TArray<FString>& OutForma
 }
 
 
-void UMonoScriptClass::Serialize(FArchive& Ar)
+void UMonoScriptBlueprintGeneratedClass::Serialize(FArchive& Ar)
 {
 	InSerialize = true;
 	Super::Serialize(Ar);
 }
-void UMonoScriptClass::PostLoad()
+void UMonoScriptBlueprintGeneratedClass::PostLoad()
 {
 	Super::PostLoad();
 	InSerialize = false;
 }
 #if WITH_EDITOR
-void UMonoScriptClass::Init(FScriptContextBase* Context)
+void UMonoScriptBlueprintGeneratedClass::Init(FScriptContextBase* Context)
 {
 	ScriptFunctions.Empty();
 	FMonoContext* MonoContext = (FMonoContext*)Context;
@@ -107,7 +107,7 @@ void UMonoScriptClass::Init(FScriptContextBase* Context)
 #endif
 
 
-UObject* UMonoScriptClass::CreateDefaultObject()
+UObject* UMonoScriptBlueprintGeneratedClass::CreateDefaultObject()
 {
 	auto obj = Super::CreateDefaultObject();
 	if (obj != nullptr && !InSerialize)	{

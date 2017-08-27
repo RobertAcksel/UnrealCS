@@ -29,7 +29,7 @@ void UMonoScriptBind_Component::OnRegister()
 		FMonoDomain::Get()->eventEndHotReload.AddUObject(this, &UMonoScriptBind_Component::EndHotReload);
 	}
 #endif
-	auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+	auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 	if (ScriptClass && GetWorld() && GetWorld()->WorldType != EWorldType::Editor)
 	{
 		Context.Reset(FScriptContextBase::CreateContext(ScriptClass->ClassName, ScriptClass, this));
@@ -58,7 +58,7 @@ void UMonoScriptBind_Component::OnRegister()
 //Initialize the default parameters
 void UMonoScriptBind_Component::InitDefault()
 {
-	auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+	auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 	if (ScriptClass)
 	{
 		TUniquePtr<FScriptContextBase> TempContext;
@@ -82,7 +82,7 @@ void UMonoScriptBind_Component::OnUnregister()
 {
 	if (Context && methodOnUnregister)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		if (SyncProperty)
 			Context->PushScriptPropertyValues(ScriptClass, this);
 		Context->Invoke(methodOnUnregister, nullptr);
@@ -97,7 +97,7 @@ void UMonoScriptBind_Component::InitializeComponent()
 	Super::InitializeComponent();
 	if (Context && methodInitializeComponent)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		if (SyncProperty)
 			Context->PushScriptPropertyValues(ScriptClass, this);
 		Context->Invoke(methodInitializeComponent, nullptr);
@@ -111,7 +111,7 @@ void UMonoScriptBind_Component::BeginPlay()
 	Super::BeginPlay();
 	if (Context)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		if (SyncProperty)
 			Context->PushScriptPropertyValues(ScriptClass, this);
 		Context->BeginPlay();
@@ -124,7 +124,7 @@ void UMonoScriptBind_Component::TickComponent(float DeltaTime, enum ELevelTick T
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	if (Context)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		if (SyncProperty)
 			Context->PushScriptPropertyValues(ScriptClass, this);
 		Context->Tick(DeltaTime);
@@ -137,7 +137,7 @@ void UMonoScriptBind_Component::EndPlay(const EEndPlayReason::Type EndPlayReason
 {
 	if (Context)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		if (SyncProperty)
 			Context->PushScriptPropertyValues(ScriptClass, this);
 		Context->EndPlay(EndPlayReason);
@@ -152,7 +152,7 @@ void UMonoScriptBind_Component::BeginDestroy()
 {
 	if (Context)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		if (SyncProperty)
 			Context->PushScriptPropertyValues(ScriptClass, this);
 		Context->Destroy();
@@ -194,7 +194,7 @@ void UMonoScriptBind_Component::EndHotReload()
 	{
 		Context->EndHotReload();
 		HotReloadData();
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		Context->PushScriptPropertyValues(ScriptClass, this);
 	}
 }
@@ -216,7 +216,7 @@ void UMonoScriptBind_Component::PostEditChangeProperty
 {
 	if (Context)
 	{
-		auto ScriptClass = UMonoScriptClass::GetScriptGeneratedClass(GetClass());
+		auto ScriptClass = UMonoScriptBlueprintGeneratedClass::GetScriptGeneratedClass(GetClass());
 		Context->PushScriptPropertyValues(ScriptClass, this);
 	}
 }

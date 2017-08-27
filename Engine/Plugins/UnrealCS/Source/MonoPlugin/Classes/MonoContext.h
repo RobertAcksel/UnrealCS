@@ -16,7 +16,7 @@ struct FFunctionField
 	UProperty* ReturnValue;
 };
 
-class UMonoScriptClass;
+class UMonoScriptBlueprintGeneratedClass;
 
 class FMonoContext : public FScriptContextBase
 {
@@ -71,7 +71,7 @@ public:
 	virtual void GetScriptDefinedFields(TArray<FScriptField>& OutFields) override;
 	virtual void BeginHotReload() override;
 	virtual void EndHotReload() override;
-	void CreateFunctions(UMonoScriptClass* NewClass);
+	void CreateFunctions(UMonoScriptBlueprintGeneratedClass* NewClass);
 #endif
 
 	MonoMethod* FindMethod(const char* name, int paramCount);
@@ -80,12 +80,12 @@ public:
 	/**
 	* Pushes all property values from class instance to script.
 	*/
-	virtual void PushScriptPropertyValues(UMonoScriptClass* Class, const UObject* Obj) override;
+	virtual void PushScriptPropertyValues(UMonoScriptBlueprintGeneratedClass* Class, const UObject* Obj) override;
 
 	/**
 	* Fetches all property values from script to class instance.
 	*/
-	virtual void FetchScriptPropertyValues(UMonoScriptClass* Class, UObject* Obj) override;
+	virtual void FetchScriptPropertyValues(UMonoScriptBlueprintGeneratedClass* Class, UObject* Obj) override;
 };
 
 #endif

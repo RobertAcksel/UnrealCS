@@ -28,14 +28,14 @@ void UMonoBlueprint::GetAssetRegistryTags(TArray<FAssetRegistryTag>& OutTags) co
 #if WITH_EDITOR
 UClass* UMonoBlueprint::GetBlueprintClass() const
 {
-	return UMonoScriptClass::StaticClass();
+	return UMonoScriptBlueprintGeneratedClass::StaticClass();
 }
 
 bool UMonoBlueprint::ValidateGeneratedClass(const UClass* InClass)
 {
 	bool Result = Super::ValidateGeneratedClass(InClass);
 
-	const UMonoScriptClass* GeneratedClass = Cast<const UMonoScriptClass>(InClass);
+	const UMonoScriptBlueprintGeneratedClass* GeneratedClass = Cast<const UMonoScriptBlueprintGeneratedClass>(InClass);
 	if (!ensure(GeneratedClass))
 	{
 		return false;
