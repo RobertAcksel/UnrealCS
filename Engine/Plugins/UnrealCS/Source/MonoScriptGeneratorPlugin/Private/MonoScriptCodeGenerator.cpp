@@ -140,7 +140,7 @@ void FMonoScriptCodeGenerator::GlueAllGeneratedFiles()
 		if (Class.CanExport)
 		{
 			const FString ClassNameCPP = GetClassNameCPP(Class.Class);
-			LibGlue += FString::Printf(TEXT("\t_%s::BindFunctions();\r\n"), *ClassNameCPP);
+			LibGlue += FString::Printf(TEXT("\t%s_::BindFunctions();\r\n"), *ClassNameCPP);
 		}
 
 	}
@@ -195,8 +195,10 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 		AllScriptHeaders.Add(CI.ClassHeader);
 
-        auto const isScriptCreateableClass = superClass != nullptr 
+        auto isScriptCreateableClass = superClass != nullptr 
 	        && (IsChildOfClassByName(superClass, "Actor") || IsChildOfClassByName(superClass, "ActorComponent"));
+
+//        isScriptCreateableClass = false;
 
 	    FMonoTextBuilder GeneratedGlue;
         GeneratedGlue.AppendLine(TEXT("//GENERATED: C++ Code\r\n"));
@@ -206,8 +208,8 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 	        const auto filename = FPaths::GetBaseFilename(CI.ClassHeader);
             GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s.generated.h\""), *filename));
 	    }
-		GeneratedGlue.AppendLine(TEXT("namespace UnrealEngine"));
-		GeneratedGlue.OpenBrace();
+//		GeneratedGlue.AppendLine(TEXT("namespace UnrealEngine"));
+//		GeneratedGlue.OpenBrace(); //Namespace
 
 	    if(isScriptCreateableClass) {
             GeneratedGlue.AppendLine(TEXT("UCLASS()"));
@@ -281,7 +283,7 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 		GeneratedGlue.CloseBrace();//BindFunctions
 		GeneratedGlue.CloseBrace();
 		GeneratedGlue.Append(";");//Class
-		GeneratedGlue.CloseBrace();//Namespace
+//		GeneratedGlue.CloseBrace();//Namespace
 		
 
 		SaveHeaderIfChanged(CI.ClassHeader, GeneratedGlue.ToText());

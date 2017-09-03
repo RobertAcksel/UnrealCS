@@ -144,7 +144,7 @@ FString FScriptCodeGeneratorBase::InitializeFunctionDispatchParam(UFunction* Fun
 
 FString FScriptCodeGeneratorBase::GetScriptHeaderForClass(UClass* Class)
 {
-	return GeneratedCodePath / (Class->GetName() + TEXT(".script.h"));
+	return GeneratedCodePath / (Class->GetName() + TEXT("_script.h"));
 }
 
 bool FScriptCodeGeneratorBase::CanExportClass(UClass* Class)
