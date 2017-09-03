@@ -1,0 +1,16 @@
+//GENERATED: C++ Code
+
+#pragma once
+
+class UDynamicBlueprintBinding_
+{
+	static UClass* StaticClass(){return UDynamicBlueprintBinding::StaticClass();}
+	public:
+	static void BindFunctions()
+	{
+		mono_add_internal_call("UnrealEngine.UDynamicBlueprintBinding::StaticClass",(const void*)StaticClass);
+		
+	}
+	
+}
+;
