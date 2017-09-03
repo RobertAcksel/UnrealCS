@@ -7,5 +7,5 @@ namespace UnrealEngine
 {
 	class _FScriptMap
 	{
-	}
+    };
 }

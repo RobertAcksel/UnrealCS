@@ -134,7 +134,6 @@ void FMonoBlueprintCompiler::CreateScriptContextProperty()
 
 void FMonoBlueprintCompiler::CreateFunctionList()
 {
-	//´´½¨º¯Êý
 	UMonoScriptBlueprintGeneratedClass* NewScriptClass = CastChecked<UMonoScriptBlueprintGeneratedClass>(NewClass);
 	NewScriptClass->Init(ScriptContext.Get());
 

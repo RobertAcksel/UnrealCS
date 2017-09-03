@@ -8,10 +8,14 @@ namespace UnrealEngine
 	{
 		typedef void(*callback_t) ();
 
-		static void BindAction(UInputComponent* _this, MonoString* AxisName, int KeyEvent, UObject* Object, callback_t method)
+		static void BindAction(UInputComponent* _this, MonoString* AxisName, int KeyEvent, UObject* Object, FInputActionHandlerWithKeySignature::TUObjectMethodDelegate<UObject>::FMethodPtr method)
 		{
-			//_this->BindAction(MonoStringToFName(AxisName), (const EInputEvent)KeyEvent, Object, method);
+            auto name = MonoStringToFName(AxisName);
+            auto key = (EInputEvent)KeyEvent;
+//		    FInputActionHandlerWithKeySignature::TUObjectMethodDelegate<UObject>::FMethodPtr xaf = method;
+			_this->BindAction(name, key, Object, method);
 		}
+
 	public:
 		static  void BindFunctions()
 		{

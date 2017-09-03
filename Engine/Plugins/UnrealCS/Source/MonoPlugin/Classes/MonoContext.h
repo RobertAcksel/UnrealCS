@@ -25,13 +25,13 @@ protected:
 	void UpdateData();
 
 
-	MonoClass* Class;
-	MonoObject* Obj;
-	uint32 handle;
-	MonoMethod* method_BeginPlay;
-	MonoMethod* method_Tick;
-	MonoMethod* method_EndPlay;
-	MonoMethod* method_Destroy;
+	MonoClass* Class = nullptr;
+	MonoObject* Obj = nullptr;
+	uint32 handle = 0;
+	MonoMethod* method_BeginPlay = nullptr;
+	MonoMethod* method_Tick = nullptr;
+	MonoMethod* method_EndPlay = nullptr;
+	MonoMethod* method_Destroy = nullptr;
 	TWeakObjectPtr<UObject> ObjectPtr;
 	FString ClassName;
 public:

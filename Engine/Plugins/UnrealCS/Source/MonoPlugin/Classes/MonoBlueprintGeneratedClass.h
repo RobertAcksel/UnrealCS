@@ -14,9 +14,10 @@ struct MONOPLUGIN_API FScriptField
 	FName Name;
 	/** Field type */
 	UClass* Class;
-	/** 是否是数组*/
-	//bool IsArray;
-	/*  内部确定类型*/
+
+    //bool IsArray;
+
+    /*Internal type of determination*/
 	UObject* InnerType;
 
 	FScriptField()

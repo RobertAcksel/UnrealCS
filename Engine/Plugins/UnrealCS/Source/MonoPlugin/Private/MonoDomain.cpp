@@ -544,7 +544,7 @@ void FMonoDomain::NativeHotReload() {
 
 #if WITH_MONO_HOTRELOAD
     //Find all exported classes
-    TArray<FString> ExportedClass;
+    TArray<FString> ExportedClasses;
     MonoClass * AssemblyExportedClass = mono_class_from_name(Image, "Game", "AssemblyExportedClass");
 
     if(AssemblyExportedClass != nullptr) {
@@ -560,14 +560,14 @@ void FMonoDomain::NativeHotReload() {
                 int32 len = mono_array_length(data);
                 for(int i = 0; i < len; i++) {
                     MonoString * t = (MonoString*)mono_array_get(data, MonoObject*, i);
-                    ExportedClass.Add(MonoStringToFString(t));
+                    ExportedClasses.Add(MonoStringToFString(t));
                 }
             }
         }
     }
     //Generate blueprint for each class
-    for(int i = 0; i < ExportedClass.Num(); i++) {
-        MonoClass * C = mono_class_from_name(Image, "Game", TCHAR_TO_ANSI(*ExportedClass[i]));
+    for(auto exportedClass : ExportedClasses) {
+        MonoClass * C = mono_class_from_name(Image, "Game", TCHAR_TO_ANSI(*exportedClass));
         if(C != nullptr) {
             UClass * Parent = nullptr;
 
@@ -589,11 +589,11 @@ void FMonoDomain::NativeHotReload() {
                 C_Parent = mono_class_get_parent(C_Parent);
             }
             if(Parent == nullptr) {
-                UE_LOG(LogMono, Log, TEXT("Could not Found Class %s parent %s"), *ExportedClass[i], Parent != nullptr ? *Parent->GetName() : TEXT(" nullptr "));
+                UE_LOG(LogMono, Log, TEXT("Could not Found Class %s parent %s"), *exportedClass, Parent != nullptr ? *Parent->GetName() : TEXT(" nullptr "));
             } else {
-                UE_LOG(LogMono, Log, TEXT("Found Class %s parent %s"), *ExportedClass[i], Parent != nullptr ? *Parent->GetName() : TEXT(" nullptr "));
+                UE_LOG(LogMono, Log, TEXT("Found Class %s parent %s"), *exportedClass, Parent != nullptr ? *Parent->GetName() : TEXT(" nullptr "));
                 //notify MonoEditor to create blueprint
-                IMonoPlugin::Get().Event_OnNewClass().Broadcast(ExportedClass[i], Parent);
+                IMonoPlugin::Get().Event_OnNewClass().Broadcast(exportedClass, Parent);
             }
         }
     }
@@ -630,18 +630,18 @@ bool FMonoDomain::RemoveTickableObject(MonoObject * obj) {
 
 void FMonoDomain::Tick(float DeltaTime) {
 #if WITH_MONO_HOTRELOAD
-    if(NeedCompleteReload) {
-        UE_LOG(LogMono, Log, TEXT("trigger MainDomain reload"));
-
-        InstallTemplatesToGameDir();
-        NeedCompleteReload = false;
-#if WITH_MONO_HOTRELOAD
-        if(Instance) {
-            UpdateMainDomain();
-        }
-#endif
-        NeedHotReload = true;
-    }
+//    if(NeedCompleteReload) {
+//        UE_LOG(LogMono, Log, TEXT("trigger MainDomain reload"));
+//
+//        InstallTemplatesToGameDir();
+//        NeedCompleteReload = false;
+//#if WITH_MONO_HOTRELOAD
+//        if(Instance) {
+//            UpdateMainDomain();
+//        }
+//#endif
+//        NeedHotReload = true;
+//    }
 
     //if NeedHotReload from MainDomain.dll
     if(NeedHotReload) {

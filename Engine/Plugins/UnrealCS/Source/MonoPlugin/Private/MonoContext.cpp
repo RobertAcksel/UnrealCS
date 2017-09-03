@@ -893,9 +893,9 @@ void FMonoContext::GetScriptDefinedFields(TArray<FScriptField>& OutFields)
 {
 	check(Class);
 
-	void* iter = NULL;
+	void* iter = nullptr;
 	MonoClassField* field = mono_class_get_fields(Class, &iter);
-	while (field != NULL)
+	while (field != nullptr)
 	{
 		uint32 flags = mono_field_get_flags(field);
 		if ((flags & MONO_FIELD_ATTR_PUBLIC) && (flags & MONO_FIELD_ATTR_STATIC) == 0)
@@ -903,10 +903,12 @@ void FMonoContext::GetScriptDefinedFields(TArray<FScriptField>& OutFields)
 			FString KeyName(ANSI_TO_TCHAR(mono_field_get_name(field)));
 			MonoType* type = mono_field_get_type(field);
 			FScriptField PropertyInfo;
-			UClass* PropClass;
+
+		    UClass* PropClass;
 			UObject* InnerType;
 			GetTypeProperty(type, PropClass, InnerType);
-			if (PropClass)
+
+		    if (PropClass)
 			{
 				PropertyInfo.Class = PropClass;
 				PropertyInfo.InnerType = InnerType;
@@ -1128,8 +1130,12 @@ void CreateFunction(UMonoScriptBlueprintGeneratedClass* NewClass, MonoMethod* me
 }
 
 
-void FMonoContext::CreateFunctions(UMonoScriptBlueprintGeneratedClass* NewClass)
+void FMonoContext::CreateFunctions(UMonoScriptBlueprintGeneratedClass* blueprintClass)
 {
+    if(!Class) {
+        UE_LOG(LogMono, Log, TEXT("Can not bind functions %s"), *blueprintClass->ClassName);
+        return;
+    }
 	check(Class);
 	{
 		void* iter = NULL;
@@ -1146,7 +1152,7 @@ void FMonoContext::CreateFunctions(UMonoScriptBlueprintGeneratedClass* NewClass)
 
 				if (!KeyName.Contains(".ctor"))
 				{
-					CreateFunction(NewClass, method);
+					CreateFunction(blueprintClass, method);
 				}
 
 			}

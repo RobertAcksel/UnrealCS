@@ -26,6 +26,7 @@
 #include "_UWidgetTree_Ext.h"
 
 #include "_FApp.h"
+#include "_UClass_Ext.h"
 
 namespace UnrealEngine
 {

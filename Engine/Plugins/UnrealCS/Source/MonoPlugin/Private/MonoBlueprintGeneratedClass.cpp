@@ -5,6 +5,7 @@
 
 #include "MonoContext.h"
 #include "MonoScriptBind_Component.h"
+#include <functional>
 
 UMonoScriptBlueprintGeneratedClass::UMonoScriptBlueprintGeneratedClass(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -44,6 +45,7 @@ void UMonoScriptBlueprintGeneratedClass::Link(FArchive& Ar, bool bRelinkExisting
 {
 	for (auto Function : ScriptFunctions)
 	{
+	    //TODO: link to the correct code for every instantiation
 		AddUniqueNativeFunction(Function->GetFName(), (Native)&UMonoScriptBind_Component::InvokeMonoEventThunk);
 	}
 	Super::Link(Ar, bRelinkExistingProperties);
@@ -102,7 +104,9 @@ void UMonoScriptBlueprintGeneratedClass::Init(FScriptContextBase* Context)
 {
 	ScriptFunctions.Empty();
 	FMonoContext* MonoContext = (FMonoContext*)Context;
-	MonoContext->CreateFunctions(this);
+    if(Context) {
+    	MonoContext->CreateFunctions(this);
+    }
 }
 #endif
 
@@ -111,6 +115,7 @@ UObject* UMonoScriptBlueprintGeneratedClass::CreateDefaultObject()
 {
 	auto obj = Super::CreateDefaultObject();
 	if (obj != nullptr && !InSerialize)	{
+        //TODO: this is the place for proper binding of c# and c++ objects
         //its a possibility to perform custom init code for specialized classes.
 	    auto Com = Cast<UMonoScriptBind_Component>(obj);
 	    if(Com) {

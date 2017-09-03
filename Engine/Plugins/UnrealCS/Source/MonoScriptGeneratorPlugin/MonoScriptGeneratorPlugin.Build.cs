@@ -24,22 +24,22 @@ namespace UnrealBuildTool.Rules
 				}
 				);
 
-			PublicDependencyModuleNames.AddRange(
+            PublicDependencyModuleNames.AddRange(
 				new string[]
 				{
-					"Core",
-					"CoreUObject",
-                    "MonoHelper"
+				    "Core",
+				    "CoreUObject",
+                    "MonoHelper",
 					// ... add other public dependencies that you statically link with here ...
 				}
-				);
+                );
 
 			PrivateDependencyModuleNames.AddRange(
 				new string[]
 				{
 					// ... add private dependencies that you statically link with here ...
 					"Projects"
-				}
+                }
 				);
 
 			DynamicallyLoadedModuleNames.AddRange(

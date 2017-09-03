@@ -36,10 +36,7 @@ public:
 	void InvokeMonoEventThunk(FFrame& Stack, RESULT_DECL);
 
 #if WITH_EDITOR
-	virtual void PostEditChangeProperty
-	(
-		struct FPropertyChangedEvent & PropertyChangedEvent
-	) override;
+	virtual void PostEditChangeProperty(struct FPropertyChangedEvent & PropertyChangedEvent) override;
 #endif
 #if WITH_MONO_HOTRELOAD
 	void BeginHotReload();

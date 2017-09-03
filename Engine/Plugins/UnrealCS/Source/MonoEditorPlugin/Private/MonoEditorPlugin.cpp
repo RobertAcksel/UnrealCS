@@ -57,25 +57,24 @@ public:
 */
 class FScriptEditorPlugin : public IMonoEditorPlugin, IBlueprintCompiler
 {
-	/** IModuleInterface implementation */
-	virtual void StartupModule() override;
-	virtual void ShutdownModule() override;
+private:
+    virtual bool CanCompile(const UBlueprint* Blueprint) override;
 
-public:
+    virtual void PreCompile(UBlueprint* Blueprint) override;
+    virtual void Compile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions, FCompilerResultsLog& Results, TArray<UObject*>* ObjLoaded) override;
+    virtual void PostCompile(UBlueprint* Blueprint) override;
 
-	virtual bool CanCompile(const UBlueprint* Blueprint) override;
+    //菜单
+    void AddMainMenuExtension();
+    void RemoveMainMenuExtension();
+    void ExtendFileMenu(FMenuBuilder& MenuBuilder);
+    void HotReload();
+    void OpenProject();
+    void AOT();
 
-	virtual void PreCompile(UBlueprint* Blueprint) override;
-	virtual void Compile(UBlueprint* Blueprint, const FKismetCompilerOptions& CompileOptions, FCompilerResultsLog& Results, TArray<UObject*>* ObjLoaded) override;
-	virtual void PostCompile(UBlueprint* Blueprint) override;
-
-	//菜单
-	void AddMainMenuExtension();
-	void RemoveMainMenuExtension();
-	void ExtendFileMenu(FMenuBuilder& MenuBuilder);
-	void HotReload();
-	void OpenProject();
-	void AOT();
+    /** IModuleInterface implementation */
+    virtual void StartupModule() override;
+    virtual void ShutdownModule() override;
 
 	TSharedPtr<FExtender> MainMenuExtender;
 

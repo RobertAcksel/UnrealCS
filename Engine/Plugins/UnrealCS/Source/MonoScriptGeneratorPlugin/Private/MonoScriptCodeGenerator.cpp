@@ -6,7 +6,6 @@
 #include "DocHelper.h"
 #include "IPluginManager.h"
 
-
 FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath, const FString& RootBuildPath, const FString& OutputDirectory, const FString& InIncludeBase)
 	: FScriptCodeGeneratorBase(RootLocalPath, RootBuildPath, OutputDirectory, InIncludeBase)
 {
@@ -150,6 +149,19 @@ void FMonoScriptCodeGenerator::GlueAllGeneratedFiles()
 	SaveHeaderIfChanged(LibGlueFilename, LibGlue);
 }
 
+//due to generation race conditions we can not work with static class infos so we are working with names
+bool IsChildOfClassByName(UClass * Class, FName const name) {
+    if(Class->GetFName().IsEqual(name)) {
+        return true;
+    }
+   
+    if(Class->GetSuperClass() != nullptr){
+        return IsChildOfClassByName(Class->GetSuperClass(), name);
+    }
+    
+    return false;
+}
+
 void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 {
 	UClass* Class = CI.Class;
@@ -159,7 +171,7 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 	const FString ClassNameCPP = GetClassNameCPP(Class);
 
 	GeneratedCSFile.Empty();
-    GeneratedCSFile += TEXT("//GENERATED: \r\n");
+    GeneratedCSFile += TEXT("//GENERATED: CS Code\r\n");
     GeneratedCSFile += TEXT("using System;\r\nusing System.Runtime.CompilerServices;\r\n");
 	GeneratedCSFile += TEXT("using System.Runtime.InteropServices;\r\n");
 
@@ -183,15 +195,35 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 		AllScriptHeaders.Add(CI.ClassHeader);
 
+        auto const isScriptCreateableClass = superClass != nullptr 
+	        && (IsChildOfClassByName(superClass, "Actor") || IsChildOfClassByName(superClass, "ActorComponent"));
 
-		FMonoTextBuilder GeneratedGlue;
-        GeneratedGlue.AppendLine(TEXT("//GENERATED: \r\n"));
+	    FMonoTextBuilder GeneratedGlue;
+        GeneratedGlue.AppendLine(TEXT("//GENERATED: C++ Code\r\n"));
         GeneratedGlue.AppendLine(TEXT("#pragma once"));
 		GeneratedGlue.AppendLine();
+	    if(isScriptCreateableClass) {
+	        const auto filename = FPaths::GetBaseFilename(CI.ClassHeader);
+            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s.generated.h\""), *filename));
+	    }
 		GeneratedGlue.AppendLine(TEXT("namespace UnrealEngine"));
 		GeneratedGlue.OpenBrace();
-		GeneratedGlue.AppendLine(FString::Printf(TEXT("class _%s"), *ClassNameCPP));
+
+	    if(isScriptCreateableClass) {
+            GeneratedGlue.AppendLine(TEXT("UCLASS()"));
+            GeneratedGlue.Append(FString::Printf(TEXT("class MONOPLUGIN_API %s_"), *ClassNameCPP));
+        } else {
+    		GeneratedGlue.Append(FString::Printf(TEXT("class %s_"), *ClassNameCPP));
+	    }
+
+	    if(isScriptCreateableClass) {
+            GeneratedGlue.Append(FString::Printf(TEXT(" : public %s"), *ClassNameCPP));
+        }
+        GeneratedGlue.AppendLine();
 		GeneratedGlue.OpenBrace();
+	    if(isScriptCreateableClass) {    
+            GeneratedGlue.AppendLine("GENERATED_BODY()");
+        }
 
 		// Export all functions
 		for (TFieldIterator<UFunction> FuncIt(Class, EFieldIteratorFlags::ExcludeSuper); FuncIt; ++FuncIt)

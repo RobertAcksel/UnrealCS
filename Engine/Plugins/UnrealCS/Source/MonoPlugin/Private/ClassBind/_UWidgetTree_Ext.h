@@ -2,6 +2,9 @@
 // For details, see LICENSE.txt
 
 #pragma once
+
+#include "WidgetTree.h"
+
 namespace UnrealEngine
 {
 	class _UWidgetTree_Ext
