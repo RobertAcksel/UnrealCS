@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USpinBox
+	class USpinBox_
 	{
 		static void SetForegroundColor(USpinBox* _this,FSlateColor* InForegroundColor)
 		{

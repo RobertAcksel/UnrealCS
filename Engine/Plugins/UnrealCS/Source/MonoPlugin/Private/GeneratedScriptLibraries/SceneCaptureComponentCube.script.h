@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USceneCaptureComponentCube
+	class USceneCaptureComponentCube_
 	{
 		static void CaptureScene(USceneCaptureComponentCube* _this)
 		{

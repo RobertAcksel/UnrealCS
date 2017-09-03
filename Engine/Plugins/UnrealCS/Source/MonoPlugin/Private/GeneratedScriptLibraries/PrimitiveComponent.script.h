@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPrimitiveComponent
+	class UPrimitiveComponent_
 	{
 		static int32 CanCharacterStepUp(UPrimitiveComponent* _this,APawn* Pawn)
 		{

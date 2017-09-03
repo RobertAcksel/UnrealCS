@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMenuAnchor
+	class UMenuAnchor_
 	{
 		static int32 HasOpenSubMenus(UMenuAnchor* _this)
 		{

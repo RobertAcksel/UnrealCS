@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimCompress_BitwiseCompressOnly
+	class UAnimCompress_BitwiseCompressOnly_
 	{
 		static UClass* StaticClass(){return UAnimCompress_BitwiseCompressOnly::StaticClass();}
 		public:

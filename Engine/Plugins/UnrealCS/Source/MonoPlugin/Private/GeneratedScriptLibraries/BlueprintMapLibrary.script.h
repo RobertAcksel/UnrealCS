@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBlueprintMapLibrary
+	class UBlueprintMapLibrary_
 	{
 		static UClass* StaticClass(){return UBlueprintMapLibrary::StaticClass();}
 		public:

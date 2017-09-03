@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAimOffsetBlendSpace1D
+	class UAimOffsetBlendSpace1D_
 	{
 		static UClass* StaticClass(){return UAimOffsetBlendSpace1D::StaticClass();}
 		public:

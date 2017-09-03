@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AController
+	class AController_
 	{
 		static void ResetIgnoreInputFlags(AController* _this)
 		{

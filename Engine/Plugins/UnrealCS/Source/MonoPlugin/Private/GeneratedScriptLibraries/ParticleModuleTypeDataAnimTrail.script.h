@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModuleTypeDataAnimTrail
+	class UParticleModuleTypeDataAnimTrail_
 	{
 		static UClass* StaticClass(){return UParticleModuleTypeDataAnimTrail::StaticClass();}
 		public:

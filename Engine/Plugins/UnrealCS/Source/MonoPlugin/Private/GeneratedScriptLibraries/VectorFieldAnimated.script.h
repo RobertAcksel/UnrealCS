@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UVectorFieldAnimated
+	class UVectorFieldAnimated_
 	{
 		static UClass* StaticClass(){return UVectorFieldAnimated::StaticClass();}
 		public:

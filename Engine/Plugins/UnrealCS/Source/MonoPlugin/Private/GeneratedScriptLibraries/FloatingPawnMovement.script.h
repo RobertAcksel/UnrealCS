@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UFloatingPawnMovement
+	class UFloatingPawnMovement_
 	{
 		static UClass* StaticClass(){return UFloatingPawnMovement::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UReverbPluginSourceSettingsBase
+	class UReverbPluginSourceSettingsBase_
 	{
 		static UClass* StaticClass(){return UReverbPluginSourceSettingsBase::StaticClass();}
 		public:

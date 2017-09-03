@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UHorizontalBox
+	class UHorizontalBox_
 	{
 		static UHorizontalBoxSlot* AddChildToHorizontalBox(UHorizontalBox* _this,UWidget* Content)
 		{

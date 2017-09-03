@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ATextRenderActor
+	class ATextRenderActor_
 	{
 		static UClass* StaticClass(){return ATextRenderActor::StaticClass();}
 		public:

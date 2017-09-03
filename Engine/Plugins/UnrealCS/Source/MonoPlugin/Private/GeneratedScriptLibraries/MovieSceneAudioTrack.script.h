@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovieSceneAudioTrack
+	class UMovieSceneAudioTrack_
 	{
 		static UClass* StaticClass(){return UMovieSceneAudioTrack::StaticClass();}
 		public:

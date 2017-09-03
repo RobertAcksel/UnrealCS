@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USplineComponent
+	class USplineComponent_
 	{
 		static FTransform FindTransformClosestToWorldLocation(USplineComponent* _this,FVector* WorldLocation,int32 CoordinateSpace,int32 bUseScale)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APrecomputedVisibilityVolume
+	class APrecomputedVisibilityVolume_
 	{
 		static UClass* StaticClass(){return APrecomputedVisibilityVolume::StaticClass();}
 		public:

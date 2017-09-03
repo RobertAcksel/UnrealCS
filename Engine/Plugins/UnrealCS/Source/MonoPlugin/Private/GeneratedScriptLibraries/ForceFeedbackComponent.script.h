@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UForceFeedbackComponent
+	class UForceFeedbackComponent_
 	{
 		static int32 BP_GetAttenuationSettingsToApply(UForceFeedbackComponent* _this,FForceFeedbackAttenuationSettings* OutAttenuationSettings)
 		{

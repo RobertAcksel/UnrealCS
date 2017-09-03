@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetMathLibrary
+	class UKismetMathLibrary_
 	{
 		static int32 LinePlaneIntersection_OriginNormal(UKismetMathLibrary* _this,FVector* LineStart,FVector* LineEnd,FVector* PlaneOrigin,FVector* PlaneNormal,float* T,FVector* Intersection)
 		{

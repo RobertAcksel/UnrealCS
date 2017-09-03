@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UComponentDelegateBinding
+	class UComponentDelegateBinding_
 	{
 		static UClass* StaticClass(){return UComponentDelegateBinding::StaticClass();}
 		public:

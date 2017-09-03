@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBoneMaskFilter
+	class UBoneMaskFilter_
 	{
 		static UClass* StaticClass(){return UBoneMaskFilter::StaticClass();}
 		public:

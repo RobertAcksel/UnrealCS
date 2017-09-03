@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AEmitter
+	class AEmitter_
 	{
 		static void OnRep_bCurrentlyActive(AEmitter* _this)
 		{

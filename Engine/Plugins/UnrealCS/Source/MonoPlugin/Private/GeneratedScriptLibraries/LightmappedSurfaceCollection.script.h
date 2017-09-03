@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULightmappedSurfaceCollection
+	class ULightmappedSurfaceCollection_
 	{
 		static UClass* StaticClass(){return ULightmappedSurfaceCollection::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetComponent
+	class UWidgetComponent_
 	{
 		static void SetBackgroundColor(UWidgetComponent* _this,FLinearColor* NewBackgroundColor)
 		{

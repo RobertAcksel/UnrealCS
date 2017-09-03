@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AMeshMergeCullingVolume
+	class AMeshMergeCullingVolume_
 	{
 		static UClass* StaticClass(){return AMeshMergeCullingVolume::StaticClass();}
 		public:

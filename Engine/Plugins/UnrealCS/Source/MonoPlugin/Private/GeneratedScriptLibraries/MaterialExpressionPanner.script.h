@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionPanner
+	class UMaterialExpressionPanner_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionPanner::StaticClass();}
 		public:

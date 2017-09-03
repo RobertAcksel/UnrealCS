@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBillboardComponent
+	class UBillboardComponent_
 	{
 		static void SetSpriteAndUV(UBillboardComponent* _this,UTexture2D* NewSprite,int32 NewU,int32 NewUL,int32 NewV,int32 NewVL)
 		{

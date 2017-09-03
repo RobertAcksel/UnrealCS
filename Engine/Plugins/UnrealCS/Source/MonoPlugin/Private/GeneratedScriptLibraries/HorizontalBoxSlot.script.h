@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UHorizontalBoxSlot
+	class UHorizontalBoxSlot_
 	{
 		static void SetVerticalAlignment(UHorizontalBoxSlot* _this,int32 InVerticalAlignment)
 		{

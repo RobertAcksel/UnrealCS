@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBlueprintPlatformLibrary
+	class UBlueprintPlatformLibrary_
 	{
 		static void GetLaunchNotification(UBlueprintPlatformLibrary* _this,int32* NotificationLaunchedApp,MonoString** ActivationEvent,int32* FireDate)
 		{

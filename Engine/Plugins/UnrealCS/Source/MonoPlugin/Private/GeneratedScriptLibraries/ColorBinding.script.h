@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UColorBinding
+	class UColorBinding_
 	{
 		static FLinearColor GetLinearValue(UColorBinding* _this)
 		{

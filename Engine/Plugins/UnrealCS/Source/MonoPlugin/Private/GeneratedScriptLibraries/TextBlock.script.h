@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTextBlock
+	class UTextBlock_
 	{
 		static void SetText(UTextBlock* _this,MonoString* InText)
 		{

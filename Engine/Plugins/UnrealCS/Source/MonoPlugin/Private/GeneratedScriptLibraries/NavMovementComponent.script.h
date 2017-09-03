@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavMovementComponent
+	class UNavMovementComponent_
 	{
 		static int32 IsFlying(UNavMovementComponent* _this)
 		{

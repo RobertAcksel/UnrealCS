@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionPreSkinnedPosition
+	class UMaterialExpressionPreSkinnedPosition_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionPreSkinnedPosition::StaticClass();}
 		public:

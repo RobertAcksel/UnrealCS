@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USkeletalMeshComponent
+	class USkeletalMeshComponent_
 	{
 		static void GetCurrentJointAngles(USkeletalMeshComponent* _this,MonoString* InBoneName,float* Swing1Angle,float* TwistAngle,float* Swing2Angle)
 		{

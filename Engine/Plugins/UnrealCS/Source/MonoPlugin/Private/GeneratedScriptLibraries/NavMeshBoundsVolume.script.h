@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ANavMeshBoundsVolume
+	class ANavMeshBoundsVolume_
 	{
 		static UClass* StaticClass(){return ANavMeshBoundsVolume::StaticClass();}
 		public:

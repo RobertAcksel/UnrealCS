@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USlateTextureAtlasInterface
+	class USlateTextureAtlasInterface_
 	{
 		static UClass* StaticClass(){return USlateTextureAtlasInterface::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USoundNodeDistanceCrossFade
+	class USoundNodeDistanceCrossFade_
 	{
 		static UClass* StaticClass(){return USoundNodeDistanceCrossFade::StaticClass();}
 		public:

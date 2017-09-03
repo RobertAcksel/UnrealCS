@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URotatingMovementComponent
+	class URotatingMovementComponent_
 	{
 		static UClass* StaticClass(){return URotatingMovementComponent::StaticClass();}
 		public:

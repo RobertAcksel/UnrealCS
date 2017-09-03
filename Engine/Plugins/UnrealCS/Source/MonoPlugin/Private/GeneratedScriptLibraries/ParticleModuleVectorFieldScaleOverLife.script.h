@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModuleVectorFieldScaleOverLife
+	class UParticleModuleVectorFieldScaleOverLife_
 	{
 		static UClass* StaticClass(){return UParticleModuleVectorFieldScaleOverLife::StaticClass();}
 		public:

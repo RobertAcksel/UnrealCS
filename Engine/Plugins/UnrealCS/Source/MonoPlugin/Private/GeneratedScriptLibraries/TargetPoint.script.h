@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ATargetPoint
+	class ATargetPoint_
 	{
 		static UClass* StaticClass(){return ATargetPoint::StaticClass();}
 		public:

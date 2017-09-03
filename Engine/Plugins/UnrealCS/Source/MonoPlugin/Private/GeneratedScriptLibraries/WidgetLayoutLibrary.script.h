@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetLayoutLibrary
+	class UWidgetLayoutLibrary_
 	{
 		static void RemoveAllWidgets(UWidgetLayoutLibrary* _this,UObject* WorldContextObject)
 		{

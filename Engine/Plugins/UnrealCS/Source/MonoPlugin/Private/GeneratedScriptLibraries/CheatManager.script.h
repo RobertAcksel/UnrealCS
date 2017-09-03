@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCheatManager
+	class UCheatManager_
 	{
 		static void CheatScript(UCheatManager* _this,MonoString* ScriptName)
 		{

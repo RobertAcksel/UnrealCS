@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UGameViewportClient
+	class UGameViewportClient_
 	{
 		static void SetConsoleTarget(UGameViewportClient* _this,int32 PlayerIndex)
 		{

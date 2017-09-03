@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USizeBox
+	class USizeBox_
 	{
 		static void ClearMaxAspectRatio(USizeBox* _this)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AGameStateBase
+	class AGameStateBase_
 	{
 		static float GetPlayerRespawnDelay(AGameStateBase* _this,AController* Controller)
 		{

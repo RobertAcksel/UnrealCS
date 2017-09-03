@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDemoNetConnection
+	class UDemoNetConnection_
 	{
 		static UClass* StaticClass(){return UDemoNetConnection::StaticClass();}
 		public:

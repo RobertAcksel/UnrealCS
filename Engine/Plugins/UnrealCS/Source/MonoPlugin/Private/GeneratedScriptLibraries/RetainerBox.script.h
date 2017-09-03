@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URetainerBox
+	class URetainerBox_
 	{
 		static void SetTextureParameter(URetainerBox* _this,MonoString* TextureParameter)
 		{

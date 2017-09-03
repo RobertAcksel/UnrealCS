@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAtmosphericFogComponent
+	class UAtmosphericFogComponent_
 	{
 		static void SetPrecomputeParams(UAtmosphericFogComponent* _this,float DensityHeight,int32 MaxScatteringOrder,int32 InscatterAltitudeSampleNum)
 		{

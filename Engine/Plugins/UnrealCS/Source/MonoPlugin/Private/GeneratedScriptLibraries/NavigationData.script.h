@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ANavigationData
+	class ANavigationData_
 	{
 		static UClass* StaticClass(){return ANavigationData::StaticClass();}
 		public:

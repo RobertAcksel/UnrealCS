@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ACharacter
+	class ACharacter_
 	{
 		static float GetAnimRootMotionTranslationScale(ACharacter* _this)
 		{

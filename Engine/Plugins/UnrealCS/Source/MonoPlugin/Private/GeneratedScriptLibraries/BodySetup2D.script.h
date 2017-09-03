@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBodySetup2D
+	class UBodySetup2D_
 	{
 		static UClass* StaticClass(){return UBodySetup2D::StaticClass();}
 		public:

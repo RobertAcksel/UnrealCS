@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDragDropOperation
+	class UDragDropOperation_
 	{
 		static UClass* StaticClass(){return UDragDropOperation::StaticClass();}
 		public:

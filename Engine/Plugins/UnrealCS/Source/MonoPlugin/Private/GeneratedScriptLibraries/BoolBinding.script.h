@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBoolBinding
+	class UBoolBinding_
 	{
 		static int32 GetValue(UBoolBinding* _this)
 		{

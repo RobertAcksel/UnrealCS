@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPrimaryAssetLabel
+	class UPrimaryAssetLabel_
 	{
 		static UClass* StaticClass(){return UPrimaryAssetLabel::StaticClass();}
 		public:

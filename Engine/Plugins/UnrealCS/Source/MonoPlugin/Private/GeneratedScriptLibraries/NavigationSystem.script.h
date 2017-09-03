@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavigationSystem
+	class UNavigationSystem_
 	{
 		static void OnNavigationBoundsUpdated(UNavigationSystem* _this,ANavMeshBoundsVolume* NavVolume)
 		{

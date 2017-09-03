@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDynamicBlueprintBinding
+	class UDynamicBlueprintBinding_
 	{
 		static UClass* StaticClass(){return UDynamicBlueprintBinding::StaticClass();}
 		public:

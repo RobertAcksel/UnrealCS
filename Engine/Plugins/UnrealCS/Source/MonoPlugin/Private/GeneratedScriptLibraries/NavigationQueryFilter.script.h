@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavigationQueryFilter
+	class UNavigationQueryFilter_
 	{
 		static UClass* StaticClass(){return UNavigationQueryFilter::StaticClass();}
 		public:

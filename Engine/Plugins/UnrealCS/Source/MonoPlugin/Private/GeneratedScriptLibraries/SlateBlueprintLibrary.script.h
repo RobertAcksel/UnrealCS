@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USlateBlueprintLibrary
+	class USlateBlueprintLibrary_
 	{
 		static void ScreenToViewport(USlateBlueprintLibrary* _this,UObject* WorldContextObject,FVector2D* ScreenPosition,FVector2D* ViewportPosition)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDistributionVectorConstantCurve
+	class UDistributionVectorConstantCurve_
 	{
 		static UClass* StaticClass(){return UDistributionVectorConstantCurve::StaticClass();}
 		public:

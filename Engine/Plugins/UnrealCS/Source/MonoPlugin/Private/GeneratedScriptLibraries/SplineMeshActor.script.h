@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ASplineMeshActor
+	class ASplineMeshActor_
 	{
 		static UClass* StaticClass(){return ASplineMeshActor::StaticClass();}
 		public:

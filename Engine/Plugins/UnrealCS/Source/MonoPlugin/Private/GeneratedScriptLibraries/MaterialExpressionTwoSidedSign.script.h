@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionTwoSidedSign
+	class UMaterialExpressionTwoSidedSign_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionTwoSidedSign::StaticClass();}
 		public:

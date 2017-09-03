@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDemoNetDriver
+	class UDemoNetDriver_
 	{
 		static UClass* StaticClass(){return UDemoNetDriver::StaticClass();}
 		public:

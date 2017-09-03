@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpToMovementComponent
+	class UInterpToMovementComponent_
 	{
 		static void FinaliseControlPoints(UInterpToMovementComponent* _this)
 		{

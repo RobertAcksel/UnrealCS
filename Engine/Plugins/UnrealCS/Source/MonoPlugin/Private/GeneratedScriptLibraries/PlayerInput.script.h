@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPlayerInput
+	class UPlayerInput_
 	{
 		static void ClearSmoothing(UPlayerInput* _this)
 		{

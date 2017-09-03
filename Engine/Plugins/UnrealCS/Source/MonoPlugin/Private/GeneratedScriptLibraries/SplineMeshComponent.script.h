@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USplineMeshComponent
+	class USplineMeshComponent_
 	{
 		static void SetBoundaryMax(USplineMeshComponent* _this,float InBoundaryMax,int32 bUpdateMesh)
 		{

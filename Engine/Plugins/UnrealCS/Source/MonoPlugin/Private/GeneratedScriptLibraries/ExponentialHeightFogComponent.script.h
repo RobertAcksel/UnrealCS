@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UExponentialHeightFogComponent
+	class UExponentialHeightFogComponent_
 	{
 		static void SetVolumetricFogDistance(UExponentialHeightFogComponent* _this,float NewValue)
 		{

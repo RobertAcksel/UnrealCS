@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USlider
+	class USlider_
 	{
 		static void SetSliderHandleColor(USlider* _this,FLinearColor* InValue)
 		{

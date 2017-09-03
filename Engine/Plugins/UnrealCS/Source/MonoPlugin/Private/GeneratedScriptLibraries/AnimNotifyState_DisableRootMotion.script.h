@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimNotifyState_DisableRootMotion
+	class UAnimNotifyState_DisableRootMotion_
 	{
 		static UClass* StaticClass(){return UAnimNotifyState_DisableRootMotion::StaticClass();}
 		public:

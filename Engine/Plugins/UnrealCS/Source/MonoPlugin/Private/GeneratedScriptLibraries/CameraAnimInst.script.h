@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCameraAnimInst
+	class UCameraAnimInst_
 	{
 		static void SetScale(UCameraAnimInst* _this,float NewDuration)
 		{

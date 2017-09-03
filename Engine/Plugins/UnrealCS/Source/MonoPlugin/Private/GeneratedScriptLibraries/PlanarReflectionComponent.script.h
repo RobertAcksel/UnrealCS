@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPlanarReflectionComponent
+	class UPlanarReflectionComponent_
 	{
 		static UClass* StaticClass(){return UPlanarReflectionComponent::StaticClass();}
 		public:

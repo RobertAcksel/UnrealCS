@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetAnimation
+	class UWidgetAnimation_
 	{
 		static float GetEndTime(UWidgetAnimation* _this)
 		{

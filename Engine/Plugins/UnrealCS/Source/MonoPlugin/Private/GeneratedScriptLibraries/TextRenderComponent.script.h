@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTextRenderComponent
+	class UTextRenderComponent_
 	{
 		static FVector GetTextWorldSize(UTextRenderComponent* _this)
 		{

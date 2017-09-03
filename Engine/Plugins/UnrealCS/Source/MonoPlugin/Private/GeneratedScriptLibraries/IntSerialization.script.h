@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UIntSerialization
+	class UIntSerialization_
 	{
 		static UClass* StaticClass(){return UIntSerialization::StaticClass();}
 		public:

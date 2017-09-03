@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UGameUserSettings
+	class UGameUserSettings_
 	{
 		static int32 IsHDREnabled(UGameUserSettings* _this)
 		{

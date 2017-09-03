@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBlueprintAsyncActionBase
+	class UBlueprintAsyncActionBase_
 	{
 		static void Activate(UBlueprintAsyncActionBase* _this)
 		{

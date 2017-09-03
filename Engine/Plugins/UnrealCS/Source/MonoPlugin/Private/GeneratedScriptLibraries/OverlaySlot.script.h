@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UOverlaySlot
+	class UOverlaySlot_
 	{
 		static void SetVerticalAlignment(UOverlaySlot* _this,int32 InVerticalAlignment)
 		{

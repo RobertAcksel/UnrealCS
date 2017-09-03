@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCanvasPanel
+	class UCanvasPanel_
 	{
 		static UCanvasPanelSlot* AddChildToCanvas(UCanvasPanel* _this,UWidget* Content)
 		{

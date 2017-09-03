@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UShapeComponent
+	class UShapeComponent_
 	{
 		static UClass* StaticClass(){return UShapeComponent::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ACameraActor
+	class ACameraActor_
 	{
 		static int32 GetAutoActivatePlayerIndex(ACameraActor* _this)
 		{

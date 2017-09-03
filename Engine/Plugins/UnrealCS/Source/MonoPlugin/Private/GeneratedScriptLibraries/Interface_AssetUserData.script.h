@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterface_AssetUserData
+	class UInterface_AssetUserData_
 	{
 		static UClass* StaticClass(){return UInterface_AssetUserData::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModuleVelocityOverLifetime
+	class UParticleModuleVelocityOverLifetime_
 	{
 		static UClass* StaticClass(){return UParticleModuleVelocityOverLifetime::StaticClass();}
 		public:

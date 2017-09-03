@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDestructibleComponent
+	class UDestructibleComponent_
 	{
 		static UDestructibleMesh* GetDestructibleMesh(UDestructibleComponent* _this)
 		{

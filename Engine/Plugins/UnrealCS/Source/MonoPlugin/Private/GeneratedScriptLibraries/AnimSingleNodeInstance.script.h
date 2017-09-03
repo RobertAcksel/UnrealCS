@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimSingleNodeInstance
+	class UAnimSingleNodeInstance_
 	{
 		static void SetPreviewCurveOverride(UAnimSingleNodeInstance* _this,MonoString* PoseName,float Value,int32 bRemoveIfZero)
 		{

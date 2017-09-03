@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UGameplayStatics
+	class UGameplayStatics_
 	{
 		static int32 HasLaunchOption(UGameplayStatics* _this,MonoString* OptionToCheck)
 		{

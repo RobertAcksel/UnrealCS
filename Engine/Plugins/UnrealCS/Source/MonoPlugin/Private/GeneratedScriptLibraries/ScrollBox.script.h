@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UScrollBox
+	class UScrollBox_
 	{
 		static void ScrollWidgetIntoView(UScrollBox* _this,UWidget* WidgetToFind,int32 AnimateScroll)
 		{

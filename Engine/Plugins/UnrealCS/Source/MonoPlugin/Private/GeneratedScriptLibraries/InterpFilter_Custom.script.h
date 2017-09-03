@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpFilter_Custom
+	class UInterpFilter_Custom_
 	{
 		static UClass* StaticClass(){return UInterpFilter_Custom::StaticClass();}
 		public:

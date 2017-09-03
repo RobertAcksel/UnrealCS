@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDestructibleFractureSettings
+	class UDestructibleFractureSettings_
 	{
 		static UClass* StaticClass(){return UDestructibleFractureSettings::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCameraModifier
+	class UCameraModifier_
 	{
 		static void EnableModifier(UCameraModifier* _this)
 		{

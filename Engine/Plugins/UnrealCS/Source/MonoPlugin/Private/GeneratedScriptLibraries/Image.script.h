@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UImage
+	class UImage_
 	{
 		static UMaterialInstanceDynamic* GetDynamicMaterial(UImage* _this)
 		{

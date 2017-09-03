@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USlateBrushAsset
+	class USlateBrushAsset_
 	{
 		static UClass* StaticClass(){return USlateBrushAsset::StaticClass();}
 		public:

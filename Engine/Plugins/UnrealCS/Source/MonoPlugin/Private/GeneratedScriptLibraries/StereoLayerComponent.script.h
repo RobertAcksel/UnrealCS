@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UStereoLayerComponent
+	class UStereoLayerComponent_
 	{
 		static void MarkTextureForUpdate(UStereoLayerComponent* _this)
 		{

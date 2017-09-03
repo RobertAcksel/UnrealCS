@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavArea_LowHeight
+	class UNavArea_LowHeight_
 	{
 		static UClass* StaticClass(){return UNavArea_LowHeight::StaticClass();}
 		public:

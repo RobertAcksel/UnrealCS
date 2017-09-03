@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URichTextBlock
+	class URichTextBlock_
 	{
 		static UClass* StaticClass(){return URichTextBlock::StaticClass();}
 		public:

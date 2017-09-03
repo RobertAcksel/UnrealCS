@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCheckBoxStyleAsset
+	class UCheckBoxStyleAsset_
 	{
 		static UClass* StaticClass(){return UCheckBoxStyleAsset::StaticClass();}
 		public:

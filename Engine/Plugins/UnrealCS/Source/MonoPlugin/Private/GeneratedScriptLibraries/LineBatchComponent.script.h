@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULineBatchComponent
+	class ULineBatchComponent_
 	{
 		static UClass* StaticClass(){return ULineBatchComponent::StaticClass();}
 		public:

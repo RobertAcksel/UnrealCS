@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ALevelScriptActor
+	class ALevelScriptActor_
 	{
 		static void SetCinematicMode(ALevelScriptActor* _this,int32 bCinematicMode,int32 bHidePlayer,int32 bAffectsHUD,int32 bAffectsMovement,int32 bAffectsTurning)
 		{

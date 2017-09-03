@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UHierarchicalInstancedStaticMeshComponent
+	class UHierarchicalInstancedStaticMeshComponent_
 	{
 		static int32 RemoveInstances(UHierarchicalInstancedStaticMeshComponent* _this,MonoArray* InstancesToRemove)
 		{

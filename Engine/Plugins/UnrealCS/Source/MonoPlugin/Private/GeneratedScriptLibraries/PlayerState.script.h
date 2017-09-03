@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APlayerState
+	class APlayerState_
 	{
 		static void OnRep_UniqueId(APlayerState* _this)
 		{

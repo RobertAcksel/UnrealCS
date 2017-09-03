@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovieSceneBindingOverridesInterface
+	class UMovieSceneBindingOverridesInterface_
 	{
 		static UClass* StaticClass(){return UMovieSceneBindingOverridesInterface::StaticClass();}
 		public:

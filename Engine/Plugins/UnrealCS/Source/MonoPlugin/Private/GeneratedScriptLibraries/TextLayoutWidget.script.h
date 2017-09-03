@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTextLayoutWidget
+	class UTextLayoutWidget_
 	{
 		static UClass* StaticClass(){return UTextLayoutWidget::StaticClass();}
 		public:

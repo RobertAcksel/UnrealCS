@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetInputLibrary
+	class UKismetInputLibrary_
 	{
 		static FVector2D PointerEvent_GetGestureDelta(UKismetInputLibrary* _this,FPointerEvent* Input)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AGameState
+	class AGameState_
 	{
 		static void OnRep_ElapsedTime(AGameState* _this)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPlatformInterfaceWebResponse
+	class UPlatformInterfaceWebResponse_
 	{
 		static MonoString* GetHeaderValue(UPlatformInterfaceWebResponse* _this,MonoString* HeaderName)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDPICustomScalingRule
+	class UDPICustomScalingRule_
 	{
 		static UClass* StaticClass(){return UDPICustomScalingRule::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDebugDrawService
+	class UDebugDrawService_
 	{
 		static UClass* StaticClass(){return UDebugDrawService::StaticClass();}
 		public:

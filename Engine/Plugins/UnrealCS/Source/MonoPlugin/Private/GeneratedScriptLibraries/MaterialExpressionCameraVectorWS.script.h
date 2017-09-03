@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionCameraVectorWS
+	class UMaterialExpressionCameraVectorWS_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionCameraVectorWS::StaticClass();}
 		public:

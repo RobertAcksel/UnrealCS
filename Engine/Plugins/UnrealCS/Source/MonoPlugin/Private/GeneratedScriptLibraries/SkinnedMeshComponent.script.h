@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USkinnedMeshComponent
+	class USkinnedMeshComponent_
 	{
 		static int32 IsBoneHiddenByName(USkinnedMeshComponent* _this,MonoString* BoneName)
 		{

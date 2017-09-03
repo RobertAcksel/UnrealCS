@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBlendSpace1D
+	class UBlendSpace1D_
 	{
 		static UClass* StaticClass(){return UBlendSpace1D::StaticClass();}
 		public:

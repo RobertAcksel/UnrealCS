@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAsyncTaskDownloadImage
+	class UAsyncTaskDownloadImage_
 	{
 		static UAsyncTaskDownloadImage* DownloadImage(UAsyncTaskDownloadImage* _this,MonoString* URL)
 		{

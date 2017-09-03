@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APhysicsVolume
+	class APhysicsVolume_
 	{
 		static UClass* StaticClass(){return APhysicsVolume::StaticClass();}
 		public:

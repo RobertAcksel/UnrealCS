@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBrushBinding
+	class UBrushBinding_
 	{
 		static FSlateBrush GetValue(UBrushBinding* _this)
 		{

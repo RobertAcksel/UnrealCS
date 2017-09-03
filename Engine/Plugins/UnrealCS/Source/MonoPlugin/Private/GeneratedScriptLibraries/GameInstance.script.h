@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UGameInstance
+	class UGameInstance_
 	{
 		static void DebugRemovePlayer(UGameInstance* _this,int32 ControllerId)
 		{

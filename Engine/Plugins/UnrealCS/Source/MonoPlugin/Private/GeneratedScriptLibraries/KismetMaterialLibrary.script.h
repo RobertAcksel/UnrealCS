@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetMaterialLibrary
+	class UKismetMaterialLibrary_
 	{
 		static UMaterialInstanceDynamic* CreateDynamicMaterialInstance(UKismetMaterialLibrary* _this,UObject* WorldContextObject,UMaterialInterface* Parent)
 		{

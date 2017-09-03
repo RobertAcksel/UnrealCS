@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USceneCaptureComponent
+	class USceneCaptureComponent_
 	{
 		static void SetCaptureSortPriority(USceneCaptureComponent* _this,int32 NewCaptureSortPriority)
 		{

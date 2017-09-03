@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInt32Binding
+	class UInt32Binding_
 	{
 		static int32 GetValue(UInt32Binding* _this)
 		{

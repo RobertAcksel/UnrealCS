@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCanvasPanelSlot
+	class UCanvasPanelSlot_
 	{
 		static void SetMaximum(UCanvasPanelSlot* _this,FVector2D* InMaximumAnchors)
 		{

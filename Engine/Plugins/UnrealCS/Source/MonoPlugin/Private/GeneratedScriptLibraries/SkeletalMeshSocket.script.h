@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USkeletalMeshSocket
+	class USkeletalMeshSocket_
 	{
 		static void InitializeSocketFromLocation(USkeletalMeshSocket* _this,USkeletalMeshComponent* SkelComp,FVector* WorldLocation,FVector* WorldNormal)
 		{

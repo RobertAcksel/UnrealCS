@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMultiLineEditableText
+	class UMultiLineEditableText_
 	{
 		static void SetIsReadOnly(UMultiLineEditableText* _this,int32 bReadOnly)
 		{

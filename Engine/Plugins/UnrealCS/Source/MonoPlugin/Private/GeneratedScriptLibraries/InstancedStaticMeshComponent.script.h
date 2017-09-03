@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInstancedStaticMeshComponent
+	class UInstancedStaticMeshComponent_
 	{
 		static MonoArray* GetInstancesOverlappingBox(UInstancedStaticMeshComponent* _this,FBox* Box,int32 bBoxInWorldSpace)
 		{

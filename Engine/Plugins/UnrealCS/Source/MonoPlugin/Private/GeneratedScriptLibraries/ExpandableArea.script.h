@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UExpandableArea
+	class UExpandableArea_
 	{
 		static void SetIsExpanded_Animated(UExpandableArea* _this,int32 IsExpanded)
 		{

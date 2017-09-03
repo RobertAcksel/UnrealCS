@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UStaticMeshSocket
+	class UStaticMeshSocket_
 	{
 		static UClass* StaticClass(){return UStaticMeshSocket::StaticClass();}
 		public:

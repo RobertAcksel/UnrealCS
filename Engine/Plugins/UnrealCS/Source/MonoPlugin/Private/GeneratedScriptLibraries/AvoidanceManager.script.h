@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAvoidanceManager
+	class UAvoidanceManager_
 	{
 		static FVector GetAvoidanceVelocity(UAvoidanceManager* _this,FNavAvoidanceData* AvoidanceData,float DeltaTime)
 		{

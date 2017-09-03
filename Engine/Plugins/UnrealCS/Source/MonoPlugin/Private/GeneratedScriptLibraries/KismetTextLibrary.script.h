@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetTextLibrary
+	class UKismetTextLibrary_
 	{
 		static int32 StringTableIdAndKeyFromText(UKismetTextLibrary* _this,MonoString* Text,MonoString** OutTableId,MonoString** OutKey)
 		{

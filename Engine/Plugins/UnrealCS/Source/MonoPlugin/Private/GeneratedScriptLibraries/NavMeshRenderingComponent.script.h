@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavMeshRenderingComponent
+	class UNavMeshRenderingComponent_
 	{
 		static UClass* StaticClass(){return UNavMeshRenderingComponent::StaticClass();}
 		public:

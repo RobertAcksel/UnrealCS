@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UFontFace
+	class UFontFace_
 	{
 		static UClass* StaticClass(){return UFontFace::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ASkyLight
+	class ASkyLight_
 	{
 		static void OnRep_bEnabled(ASkyLight* _this)
 		{

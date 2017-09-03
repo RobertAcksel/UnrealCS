@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetGuidLibrary
+	class UKismetGuidLibrary_
 	{
 		static void Parse_StringToGuid(UKismetGuidLibrary* _this,MonoString* GuidString,FGuid* OutGuid,int32* Success)
 		{

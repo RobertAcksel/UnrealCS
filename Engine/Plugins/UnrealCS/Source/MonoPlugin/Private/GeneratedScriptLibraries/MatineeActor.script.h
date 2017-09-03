@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AMatineeActor
+	class AMatineeActor_
 	{
 		static void SetLoopingState(AMatineeActor* _this,int32 bNewLooping)
 		{

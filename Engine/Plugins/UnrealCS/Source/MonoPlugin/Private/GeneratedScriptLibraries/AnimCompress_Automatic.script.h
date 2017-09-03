@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimCompress_Automatic
+	class UAnimCompress_Automatic_
 	{
 		static UClass* StaticClass(){return UAnimCompress_Automatic::StaticClass();}
 		public:

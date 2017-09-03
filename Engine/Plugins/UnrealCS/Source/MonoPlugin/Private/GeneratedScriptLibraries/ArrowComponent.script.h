@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UArrowComponent
+	class UArrowComponent_
 	{
 		static void SetArrowColor(UArrowComponent* _this,FLinearColor* NewColor)
 		{

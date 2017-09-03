@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetSystemLibrary
+	class UKismetSystemLibrary_
 	{
 		static MonoString* GetCommandLine(UKismetSystemLibrary* _this)
 		{

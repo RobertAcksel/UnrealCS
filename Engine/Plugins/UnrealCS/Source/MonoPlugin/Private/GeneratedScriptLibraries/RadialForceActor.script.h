@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ARadialForceActor
+	class ARadialForceActor_
 	{
 		static UClass* StaticClass(){return ARadialForceActor::StaticClass();}
 		public:

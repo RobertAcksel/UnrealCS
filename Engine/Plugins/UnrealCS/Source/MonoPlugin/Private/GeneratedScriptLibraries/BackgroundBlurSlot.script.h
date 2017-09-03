@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBackgroundBlurSlot
+	class UBackgroundBlurSlot_
 	{
 		static void SetVerticalAlignment(UBackgroundBlurSlot* _this,int32 InVerticalAlignment)
 		{

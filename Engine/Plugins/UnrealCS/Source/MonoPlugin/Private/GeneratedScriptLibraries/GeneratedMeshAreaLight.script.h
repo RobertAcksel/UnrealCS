@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AGeneratedMeshAreaLight
+	class AGeneratedMeshAreaLight_
 	{
 		static UClass* StaticClass(){return AGeneratedMeshAreaLight::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimCompress_RemoveLinearKeys
+	class UAnimCompress_RemoveLinearKeys_
 	{
 		static UClass* StaticClass(){return UAnimCompress_RemoveLinearKeys::StaticClass();}
 		public:

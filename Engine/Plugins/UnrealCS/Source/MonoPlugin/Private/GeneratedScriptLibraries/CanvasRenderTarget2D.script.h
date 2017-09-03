@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCanvasRenderTarget2D
+	class UCanvasRenderTarget2D_
 	{
 		static void GetSize(UCanvasRenderTarget2D* _this,int32* Width,int32* Height)
 		{

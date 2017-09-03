@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCapsuleComponent
+	class UCapsuleComponent_
 	{
 		static float GetShapeScale(UCapsuleComponent* _this)
 		{

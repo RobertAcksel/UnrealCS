@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDataTableFunctionLibrary
+	class UDataTableFunctionLibrary_
 	{
 		static int32 GetDataTableRowFromName(UDataTableFunctionLibrary* _this,UDataTable* Table,MonoString* RowName,FTableRowBase* OutRow)
 		{

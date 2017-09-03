@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCurveVector
+	class UCurveVector_
 	{
 		static FVector GetVectorValue(UCurveVector* _this,float InTime)
 		{

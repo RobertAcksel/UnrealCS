@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ADefaultPawn
+	class ADefaultPawn_
 	{
 		static void LookUpAtRate(ADefaultPawn* _this,float Rate)
 		{

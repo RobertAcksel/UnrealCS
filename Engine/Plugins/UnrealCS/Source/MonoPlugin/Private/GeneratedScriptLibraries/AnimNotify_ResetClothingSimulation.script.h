@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimNotify_ResetClothingSimulation
+	class UAnimNotify_ResetClothingSimulation_
 	{
 		static UClass* StaticClass(){return UAnimNotify_ResetClothingSimulation::StaticClass();}
 		public:

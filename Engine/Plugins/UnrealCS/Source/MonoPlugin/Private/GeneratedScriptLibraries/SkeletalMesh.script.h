@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USkeletalMesh
+	class USkeletalMesh_
 	{
 		static int32 IsSectionUsingCloth(USkeletalMesh* _this,int32 InSectionIndex,int32 bCheckCorrespondingSections)
 		{

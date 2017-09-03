@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModuleLocationEmitterDirect
+	class UParticleModuleLocationEmitterDirect_
 	{
 		static UClass* StaticClass(){return UParticleModuleLocationEmitterDirect::StaticClass();}
 		public:

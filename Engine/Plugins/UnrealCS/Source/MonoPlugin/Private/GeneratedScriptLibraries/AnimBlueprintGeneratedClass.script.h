@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimBlueprintGeneratedClass
+	class UAnimBlueprintGeneratedClass_
 	{
 		static UClass* StaticClass(){return UAnimBlueprintGeneratedClass::StaticClass();}
 		public:

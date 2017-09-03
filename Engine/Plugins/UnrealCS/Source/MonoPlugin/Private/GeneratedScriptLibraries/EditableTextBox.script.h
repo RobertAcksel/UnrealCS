@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UEditableTextBox
+	class UEditableTextBox_
 	{
 		static int32 HasError(UEditableTextBox* _this)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USpectatorPawnMovement
+	class USpectatorPawnMovement_
 	{
 		static UClass* StaticClass(){return USpectatorPawnMovement::StaticClass();}
 		public:

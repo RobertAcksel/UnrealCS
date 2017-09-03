@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UContentWidget
+	class UContentWidget_
 	{
 		static UWidget* GetContent(UContentWidget* _this)
 		{

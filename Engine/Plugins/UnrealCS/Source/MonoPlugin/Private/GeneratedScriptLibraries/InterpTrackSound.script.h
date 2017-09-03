@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpTrackSound
+	class UInterpTrackSound_
 	{
 		static UClass* StaticClass(){return UInterpTrackSound::StaticClass();}
 		public:

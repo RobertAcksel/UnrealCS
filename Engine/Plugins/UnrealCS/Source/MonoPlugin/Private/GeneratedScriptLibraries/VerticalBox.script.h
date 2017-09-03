@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UVerticalBox
+	class UVerticalBox_
 	{
 		static UVerticalBoxSlot* AddChildToVerticalBox(UVerticalBox* _this,UWidget* Content)
 		{

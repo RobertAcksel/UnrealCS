@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UChildActorComponent
+	class UChildActorComponent_
 	{
 		static void SetChildActorClass(UChildActorComponent* _this,TSubclassOf<AActor>  InClass)
 		{

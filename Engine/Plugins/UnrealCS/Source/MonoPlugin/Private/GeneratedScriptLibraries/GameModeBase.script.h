@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AGameModeBase
+	class AGameModeBase_
 	{
 		static void RestartPlayerAtTransform(AGameModeBase* _this,AController* NewPlayer,FTransform* SpawnTransform)
 		{

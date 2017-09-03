@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCurveLinearColor
+	class UCurveLinearColor_
 	{
 		static FLinearColor GetLinearColorValue(UCurveLinearColor* _this,float InTime)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UThumbnailInfo
+	class UThumbnailInfo_
 	{
 		static UClass* StaticClass(){return UThumbnailInfo::StaticClass();}
 		public:

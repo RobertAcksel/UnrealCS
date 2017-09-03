@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPhysicsSerializer
+	class UPhysicsSerializer_
 	{
 		static UClass* StaticClass(){return UPhysicsSerializer::StaticClass();}
 		public:

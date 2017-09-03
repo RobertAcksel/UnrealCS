@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UHeadMountedDisplayFunctionLibrary
+	class UHeadMountedDisplayFunctionLibrary_
 	{
 		static void GetVRFocusState(UHeadMountedDisplayFunctionLibrary* _this,int32* bUseFocus,int32* bHasFocus)
 		{

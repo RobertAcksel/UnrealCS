@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAudioComponent
+	class UAudioComponent_
 	{
 		static int32 BP_GetAttenuationSettingsToApply(UAudioComponent* _this,FSoundAttenuationSettings* OutAttenuationSettings)
 		{

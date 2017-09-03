@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ASkeletalMeshActor
+	class ASkeletalMeshActor_
 	{
 		static void OnRep_ReplicatedMaterial1(ASkeletalMeshActor* _this)
 		{

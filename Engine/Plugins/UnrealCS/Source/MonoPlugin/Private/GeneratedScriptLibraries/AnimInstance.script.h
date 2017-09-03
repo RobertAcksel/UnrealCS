@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimInstance
+	class UAnimInstance_
 	{
 		static FMarkerSyncAnimPosition GetSyncGroupPosition(UAnimInstance* _this,MonoString* InSyncGroupName)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModulePivotOffset
+	class UParticleModulePivotOffset_
 	{
 		static UClass* StaticClass(){return UParticleModulePivotOffset::StaticClass();}
 		public:

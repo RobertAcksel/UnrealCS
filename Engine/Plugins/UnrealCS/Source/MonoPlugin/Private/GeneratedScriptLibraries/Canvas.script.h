@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCanvas
+	class UCanvas_
 	{
 		static FVector2D K2_TextSize(UCanvas* _this,UFont* RenderFont,MonoString* RenderText,FVector2D* Scale)
 		{

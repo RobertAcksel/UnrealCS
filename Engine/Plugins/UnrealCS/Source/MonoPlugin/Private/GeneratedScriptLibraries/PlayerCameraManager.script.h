@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APlayerCameraManager
+	class APlayerCameraManager_
 	{
 		static void StopAllCameraAnims(APlayerCameraManager* _this,int32 bImmediate)
 		{

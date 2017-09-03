@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPhysicsConstraintTemplate
+	class UPhysicsConstraintTemplate_
 	{
 		static UClass* StaticClass(){return UPhysicsConstraintTemplate::StaticClass();}
 		public:

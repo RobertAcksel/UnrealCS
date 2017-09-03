@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionTextureSampleParameterSubUV
+	class UMaterialExpressionTextureSampleParameterSubUV_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionTextureSampleParameterSubUV::StaticClass();}
 		public:

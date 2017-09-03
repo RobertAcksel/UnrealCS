@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCharacterMovementComponent
+	class UCharacterMovementComponent_
 	{
 		static void ClientAdjustRootMotionSourcePosition(UCharacterMovementComponent* _this,float TimeStamp,FRootMotionSourceGroup* ServerRootMotion,int32 bHasAnimRootMotion,float ServerMontageTrackPosition,FVector* ServerLoc,FVector_NetQuantizeNormal* ServerRotation,float ServerVelZ,UPrimitiveComponent* ServerBase,MonoString* ServerBoneName,int32 bHasBase,int32 bBaseRelativePosition,int32 ServerMovementMode)
 		{

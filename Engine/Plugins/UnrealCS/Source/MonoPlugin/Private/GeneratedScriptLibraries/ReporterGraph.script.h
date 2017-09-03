@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UReporterGraph
+	class UReporterGraph_
 	{
 		static UClass* StaticClass(){return UReporterGraph::StaticClass();}
 		public:

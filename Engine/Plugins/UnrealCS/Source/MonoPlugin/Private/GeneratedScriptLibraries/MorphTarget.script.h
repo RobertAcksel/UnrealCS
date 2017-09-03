@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMorphTarget
+	class UMorphTarget_
 	{
 		static UClass* StaticClass(){return UMorphTarget::StaticClass();}
 		public:

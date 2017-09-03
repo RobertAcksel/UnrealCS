@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URadialForceComponent
+	class URadialForceComponent_
 	{
 		static void RemoveObjectTypeToAffect(URadialForceComponent* _this,int32 ObjectType)
 		{

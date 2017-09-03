@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPawnNoiseEmitterComponent
+	class UPawnNoiseEmitterComponent_
 	{
 		static void MakeNoise(UPawnNoiseEmitterComponent* _this,AActor* NoiseMaker,float Loudness,FVector* NoiseLocation)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULightmassPrimitiveSettingsObject
+	class ULightmassPrimitiveSettingsObject_
 	{
 		static UClass* StaticClass(){return ULightmassPrimitiveSettingsObject::StaticClass();}
 		public:

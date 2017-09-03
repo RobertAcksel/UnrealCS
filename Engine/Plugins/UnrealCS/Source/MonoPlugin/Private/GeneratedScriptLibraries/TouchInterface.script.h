@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTouchInterface
+	class UTouchInterface_
 	{
 		static UClass* StaticClass(){return UTouchInterface::StaticClass();}
 		public:

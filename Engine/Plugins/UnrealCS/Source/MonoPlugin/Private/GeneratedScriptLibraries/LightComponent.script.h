@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULightComponent
+	class ULightComponent_
 	{
 		static void SetIESTexture(ULightComponent* _this,UTextureLightProfile* NewValue)
 		{

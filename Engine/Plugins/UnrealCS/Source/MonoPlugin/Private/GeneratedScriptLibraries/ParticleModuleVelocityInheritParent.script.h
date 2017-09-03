@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModuleVelocityInheritParent
+	class UParticleModuleVelocityInheritParent_
 	{
 		static UClass* StaticClass(){return UParticleModuleVelocityInheritParent::StaticClass();}
 		public:

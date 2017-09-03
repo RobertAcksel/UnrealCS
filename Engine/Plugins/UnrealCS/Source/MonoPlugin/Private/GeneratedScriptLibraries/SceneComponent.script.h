@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USceneComponent
+	class USceneComponent_
 	{
 		static void K2_SetWorldLocationAndRotation(USceneComponent* _this,FVector* NewLocation,FRotator* NewRotation,int32 bSweep,FHitResult* SweepHitResult,int32 bTeleport)
 		{

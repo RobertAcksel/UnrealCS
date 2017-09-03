@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UStaticMesh
+	class UStaticMesh_
 	{
 		static int32 GetNumSections(UStaticMesh* _this,int32 InLOD)
 		{

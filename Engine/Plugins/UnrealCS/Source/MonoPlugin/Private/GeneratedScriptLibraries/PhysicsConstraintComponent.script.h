@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPhysicsConstraintComponent
+	class UPhysicsConstraintComponent_
 	{
 		static void GetConstraintForce(UPhysicsConstraintComponent* _this,FVector* OutLinearForce,FVector* OutAngularForce)
 		{

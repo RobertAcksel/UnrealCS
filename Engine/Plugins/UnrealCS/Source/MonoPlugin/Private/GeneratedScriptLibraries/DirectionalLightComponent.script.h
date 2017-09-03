@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDirectionalLightComponent
+	class UDirectionalLightComponent_
 	{
 		static void SetLightShaftOverrideDirection(UDirectionalLightComponent* _this,FVector* NewValue)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USpacer
+	class USpacer_
 	{
 		static void SetSize(USpacer* _this,FVector2D* InSize)
 		{

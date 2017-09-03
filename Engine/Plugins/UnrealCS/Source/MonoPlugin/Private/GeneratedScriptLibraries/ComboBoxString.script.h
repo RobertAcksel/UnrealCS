@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UComboBoxString
+	class UComboBoxString_
 	{
 		static int32 GetOptionCount(UComboBoxString* _this)
 		{

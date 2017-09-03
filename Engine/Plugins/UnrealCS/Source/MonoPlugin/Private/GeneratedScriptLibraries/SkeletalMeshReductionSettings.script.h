@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USkeletalMeshReductionSettings
+	class USkeletalMeshReductionSettings_
 	{
 		static UClass* StaticClass(){return USkeletalMeshReductionSettings::StaticClass();}
 		public:

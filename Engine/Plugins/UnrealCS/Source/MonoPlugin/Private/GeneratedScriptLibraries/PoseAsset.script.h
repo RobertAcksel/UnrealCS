@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPoseAsset
+	class UPoseAsset_
 	{
 		static UClass* StaticClass(){return UPoseAsset::StaticClass();}
 		public:

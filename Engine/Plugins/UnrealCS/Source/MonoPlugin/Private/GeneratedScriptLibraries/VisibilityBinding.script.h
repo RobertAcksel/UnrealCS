@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UVisibilityBinding
+	class UVisibilityBinding_
 	{
 		static UClass* StaticClass(){return UVisibilityBinding::StaticClass();}
 		public:

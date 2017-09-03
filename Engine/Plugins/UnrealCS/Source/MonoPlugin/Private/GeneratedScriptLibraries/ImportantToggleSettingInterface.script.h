@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UImportantToggleSettingInterface
+	class UImportantToggleSettingInterface_
 	{
 		static UClass* StaticClass(){return UImportantToggleSettingInterface::StaticClass();}
 		public:

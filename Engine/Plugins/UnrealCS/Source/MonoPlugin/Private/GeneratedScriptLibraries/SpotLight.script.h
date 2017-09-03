@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ASpotLight
+	class ASpotLight_
 	{
 		static UClass* StaticClass(){return ASpotLight::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetBlueprintLibrary
+	class UWidgetBlueprintLibrary_
 	{
 		static int32 SetHardwareCursor(UWidgetBlueprintLibrary* _this,UObject* WorldContextObject,int32 CursorShape,MonoString* CursorName,FVector2D* HotSpot)
 		{

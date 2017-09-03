@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBreakpoint
+	class UBreakpoint_
 	{
 		static UClass* StaticClass(){return UBreakpoint::StaticClass();}
 		public:

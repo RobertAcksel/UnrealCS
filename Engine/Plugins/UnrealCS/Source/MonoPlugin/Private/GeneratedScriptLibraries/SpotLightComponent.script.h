@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USpotLightComponent
+	class USpotLightComponent_
 	{
 		static void SetOuterConeAngle(USpotLightComponent* _this,float NewOuterConeAngle)
 		{

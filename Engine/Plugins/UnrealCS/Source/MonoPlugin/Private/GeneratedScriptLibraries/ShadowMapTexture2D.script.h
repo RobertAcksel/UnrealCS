@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UShadowMapTexture2D
+	class UShadowMapTexture2D_
 	{
 		static UClass* StaticClass(){return UShadowMapTexture2D::StaticClass();}
 		public:

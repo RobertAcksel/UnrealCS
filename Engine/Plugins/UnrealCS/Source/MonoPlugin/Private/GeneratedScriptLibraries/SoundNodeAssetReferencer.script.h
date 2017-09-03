@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USoundNodeAssetReferencer
+	class USoundNodeAssetReferencer_
 	{
 		static UClass* StaticClass(){return USoundNodeAssetReferencer::StaticClass();}
 		public:

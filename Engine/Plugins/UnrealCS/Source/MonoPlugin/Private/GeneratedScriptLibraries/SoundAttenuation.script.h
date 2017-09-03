@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USoundAttenuation
+	class USoundAttenuation_
 	{
 		static UClass* StaticClass(){return USoundAttenuation::StaticClass();}
 		public:

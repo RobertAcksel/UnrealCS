@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionVertexColor
+	class UMaterialExpressionVertexColor_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionVertexColor::StaticClass();}
 		public:

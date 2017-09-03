@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPolys
+	class UPolys_
 	{
 		static UClass* StaticClass(){return UPolys::StaticClass();}
 		public:

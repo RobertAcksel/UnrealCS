@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UObjectLibrary
+	class UObjectLibrary_
 	{
 		static UClass* StaticClass(){return UObjectLibrary::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovementComponent
+	class UMovementComponent_
 	{
 		static void SnapUpdatedComponentToPlane(UMovementComponent* _this)
 		{

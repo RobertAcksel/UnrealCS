@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBackgroundBlur
+	class UBackgroundBlur_
 	{
 		static void SetLowQualityFallbackBrush(UBackgroundBlur* _this,FSlateBrush* InBrush)
 		{

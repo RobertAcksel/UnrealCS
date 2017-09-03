@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpCurveEdSetup
+	class UInterpCurveEdSetup_
 	{
 		static UClass* StaticClass(){return UInterpCurveEdSetup::StaticClass();}
 		public:

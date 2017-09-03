@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URecastFilter_UseDefaultArea
+	class URecastFilter_UseDefaultArea_
 	{
 		static UClass* StaticClass(){return URecastFilter_UseDefaultArea::StaticClass();}
 		public:

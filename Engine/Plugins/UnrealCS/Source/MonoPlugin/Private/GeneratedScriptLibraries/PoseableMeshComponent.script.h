@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPoseableMeshComponent
+	class UPoseableMeshComponent_
 	{
 		static void CopyPoseFromSkeletalComponent(UPoseableMeshComponent* _this,USkeletalMeshComponent* InComponentToCopy)
 		{

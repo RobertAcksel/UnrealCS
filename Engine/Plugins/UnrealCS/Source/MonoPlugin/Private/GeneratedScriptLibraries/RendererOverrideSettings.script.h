@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URendererOverrideSettings
+	class URendererOverrideSettings_
 	{
 		static UClass* StaticClass(){return URendererOverrideSettings::StaticClass();}
 		public:

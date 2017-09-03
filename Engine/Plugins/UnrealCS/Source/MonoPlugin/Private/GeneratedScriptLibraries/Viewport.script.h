@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UViewport
+	class UViewport_
 	{
 		static AActor* Spawn(UViewport* _this,TSubclassOf<AActor>  ActorClass)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UOnlineBlueprintCallProxyBase
+	class UOnlineBlueprintCallProxyBase_
 	{
 		static void Activate(UOnlineBlueprintCallProxyBase* _this)
 		{

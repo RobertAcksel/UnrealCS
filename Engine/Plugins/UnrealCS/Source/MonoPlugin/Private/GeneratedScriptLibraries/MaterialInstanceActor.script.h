@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AMaterialInstanceActor
+	class AMaterialInstanceActor_
 	{
 		static UClass* StaticClass(){return AMaterialInstanceActor::StaticClass();}
 		public:

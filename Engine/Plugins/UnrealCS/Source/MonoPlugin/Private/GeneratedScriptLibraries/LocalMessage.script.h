@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULocalMessage
+	class ULocalMessage_
 	{
 		static UClass* StaticClass(){return ULocalMessage::StaticClass();}
 		public:

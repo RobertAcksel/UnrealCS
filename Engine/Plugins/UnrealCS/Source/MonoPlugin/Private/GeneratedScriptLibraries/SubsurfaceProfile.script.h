@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USubsurfaceProfile
+	class USubsurfaceProfile_
 	{
 		static UClass* StaticClass(){return USubsurfaceProfile::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetInteractionComponent
+	class UWidgetInteractionComponent_
 	{
 		static void SetCustomHitResult(UWidgetInteractionComponent* _this,FHitResult* HitResult)
 		{

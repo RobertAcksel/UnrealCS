@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetBinding
+	class UWidgetBinding_
 	{
 		static UWidget* GetValue(UWidgetBinding* _this)
 		{

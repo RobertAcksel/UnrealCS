@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AActor
+	class AActor_
 	{
 		static MonoArray* GetComponentsByTag(AActor* _this,TSubclassOf<UActorComponent>  ComponentClass,MonoString* Tag)
 		{

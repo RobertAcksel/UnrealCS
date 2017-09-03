@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UControlChannel
+	class UControlChannel_
 	{
 		static UClass* StaticClass(){return UControlChannel::StaticClass();}
 		public:

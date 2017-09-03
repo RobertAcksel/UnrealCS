@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UOverlay
+	class UOverlay_
 	{
 		static UOverlaySlot* AddChildToOverlay(UOverlay* _this,UWidget* Content)
 		{

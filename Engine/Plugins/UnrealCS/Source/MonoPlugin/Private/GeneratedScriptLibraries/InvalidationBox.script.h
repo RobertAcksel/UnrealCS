@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInvalidationBox
+	class UInvalidationBox_
 	{
 		static void SetCanCache(UInvalidationBox* _this,int32 CanCache)
 		{

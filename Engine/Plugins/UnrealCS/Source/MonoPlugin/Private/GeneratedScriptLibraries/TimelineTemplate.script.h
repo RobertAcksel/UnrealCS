@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTimelineTemplate
+	class UTimelineTemplate_
 	{
 		static UClass* StaticClass(){return UTimelineTemplate::StaticClass();}
 		public:

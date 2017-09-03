@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAnimSequenceBase
+	class UAnimSequenceBase_
 	{
 		static float GetPlayLength(UAnimSequenceBase* _this)
 		{

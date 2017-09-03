@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UUserWidget
+	class UUserWidget_
 	{
 		static int32 IsPlayingAnimation(UUserWidget* _this)
 		{

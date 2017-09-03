@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UFloatBinding
+	class UFloatBinding_
 	{
 		static float GetValue(UFloatBinding* _this)
 		{

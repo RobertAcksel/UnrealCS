@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInputVectorAxisDelegateBinding
+	class UInputVectorAxisDelegateBinding_
 	{
 		static UClass* StaticClass(){return UInputVectorAxisDelegateBinding::StaticClass();}
 		public:

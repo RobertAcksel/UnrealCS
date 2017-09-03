@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCurveBase
+	class UCurveBase_
 	{
 		static void GetValueRange(UCurveBase* _this,float* MinValue,float* MaxValue)
 		{

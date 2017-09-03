@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UVectorFieldComponent
+	class UVectorFieldComponent_
 	{
 		static void SetIntensity(UVectorFieldComponent* _this,float NewIntensity)
 		{

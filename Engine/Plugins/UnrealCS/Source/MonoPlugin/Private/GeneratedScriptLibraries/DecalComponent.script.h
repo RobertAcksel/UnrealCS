@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDecalComponent
+	class UDecalComponent_
 	{
 		static UMaterialInstanceDynamic* CreateDynamicMaterialInstance(UDecalComponent* _this)
 		{

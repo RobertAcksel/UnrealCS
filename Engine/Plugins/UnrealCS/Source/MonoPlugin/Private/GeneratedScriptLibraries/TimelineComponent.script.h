@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTimelineComponent
+	class UTimelineComponent_
 	{
 		static void SetLinearColorCurve(UTimelineComponent* _this,UCurveLinearColor* NewLinearColorCurve,MonoString* LinearColorTrackName)
 		{

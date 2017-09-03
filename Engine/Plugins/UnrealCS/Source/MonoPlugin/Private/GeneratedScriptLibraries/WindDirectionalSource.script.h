@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AWindDirectionalSource
+	class AWindDirectionalSource_
 	{
 		static UClass* StaticClass(){return AWindDirectionalSource::StaticClass();}
 		public:

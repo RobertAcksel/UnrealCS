@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavigationPath
+	class UNavigationPath_
 	{
 		static int32 IsStringPulled(UNavigationPath* _this)
 		{

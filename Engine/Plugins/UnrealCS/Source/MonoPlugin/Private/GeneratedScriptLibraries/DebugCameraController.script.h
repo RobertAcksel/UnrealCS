@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ADebugCameraController
+	class ADebugCameraController_
 	{
 		static void SetPawnMovementSpeedScale(ADebugCameraController* _this,float NewSpeedScale)
 		{

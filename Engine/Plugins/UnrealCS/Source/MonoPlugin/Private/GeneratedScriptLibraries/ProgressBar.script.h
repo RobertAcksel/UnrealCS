@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UProgressBar
+	class UProgressBar_
 	{
 		static void SetIsMarquee(UProgressBar* _this,int32 InbIsMarquee)
 		{

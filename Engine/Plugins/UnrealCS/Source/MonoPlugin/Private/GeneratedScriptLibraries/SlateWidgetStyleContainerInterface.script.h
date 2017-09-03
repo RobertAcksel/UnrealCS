@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USlateWidgetStyleContainerInterface
+	class USlateWidgetStyleContainerInterface_
 	{
 		static UClass* StaticClass(){return USlateWidgetStyleContainerInterface::StaticClass();}
 		public:

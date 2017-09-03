@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UButton
+	class UButton_
 	{
 		static int32 IsPressed(UButton* _this)
 		{

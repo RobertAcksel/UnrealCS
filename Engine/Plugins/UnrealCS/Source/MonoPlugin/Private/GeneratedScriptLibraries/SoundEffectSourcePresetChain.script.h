@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USoundEffectSourcePresetChain
+	class USoundEffectSourcePresetChain_
 	{
 		static UClass* StaticClass(){return USoundEffectSourcePresetChain::StaticClass();}
 		public:

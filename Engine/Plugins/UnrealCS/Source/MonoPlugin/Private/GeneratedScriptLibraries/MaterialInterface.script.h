@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialInterface
+	class UMaterialInterface_
 	{
 		static UPhysicalMaterial* GetPhysicalMaterial(UMaterialInterface* _this)
 		{

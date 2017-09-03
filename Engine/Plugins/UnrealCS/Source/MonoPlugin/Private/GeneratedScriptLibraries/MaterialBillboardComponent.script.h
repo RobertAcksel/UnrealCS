@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialBillboardComponent
+	class UMaterialBillboardComponent_
 	{
 		static void AddElement(UMaterialBillboardComponent* _this,UMaterialInterface* Material,UCurveFloat* DistanceToOpacityCurve,int32 bSizeIsInScreenSpace,float BaseSizeX,float BaseSizeY,UCurveFloat* DistanceToSizeCurve)
 		{

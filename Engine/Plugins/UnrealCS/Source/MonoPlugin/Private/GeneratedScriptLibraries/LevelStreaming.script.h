@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULevelStreaming
+	class ULevelStreaming_
 	{
 		static ALevelScriptActor* GetLevelScriptActor(ULevelStreaming* _this)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UComboBox
+	class UComboBox_
 	{
 		static UClass* StaticClass(){return UComboBox::StaticClass();}
 		public:

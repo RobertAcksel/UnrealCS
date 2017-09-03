@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWrapBox
+	class UWrapBox_
 	{
 		static UWrapBoxSlot* AddChildWrapBox(UWrapBox* _this,UWidget* Content)
 		{

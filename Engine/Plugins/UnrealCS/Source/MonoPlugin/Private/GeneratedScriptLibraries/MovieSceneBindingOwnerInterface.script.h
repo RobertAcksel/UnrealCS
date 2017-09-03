@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovieSceneBindingOwnerInterface
+	class UMovieSceneBindingOwnerInterface_
 	{
 		static UClass* StaticClass(){return UMovieSceneBindingOwnerInterface::StaticClass();}
 		public:

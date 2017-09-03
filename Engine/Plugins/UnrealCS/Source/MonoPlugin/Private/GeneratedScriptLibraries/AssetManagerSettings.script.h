@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAssetManagerSettings
+	class UAssetManagerSettings_
 	{
 		static UClass* StaticClass(){return UAssetManagerSettings::StaticClass();}
 		public:

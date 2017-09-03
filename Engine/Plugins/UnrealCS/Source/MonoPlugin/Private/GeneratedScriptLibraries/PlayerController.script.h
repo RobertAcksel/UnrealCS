@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APlayerController
+	class APlayerController_
 	{
 		static FVector GetFocalLocation(APlayerController* _this)
 		{

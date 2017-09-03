@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInputComponent
+	class UInputComponent_
 	{
 		static UClass* StaticClass(){return UInputComponent::StaticClass();}
 		public:

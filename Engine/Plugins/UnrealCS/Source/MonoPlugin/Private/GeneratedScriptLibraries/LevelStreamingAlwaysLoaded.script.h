@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULevelStreamingAlwaysLoaded
+	class ULevelStreamingAlwaysLoaded_
 	{
 		static UClass* StaticClass(){return ULevelStreamingAlwaysLoaded::StaticClass();}
 		public:

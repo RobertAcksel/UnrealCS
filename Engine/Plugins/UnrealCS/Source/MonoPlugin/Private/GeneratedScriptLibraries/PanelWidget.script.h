@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPanelWidget
+	class UPanelWidget_
 	{
 		static void ClearChildren(UPanelWidget* _this)
 		{

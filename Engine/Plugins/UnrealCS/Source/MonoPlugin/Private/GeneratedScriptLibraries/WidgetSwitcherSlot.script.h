@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetSwitcherSlot
+	class UWidgetSwitcherSlot_
 	{
 		static void SetVerticalAlignment(UWidgetSwitcherSlot* _this,int32 InVerticalAlignment)
 		{

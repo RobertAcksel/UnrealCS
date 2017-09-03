@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UScrollBoxSlot
+	class UScrollBoxSlot_
 	{
 		static void SetHorizontalAlignment(UScrollBoxSlot* _this,int32 InHorizontalAlignment)
 		{

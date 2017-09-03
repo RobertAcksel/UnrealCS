@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UEdGraphPin_Deprecated
+	class UEdGraphPin_Deprecated_
 	{
 		static UClass* StaticClass(){return UEdGraphPin_Deprecated::StaticClass();}
 		public:

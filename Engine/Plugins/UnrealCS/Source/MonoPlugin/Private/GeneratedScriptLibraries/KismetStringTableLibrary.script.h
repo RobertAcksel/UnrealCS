@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetStringTableLibrary
+	class UKismetStringTableLibrary_
 	{
 		static MonoArray* GetMetaDataIdsFromStringTableEntry(UKismetStringTableLibrary* _this,MonoString* TableId,MonoString* Key)
 		{

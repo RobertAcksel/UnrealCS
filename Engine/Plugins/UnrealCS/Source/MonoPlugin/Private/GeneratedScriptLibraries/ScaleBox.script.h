@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UScaleBox
+	class UScaleBox_
 	{
 		static void SetIgnoreInheritedScale(UScaleBox* _this,int32 bInIgnoreInheritedScale)
 		{

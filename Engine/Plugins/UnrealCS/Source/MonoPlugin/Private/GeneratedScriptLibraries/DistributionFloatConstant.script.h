@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDistributionFloatConstant
+	class UDistributionFloatConstant_
 	{
 		static UClass* StaticClass(){return UDistributionFloatConstant::StaticClass();}
 		public:

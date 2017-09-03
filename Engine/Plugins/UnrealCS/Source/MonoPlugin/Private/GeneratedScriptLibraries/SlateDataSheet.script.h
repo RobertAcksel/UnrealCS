@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USlateDataSheet
+	class USlateDataSheet_
 	{
 		static UClass* StaticClass(){return USlateDataSheet::StaticClass();}
 		public:

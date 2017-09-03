@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleSystemComponent
+	class UParticleSystemComponent_
 	{
 		static void GenerateParticleEvent(UParticleSystemComponent* _this,MonoString* InEventName,float InEmitterTime,FVector* InLocation,FVector* InDirection,FVector* InVelocity)
 		{

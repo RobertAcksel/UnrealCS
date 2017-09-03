@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UGridPanel
+	class UGridPanel_
 	{
 		static UGridSlot* AddChildToGrid(UGridPanel* _this,UWidget* Content)
 		{

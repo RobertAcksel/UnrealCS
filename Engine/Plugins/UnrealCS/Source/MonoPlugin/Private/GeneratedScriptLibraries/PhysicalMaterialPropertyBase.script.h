@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDEPRECATED_PhysicalMaterialPropertyBase
+	class UDEPRECATED_PhysicalMaterialPropertyBase_
 	{
 		static UClass* StaticClass(){return UDEPRECATED_PhysicalMaterialPropertyBase::StaticClass();}
 		public:

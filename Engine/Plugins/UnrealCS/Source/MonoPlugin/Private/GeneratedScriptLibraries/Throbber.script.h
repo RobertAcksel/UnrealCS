@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UThrobber
+	class UThrobber_
 	{
 		static void SetAnimateOpacity(UThrobber* _this,int32 bInAnimateOpacity)
 		{

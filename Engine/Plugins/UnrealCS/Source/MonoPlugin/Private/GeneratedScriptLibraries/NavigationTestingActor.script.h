@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ANavigationTestingActor
+	class ANavigationTestingActor_
 	{
 		static UClass* StaticClass(){return ANavigationTestingActor::StaticClass();}
 		public:

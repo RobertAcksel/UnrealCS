@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavigationInvokerComponent
+	class UNavigationInvokerComponent_
 	{
 		static UClass* StaticClass(){return UNavigationInvokerComponent::StaticClass();}
 		public:

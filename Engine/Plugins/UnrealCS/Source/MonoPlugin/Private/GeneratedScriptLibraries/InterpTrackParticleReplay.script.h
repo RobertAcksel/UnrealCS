@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpTrackParticleReplay
+	class UInterpTrackParticleReplay_
 	{
 		static UClass* StaticClass(){return UInterpTrackParticleReplay::StaticClass();}
 		public:

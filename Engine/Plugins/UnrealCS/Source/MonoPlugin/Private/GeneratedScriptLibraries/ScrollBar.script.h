@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UScrollBar
+	class UScrollBar_
 	{
 		static void SetState(UScrollBar* _this,float InOffsetFraction,float InThumbSizeFraction)
 		{

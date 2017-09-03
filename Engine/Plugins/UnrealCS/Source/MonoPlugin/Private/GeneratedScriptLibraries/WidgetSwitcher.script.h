@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWidgetSwitcher
+	class UWidgetSwitcher_
 	{
 		static UWidget* GetWidgetAtIndex(UWidgetSwitcher* _this,int32 Index)
 		{

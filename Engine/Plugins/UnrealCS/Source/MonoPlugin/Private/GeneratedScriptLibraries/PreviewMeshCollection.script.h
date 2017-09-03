@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPreviewMeshCollection
+	class UPreviewMeshCollection_
 	{
 		static UClass* StaticClass(){return UPreviewMeshCollection::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AExponentialHeightFog
+	class AExponentialHeightFog_
 	{
 		static void OnRep_bEnabled(AExponentialHeightFog* _this)
 		{

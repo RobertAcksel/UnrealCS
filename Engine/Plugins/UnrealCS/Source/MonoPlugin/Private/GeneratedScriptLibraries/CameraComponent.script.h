@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCameraComponent
+	class UCameraComponent_
 	{
 		static void GetCameraView(UCameraComponent* _this,float DeltaTime,FMinimalViewInfo* DesiredView)
 		{

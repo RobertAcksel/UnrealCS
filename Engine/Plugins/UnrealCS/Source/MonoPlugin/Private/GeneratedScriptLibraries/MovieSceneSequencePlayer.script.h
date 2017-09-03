@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovieSceneSequencePlayer
+	class UMovieSceneSequencePlayer_
 	{
 		static float GetPlaybackEnd(UMovieSceneSequencePlayer* _this)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovieSceneLevelVisibilityTrack
+	class UMovieSceneLevelVisibilityTrack_
 	{
 		static UClass* StaticClass(){return UMovieSceneLevelVisibilityTrack::StaticClass();}
 		public:

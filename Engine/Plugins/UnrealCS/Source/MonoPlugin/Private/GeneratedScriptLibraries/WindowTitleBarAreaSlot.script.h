@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UWindowTitleBarAreaSlot
+	class UWindowTitleBarAreaSlot_
 	{
 		static void SetVerticalAlignment(UWindowTitleBarAreaSlot* _this,int32 InVerticalAlignment)
 		{

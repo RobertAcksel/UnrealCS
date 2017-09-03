@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UDrawFrustumComponent
+	class UDrawFrustumComponent_
 	{
 		static UClass* StaticClass(){return UDrawFrustumComponent::StaticClass();}
 		public:

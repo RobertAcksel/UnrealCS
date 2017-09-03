@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCircularThrobber
+	class UCircularThrobber_
 	{
 		static void SetRadius(UCircularThrobber* _this,float InRadius)
 		{

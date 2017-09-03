@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UVisualLoggerDebugSnapshotInterface
+	class UVisualLoggerDebugSnapshotInterface_
 	{
 		static UClass* StaticClass(){return UVisualLoggerDebugSnapshotInterface::StaticClass();}
 		public:

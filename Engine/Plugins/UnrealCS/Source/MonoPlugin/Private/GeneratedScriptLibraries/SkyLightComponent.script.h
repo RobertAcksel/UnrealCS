@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USkyLightComponent
+	class USkyLightComponent_
 	{
 		static void RecaptureSky(USkyLightComponent* _this)
 		{

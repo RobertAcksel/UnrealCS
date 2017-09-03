@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCheckedStateBinding
+	class UCheckedStateBinding_
 	{
 		static UClass* StaticClass(){return UCheckedStateBinding::StaticClass();}
 		public:

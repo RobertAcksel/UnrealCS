@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ASceneCaptureCube
+	class ASceneCaptureCube_
 	{
 		static void OnInterpToggle(ASceneCaptureCube* _this,int32 bEnable)
 		{

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMouseCursorBinding
+	class UMouseCursorBinding_
 	{
 		static int32 GetValue(UMouseCursorBinding* _this)
 		{

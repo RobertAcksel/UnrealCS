@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPhysicsSpringComponent
+	class UPhysicsSpringComponent_
 	{
 		static FVector GetSpringDirection(UPhysicsSpringComponent* _this)
 		{

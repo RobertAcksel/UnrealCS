@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavArea_Obstacle
+	class UNavArea_Obstacle_
 	{
 		static UClass* StaticClass(){return UNavArea_Obstacle::StaticClass();}
 		public:

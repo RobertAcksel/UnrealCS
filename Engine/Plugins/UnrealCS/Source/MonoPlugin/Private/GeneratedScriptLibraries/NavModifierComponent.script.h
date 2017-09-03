@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavModifierComponent
+	class UNavModifierComponent_
 	{
 		static void SetAreaClass(UNavModifierComponent* _this,TSubclassOf<UNavArea>  NewAreaClass)
 		{

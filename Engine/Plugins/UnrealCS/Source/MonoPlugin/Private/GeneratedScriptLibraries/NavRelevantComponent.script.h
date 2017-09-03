@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavRelevantComponent
+	class UNavRelevantComponent_
 	{
 		static void SetNavigationRelevancy(UNavRelevantComponent* _this,int32 bRelevant)
 		{

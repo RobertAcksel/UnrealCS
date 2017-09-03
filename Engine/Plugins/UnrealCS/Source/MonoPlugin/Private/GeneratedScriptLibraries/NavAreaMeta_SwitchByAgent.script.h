@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNavAreaMeta_SwitchByAgent
+	class UNavAreaMeta_SwitchByAgent_
 	{
 		static UClass* StaticClass(){return UNavAreaMeta_SwitchByAgent::StaticClass();}
 		public:

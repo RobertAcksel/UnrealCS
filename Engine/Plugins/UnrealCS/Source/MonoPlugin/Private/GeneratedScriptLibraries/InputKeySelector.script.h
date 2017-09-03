@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInputKeySelector
+	class UInputKeySelector_
 	{
 		static int32 GetIsSelectingKey(UInputKeySelector* _this)
 		{

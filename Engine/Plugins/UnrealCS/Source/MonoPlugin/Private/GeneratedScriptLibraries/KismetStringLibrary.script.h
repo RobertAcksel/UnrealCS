@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetStringLibrary
+	class UKismetStringLibrary_
 	{
 		static MonoString* TimeSecondsToString(UKismetStringLibrary* _this,float InSeconds)
 		{

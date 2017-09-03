@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ANavLinkProxy
+	class ANavLinkProxy_
 	{
 		static int32 HasMovingAgents(ANavLinkProxy* _this)
 		{

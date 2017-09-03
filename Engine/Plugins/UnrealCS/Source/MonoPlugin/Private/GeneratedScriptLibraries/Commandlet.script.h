@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCommandlet
+	class UCommandlet_
 	{
 		static UClass* StaticClass(){return UCommandlet::StaticClass();}
 		public:

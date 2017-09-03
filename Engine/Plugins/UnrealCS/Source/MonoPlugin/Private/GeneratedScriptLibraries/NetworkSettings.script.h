@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UNetworkSettings
+	class UNetworkSettings_
 	{
 		static UClass* StaticClass(){return UNetworkSettings::StaticClass();}
 		public:

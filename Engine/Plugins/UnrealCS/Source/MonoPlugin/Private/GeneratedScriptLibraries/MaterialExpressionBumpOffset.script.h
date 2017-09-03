@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionBumpOffset
+	class UMaterialExpressionBumpOffset_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionBumpOffset::StaticClass();}
 		public:

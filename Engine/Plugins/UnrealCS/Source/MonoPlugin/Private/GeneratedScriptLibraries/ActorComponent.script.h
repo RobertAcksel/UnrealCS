@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UActorComponent
+	class UActorComponent_
 	{
 		static void RemoveTickPrerequisiteComponent(UActorComponent* _this,UActorComponent* PrerequisiteComponent)
 		{

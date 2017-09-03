@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ASceneCapture2D
+	class ASceneCapture2D_
 	{
 		static UClass* StaticClass(){return ASceneCapture2D::StaticClass();}
 		public:

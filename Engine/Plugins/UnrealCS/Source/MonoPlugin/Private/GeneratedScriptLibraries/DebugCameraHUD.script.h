@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ADebugCameraHUD
+	class ADebugCameraHUD_
 	{
 		static UClass* StaticClass(){return ADebugCameraHUD::StaticClass();}
 		public:

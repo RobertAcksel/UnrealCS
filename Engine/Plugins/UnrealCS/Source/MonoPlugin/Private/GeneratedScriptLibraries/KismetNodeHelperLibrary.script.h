@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetNodeHelperLibrary
+	class UKismetNodeHelperLibrary_
 	{
 		static int32 GetEnumeratorValueFromIndex(UKismetNodeHelperLibrary* _this,UEnum* Enum,int32 EnumeratorIndex)
 		{

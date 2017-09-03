@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AGameMode
+	class AGameMode_
 	{
 		static void SetBandwidthLimit(AGameMode* _this,float AsyncIOBandwidthLimit)
 		{

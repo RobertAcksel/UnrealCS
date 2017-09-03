@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UAutomationTestSettings
+	class UAutomationTestSettings_
 	{
 		static UClass* StaticClass(){return UAutomationTestSettings::StaticClass();}
 		public:

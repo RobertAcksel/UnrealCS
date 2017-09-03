@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UOcclusionPluginSourceSettingsBase
+	class UOcclusionPluginSourceSettingsBase_
 	{
 		static UClass* StaticClass(){return UOcclusionPluginSourceSettingsBase::StaticClass();}
 		public:

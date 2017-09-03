@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBoxComponent
+	class UBoxComponent_
 	{
 		static FVector GetUnscaledBoxExtent(UBoxComponent* _this)
 		{

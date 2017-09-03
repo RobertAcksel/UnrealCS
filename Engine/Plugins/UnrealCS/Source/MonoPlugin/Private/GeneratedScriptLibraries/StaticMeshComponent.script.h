@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UStaticMeshComponent
+	class UStaticMeshComponent_
 	{
 		static void GetLocalBounds(UStaticMeshComponent* _this,FVector* Min,FVector* Max)
 		{

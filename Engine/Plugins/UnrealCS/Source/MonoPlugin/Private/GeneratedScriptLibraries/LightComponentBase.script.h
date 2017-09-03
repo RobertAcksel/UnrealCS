@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ULightComponentBase
+	class ULightComponentBase_
 	{
 		static void SetCastVolumetricShadow(ULightComponentBase* _this,int32 bNewValue)
 		{

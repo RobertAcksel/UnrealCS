@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpTrackLinearColorBase
+	class UInterpTrackLinearColorBase_
 	{
 		static UClass* StaticClass(){return UInterpTrackLinearColorBase::StaticClass();}
 		public:

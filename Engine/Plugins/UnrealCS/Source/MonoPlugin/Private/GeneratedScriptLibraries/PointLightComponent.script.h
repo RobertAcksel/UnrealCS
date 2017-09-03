@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPointLightComponent
+	class UPointLightComponent_
 	{
 		static void SetSourceLength(UPointLightComponent* _this,float NewValue)
 		{

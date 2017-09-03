@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ABrush
+	class ABrush_
 	{
 		static UClass* StaticClass(){return ABrush::StaticClass();}
 		public:

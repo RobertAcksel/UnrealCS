@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPoseWatch
+	class UPoseWatch_
 	{
 		static UClass* StaticClass(){return UPoseWatch::StaticClass();}
 		public:

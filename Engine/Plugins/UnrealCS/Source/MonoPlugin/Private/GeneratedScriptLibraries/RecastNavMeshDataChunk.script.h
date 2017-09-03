@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _URecastNavMeshDataChunk
+	class URecastNavMeshDataChunk_
 	{
 		static UClass* StaticClass(){return URecastNavMeshDataChunk::StaticClass();}
 		public:

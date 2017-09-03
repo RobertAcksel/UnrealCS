@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UHapticFeedbackEffect_Buffer
+	class UHapticFeedbackEffect_Buffer_
 	{
 		static UClass* StaticClass(){return UHapticFeedbackEffect_Buffer::StaticClass();}
 		public:

@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UKismetRenderingLibrary
+	class UKismetRenderingLibrary_
 	{
 		static void EndDrawCanvasToRenderTarget(UKismetRenderingLibrary* _this,UObject* WorldContextObject,FDrawToRenderTargetContext* Context)
 		{

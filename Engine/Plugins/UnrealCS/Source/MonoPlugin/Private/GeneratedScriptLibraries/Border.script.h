@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UBorder
+	class UBorder_
 	{
 		static void SetDesiredSizeScale(UBorder* _this,FVector2D* InScale)
 		{

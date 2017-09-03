@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCurveFloat
+	class UCurveFloat_
 	{
 		static float GetFloatValue(UCurveFloat* _this,float InTime)
 		{

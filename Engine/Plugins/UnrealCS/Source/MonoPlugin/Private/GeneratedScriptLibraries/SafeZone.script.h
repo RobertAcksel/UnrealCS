@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USafeZone
+	class USafeZone_
 	{
 		static UClass* StaticClass(){return USafeZone::StaticClass();}
 		public:

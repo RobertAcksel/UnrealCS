@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMovieSceneMaterialParameterCollectionTrack
+	class UMovieSceneMaterialParameterCollectionTrack_
 	{
 		static UClass* StaticClass(){return UMovieSceneMaterialParameterCollectionTrack::StaticClass();}
 		public:

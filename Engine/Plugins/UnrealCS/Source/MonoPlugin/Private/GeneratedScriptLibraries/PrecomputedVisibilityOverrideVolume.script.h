@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APrecomputedVisibilityOverrideVolume
+	class APrecomputedVisibilityOverrideVolume_
 	{
 		static UClass* StaticClass(){return APrecomputedVisibilityOverrideVolume::StaticClass();}
 		public:

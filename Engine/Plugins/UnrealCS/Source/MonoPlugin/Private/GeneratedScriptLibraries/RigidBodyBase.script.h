@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ARigidBodyBase
+	class ARigidBodyBase_
 	{
 		static UClass* StaticClass(){return ARigidBodyBase::StaticClass();}
 		public:

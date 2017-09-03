@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _USpringArmComponent
+	class USpringArmComponent_
 	{
 		static UClass* StaticClass(){return USpringArmComponent::StaticClass();}
 		public:

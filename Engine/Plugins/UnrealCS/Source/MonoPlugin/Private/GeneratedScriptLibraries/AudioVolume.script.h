@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AAudioVolume
+	class AAudioVolume_
 	{
 		static void SetInteriorSettings(AAudioVolume* _this,FInteriorSettings* NewInteriorSettings)
 		{

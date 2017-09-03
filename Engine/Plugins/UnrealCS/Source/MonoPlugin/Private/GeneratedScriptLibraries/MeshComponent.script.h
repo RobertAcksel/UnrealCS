@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMeshComponent
+	class UMeshComponent_
 	{
 		static void SetVectorParameterValueOnMaterials(UMeshComponent* _this,MonoString* ParameterName,FVector* ParameterValue)
 		{

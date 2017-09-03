@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UStereoLayerFunctionLibrary
+	class UStereoLayerFunctionLibrary_
 	{
 		static void EnableAutoLoadingSplashScreen(UStereoLayerFunctionLibrary* _this,int32 InAutoShowEnabled)
 		{

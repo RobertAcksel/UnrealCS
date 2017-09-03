@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UMaterialExpressionConstantBiasScale
+	class UMaterialExpressionConstantBiasScale_
 	{
 		static UClass* StaticClass(){return UMaterialExpressionConstantBiasScale::StaticClass();}
 		public:

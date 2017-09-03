@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCheckBox
+	class UCheckBox_
 	{
 		static void SetIsChecked(UCheckBox* _this,int32 InIsChecked)
 		{

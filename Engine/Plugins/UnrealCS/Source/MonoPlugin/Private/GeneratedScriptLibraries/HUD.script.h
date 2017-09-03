@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _AHUD
+	class AHUD_
 	{
 		static void AddHitBox(AHUD* _this,FVector2D* Position,FVector2D* Size,MonoString* InName,int32 bConsumesInput,int32 Priority)
 		{

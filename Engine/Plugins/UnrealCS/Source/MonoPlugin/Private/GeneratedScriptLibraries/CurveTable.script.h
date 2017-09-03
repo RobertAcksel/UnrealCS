@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UCurveTable
+	class UCurveTable_
 	{
 		static UClass* StaticClass(){return UCurveTable::StaticClass();}
 		public:

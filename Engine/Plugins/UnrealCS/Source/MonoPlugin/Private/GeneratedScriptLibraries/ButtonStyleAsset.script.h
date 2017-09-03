@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UButtonStyleAsset
+	class UButtonStyleAsset_
 	{
 		static UClass* StaticClass(){return UButtonStyleAsset::StaticClass();}
 		public:

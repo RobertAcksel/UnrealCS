@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _ADestructibleActor
+	class ADestructibleActor_
 	{
 		static UClass* StaticClass(){return ADestructibleActor::StaticClass();}
 		public:

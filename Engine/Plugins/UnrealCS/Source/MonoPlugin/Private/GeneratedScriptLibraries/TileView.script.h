@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTileView
+	class UTileView_
 	{
 		static void RequestListRefresh(UTileView* _this)
 		{

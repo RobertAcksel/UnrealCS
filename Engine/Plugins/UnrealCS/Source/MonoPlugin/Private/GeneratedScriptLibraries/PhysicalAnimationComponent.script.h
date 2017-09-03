@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPhysicalAnimationComponent
+	class UPhysicalAnimationComponent_
 	{
 		static FTransform GetBodyTargetTransform(UPhysicalAnimationComponent* _this,MonoString* BodyName)
 		{

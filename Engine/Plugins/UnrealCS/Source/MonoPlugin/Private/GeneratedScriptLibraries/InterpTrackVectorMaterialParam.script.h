@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpTrackVectorMaterialParam
+	class UInterpTrackVectorMaterialParam_
 	{
 		static UClass* StaticClass(){return UInterpTrackVectorMaterialParam::StaticClass();}
 		public:

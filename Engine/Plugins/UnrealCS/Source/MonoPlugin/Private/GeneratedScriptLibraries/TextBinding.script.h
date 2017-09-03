@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UTextBinding
+	class UTextBinding_
 	{
 		static MonoString* GetStringValue(UTextBinding* _this)
 		{

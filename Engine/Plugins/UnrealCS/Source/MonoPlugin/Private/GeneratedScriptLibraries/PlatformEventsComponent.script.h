@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UPlatformEventsComponent
+	class UPlatformEventsComponent_
 	{
 		static int32 SupportsConvertibleLaptops(UPlatformEventsComponent* _this)
 		{

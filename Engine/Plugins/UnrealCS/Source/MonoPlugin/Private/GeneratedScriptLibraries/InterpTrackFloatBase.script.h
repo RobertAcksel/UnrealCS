@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpTrackFloatBase
+	class UInterpTrackFloatBase_
 	{
 		static UClass* StaticClass(){return UInterpTrackFloatBase::StaticClass();}
 		public:

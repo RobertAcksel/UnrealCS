@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _APawn
+	class APawn_
 	{
 		static int32 IsMoveInputIgnored(APawn* _this)
 		{

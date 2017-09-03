@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UGarbageCollectionSettings
+	class UGarbageCollectionSettings_
 	{
 		static UClass* StaticClass(){return UGarbageCollectionSettings::StaticClass();}
 		public:

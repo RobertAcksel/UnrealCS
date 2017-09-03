@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UInterpData
+	class UInterpData_
 	{
 		static UClass* StaticClass(){return UInterpData::StaticClass();}
 		public:

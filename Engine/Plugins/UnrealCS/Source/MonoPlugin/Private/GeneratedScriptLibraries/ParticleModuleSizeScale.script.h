@@ -1,10 +1,10 @@
-//GENERATED: 
+//GENERATED: C++ Code
 
 #pragma once
 
 namespace UnrealEngine
 {
-	class _UParticleModuleSizeScale
+	class UParticleModuleSizeScale_
 	{
 		static UClass* StaticClass(){return UParticleModuleSizeScale::StaticClass();}
 		public:
