@@ -5,7 +5,7 @@
 
 #include "Templates/UnrealTypeTraits.h"
 
-UProperty* FindScriptPropertyHelper(UClass* Class, FName PropertyName, bool ExcludeSuper = true)
+inline UProperty* FindScriptPropertyHelper(UClass* Class, FName PropertyName, bool ExcludeSuper = true)
 {
 	for (TFieldIterator<UProperty> PropertyIt(Class, ExcludeSuper ? EFieldIteratorFlags::ExcludeSuper : EFieldIteratorFlags::IncludeSuper); PropertyIt; ++PropertyIt)
 	{
@@ -18,7 +18,7 @@ UProperty* FindScriptPropertyHelper(UClass* Class, FName PropertyName, bool Excl
 	return NULL;
 }
 
-FString MonoStringToFString(MonoString* InString)
+inline FString MonoStringToFString(MonoString* InString)
 {
 	FString Result;
 	if (InString == nullptr)
@@ -35,13 +35,13 @@ FString MonoStringToFString(MonoString* InString)
 	return Result;
 }
 
-FName MonoStringToFName(MonoString* InString)
+inline FName MonoStringToFName(MonoString* InString)
 {
 	FString TempString = MonoStringToFString(InString);
 	return FName(*TempString);
 }
 
-MonoString* FStringToMonoString(const FString& InString,MonoDomain* domain=nullptr)
+inline MonoString* FStringToMonoString(const FString& InString,MonoDomain* domain=nullptr)
 {
 	MonoDomain* InDomain = domain==nullptr?FMonoDomain::Get()->GetDomain(): domain;
 #if PLATFORM_TCHAR_IS_4_BYTES
@@ -51,7 +51,7 @@ MonoString* FStringToMonoString(const FString& InString,MonoDomain* domain=nullp
 #endif
 }
 
-MonoString* FNameToMonoString(FName InName)
+inline MonoString* FNameToMonoString(FName InName)
 {
 	return FStringToMonoString(InName.ToString());
 }

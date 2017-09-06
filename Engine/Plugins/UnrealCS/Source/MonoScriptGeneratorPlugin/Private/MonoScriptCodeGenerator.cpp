@@ -55,6 +55,24 @@ FMonoScriptCodeGenerator::FMonoScriptCodeGenerator(const FString& RootLocalPath,
     BlackList.AddFunction("KismetRenderingLibrary", "MakeSkinWeightInfo");
 
     BlackList.AddFunction("SkinnedMeshComponent", "SetSkinWeightOverride");    
+
+
+    InheritanceBlackList.AddClass("MaterialInstanceActor");
+    InheritanceBlackList.AddClass("PlanarReflectionComponent");
+    InheritanceBlackList.AddClass("ModelComponent");
+    InheritanceBlackList.AddClass("LightmassPortalComponent");
+    InheritanceBlackList.AddClass("NavMeshBoundsVolume");
+    InheritanceBlackList.AddClass("LightmassPortal");
+    InheritanceBlackList.AddClass("TimelineComponent");
+    InheritanceBlackList.AddClass("PlaneReflectionCaptureComponent");
+    InheritanceBlackList.AddClass("VectorFieldComponent");
+    InheritanceBlackList.AddClass("PrimitiveSceneProxy");
+    InheritanceBlackList.AddClass("MaterialInterface");
+    InheritanceBlackList.AddClass("BrushComponent");
+    InheritanceBlackList.AddClass("PrimitiveSceneProxy");
+    InheritanceBlackList.AddClass("BoxSphereBounds");
+    InheritanceBlackList.AddClass("ActorComponentInstanceData");
+    InheritanceBlackList.AddClass("RenderCommandFence");
 }
 
 void FMonoScriptCodeGenerator::FinishExport()
@@ -118,47 +136,53 @@ void FMonoScriptCodeGenerator::GlueAllGeneratedFiles()
 	FString LibGlueFilename = GeneratedCodePath / TEXT("GeneratedScriptLibraries.inl");
 	FString LibGlue;
 
+    LibGlue += TEXT("#include \"CoreMinimal.h\"\r\n");
+    LibGlue += TEXT("#include \"ObjectMacros.h\"\r\n\r\n");
+
 	// Include all source header files
-	for (auto& HeaderFilename : AllSourceClassHeaders)
+	for (auto const & HeaderFilename : AllSourceClassHeaders)
 	{
 		// Re-base to make sure we're including the right files on a remote machine
-		FString NewFilename(RebaseToBuildPath(HeaderFilename));
+		FString const NewFilename(RebaseToBuildPath(HeaderFilename));
 		LibGlue += FString::Printf(TEXT("#include \"%s\"\r\n"), *NewFilename);
-	}
+    }
 
 	// Include all script glue headers
 	for (auto& HeaderFilename : AllScriptHeaders)
 	{
-		// Re-base to make sure we're including the right files on a remote machine
-		FString NewFilename(FPaths::GetCleanFilename(HeaderFilename));
-		LibGlue += FString::Printf(TEXT("#include \"%s\"\r\n"), *NewFilename);
+	    // Re-base to make sure we're including the right files on a remote machine
+        FString const NewFilename2(FPaths::GetCleanFilename(HeaderFilename));
+        LibGlue += FString::Printf(TEXT("#include \"%s\"\r\n"), *NewFilename2);
 	}
-	
-	LibGlue += TEXT("\r\n namespace UnrealEngine{\r\n void MonoBindFunctions()\r\n{\r\n");
+
+	LibGlue += TEXT("\r\nnamespace UnrealEngine{\r\n\tvoid MonoBindFunctions()\r\n\t{\r\n");
 	for (auto Class : ClassInfos)
 	{
 		if (Class.CanExport)
 		{
 			const FString ClassNameCPP = GetClassNameCPP(Class.Class);
-			LibGlue += FString::Printf(TEXT("\t%s_::BindFunctions();\r\n"), *ClassNameCPP);
+			LibGlue += FString::Printf(TEXT("\t\t%s_::BindFunctions();\r\n"), *ClassNameCPP);
 		}
-
 	}
-	LibGlue += TEXT("}\r\n\r\n}");
+	LibGlue += TEXT("\t}\r\n\r\n}");
 
 	SaveHeaderIfChanged(LibGlueFilename, LibGlue);
 }
 
 //due to generation race conditions we can not work with static class infos so we are working with names
-bool IsChildOfClassByName(UClass * Class, FName const name) {
-    if(Class->GetFName().IsEqual(name)) {
-        return true;
+bool FMonoScriptCodeGenerator::IsChildOfClassByName(UClass const * const Class, FName const name) {
+    for (const UStruct* Struct = Class; Struct; Struct = Struct->GetSuperStruct()){
+        if (InheritanceBlackList.HasClass(Class)) {
+            return false;
+        }
     }
-   
-    if(Class->GetSuperClass() != nullptr){
-        return IsChildOfClassByName(Class->GetSuperClass(), name);
+
+    for (const UStruct* Struct = Class; Struct; Struct = Struct->GetSuperStruct()){
+        if (Struct->GetFName().IsEqual(name)) {
+            return !Class->HasAnyClassFlags(EClassFlags::CLASS_MinimalAPI);
+        }
     }
-    
+
     return false;
 }
 
@@ -195,18 +219,30 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 		AllScriptHeaders.Add(CI.ClassHeader);
 
-        auto isScriptCreateableClass = superClass != nullptr 
-	        && (IsChildOfClassByName(superClass, "Actor") || IsChildOfClassByName(superClass, "ActorComponent"));
+        auto isScriptCreateableClass = (IsChildOfClassByName(Class, "Actor") || IsChildOfClassByName(Class, "ActorComponent"));
 
 //        isScriptCreateableClass = false;
 
 	    FMonoTextBuilder GeneratedGlue;
-        GeneratedGlue.AppendLine(TEXT("//GENERATED: C++ Code\r\n"));
+        GeneratedGlue.AppendLine(TEXT("//GENERATED: C++ Code"));
         GeneratedGlue.AppendLine(TEXT("#pragma once"));
 		GeneratedGlue.AppendLine();
 	    if(isScriptCreateableClass) {
-	        const auto filename = FPaths::GetBaseFilename(CI.ClassHeader);
+
+            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), L"CoreMinimal.h"));
+            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), L"ObjectMacros.h"));
+//            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), L"MonoPluginPrivatePCH.h"));
+//            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), L"MonoDomain.h"));
+//            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), L"MonoBlueprintGeneratedClass.h"));
+            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), L"MonoScriptBindHelper.h"));
+
+            auto filename = FPaths::ConvertRelativePathToFull(CI.SourceHeader);
+            FPaths::NormalizeFilename(filename);
+            GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s\""), *filename));
+
+	        filename = FPaths::GetBaseFilename(CI.ClassHeader);
             GeneratedGlue.AppendLine(FString::Printf(TEXT("#include \"%s.generated.h\""), *filename));
+            GeneratedGlue.AppendLine();
 	    }
 //		GeneratedGlue.AppendLine(TEXT("namespace UnrealEngine"));
 //		GeneratedGlue.OpenBrace(); //Namespace
@@ -225,6 +261,7 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 		GeneratedGlue.OpenBrace();
 	    if(isScriptCreateableClass) {    
             GeneratedGlue.AppendLine("GENERATED_BODY()");
+//            GeneratedGlue.AppendLine("public:");
         }
 
 		// Export all functions
@@ -266,7 +303,9 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 		//}
 
 
-		GeneratedGlue.AppendLine(FString::Printf(TEXT("static UClass* StaticClass(){return %s::StaticClass();}"), *ClassNameCPP));
+	    const auto proxyStaticClassFunctionName = TEXT("_StaticClassForProxy");
+
+		GeneratedGlue.AppendLine(FString::Printf(TEXT("static UClass* %s(){return %s::StaticClass();}"), proxyStaticClassFunctionName, *ClassNameCPP));
 
 		GeneratedGlue.AppendLine(TEXT("public:"));
 		GeneratedGlue.AppendLine(TEXT("static void BindFunctions()"));
@@ -274,11 +313,9 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 
 		for (int i = 0; i < AllExportedFunctions.Num(); i++)
 		{
-			GeneratedGlue.AppendLine(FString::Printf(TEXT("mono_add_internal_call(\"UnrealEngine.%s::%s\",(const void*)%s);"),
-				*ClassNameCPP, *AllExportedFunctions[i], *AllExportedFunctions[i]));
+			GeneratedGlue.AppendLine(FString::Printf(TEXT("mono_add_internal_call(\"UnrealEngine.%s::%s\",(const void*)%s);"), *ClassNameCPP, *AllExportedFunctions[i], *AllExportedFunctions[i]));
 		}
-		GeneratedGlue.AppendLine(FString::Printf(TEXT("mono_add_internal_call(\"UnrealEngine.%s::StaticClass\",(const void*)StaticClass);"),
-			*ClassNameCPP));
+		GeneratedGlue.AppendLine(FString::Printf(TEXT("mono_add_internal_call(\"UnrealEngine.%s::StaticClass\",(const void*)%s);"), *ClassNameCPP, proxyStaticClassFunctionName));
 
 		GeneratedGlue.CloseBrace();//BindFunctions
 		GeneratedGlue.CloseBrace();

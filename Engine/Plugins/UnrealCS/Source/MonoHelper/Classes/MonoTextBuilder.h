@@ -2,6 +2,8 @@
 // For details, see LICENSE.txt
 #pragma once
 
+#include "UnrealString.h"
+
 class MONOHELPER_API FMonoTextBuilder
 {
     bool onNewLine = true;
@@ -58,7 +60,7 @@ public:
         AppendIndent();
         if (!Report.IsEmpty())
 		{
-			Report += LINE_TERMINATOR;
+			Report += "\n";
 		}
         onNewLine = true;
     }

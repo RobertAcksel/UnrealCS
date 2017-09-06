@@ -15,11 +15,13 @@
 class FMonoScriptCodeGenerator : public FScriptCodeGeneratorBase
 {
 	FInclusionLists BlackList;
+    FInclusionLists InheritanceBlackList;
 
 	TArray<FString> AllSourceClassHeaders;
 	TArray<FString> AllScriptHeaders;
 	struct ClassInfo
 	{
+        ///the header of the source header file beeing processed by the generator
 		FString SourceHeader;
 		FString ClassHeader;
 		bool CanExport;
@@ -39,8 +41,9 @@ class FMonoScriptCodeGenerator : public FScriptCodeGeneratorBase
 	FMonoTextBuilder CsText;
 
 	void GlueAllGeneratedFiles();
+    bool IsChildOfClassByName(UClass const *const Class, FName const name);
 
-	//导出结构体
+    //导出结构体
 	FString GetStructNameCPP(UStruct* Class);
 
 	/** Exports a wrapper function */
