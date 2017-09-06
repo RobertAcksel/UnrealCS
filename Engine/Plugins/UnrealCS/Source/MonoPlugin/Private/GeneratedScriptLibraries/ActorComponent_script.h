@@ -1,9 +1,16 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-class UActorComponent_
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/ActorComponent.h"
+#include "ActorComponent_script.generated.h"
+
+UCLASS()
+class MONOPLUGIN_API UActorComponent_ : public UActorComponent
 {
+	GENERATED_BODY()
 	static void RemoveTickPrerequisiteComponent(UActorComponent* _this,UActorComponent* PrerequisiteComponent)
 	{
 		_this->RemoveTickPrerequisiteComponent(PrerequisiteComponent);
@@ -121,7 +128,7 @@ class UActorComponent_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UActorComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UActorComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -147,7 +154,7 @@ class UActorComponent_
 		mono_add_internal_call("UnrealEngine.UActorComponent::GetOwner",(const void*)GetOwner);
 		mono_add_internal_call("UnrealEngine.UActorComponent::OnRep_IsActive",(const void*)OnRep_IsActive);
 		mono_add_internal_call("UnrealEngine.UActorComponent::IsBeingDestroyed",(const void*)IsBeingDestroyed);
-		mono_add_internal_call("UnrealEngine.UActorComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UActorComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

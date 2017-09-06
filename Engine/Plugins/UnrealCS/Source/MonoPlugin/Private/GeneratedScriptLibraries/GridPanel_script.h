@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UGridPanel_
@@ -10,12 +9,12 @@ class UGridPanel_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UGridPanel::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UGridPanel::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UGridPanel::AddChildToGrid",(const void*)AddChildToGrid);
-		mono_add_internal_call("UnrealEngine.UGridPanel::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UGridPanel::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

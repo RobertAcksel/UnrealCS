@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/UMG/Public/Components/WidgetComponent.h"
 #include "WidgetComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UWidgetComponent_ : public UWidgetComponent
 {
@@ -62,7 +66,7 @@ class MONOPLUGIN_API UWidgetComponent_ : public UWidgetComponent
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UWidgetComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidgetComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -76,7 +80,7 @@ class MONOPLUGIN_API UWidgetComponent_ : public UWidgetComponent
 		mono_add_internal_call("UnrealEngine.UWidgetComponent::GetMaterialInstance",(const void*)GetMaterialInstance);
 		mono_add_internal_call("UnrealEngine.UWidgetComponent::GetRenderTarget",(const void*)GetRenderTarget);
 		mono_add_internal_call("UnrealEngine.UWidgetComponent::GetUserWidgetObject",(const void*)GetUserWidgetObject);
-		mono_add_internal_call("UnrealEngine.UWidgetComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidgetComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

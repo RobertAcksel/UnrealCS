@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UThrobber_
@@ -24,7 +23,7 @@ class UThrobber_
 		_this->SetNumberOfPieces(InNumberOfPieces);
 		
 	}
-	static UClass* StaticClass(){return UThrobber::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UThrobber::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -32,7 +31,7 @@ class UThrobber_
 		mono_add_internal_call("UnrealEngine.UThrobber::SetAnimateVertically",(const void*)SetAnimateVertically);
 		mono_add_internal_call("UnrealEngine.UThrobber::SetAnimateHorizontally",(const void*)SetAnimateHorizontally);
 		mono_add_internal_call("UnrealEngine.UThrobber::SetNumberOfPieces",(const void*)SetNumberOfPieces);
-		mono_add_internal_call("UnrealEngine.UThrobber::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UThrobber::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

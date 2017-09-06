@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UScrollBox_
@@ -30,7 +29,7 @@ class UScrollBox_
 		_this->SetScrollOffset(NewScrollOffset);
 		
 	}
-	static UClass* StaticClass(){return UScrollBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UScrollBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -39,7 +38,7 @@ class UScrollBox_
 		mono_add_internal_call("UnrealEngine.UScrollBox::ScrollToStart",(const void*)ScrollToStart);
 		mono_add_internal_call("UnrealEngine.UScrollBox::GetScrollOffset",(const void*)GetScrollOffset);
 		mono_add_internal_call("UnrealEngine.UScrollBox::SetScrollOffset",(const void*)SetScrollOffset);
-		mono_add_internal_call("UnrealEngine.UScrollBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UScrollBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

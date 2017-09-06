@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h"
 #include "PlayerController_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API APlayerController_ : public APlayerController
 {
@@ -624,7 +628,7 @@ class MONOPLUGIN_API APlayerController_ : public APlayerController
 		_this->ServerSetSpectatorWaiting(bWaiting>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return APlayerController::StaticClass();}
+	static UClass* _StaticClassForProxy(){return APlayerController::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -743,7 +747,7 @@ class MONOPLUGIN_API APlayerController_ : public APlayerController
 		mono_add_internal_call("UnrealEngine.APlayerController::EnableCheats",(const void*)EnableCheats);
 		mono_add_internal_call("UnrealEngine.APlayerController::ClientSetSpectatorWaiting",(const void*)ClientSetSpectatorWaiting);
 		mono_add_internal_call("UnrealEngine.APlayerController::ServerSetSpectatorWaiting",(const void*)ServerSetSpectatorWaiting);
-		mono_add_internal_call("UnrealEngine.APlayerController::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.APlayerController::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

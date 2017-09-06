@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/PrimitiveComponent.h"
 #include "PrimitiveComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPrimitiveComponent_ : public UPrimitiveComponent
 {
@@ -490,7 +494,7 @@ class MONOPLUGIN_API UPrimitiveComponent_ : public UPrimitiveComponent
 		_this->IgnoreActorWhenMoving(Actor,bShouldIgnore>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UPrimitiveComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPrimitiveComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -578,7 +582,7 @@ class MONOPLUGIN_API UPrimitiveComponent_ : public UPrimitiveComponent
 		mono_add_internal_call("UnrealEngine.UPrimitiveComponent::ClearMoveIgnoreActors",(const void*)ClearMoveIgnoreActors);
 		mono_add_internal_call("UnrealEngine.UPrimitiveComponent::CopyArrayOfMoveIgnoreActors",(const void*)CopyArrayOfMoveIgnoreActors);
 		mono_add_internal_call("UnrealEngine.UPrimitiveComponent::IgnoreActorWhenMoving",(const void*)IgnoreActorWhenMoving);
-		mono_add_internal_call("UnrealEngine.UPrimitiveComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPrimitiveComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

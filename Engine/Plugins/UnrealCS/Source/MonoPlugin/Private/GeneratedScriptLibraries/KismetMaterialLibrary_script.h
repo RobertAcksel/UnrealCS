@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetMaterialLibrary_
@@ -36,7 +35,7 @@ class UKismetMaterialLibrary_
 		_this->SetScalarParameterValue(WorldContextObject,Collection,ParameterName_temp,ParameterValue);
 		
 	}
-	static UClass* StaticClass(){return UKismetMaterialLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetMaterialLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -45,7 +44,7 @@ class UKismetMaterialLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetMaterialLibrary::GetScalarParameterValue",(const void*)GetScalarParameterValue);
 		mono_add_internal_call("UnrealEngine.UKismetMaterialLibrary::SetVectorParameterValue",(const void*)SetVectorParameterValue);
 		mono_add_internal_call("UnrealEngine.UKismetMaterialLibrary::SetScalarParameterValue",(const void*)SetScalarParameterValue);
-		mono_add_internal_call("UnrealEngine.UKismetMaterialLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetMaterialLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UTextureRenderTarget_
 {
-	static UClass* StaticClass(){return UTextureRenderTarget::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTextureRenderTarget::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UTextureRenderTarget::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTextureRenderTarget::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

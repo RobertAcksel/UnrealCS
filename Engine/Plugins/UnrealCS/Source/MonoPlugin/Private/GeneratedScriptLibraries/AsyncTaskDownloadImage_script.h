@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UAsyncTaskDownloadImage_
@@ -11,12 +10,12 @@ class UAsyncTaskDownloadImage_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UAsyncTaskDownloadImage::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UAsyncTaskDownloadImage::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UAsyncTaskDownloadImage::DownloadImage",(const void*)DownloadImage);
-		mono_add_internal_call("UnrealEngine.UAsyncTaskDownloadImage::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UAsyncTaskDownloadImage::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

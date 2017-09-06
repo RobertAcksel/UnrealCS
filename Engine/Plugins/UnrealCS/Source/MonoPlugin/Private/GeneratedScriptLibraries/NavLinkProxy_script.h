@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/AI/Navigation/NavLinkProxy.h"
 #include "NavLinkProxy_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ANavLinkProxy_ : public ANavLinkProxy
 {
@@ -29,7 +33,7 @@ class MONOPLUGIN_API ANavLinkProxy_ : public ANavLinkProxy
 		_this->ResumePathFollowing(Agent);
 		
 	}
-	static UClass* StaticClass(){return ANavLinkProxy::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ANavLinkProxy::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -37,7 +41,7 @@ class MONOPLUGIN_API ANavLinkProxy_ : public ANavLinkProxy
 		mono_add_internal_call("UnrealEngine.ANavLinkProxy::SetSmartLinkEnabled",(const void*)SetSmartLinkEnabled);
 		mono_add_internal_call("UnrealEngine.ANavLinkProxy::IsSmartLinkEnabled",(const void*)IsSmartLinkEnabled);
 		mono_add_internal_call("UnrealEngine.ANavLinkProxy::ResumePathFollowing",(const void*)ResumePathFollowing);
-		mono_add_internal_call("UnrealEngine.ANavLinkProxy::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ANavLinkProxy::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

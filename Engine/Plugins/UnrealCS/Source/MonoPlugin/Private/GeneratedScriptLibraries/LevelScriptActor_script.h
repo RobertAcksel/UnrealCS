@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Engine/LevelScriptActor.h"
 #include "LevelScriptActor_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ALevelScriptActor_ : public ALevelScriptActor
 {
@@ -19,13 +23,13 @@ class MONOPLUGIN_API ALevelScriptActor_ : public ALevelScriptActor
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return ALevelScriptActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ALevelScriptActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.ALevelScriptActor::SetCinematicMode",(const void*)SetCinematicMode);
 		mono_add_internal_call("UnrealEngine.ALevelScriptActor::RemoteEvent",(const void*)RemoteEvent);
-		mono_add_internal_call("UnrealEngine.ALevelScriptActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ALevelScriptActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

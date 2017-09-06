@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/MovementComponent.h"
 #include "MovementComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UMovementComponent_ : public UMovementComponent
 {
@@ -113,7 +117,7 @@ class MONOPLUGIN_API UMovementComponent_ : public UMovementComponent
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UMovementComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMovementComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -136,7 +140,7 @@ class MONOPLUGIN_API UMovementComponent_ : public UMovementComponent
 		mono_add_internal_call("UnrealEngine.UMovementComponent::K2_GetModifiedMaxSpeed",(const void*)K2_GetModifiedMaxSpeed);
 		mono_add_internal_call("UnrealEngine.UMovementComponent::GetMaxSpeed",(const void*)GetMaxSpeed);
 		mono_add_internal_call("UnrealEngine.UMovementComponent::GetGravityZ",(const void*)GetGravityZ);
-		mono_add_internal_call("UnrealEngine.UMovementComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMovementComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetSystemLibrary_
@@ -960,7 +959,7 @@ class UKismetSystemLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UKismetSystemLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetSystemLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -1119,7 +1118,7 @@ class UKismetSystemLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::GetObjectName",(const void*)GetObjectName);
 		mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::IsValidClass",(const void*)IsValidClass);
 		mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::IsValid",(const void*)IsValid);
-		mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetSystemLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

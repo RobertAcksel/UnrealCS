@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/UMG/Public/Components/WidgetInteractionComponent.h"
 #include "WidgetInteractionComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UWidgetInteractionComponent_ : public UWidgetInteractionComponent
 {
@@ -88,7 +92,7 @@ class MONOPLUGIN_API UWidgetInteractionComponent_ : public UWidgetInteractionCom
 		_this->PressPointerKey(*Key);
 		
 	}
-	static UClass* StaticClass(){return UWidgetInteractionComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidgetInteractionComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -106,7 +110,7 @@ class MONOPLUGIN_API UWidgetInteractionComponent_ : public UWidgetInteractionCom
 		mono_add_internal_call("UnrealEngine.UWidgetInteractionComponent::PressKey",(const void*)PressKey);
 		mono_add_internal_call("UnrealEngine.UWidgetInteractionComponent::ReleasePointerKey",(const void*)ReleasePointerKey);
 		mono_add_internal_call("UnrealEngine.UWidgetInteractionComponent::PressPointerKey",(const void*)PressPointerKey);
-		mono_add_internal_call("UnrealEngine.UWidgetInteractionComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidgetInteractionComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

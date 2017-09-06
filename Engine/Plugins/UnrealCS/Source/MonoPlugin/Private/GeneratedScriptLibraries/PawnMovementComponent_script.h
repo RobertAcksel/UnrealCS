@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/PawnMovementComponent.h"
 #include "PawnMovementComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPawnMovementComponent_ : public UPawnMovementComponent
 {
@@ -42,7 +46,7 @@ class MONOPLUGIN_API UPawnMovementComponent_ : public UPawnMovementComponent
 		_this->AddInputVector(*WorldVector,bForce>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UPawnMovementComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPawnMovementComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -52,7 +56,7 @@ class MONOPLUGIN_API UPawnMovementComponent_ : public UPawnMovementComponent
 		mono_add_internal_call("UnrealEngine.UPawnMovementComponent::GetLastInputVector",(const void*)GetLastInputVector);
 		mono_add_internal_call("UnrealEngine.UPawnMovementComponent::GetPendingInputVector",(const void*)GetPendingInputVector);
 		mono_add_internal_call("UnrealEngine.UPawnMovementComponent::AddInputVector",(const void*)AddInputVector);
-		mono_add_internal_call("UnrealEngine.UPawnMovementComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPawnMovementComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

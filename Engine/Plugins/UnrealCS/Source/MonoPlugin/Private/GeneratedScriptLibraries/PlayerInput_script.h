@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UPlayerInput_
@@ -32,7 +31,7 @@ class UPlayerInput_
 		_this->SetMouseSensitivity(Sensitivity);
 		
 	}
-	static UClass* StaticClass(){return UPlayerInput::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPlayerInput::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -41,7 +40,7 @@ class UPlayerInput_
 		mono_add_internal_call("UnrealEngine.UPlayerInput::InvertAxisKey",(const void*)InvertAxisKey);
 		mono_add_internal_call("UnrealEngine.UPlayerInput::SetBind",(const void*)SetBind);
 		mono_add_internal_call("UnrealEngine.UPlayerInput::SetMouseSensitivity",(const void*)SetMouseSensitivity);
-		mono_add_internal_call("UnrealEngine.UPlayerInput::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPlayerInput::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

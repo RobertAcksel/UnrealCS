@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/PhysicsEngine/PhysicsConstraintComponent.h"
 #include "PhysicsConstraintComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPhysicsConstraintComponent_ : public UPhysicsConstraintComponent
 {
@@ -157,7 +161,7 @@ class MONOPLUGIN_API UPhysicsConstraintComponent_ : public UPhysicsConstraintCom
 		_this->SetConstrainedComponents(Component1,BoneName1_temp,Component2,BoneName2_temp);
 		
 	}
-	static UClass* StaticClass(){return UPhysicsConstraintComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPhysicsConstraintComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -190,7 +194,7 @@ class MONOPLUGIN_API UPhysicsConstraintComponent_ : public UPhysicsConstraintCom
 		mono_add_internal_call("UnrealEngine.UPhysicsConstraintComponent::SetLinearPositionDrive",(const void*)SetLinearPositionDrive);
 		mono_add_internal_call("UnrealEngine.UPhysicsConstraintComponent::BreakConstraint",(const void*)BreakConstraint);
 		mono_add_internal_call("UnrealEngine.UPhysicsConstraintComponent::SetConstrainedComponents",(const void*)SetConstrainedComponents);
-		mono_add_internal_call("UnrealEngine.UPhysicsConstraintComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPhysicsConstraintComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

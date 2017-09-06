@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMovieSceneSequencePlayer_
@@ -90,7 +89,7 @@ class UMovieSceneSequencePlayer_
 		_this->Play();
 		
 	}
-	static UClass* StaticClass(){return UMovieSceneSequencePlayer::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMovieSceneSequencePlayer::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -110,7 +109,7 @@ class UMovieSceneSequencePlayer_
 		mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::ChangePlaybackDirection",(const void*)ChangePlaybackDirection);
 		mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::PlayReverse",(const void*)PlayReverse);
 		mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::Play",(const void*)Play);
-		mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMovieSceneSequencePlayer::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

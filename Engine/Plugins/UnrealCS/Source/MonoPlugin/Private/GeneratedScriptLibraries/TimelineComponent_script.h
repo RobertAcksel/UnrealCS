@@ -1,12 +1,8 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "TimelineComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UTimelineComponent_ : public UTimelineComponent
+class UTimelineComponent_
 {
-	GENERATED_BODY()
 	static void SetLinearColorCurve(UTimelineComponent* _this,UCurveLinearColor* NewLinearColorCurve,MonoString* LinearColorTrackName)
 	{
 		FName LinearColorTrackName_temp=MonoStringToFName(LinearColorTrackName);
@@ -127,7 +123,7 @@ class MONOPLUGIN_API UTimelineComponent_ : public UTimelineComponent
 		_this->Play();
 		
 	}
-	static UClass* StaticClass(){return UTimelineComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTimelineComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -153,7 +149,7 @@ class MONOPLUGIN_API UTimelineComponent_ : public UTimelineComponent
 		mono_add_internal_call("UnrealEngine.UTimelineComponent::Reverse",(const void*)Reverse);
 		mono_add_internal_call("UnrealEngine.UTimelineComponent::PlayFromStart",(const void*)PlayFromStart);
 		mono_add_internal_call("UnrealEngine.UTimelineComponent::Play",(const void*)Play);
-		mono_add_internal_call("UnrealEngine.UTimelineComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTimelineComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

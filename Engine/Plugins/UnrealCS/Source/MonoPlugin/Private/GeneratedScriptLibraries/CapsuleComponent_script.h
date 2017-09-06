@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/CapsuleComponent.h"
 #include "CapsuleComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UCapsuleComponent_ : public UCapsuleComponent
 {
@@ -84,7 +88,7 @@ class MONOPLUGIN_API UCapsuleComponent_ : public UCapsuleComponent
 		_this->SetCapsuleSize(InRadius,InHalfHeight,bUpdateOverlaps>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UCapsuleComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCapsuleComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -102,7 +106,7 @@ class MONOPLUGIN_API UCapsuleComponent_ : public UCapsuleComponent
 		mono_add_internal_call("UnrealEngine.UCapsuleComponent::SetCapsuleHalfHeight",(const void*)SetCapsuleHalfHeight);
 		mono_add_internal_call("UnrealEngine.UCapsuleComponent::SetCapsuleRadius",(const void*)SetCapsuleRadius);
 		mono_add_internal_call("UnrealEngine.UCapsuleComponent::SetCapsuleSize",(const void*)SetCapsuleSize);
-		mono_add_internal_call("UnrealEngine.UCapsuleComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCapsuleComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

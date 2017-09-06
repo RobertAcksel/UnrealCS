@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWindowTitleBarAreaSlot_
@@ -19,14 +18,14 @@ class UWindowTitleBarAreaSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UWindowTitleBarAreaSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWindowTitleBarAreaSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UWindowTitleBarAreaSlot::SetVerticalAlignment",(const void*)SetVerticalAlignment);
 		mono_add_internal_call("UnrealEngine.UWindowTitleBarAreaSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UWindowTitleBarAreaSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UWindowTitleBarAreaSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWindowTitleBarAreaSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

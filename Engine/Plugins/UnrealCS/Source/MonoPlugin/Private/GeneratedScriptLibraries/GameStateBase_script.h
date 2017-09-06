@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/GameStateBase.h"
 #include "GameStateBase_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API AGameStateBase_ : public AGameStateBase
 {
@@ -37,7 +41,7 @@ class MONOPLUGIN_API AGameStateBase_ : public AGameStateBase
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return AGameStateBase::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AGameStateBase::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -46,7 +50,7 @@ class MONOPLUGIN_API AGameStateBase_ : public AGameStateBase
 		mono_add_internal_call("UnrealEngine.AGameStateBase::HasMatchStarted",(const void*)HasMatchStarted);
 		mono_add_internal_call("UnrealEngine.AGameStateBase::HasBegunPlay",(const void*)HasBegunPlay);
 		mono_add_internal_call("UnrealEngine.AGameStateBase::GetServerWorldTimeSeconds",(const void*)GetServerWorldTimeSeconds);
-		mono_add_internal_call("UnrealEngine.AGameStateBase::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AGameStateBase::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

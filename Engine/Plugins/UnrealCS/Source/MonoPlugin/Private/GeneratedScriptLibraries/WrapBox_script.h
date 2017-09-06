@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWrapBox_
@@ -15,13 +14,13 @@ class UWrapBox_
 		_this->SetInnerSlotPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UWrapBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWrapBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UWrapBox::AddChildWrapBox",(const void*)AddChildWrapBox);
 		mono_add_internal_call("UnrealEngine.UWrapBox::SetInnerSlotPadding",(const void*)SetInnerSlotPadding);
-		mono_add_internal_call("UnrealEngine.UWrapBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWrapBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

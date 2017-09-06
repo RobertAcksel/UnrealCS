@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UPlatformInterfaceWebResponse_
@@ -26,14 +25,14 @@ class UPlatformInterfaceWebResponse_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UPlatformInterfaceWebResponse::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPlatformInterfaceWebResponse::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UPlatformInterfaceWebResponse::GetHeaderValue",(const void*)GetHeaderValue);
 		mono_add_internal_call("UnrealEngine.UPlatformInterfaceWebResponse::GetHeader",(const void*)GetHeader);
 		mono_add_internal_call("UnrealEngine.UPlatformInterfaceWebResponse::GetNumHeaders",(const void*)GetNumHeaders);
-		mono_add_internal_call("UnrealEngine.UPlatformInterfaceWebResponse::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPlatformInterfaceWebResponse::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

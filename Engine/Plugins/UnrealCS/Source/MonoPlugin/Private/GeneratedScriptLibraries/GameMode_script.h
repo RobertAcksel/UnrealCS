@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/GameMode.h"
 #include "GameMode_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API AGameMode_ : public AGameMode
 {
@@ -56,7 +60,7 @@ class MONOPLUGIN_API AGameMode_ : public AGameMode
 		return FNameToMonoString(___ret);
 		
 	}
-	static UClass* StaticClass(){return AGameMode::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AGameMode::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -69,7 +73,7 @@ class MONOPLUGIN_API AGameMode_ : public AGameMode
 		mono_add_internal_call("UnrealEngine.AGameMode::HasMatchEnded",(const void*)HasMatchEnded);
 		mono_add_internal_call("UnrealEngine.AGameMode::IsMatchInProgress",(const void*)IsMatchInProgress);
 		mono_add_internal_call("UnrealEngine.AGameMode::GetMatchState",(const void*)GetMatchState);
-		mono_add_internal_call("UnrealEngine.AGameMode::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AGameMode::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

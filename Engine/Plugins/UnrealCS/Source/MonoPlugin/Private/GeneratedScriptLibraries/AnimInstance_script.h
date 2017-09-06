@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UAnimInstance_
@@ -314,7 +313,7 @@ class UAnimInstance_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UAnimInstance::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UAnimInstance::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -369,7 +368,7 @@ class UAnimInstance_
 		mono_add_internal_call("UnrealEngine.UAnimInstance::SnapshotPose",(const void*)SnapshotPose);
 		mono_add_internal_call("UnrealEngine.UAnimInstance::SavePoseSnapshot",(const void*)SavePoseSnapshot);
 		mono_add_internal_call("UnrealEngine.UAnimInstance::TryGetPawnOwner",(const void*)TryGetPawnOwner);
-		mono_add_internal_call("UnrealEngine.UAnimInstance::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UAnimInstance::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

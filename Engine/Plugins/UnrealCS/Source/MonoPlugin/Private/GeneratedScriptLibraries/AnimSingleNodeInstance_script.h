@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UAnimSingleNodeInstance_
@@ -66,7 +65,7 @@ class UAnimSingleNodeInstance_
 		_this->SetLooping(bIsLooping>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UAnimSingleNodeInstance::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UAnimSingleNodeInstance::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -82,7 +81,7 @@ class UAnimSingleNodeInstance_
 		mono_add_internal_call("UnrealEngine.UAnimSingleNodeInstance::SetReverse",(const void*)SetReverse);
 		mono_add_internal_call("UnrealEngine.UAnimSingleNodeInstance::SetPlayRate",(const void*)SetPlayRate);
 		mono_add_internal_call("UnrealEngine.UAnimSingleNodeInstance::SetLooping",(const void*)SetLooping);
-		mono_add_internal_call("UnrealEngine.UAnimSingleNodeInstance::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UAnimSingleNodeInstance::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

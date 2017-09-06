@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SceneComponent.h"
 #include "SceneComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USceneComponent_ : public USceneComponent
 {
@@ -280,7 +284,7 @@ class MONOPLUGIN_API USceneComponent_ : public USceneComponent
 		_this->K2_SetRelativeLocation(*NewLocation,bSweep>0?true:false,*SweepHitResult,bTeleport>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return USceneComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USceneComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -332,7 +336,7 @@ class MONOPLUGIN_API USceneComponent_ : public USceneComponent
 		mono_add_internal_call("UnrealEngine.USceneComponent::K2_SetRelativeTransform",(const void*)K2_SetRelativeTransform);
 		mono_add_internal_call("UnrealEngine.USceneComponent::K2_SetRelativeRotation",(const void*)K2_SetRelativeRotation);
 		mono_add_internal_call("UnrealEngine.USceneComponent::K2_SetRelativeLocation",(const void*)K2_SetRelativeLocation);
-		mono_add_internal_call("UnrealEngine.USceneComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USceneComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

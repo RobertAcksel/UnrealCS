@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Matinee/MatineeActor.h"
 #include "MatineeActor_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API AMatineeActor_ : public AMatineeActor
 {
@@ -42,7 +46,7 @@ class MONOPLUGIN_API AMatineeActor_ : public AMatineeActor
 		_this->Play();
 		
 	}
-	static UClass* StaticClass(){return AMatineeActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AMatineeActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -53,7 +57,7 @@ class MONOPLUGIN_API AMatineeActor_ : public AMatineeActor
 		mono_add_internal_call("UnrealEngine.AMatineeActor::Reverse",(const void*)Reverse);
 		mono_add_internal_call("UnrealEngine.AMatineeActor::Stop",(const void*)Stop);
 		mono_add_internal_call("UnrealEngine.AMatineeActor::Play",(const void*)Play);
-		mono_add_internal_call("UnrealEngine.AMatineeActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AMatineeActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

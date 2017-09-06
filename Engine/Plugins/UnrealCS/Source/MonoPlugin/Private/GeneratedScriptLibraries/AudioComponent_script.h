@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/AudioComponent.h"
 #include "AudioComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UAudioComponent_ : public UAudioComponent
 {
@@ -103,7 +107,7 @@ class MONOPLUGIN_API UAudioComponent_ : public UAudioComponent
 		_this->SetSound(NewSound);
 		
 	}
-	static UClass* StaticClass(){return UAudioComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UAudioComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -125,7 +129,7 @@ class MONOPLUGIN_API UAudioComponent_ : public UAudioComponent
 		mono_add_internal_call("UnrealEngine.UAudioComponent::FadeOut",(const void*)FadeOut);
 		mono_add_internal_call("UnrealEngine.UAudioComponent::FadeIn",(const void*)FadeIn);
 		mono_add_internal_call("UnrealEngine.UAudioComponent::SetSound",(const void*)SetSound);
-		mono_add_internal_call("UnrealEngine.UAudioComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UAudioComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

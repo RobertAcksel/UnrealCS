@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USkeletalMesh_
@@ -54,7 +53,7 @@ class USkeletalMesh_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return USkeletalMesh::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USkeletalMesh::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -66,7 +65,7 @@ class USkeletalMesh_
 		mono_add_internal_call("UnrealEngine.USkeletalMesh::GetNodeMappingContainer",(const void*)GetNodeMappingContainer);
 		mono_add_internal_call("UnrealEngine.USkeletalMesh::GetImportedBounds",(const void*)GetImportedBounds);
 		mono_add_internal_call("UnrealEngine.USkeletalMesh::GetBounds",(const void*)GetBounds);
-		mono_add_internal_call("UnrealEngine.USkeletalMesh::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USkeletalMesh::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

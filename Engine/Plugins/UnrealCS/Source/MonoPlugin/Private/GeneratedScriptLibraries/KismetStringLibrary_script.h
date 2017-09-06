@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetStringLibrary_
@@ -481,7 +480,7 @@ class UKismetStringLibrary_
 		return FStringToMonoString(___ret);
 		
 	}
-	static UClass* StaticClass(){return UKismetStringLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetStringLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -548,7 +547,7 @@ class UKismetStringLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetStringLibrary::Conv_ByteToString",(const void*)Conv_ByteToString);
 		mono_add_internal_call("UnrealEngine.UKismetStringLibrary::Conv_IntToString",(const void*)Conv_IntToString);
 		mono_add_internal_call("UnrealEngine.UKismetStringLibrary::Conv_FloatToString",(const void*)Conv_FloatToString);
-		mono_add_internal_call("UnrealEngine.UKismetStringLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetStringLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

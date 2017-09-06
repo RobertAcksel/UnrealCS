@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USlider_
@@ -40,7 +39,7 @@ class USlider_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return USlider::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USlider::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -51,7 +50,7 @@ class USlider_
 		mono_add_internal_call("UnrealEngine.USlider::SetIndentHandle",(const void*)SetIndentHandle);
 		mono_add_internal_call("UnrealEngine.USlider::SetValue",(const void*)SetValue);
 		mono_add_internal_call("UnrealEngine.USlider::GetValue",(const void*)GetValue);
-		mono_add_internal_call("UnrealEngine.USlider::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USlider::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

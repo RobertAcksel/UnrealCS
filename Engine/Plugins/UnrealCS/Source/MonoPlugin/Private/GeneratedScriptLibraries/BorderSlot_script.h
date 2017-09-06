@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UBorderSlot_
@@ -19,14 +18,14 @@ class UBorderSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UBorderSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBorderSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UBorderSlot::SetVerticalAlignment",(const void*)SetVerticalAlignment);
 		mono_add_internal_call("UnrealEngine.UBorderSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UBorderSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UBorderSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBorderSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

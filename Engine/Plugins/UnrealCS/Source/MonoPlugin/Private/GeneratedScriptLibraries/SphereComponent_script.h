@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SphereComponent.h"
 #include "SphereComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USphereComponent_ : public USphereComponent
 {
@@ -30,7 +34,7 @@ class MONOPLUGIN_API USphereComponent_ : public USphereComponent
 		_this->SetSphereRadius(InSphereRadius,bUpdateOverlaps>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return USphereComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USphereComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -38,7 +42,7 @@ class MONOPLUGIN_API USphereComponent_ : public USphereComponent
 		mono_add_internal_call("UnrealEngine.USphereComponent::GetUnscaledSphereRadius",(const void*)GetUnscaledSphereRadius);
 		mono_add_internal_call("UnrealEngine.USphereComponent::GetScaledSphereRadius",(const void*)GetScaledSphereRadius);
 		mono_add_internal_call("UnrealEngine.USphereComponent::SetSphereRadius",(const void*)SetSphereRadius);
-		mono_add_internal_call("UnrealEngine.USphereComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USphereComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

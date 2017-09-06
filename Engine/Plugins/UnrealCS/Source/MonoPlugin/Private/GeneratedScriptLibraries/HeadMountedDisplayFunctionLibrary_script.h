@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UHeadMountedDisplayFunctionLibrary_
@@ -99,7 +98,7 @@ class UHeadMountedDisplayFunctionLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UHeadMountedDisplayFunctionLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UHeadMountedDisplayFunctionLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -119,7 +118,7 @@ class UHeadMountedDisplayFunctionLibrary_
 		mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::EnableHMD",(const void*)EnableHMD);
 		mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayConnected",(const void*)IsHeadMountedDisplayConnected);
 		mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled",(const void*)IsHeadMountedDisplayEnabled);
-		mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UHeadMountedDisplayFunctionLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

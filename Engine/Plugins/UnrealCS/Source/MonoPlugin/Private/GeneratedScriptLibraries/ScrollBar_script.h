@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UScrollBar_
@@ -9,12 +8,12 @@ class UScrollBar_
 		_this->SetState(InOffsetFraction,InThumbSizeFraction);
 		
 	}
-	static UClass* StaticClass(){return UScrollBar::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UScrollBar::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UScrollBar::SetState",(const void*)SetState);
-		mono_add_internal_call("UnrealEngine.UScrollBar::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UScrollBar::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

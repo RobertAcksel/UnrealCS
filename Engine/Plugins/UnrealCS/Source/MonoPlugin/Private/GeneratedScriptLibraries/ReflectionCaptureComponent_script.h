@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "ReflectionCaptureComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UReflectionCaptureComponent_ : public UReflectionCaptureComponent
+class UReflectionCaptureComponent_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return UReflectionCaptureComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UReflectionCaptureComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UReflectionCaptureComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UReflectionCaptureComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

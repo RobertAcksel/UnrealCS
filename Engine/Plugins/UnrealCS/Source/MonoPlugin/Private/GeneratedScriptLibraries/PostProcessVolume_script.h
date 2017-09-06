@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "PostProcessVolume_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API APostProcessVolume_ : public APostProcessVolume
+class APostProcessVolume_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return APostProcessVolume::StaticClass();}
+	static UClass* _StaticClassForProxy(){return APostProcessVolume::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.APostProcessVolume::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.APostProcessVolume::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

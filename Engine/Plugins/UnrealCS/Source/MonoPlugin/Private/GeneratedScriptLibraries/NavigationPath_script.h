@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UNavigationPath_
@@ -50,7 +49,7 @@ class UNavigationPath_
 		return FStringToMonoString(___ret);
 		
 	}
-	static UClass* StaticClass(){return UNavigationPath::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UNavigationPath::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -62,7 +61,7 @@ class UNavigationPath_
 		mono_add_internal_call("UnrealEngine.UNavigationPath::EnableRecalculationOnInvalidation",(const void*)EnableRecalculationOnInvalidation);
 		mono_add_internal_call("UnrealEngine.UNavigationPath::EnableDebugDrawing",(const void*)EnableDebugDrawing);
 		mono_add_internal_call("UnrealEngine.UNavigationPath::GetDebugString",(const void*)GetDebugString);
-		mono_add_internal_call("UnrealEngine.UNavigationPath::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UNavigationPath::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

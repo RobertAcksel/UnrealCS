@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UHorizontalBox_
@@ -10,12 +9,12 @@ class UHorizontalBox_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UHorizontalBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UHorizontalBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UHorizontalBox::AddChildToHorizontalBox",(const void*)AddChildToHorizontalBox);
-		mono_add_internal_call("UnrealEngine.UHorizontalBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UHorizontalBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

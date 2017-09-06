@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCanvasPanel_
@@ -10,12 +9,12 @@ class UCanvasPanel_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UCanvasPanel::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCanvasPanel::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCanvasPanel::AddChildToCanvas",(const void*)AddChildToCanvas);
-		mono_add_internal_call("UnrealEngine.UCanvasPanel::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCanvasPanel::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

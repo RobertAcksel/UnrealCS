@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/LightComponentBase.h"
 #include "LightComponentBase_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ULightComponentBase_ : public ULightComponentBase
 {
@@ -23,14 +27,14 @@ class MONOPLUGIN_API ULightComponentBase_ : public ULightComponentBase
 		_this->SetCastShadows(bNewValue>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return ULightComponentBase::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ULightComponentBase::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.ULightComponentBase::SetCastVolumetricShadow",(const void*)SetCastVolumetricShadow);
 		mono_add_internal_call("UnrealEngine.ULightComponentBase::GetLightColor",(const void*)GetLightColor);
 		mono_add_internal_call("UnrealEngine.ULightComponentBase::SetCastShadows",(const void*)SetCastShadows);
-		mono_add_internal_call("UnrealEngine.ULightComponentBase::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ULightComponentBase::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

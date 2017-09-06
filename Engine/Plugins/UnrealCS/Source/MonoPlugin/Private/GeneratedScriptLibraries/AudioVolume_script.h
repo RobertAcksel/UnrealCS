@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Sound/AudioVolume.h"
 #include "AudioVolume_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API AAudioVolume_ : public AAudioVolume
 {
@@ -27,7 +31,7 @@ class MONOPLUGIN_API AAudioVolume_ : public AAudioVolume
 		_this->SetPriority(NewPriority);
 		
 	}
-	static UClass* StaticClass(){return AAudioVolume::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AAudioVolume::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -35,7 +39,7 @@ class MONOPLUGIN_API AAudioVolume_ : public AAudioVolume
 		mono_add_internal_call("UnrealEngine.AAudioVolume::SetReverbSettings",(const void*)SetReverbSettings);
 		mono_add_internal_call("UnrealEngine.AAudioVolume::SetEnabled",(const void*)SetEnabled);
 		mono_add_internal_call("UnrealEngine.AAudioVolume::SetPriority",(const void*)SetPriority);
-		mono_add_internal_call("UnrealEngine.AAudioVolume::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AAudioVolume::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

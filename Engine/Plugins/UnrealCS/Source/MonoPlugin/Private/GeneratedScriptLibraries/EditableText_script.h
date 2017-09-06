@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UEditableText_
@@ -32,7 +31,7 @@ class UEditableText_
 		return FStringToMonoString(___ret.ToString());
 		
 	}
-	static UClass* StaticClass(){return UEditableText::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UEditableText::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -41,7 +40,7 @@ class UEditableText_
 		mono_add_internal_call("UnrealEngine.UEditableText::SetIsPassword",(const void*)SetIsPassword);
 		mono_add_internal_call("UnrealEngine.UEditableText::SetText",(const void*)SetText);
 		mono_add_internal_call("UnrealEngine.UEditableText::GetText",(const void*)GetText);
-		mono_add_internal_call("UnrealEngine.UEditableText::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UEditableText::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

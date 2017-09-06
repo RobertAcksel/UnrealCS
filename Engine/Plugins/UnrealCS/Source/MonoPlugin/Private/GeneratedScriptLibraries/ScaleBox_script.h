@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UScaleBox_
@@ -24,7 +23,7 @@ class UScaleBox_
 		_this->SetStretch((TEnumAsByte<EStretch::Type>)InStretch);
 		
 	}
-	static UClass* StaticClass(){return UScaleBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UScaleBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -32,7 +31,7 @@ class UScaleBox_
 		mono_add_internal_call("UnrealEngine.UScaleBox::SetUserSpecifiedScale",(const void*)SetUserSpecifiedScale);
 		mono_add_internal_call("UnrealEngine.UScaleBox::SetStretchDirection",(const void*)SetStretchDirection);
 		mono_add_internal_call("UnrealEngine.UScaleBox::SetStretch",(const void*)SetStretch);
-		mono_add_internal_call("UnrealEngine.UScaleBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UScaleBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

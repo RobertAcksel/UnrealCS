@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UGameplayStatics_
@@ -617,7 +616,7 @@ class UGameplayStatics_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UGameplayStatics::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UGameplayStatics::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -721,7 +720,7 @@ class UGameplayStatics_
 		mono_add_internal_call("UnrealEngine.UGameplayStatics::GetActorArrayAverageLocation",(const void*)GetActorArrayAverageLocation);
 		mono_add_internal_call("UnrealEngine.UGameplayStatics::FinishSpawningActor",(const void*)FinishSpawningActor);
 		mono_add_internal_call("UnrealEngine.UGameplayStatics::SpawnObject",(const void*)SpawnObject);
-		mono_add_internal_call("UnrealEngine.UGameplayStatics::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UGameplayStatics::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

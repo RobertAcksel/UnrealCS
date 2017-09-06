@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetNodeHelperLibrary_
@@ -79,7 +78,7 @@ class UKismetNodeHelperLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UKismetNodeHelperLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetNodeHelperLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -96,7 +95,7 @@ class UKismetNodeHelperLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetNodeHelperLibrary::ClearBit",(const void*)ClearBit);
 		mono_add_internal_call("UnrealEngine.UKismetNodeHelperLibrary::MarkBit",(const void*)MarkBit);
 		mono_add_internal_call("UnrealEngine.UKismetNodeHelperLibrary::BitIsMarked",(const void*)BitIsMarked);
-		mono_add_internal_call("UnrealEngine.UKismetNodeHelperLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetNodeHelperLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

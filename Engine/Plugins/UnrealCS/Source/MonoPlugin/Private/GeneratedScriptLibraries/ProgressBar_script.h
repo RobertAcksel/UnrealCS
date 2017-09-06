@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UProgressBar_
@@ -19,14 +18,14 @@ class UProgressBar_
 		_this->SetPercent(InPercent);
 		
 	}
-	static UClass* StaticClass(){return UProgressBar::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UProgressBar::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UProgressBar::SetIsMarquee",(const void*)SetIsMarquee);
 		mono_add_internal_call("UnrealEngine.UProgressBar::SetFillColorAndOpacity",(const void*)SetFillColorAndOpacity);
 		mono_add_internal_call("UnrealEngine.UProgressBar::SetPercent",(const void*)SetPercent);
-		mono_add_internal_call("UnrealEngine.UProgressBar::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UProgressBar::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

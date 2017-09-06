@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UGameViewportClient_
@@ -19,14 +18,14 @@ class UGameViewportClient_
 		_this->SSSwapControllers();
 		
 	}
-	static UClass* StaticClass(){return UGameViewportClient::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UGameViewportClient::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UGameViewportClient::SetConsoleTarget",(const void*)SetConsoleTarget);
 		mono_add_internal_call("UnrealEngine.UGameViewportClient::ShowTitleSafeArea",(const void*)ShowTitleSafeArea);
 		mono_add_internal_call("UnrealEngine.UGameViewportClient::SSSwapControllers",(const void*)SSSwapControllers);
-		mono_add_internal_call("UnrealEngine.UGameViewportClient::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UGameViewportClient::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

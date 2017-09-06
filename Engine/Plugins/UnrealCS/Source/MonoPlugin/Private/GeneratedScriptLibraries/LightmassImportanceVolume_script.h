@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "LightmassImportanceVolume_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ALightmassImportanceVolume_ : public ALightmassImportanceVolume
+class ALightmassImportanceVolume_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ALightmassImportanceVolume::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ALightmassImportanceVolume::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ALightmassImportanceVolume::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ALightmassImportanceVolume::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

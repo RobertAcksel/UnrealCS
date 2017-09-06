@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UColorBinding_
@@ -16,13 +15,13 @@ class UColorBinding_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UColorBinding::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UColorBinding::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UColorBinding::GetLinearValue",(const void*)GetLinearValue);
 		mono_add_internal_call("UnrealEngine.UColorBinding::GetSlateValue",(const void*)GetSlateValue);
-		mono_add_internal_call("UnrealEngine.UColorBinding::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UColorBinding::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

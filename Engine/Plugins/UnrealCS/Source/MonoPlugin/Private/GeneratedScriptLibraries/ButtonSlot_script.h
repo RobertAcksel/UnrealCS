@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UButtonSlot_
@@ -19,14 +18,14 @@ class UButtonSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UButtonSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UButtonSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UButtonSlot::SetVerticalAlignment",(const void*)SetVerticalAlignment);
 		mono_add_internal_call("UnrealEngine.UButtonSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UButtonSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UButtonSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UButtonSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

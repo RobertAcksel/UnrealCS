@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMaterialExpressionFontSampleParameter_
 {
-	static UClass* StaticClass(){return UMaterialExpressionFontSampleParameter::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMaterialExpressionFontSampleParameter::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UMaterialExpressionFontSampleParameter::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMaterialExpressionFontSampleParameter::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

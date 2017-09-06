@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerState.h"
 #include "PlayerState_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API APlayerState_ : public APlayerState
 {
@@ -27,7 +31,7 @@ class MONOPLUGIN_API APlayerState_ : public APlayerState
 		_this->OnRep_Score();
 		
 	}
-	static UClass* StaticClass(){return APlayerState::StaticClass();}
+	static UClass* _StaticClassForProxy(){return APlayerState::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -35,7 +39,7 @@ class MONOPLUGIN_API APlayerState_ : public APlayerState
 		mono_add_internal_call("UnrealEngine.APlayerState::OnRep_bIsInactive",(const void*)OnRep_bIsInactive);
 		mono_add_internal_call("UnrealEngine.APlayerState::OnRep_PlayerName",(const void*)OnRep_PlayerName);
 		mono_add_internal_call("UnrealEngine.APlayerState::OnRep_Score",(const void*)OnRep_Score);
-		mono_add_internal_call("UnrealEngine.APlayerState::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.APlayerState::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

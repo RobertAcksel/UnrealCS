@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SkinnedMeshComponent.h"
 #include "SkinnedMeshComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USkinnedMeshComponent_ : public USkinnedMeshComponent
 {
@@ -140,7 +144,7 @@ class MONOPLUGIN_API USkinnedMeshComponent_ : public USkinnedMeshComponent
 		_this->SetPhysicsAsset(NewPhysicsAsset,bForceReInit>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return USkinnedMeshComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USkinnedMeshComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -167,7 +171,7 @@ class MONOPLUGIN_API USkinnedMeshComponent_ : public USkinnedMeshComponent
 		mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetForcedLOD",(const void*)SetForcedLOD);
 		mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetMinLOD",(const void*)SetMinLOD);
 		mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::SetPhysicsAsset",(const void*)SetPhysicsAsset);
-		mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USkinnedMeshComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

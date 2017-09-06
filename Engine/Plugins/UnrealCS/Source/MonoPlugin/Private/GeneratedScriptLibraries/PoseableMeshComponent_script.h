@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/PoseableMeshComponent.h"
 #include "PoseableMeshComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPoseableMeshComponent_ : public UPoseableMeshComponent
 {
@@ -70,7 +74,7 @@ class MONOPLUGIN_API UPoseableMeshComponent_ : public UPoseableMeshComponent
 		_this->SetBoneTransformByName(BoneName_temp,*InTransform,(TEnumAsByte<EBoneSpaces::Type>)BoneSpace);
 		
 	}
-	static UClass* StaticClass(){return UPoseableMeshComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPoseableMeshComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -84,7 +88,7 @@ class MONOPLUGIN_API UPoseableMeshComponent_ : public UPoseableMeshComponent
 		mono_add_internal_call("UnrealEngine.UPoseableMeshComponent::SetBoneRotationByName",(const void*)SetBoneRotationByName);
 		mono_add_internal_call("UnrealEngine.UPoseableMeshComponent::SetBoneLocationByName",(const void*)SetBoneLocationByName);
 		mono_add_internal_call("UnrealEngine.UPoseableMeshComponent::SetBoneTransformByName",(const void*)SetBoneTransformByName);
-		mono_add_internal_call("UnrealEngine.UPoseableMeshComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPoseableMeshComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

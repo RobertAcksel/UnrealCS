@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UBlueprintPlatformLibrary_
@@ -42,7 +41,7 @@ class UBlueprintPlatformLibrary_
 		_this->ClearAllLocalNotifications();
 		
 	}
-	static UClass* StaticClass(){return UBlueprintPlatformLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBlueprintPlatformLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -51,7 +50,7 @@ class UBlueprintPlatformLibrary_
 		mono_add_internal_call("UnrealEngine.UBlueprintPlatformLibrary::ScheduleLocalNotificationFromNow",(const void*)ScheduleLocalNotificationFromNow);
 		mono_add_internal_call("UnrealEngine.UBlueprintPlatformLibrary::ScheduleLocalNotificationAtTime",(const void*)ScheduleLocalNotificationAtTime);
 		mono_add_internal_call("UnrealEngine.UBlueprintPlatformLibrary::ClearAllLocalNotifications",(const void*)ClearAllLocalNotifications);
-		mono_add_internal_call("UnrealEngine.UBlueprintPlatformLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBlueprintPlatformLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

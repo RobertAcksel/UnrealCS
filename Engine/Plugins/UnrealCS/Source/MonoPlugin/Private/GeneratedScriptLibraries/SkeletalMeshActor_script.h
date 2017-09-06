@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Animation/SkeletalMeshActor.h"
 #include "SkeletalMeshActor_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ASkeletalMeshActor_ : public ASkeletalMeshActor
 {
@@ -27,7 +31,7 @@ class MONOPLUGIN_API ASkeletalMeshActor_ : public ASkeletalMeshActor
 		_this->OnRep_ReplicatedMesh();
 		
 	}
-	static UClass* StaticClass(){return ASkeletalMeshActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ASkeletalMeshActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -35,7 +39,7 @@ class MONOPLUGIN_API ASkeletalMeshActor_ : public ASkeletalMeshActor
 		mono_add_internal_call("UnrealEngine.ASkeletalMeshActor::OnRep_ReplicatedMaterial0",(const void*)OnRep_ReplicatedMaterial0);
 		mono_add_internal_call("UnrealEngine.ASkeletalMeshActor::OnRep_ReplicatedPhysAsset",(const void*)OnRep_ReplicatedPhysAsset);
 		mono_add_internal_call("UnrealEngine.ASkeletalMeshActor::OnRep_ReplicatedMesh",(const void*)OnRep_ReplicatedMesh);
-		mono_add_internal_call("UnrealEngine.ASkeletalMeshActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ASkeletalMeshActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

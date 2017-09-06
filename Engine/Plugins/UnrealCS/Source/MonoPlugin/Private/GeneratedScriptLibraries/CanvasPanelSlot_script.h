@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCanvasPanelSlot_
@@ -102,7 +101,7 @@ class UCanvasPanelSlot_
 		_this->SetLayout(*InLayoutData);
 		
 	}
-	static UClass* StaticClass(){return UCanvasPanelSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCanvasPanelSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -124,7 +123,7 @@ class UCanvasPanelSlot_
 		mono_add_internal_call("UnrealEngine.UCanvasPanelSlot::SetPosition",(const void*)SetPosition);
 		mono_add_internal_call("UnrealEngine.UCanvasPanelSlot::GetLayout",(const void*)GetLayout);
 		mono_add_internal_call("UnrealEngine.UCanvasPanelSlot::SetLayout",(const void*)SetLayout);
-		mono_add_internal_call("UnrealEngine.UCanvasPanelSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCanvasPanelSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

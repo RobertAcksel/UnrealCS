@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/PointLightComponent.h"
 #include "PointLightComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPointLightComponent_ : public UPointLightComponent
 {
@@ -27,7 +31,7 @@ class MONOPLUGIN_API UPointLightComponent_ : public UPointLightComponent
 		_this->SetAttenuationRadius(NewRadius);
 		
 	}
-	static UClass* StaticClass(){return UPointLightComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPointLightComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -35,7 +39,7 @@ class MONOPLUGIN_API UPointLightComponent_ : public UPointLightComponent
 		mono_add_internal_call("UnrealEngine.UPointLightComponent::SetSourceRadius",(const void*)SetSourceRadius);
 		mono_add_internal_call("UnrealEngine.UPointLightComponent::SetLightFalloffExponent",(const void*)SetLightFalloffExponent);
 		mono_add_internal_call("UnrealEngine.UPointLightComponent::SetAttenuationRadius",(const void*)SetAttenuationRadius);
-		mono_add_internal_call("UnrealEngine.UPointLightComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPointLightComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

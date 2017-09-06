@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCanvasRenderTarget2D_
@@ -20,14 +19,14 @@ class UCanvasRenderTarget2D_
 		_this->UpdateResource();
 		
 	}
-	static UClass* StaticClass(){return UCanvasRenderTarget2D::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCanvasRenderTarget2D::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCanvasRenderTarget2D::GetSize",(const void*)GetSize);
 		mono_add_internal_call("UnrealEngine.UCanvasRenderTarget2D::CreateCanvasRenderTarget2D",(const void*)CreateCanvasRenderTarget2D);
 		mono_add_internal_call("UnrealEngine.UCanvasRenderTarget2D::UpdateResource",(const void*)UpdateResource);
-		mono_add_internal_call("UnrealEngine.UCanvasRenderTarget2D::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCanvasRenderTarget2D::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

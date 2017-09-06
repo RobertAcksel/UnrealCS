@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWorld_
 {
-	static UClass* StaticClass(){return UWorld::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWorld::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UWorld::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWorld::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

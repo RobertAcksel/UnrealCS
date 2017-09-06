@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "TextRenderActor_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ATextRenderActor_ : public ATextRenderActor
+class ATextRenderActor_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ATextRenderActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ATextRenderActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ATextRenderActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ATextRenderActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

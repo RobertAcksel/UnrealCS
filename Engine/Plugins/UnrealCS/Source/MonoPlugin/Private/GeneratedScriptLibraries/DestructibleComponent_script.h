@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/DestructibleComponent.h"
 #include "DestructibleComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UDestructibleComponent_ : public UDestructibleComponent
 {
@@ -28,7 +32,7 @@ class MONOPLUGIN_API UDestructibleComponent_ : public UDestructibleComponent
 		_this->ApplyDamage(DamageAmount,*HitLocation,*ImpulseDir,ImpulseStrength);
 		
 	}
-	static UClass* StaticClass(){return UDestructibleComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UDestructibleComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -36,7 +40,7 @@ class MONOPLUGIN_API UDestructibleComponent_ : public UDestructibleComponent
 		mono_add_internal_call("UnrealEngine.UDestructibleComponent::SetDestructibleMesh",(const void*)SetDestructibleMesh);
 		mono_add_internal_call("UnrealEngine.UDestructibleComponent::ApplyRadiusDamage",(const void*)ApplyRadiusDamage);
 		mono_add_internal_call("UnrealEngine.UDestructibleComponent::ApplyDamage",(const void*)ApplyDamage);
-		mono_add_internal_call("UnrealEngine.UDestructibleComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UDestructibleComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

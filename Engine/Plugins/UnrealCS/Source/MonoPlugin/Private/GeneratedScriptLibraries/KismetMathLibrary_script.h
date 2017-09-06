@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetMathLibrary_
@@ -2228,7 +2227,7 @@ class UKismetMathLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UKismetMathLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetMathLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -2605,7 +2604,7 @@ class UKismetMathLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetMathLibrary::RandomBoolWithWeightFromStream",(const void*)RandomBoolWithWeightFromStream);
 		mono_add_internal_call("UnrealEngine.UKismetMathLibrary::RandomBoolWithWeight",(const void*)RandomBoolWithWeight);
 		mono_add_internal_call("UnrealEngine.UKismetMathLibrary::RandomBool",(const void*)RandomBool);
-		mono_add_internal_call("UnrealEngine.UKismetMathLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetMathLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

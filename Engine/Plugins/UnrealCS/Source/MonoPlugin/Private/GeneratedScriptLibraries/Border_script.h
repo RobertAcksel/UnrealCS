@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UBorder_
@@ -60,7 +59,7 @@ class UBorder_
 		_this->SetContentColorAndOpacity(*InContentColorAndOpacity);
 		
 	}
-	static UClass* StaticClass(){return UBorder::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBorder::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -75,7 +74,7 @@ class UBorder_
 		mono_add_internal_call("UnrealEngine.UBorder::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UBorder::SetPadding",(const void*)SetPadding);
 		mono_add_internal_call("UnrealEngine.UBorder::SetContentColorAndOpacity",(const void*)SetContentColorAndOpacity);
-		mono_add_internal_call("UnrealEngine.UBorder::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBorder::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

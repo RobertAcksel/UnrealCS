@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/DirectionalLightComponent.h"
 #include "DirectionalLightComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UDirectionalLightComponent_ : public UDirectionalLightComponent
 {
@@ -52,7 +56,7 @@ class MONOPLUGIN_API UDirectionalLightComponent_ : public UDirectionalLightCompo
 		_this->SetDynamicShadowDistanceMovableLight(NewValue);
 		
 	}
-	static UClass* StaticClass(){return UDirectionalLightComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UDirectionalLightComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -65,7 +69,7 @@ class MONOPLUGIN_API UDirectionalLightComponent_ : public UDirectionalLightCompo
 		mono_add_internal_call("UnrealEngine.UDirectionalLightComponent::SetDynamicShadowCascades",(const void*)SetDynamicShadowCascades);
 		mono_add_internal_call("UnrealEngine.UDirectionalLightComponent::SetDynamicShadowDistanceStationaryLight",(const void*)SetDynamicShadowDistanceStationaryLight);
 		mono_add_internal_call("UnrealEngine.UDirectionalLightComponent::SetDynamicShadowDistanceMovableLight",(const void*)SetDynamicShadowDistanceMovableLight);
-		mono_add_internal_call("UnrealEngine.UDirectionalLightComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UDirectionalLightComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

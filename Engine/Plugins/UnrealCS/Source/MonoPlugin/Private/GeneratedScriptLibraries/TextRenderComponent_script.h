@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/TextRenderComponent.h"
 #include "TextRenderComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UTextRenderComponent_ : public UTextRenderComponent
 {
@@ -75,7 +79,7 @@ class MONOPLUGIN_API UTextRenderComponent_ : public UTextRenderComponent
 		_this->K2_SetText(Value_temp);
 		
 	}
-	static UClass* StaticClass(){return UTextRenderComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTextRenderComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -92,7 +96,7 @@ class MONOPLUGIN_API UTextRenderComponent_ : public UTextRenderComponent
 		mono_add_internal_call("UnrealEngine.UTextRenderComponent::SetFont",(const void*)SetFont);
 		mono_add_internal_call("UnrealEngine.UTextRenderComponent::SetTextMaterial",(const void*)SetTextMaterial);
 		mono_add_internal_call("UnrealEngine.UTextRenderComponent::K2_SetText",(const void*)K2_SetText);
-		mono_add_internal_call("UnrealEngine.UTextRenderComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTextRenderComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

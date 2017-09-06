@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SplineComponent.h"
 #include "SplineComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USplineComponent_ : public USplineComponent
 {
@@ -383,7 +387,7 @@ class MONOPLUGIN_API USplineComponent_ : public USplineComponent
 		_this->UpdateSpline();
 		
 	}
-	static UClass* StaticClass(){return USplineComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USplineComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -453,7 +457,7 @@ class MONOPLUGIN_API USplineComponent_ : public USplineComponent
 		mono_add_internal_call("UnrealEngine.USplineComponent::SetSelectedSplineSegmentColor",(const void*)SetSelectedSplineSegmentColor);
 		mono_add_internal_call("UnrealEngine.USplineComponent::SetUnselectedSplineSegmentColor",(const void*)SetUnselectedSplineSegmentColor);
 		mono_add_internal_call("UnrealEngine.USplineComponent::UpdateSpline",(const void*)UpdateSpline);
-		mono_add_internal_call("UnrealEngine.USplineComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USplineComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

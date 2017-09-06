@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWidgetBlueprintLibrary_
@@ -262,7 +261,7 @@ class UWidgetBlueprintLibrary_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UWidgetBlueprintLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidgetBlueprintLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -310,7 +309,7 @@ class UWidgetBlueprintLibrary_
 		mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::SetInputMode_GameOnly",(const void*)SetInputMode_GameOnly);
 		mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::CreateDragDropOperation",(const void*)CreateDragDropOperation);
 		mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::Create",(const void*)Create);
-		mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidgetBlueprintLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

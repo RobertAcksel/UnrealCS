@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Engine/DebugCameraController.h"
 #include "DebugCameraController_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ADebugCameraController_ : public ADebugCameraController
 {
@@ -28,7 +32,7 @@ class MONOPLUGIN_API ADebugCameraController_ : public ADebugCameraController
 		_this->ShowDebugSelectedInfo();
 		
 	}
-	static UClass* StaticClass(){return ADebugCameraController::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ADebugCameraController::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -36,7 +40,7 @@ class MONOPLUGIN_API ADebugCameraController_ : public ADebugCameraController
 		mono_add_internal_call("UnrealEngine.ADebugCameraController::GetSelectedActor",(const void*)GetSelectedActor);
 		mono_add_internal_call("UnrealEngine.ADebugCameraController::ToggleDisplay",(const void*)ToggleDisplay);
 		mono_add_internal_call("UnrealEngine.ADebugCameraController::ShowDebugSelectedInfo",(const void*)ShowDebugSelectedInfo);
-		mono_add_internal_call("UnrealEngine.ADebugCameraController::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ADebugCameraController::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

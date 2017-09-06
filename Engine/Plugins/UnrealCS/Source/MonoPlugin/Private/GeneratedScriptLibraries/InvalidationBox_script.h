@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UInvalidationBox_
@@ -20,14 +19,14 @@ class UInvalidationBox_
 		_this->InvalidateCache();
 		
 	}
-	static UClass* StaticClass(){return UInvalidationBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UInvalidationBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UInvalidationBox::SetCanCache",(const void*)SetCanCache);
 		mono_add_internal_call("UnrealEngine.UInvalidationBox::GetCanCache",(const void*)GetCanCache);
 		mono_add_internal_call("UnrealEngine.UInvalidationBox::InvalidateCache",(const void*)InvalidateCache);
-		mono_add_internal_call("UnrealEngine.UInvalidationBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UInvalidationBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UEditableTextBox_
@@ -44,7 +43,7 @@ class UEditableTextBox_
 		return FStringToMonoString(___ret.ToString());
 		
 	}
-	static UClass* StaticClass(){return UEditableTextBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UEditableTextBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -55,7 +54,7 @@ class UEditableTextBox_
 		mono_add_internal_call("UnrealEngine.UEditableTextBox::SetHintText",(const void*)SetHintText);
 		mono_add_internal_call("UnrealEngine.UEditableTextBox::SetText",(const void*)SetText);
 		mono_add_internal_call("UnrealEngine.UEditableTextBox::GetText",(const void*)GetText);
-		mono_add_internal_call("UnrealEngine.UEditableTextBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UEditableTextBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

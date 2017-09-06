@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetGuidLibrary_
@@ -47,7 +46,7 @@ class UKismetGuidLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UKismetGuidLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetGuidLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -58,7 +57,7 @@ class UKismetGuidLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetGuidLibrary::IsValid_Guid",(const void*)IsValid_Guid);
 		mono_add_internal_call("UnrealEngine.UKismetGuidLibrary::NotEqual_GuidGuid",(const void*)NotEqual_GuidGuid);
 		mono_add_internal_call("UnrealEngine.UKismetGuidLibrary::EqualEqual_GuidGuid",(const void*)EqualEqual_GuidGuid);
-		mono_add_internal_call("UnrealEngine.UKismetGuidLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetGuidLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

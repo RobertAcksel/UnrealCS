@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/Pawn.h"
 #include "Pawn_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API APawn_ : public APawn
 {
@@ -135,7 +139,7 @@ class MONOPLUGIN_API APawn_ : public APawn
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return APawn::StaticClass();}
+	static UClass* _StaticClassForProxy(){return APawn::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -162,7 +166,7 @@ class MONOPLUGIN_API APawn_ : public APawn
 		mono_add_internal_call("UnrealEngine.APawn::GetMovementBaseActor",(const void*)GetMovementBaseActor);
 		mono_add_internal_call("UnrealEngine.APawn::PawnMakeNoise",(const void*)PawnMakeNoise);
 		mono_add_internal_call("UnrealEngine.APawn::GetMovementComponent",(const void*)GetMovementComponent);
-		mono_add_internal_call("UnrealEngine.APawn::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.APawn::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

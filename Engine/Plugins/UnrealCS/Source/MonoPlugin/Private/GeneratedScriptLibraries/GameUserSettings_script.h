@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UGameUserSettings_
@@ -334,7 +333,7 @@ class UGameUserSettings_
 		_this->ApplySettings(bCheckForCommandLineOverrides>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UGameUserSettings::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UGameUserSettings::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -398,7 +397,7 @@ class UGameUserSettings_
 		mono_add_internal_call("UnrealEngine.UGameUserSettings::ApplyResolutionSettings",(const void*)ApplyResolutionSettings);
 		mono_add_internal_call("UnrealEngine.UGameUserSettings::ApplyNonResolutionSettings",(const void*)ApplyNonResolutionSettings);
 		mono_add_internal_call("UnrealEngine.UGameUserSettings::ApplySettings",(const void*)ApplySettings);
-		mono_add_internal_call("UnrealEngine.UGameUserSettings::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UGameUserSettings::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

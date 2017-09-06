@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/MaterialBillboardComponent.h"
 #include "MaterialBillboardComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UMaterialBillboardComponent_ : public UMaterialBillboardComponent
 {
@@ -17,13 +21,13 @@ class MONOPLUGIN_API UMaterialBillboardComponent_ : public UMaterialBillboardCom
 		_this->SetElements(MonoArrayToTArray<FMaterialSpriteElement>(NewElements));
 		
 	}
-	static UClass* StaticClass(){return UMaterialBillboardComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMaterialBillboardComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UMaterialBillboardComponent::AddElement",(const void*)AddElement);
 		mono_add_internal_call("UnrealEngine.UMaterialBillboardComponent::SetElements",(const void*)SetElements);
-		mono_add_internal_call("UnrealEngine.UMaterialBillboardComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMaterialBillboardComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

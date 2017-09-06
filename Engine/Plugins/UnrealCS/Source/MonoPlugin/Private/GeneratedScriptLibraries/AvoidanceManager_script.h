@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UAvoidanceManager_
@@ -40,7 +39,7 @@ class UAvoidanceManager_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UAvoidanceManager::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UAvoidanceManager::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -50,7 +49,7 @@ class UAvoidanceManager_
 		mono_add_internal_call("UnrealEngine.UAvoidanceManager::RegisterMovementComponent",(const void*)RegisterMovementComponent);
 		mono_add_internal_call("UnrealEngine.UAvoidanceManager::GetNewAvoidanceUID",(const void*)GetNewAvoidanceUID);
 		mono_add_internal_call("UnrealEngine.UAvoidanceManager::GetObjectCount",(const void*)GetObjectCount);
-		mono_add_internal_call("UnrealEngine.UAvoidanceManager::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UAvoidanceManager::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

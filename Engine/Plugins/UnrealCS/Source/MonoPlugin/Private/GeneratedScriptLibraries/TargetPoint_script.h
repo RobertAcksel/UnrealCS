@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "TargetPoint_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ATargetPoint_ : public ATargetPoint
+class ATargetPoint_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ATargetPoint::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ATargetPoint::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ATargetPoint::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ATargetPoint::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

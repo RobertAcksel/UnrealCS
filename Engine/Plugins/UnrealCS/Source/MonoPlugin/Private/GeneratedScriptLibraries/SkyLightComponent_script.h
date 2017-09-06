@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SkyLightComponent.h"
 #include "SkyLightComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USkyLightComponent_ : public USkyLightComponent
 {
@@ -62,7 +66,7 @@ class MONOPLUGIN_API USkyLightComponent_ : public USkyLightComponent
 		_this->SetIntensity(NewIntensity);
 		
 	}
-	static UClass* StaticClass(){return USkyLightComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USkyLightComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -77,7 +81,7 @@ class MONOPLUGIN_API USkyLightComponent_ : public USkyLightComponent
 		mono_add_internal_call("UnrealEngine.USkyLightComponent::SetVolumetricScatteringIntensity",(const void*)SetVolumetricScatteringIntensity);
 		mono_add_internal_call("UnrealEngine.USkyLightComponent::SetIndirectLightingIntensity",(const void*)SetIndirectLightingIntensity);
 		mono_add_internal_call("UnrealEngine.USkyLightComponent::SetIntensity",(const void*)SetIntensity);
-		mono_add_internal_call("UnrealEngine.USkyLightComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USkyLightComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

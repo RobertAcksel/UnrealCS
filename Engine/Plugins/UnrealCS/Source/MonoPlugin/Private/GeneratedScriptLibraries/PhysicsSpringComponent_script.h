@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/PhysicsEngine/PhysicsSpringComponent.h"
 #include "PhysicsSpringComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPhysicsSpringComponent_ : public UPhysicsSpringComponent
 {
@@ -31,7 +35,7 @@ class MONOPLUGIN_API UPhysicsSpringComponent_ : public UPhysicsSpringComponent
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UPhysicsSpringComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPhysicsSpringComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -39,7 +43,7 @@ class MONOPLUGIN_API UPhysicsSpringComponent_ : public UPhysicsSpringComponent
 		mono_add_internal_call("UnrealEngine.UPhysicsSpringComponent::GetSpringCurrentEndPoint",(const void*)GetSpringCurrentEndPoint);
 		mono_add_internal_call("UnrealEngine.UPhysicsSpringComponent::GetSpringRestingPoint",(const void*)GetSpringRestingPoint);
 		mono_add_internal_call("UnrealEngine.UPhysicsSpringComponent::GetNormalizedCompressionScalar",(const void*)GetNormalizedCompressionScalar);
-		mono_add_internal_call("UnrealEngine.UPhysicsSpringComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPhysicsSpringComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

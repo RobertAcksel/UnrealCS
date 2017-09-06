@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UStaticMesh_
@@ -28,7 +27,7 @@ class UStaticMesh_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UStaticMesh::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UStaticMesh::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -36,7 +35,7 @@ class UStaticMesh_
 		mono_add_internal_call("UnrealEngine.UStaticMesh::GetBoundingBox",(const void*)GetBoundingBox);
 		mono_add_internal_call("UnrealEngine.UStaticMesh::GetBounds",(const void*)GetBounds);
 		mono_add_internal_call("UnrealEngine.UStaticMesh::GetNumLODs",(const void*)GetNumLODs);
-		mono_add_internal_call("UnrealEngine.UStaticMesh::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UStaticMesh::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

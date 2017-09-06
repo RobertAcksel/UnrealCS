@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UBackgroundBlurSlot_
@@ -19,14 +18,14 @@ class UBackgroundBlurSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UBackgroundBlurSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBackgroundBlurSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UBackgroundBlurSlot::SetVerticalAlignment",(const void*)SetVerticalAlignment);
 		mono_add_internal_call("UnrealEngine.UBackgroundBlurSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UBackgroundBlurSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UBackgroundBlurSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBackgroundBlurSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

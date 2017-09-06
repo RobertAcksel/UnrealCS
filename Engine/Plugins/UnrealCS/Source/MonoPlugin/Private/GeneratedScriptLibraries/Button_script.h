@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UButton_
@@ -25,7 +24,7 @@ class UButton_
 		_this->SetStyle(*InStyle);
 		
 	}
-	static UClass* StaticClass(){return UButton::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UButton::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -33,7 +32,7 @@ class UButton_
 		mono_add_internal_call("UnrealEngine.UButton::SetBackgroundColor",(const void*)SetBackgroundColor);
 		mono_add_internal_call("UnrealEngine.UButton::SetColorAndOpacity",(const void*)SetColorAndOpacity);
 		mono_add_internal_call("UnrealEngine.UButton::SetStyle",(const void*)SetStyle);
-		mono_add_internal_call("UnrealEngine.UButton::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UButton::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

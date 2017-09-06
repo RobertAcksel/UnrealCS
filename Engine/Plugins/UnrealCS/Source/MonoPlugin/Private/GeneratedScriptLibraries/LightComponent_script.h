@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/LightComponent.h"
 #include "LightComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ULightComponent_ : public ULightComponent
 {
@@ -87,7 +91,7 @@ class MONOPLUGIN_API ULightComponent_ : public ULightComponent
 		_this->SetIntensity(NewIntensity);
 		
 	}
-	static UClass* StaticClass(){return ULightComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ULightComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -107,7 +111,7 @@ class MONOPLUGIN_API ULightComponent_ : public ULightComponent
 		mono_add_internal_call("UnrealEngine.ULightComponent::SetVolumetricScatteringIntensity",(const void*)SetVolumetricScatteringIntensity);
 		mono_add_internal_call("UnrealEngine.ULightComponent::SetIndirectLightingIntensity",(const void*)SetIndirectLightingIntensity);
 		mono_add_internal_call("UnrealEngine.ULightComponent::SetIntensity",(const void*)SetIntensity);
-		mono_add_internal_call("UnrealEngine.ULightComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ULightComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

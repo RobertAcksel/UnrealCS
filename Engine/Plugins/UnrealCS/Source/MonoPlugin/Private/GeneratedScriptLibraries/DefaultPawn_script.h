@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/DefaultPawn.h"
 #include "DefaultPawn_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ADefaultPawn_ : public ADefaultPawn
 {
@@ -32,7 +36,7 @@ class MONOPLUGIN_API ADefaultPawn_ : public ADefaultPawn
 		_this->MoveForward(Val);
 		
 	}
-	static UClass* StaticClass(){return ADefaultPawn::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ADefaultPawn::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -41,7 +45,7 @@ class MONOPLUGIN_API ADefaultPawn_ : public ADefaultPawn
 		mono_add_internal_call("UnrealEngine.ADefaultPawn::MoveUp_World",(const void*)MoveUp_World);
 		mono_add_internal_call("UnrealEngine.ADefaultPawn::MoveRight",(const void*)MoveRight);
 		mono_add_internal_call("UnrealEngine.ADefaultPawn::MoveForward",(const void*)MoveForward);
-		mono_add_internal_call("UnrealEngine.ADefaultPawn::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ADefaultPawn::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

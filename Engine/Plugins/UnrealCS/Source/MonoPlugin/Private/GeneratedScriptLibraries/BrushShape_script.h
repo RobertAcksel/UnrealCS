@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "BrushShape_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ABrushShape_ : public ABrushShape
+class ABrushShape_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ABrushShape::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ABrushShape::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ABrushShape::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ABrushShape::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

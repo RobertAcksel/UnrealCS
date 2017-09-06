@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/ForceFeedbackComponent.h"
 #include "ForceFeedbackComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UForceFeedbackComponent_ : public UForceFeedbackComponent
 {
@@ -38,7 +42,7 @@ class MONOPLUGIN_API UForceFeedbackComponent_ : public UForceFeedbackComponent
 		_this->SetForceFeedbackEffect(NewForceFeedbackEffect);
 		
 	}
-	static UClass* StaticClass(){return UForceFeedbackComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UForceFeedbackComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -48,7 +52,7 @@ class MONOPLUGIN_API UForceFeedbackComponent_ : public UForceFeedbackComponent
 		mono_add_internal_call("UnrealEngine.UForceFeedbackComponent::Stop",(const void*)Stop);
 		mono_add_internal_call("UnrealEngine.UForceFeedbackComponent::Play",(const void*)Play);
 		mono_add_internal_call("UnrealEngine.UForceFeedbackComponent::SetForceFeedbackEffect",(const void*)SetForceFeedbackEffect);
-		mono_add_internal_call("UnrealEngine.UForceFeedbackComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UForceFeedbackComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

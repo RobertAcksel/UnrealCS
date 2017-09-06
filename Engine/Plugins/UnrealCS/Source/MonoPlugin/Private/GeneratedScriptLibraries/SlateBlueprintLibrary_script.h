@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USlateBlueprintLibrary_
@@ -59,7 +58,7 @@ class USlateBlueprintLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return USlateBlueprintLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USlateBlueprintLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -73,7 +72,7 @@ class USlateBlueprintLibrary_
 		mono_add_internal_call("UnrealEngine.USlateBlueprintLibrary::LocalToAbsolute",(const void*)LocalToAbsolute);
 		mono_add_internal_call("UnrealEngine.USlateBlueprintLibrary::AbsoluteToLocal",(const void*)AbsoluteToLocal);
 		mono_add_internal_call("UnrealEngine.USlateBlueprintLibrary::IsUnderLocation",(const void*)IsUnderLocation);
-		mono_add_internal_call("UnrealEngine.USlateBlueprintLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USlateBlueprintLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

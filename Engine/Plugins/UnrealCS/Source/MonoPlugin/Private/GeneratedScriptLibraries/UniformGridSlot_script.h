@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UUniformGridSlot_
@@ -24,7 +23,7 @@ class UUniformGridSlot_
 		_this->SetRow(InRow);
 		
 	}
-	static UClass* StaticClass(){return UUniformGridSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UUniformGridSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -32,7 +31,7 @@ class UUniformGridSlot_
 		mono_add_internal_call("UnrealEngine.UUniformGridSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UUniformGridSlot::SetColumn",(const void*)SetColumn);
 		mono_add_internal_call("UnrealEngine.UUniformGridSlot::SetRow",(const void*)SetRow);
-		mono_add_internal_call("UnrealEngine.UUniformGridSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UUniformGridSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

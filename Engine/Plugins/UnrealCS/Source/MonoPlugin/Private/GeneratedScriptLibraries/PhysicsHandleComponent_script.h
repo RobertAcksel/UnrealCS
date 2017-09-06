@@ -1,12 +1,8 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "PhysicsHandleComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UPhysicsHandleComponent_ : public UPhysicsHandleComponent
+class UPhysicsHandleComponent_
 {
-	GENERATED_BODY()
 	static void SetInterpolationSpeed(UPhysicsHandleComponent* _this,float NewInterpolationSpeed)
 	{
 		_this->SetInterpolationSpeed(NewInterpolationSpeed);
@@ -75,7 +71,7 @@ class MONOPLUGIN_API UPhysicsHandleComponent_ : public UPhysicsHandleComponent
 		_this->GrabComponentAtLocation(Component,InBoneName_temp,*GrabLocation);
 		
 	}
-	static UClass* StaticClass(){return UPhysicsHandleComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPhysicsHandleComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -92,7 +88,7 @@ class MONOPLUGIN_API UPhysicsHandleComponent_ : public UPhysicsHandleComponent
 		mono_add_internal_call("UnrealEngine.UPhysicsHandleComponent::ReleaseComponent",(const void*)ReleaseComponent);
 		mono_add_internal_call("UnrealEngine.UPhysicsHandleComponent::GrabComponentAtLocationWithRotation",(const void*)GrabComponentAtLocationWithRotation);
 		mono_add_internal_call("UnrealEngine.UPhysicsHandleComponent::GrabComponentAtLocation",(const void*)GrabComponentAtLocation);
-		mono_add_internal_call("UnrealEngine.UPhysicsHandleComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPhysicsHandleComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

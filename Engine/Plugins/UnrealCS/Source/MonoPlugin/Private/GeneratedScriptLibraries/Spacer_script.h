@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USpacer_
@@ -9,12 +8,12 @@ class USpacer_
 		_this->SetSize(*InSize);
 		
 	}
-	static UClass* StaticClass(){return USpacer::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USpacer::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.USpacer::SetSize",(const void*)SetSize);
-		mono_add_internal_call("UnrealEngine.USpacer::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USpacer::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

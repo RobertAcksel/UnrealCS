@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UUniformGridPanel_
@@ -25,7 +24,7 @@ class UUniformGridPanel_
 		_this->SetSlotPadding(*InSlotPadding);
 		
 	}
-	static UClass* StaticClass(){return UUniformGridPanel::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UUniformGridPanel::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -33,7 +32,7 @@ class UUniformGridPanel_
 		mono_add_internal_call("UnrealEngine.UUniformGridPanel::SetMinDesiredSlotHeight",(const void*)SetMinDesiredSlotHeight);
 		mono_add_internal_call("UnrealEngine.UUniformGridPanel::SetMinDesiredSlotWidth",(const void*)SetMinDesiredSlotWidth);
 		mono_add_internal_call("UnrealEngine.UUniformGridPanel::SetSlotPadding",(const void*)SetSlotPadding);
-		mono_add_internal_call("UnrealEngine.UUniformGridPanel::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UUniformGridPanel::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UStereoLayerFunctionLibrary_
@@ -24,7 +23,7 @@ class UStereoLayerFunctionLibrary_
 		_this->SetSplashScreen(Texture,*Scale,*Offset,bShowLoadingMovie>0?true:false,bShowOnSet>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UStereoLayerFunctionLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UStereoLayerFunctionLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -32,7 +31,7 @@ class UStereoLayerFunctionLibrary_
 		mono_add_internal_call("UnrealEngine.UStereoLayerFunctionLibrary::HideSplashScreen",(const void*)HideSplashScreen);
 		mono_add_internal_call("UnrealEngine.UStereoLayerFunctionLibrary::ShowSplashScreen",(const void*)ShowSplashScreen);
 		mono_add_internal_call("UnrealEngine.UStereoLayerFunctionLibrary::SetSplashScreen",(const void*)SetSplashScreen);
-		mono_add_internal_call("UnrealEngine.UStereoLayerFunctionLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UStereoLayerFunctionLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UTileView_
@@ -19,14 +18,14 @@ class UTileView_
 		_this->SetItemWidth(Width);
 		
 	}
-	static UClass* StaticClass(){return UTileView::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTileView::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UTileView::RequestListRefresh",(const void*)RequestListRefresh);
 		mono_add_internal_call("UnrealEngine.UTileView::SetItemHeight",(const void*)SetItemHeight);
 		mono_add_internal_call("UnrealEngine.UTileView::SetItemWidth",(const void*)SetItemWidth);
-		mono_add_internal_call("UnrealEngine.UTileView::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTileView::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

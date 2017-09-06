@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCurveLinearColor_
@@ -10,12 +9,12 @@ class UCurveLinearColor_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UCurveLinearColor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCurveLinearColor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCurveLinearColor::GetLinearColorValue",(const void*)GetLinearColorValue);
-		mono_add_internal_call("UnrealEngine.UCurveLinearColor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCurveLinearColor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

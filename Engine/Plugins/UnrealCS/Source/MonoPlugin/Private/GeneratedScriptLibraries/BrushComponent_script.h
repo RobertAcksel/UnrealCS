@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "BrushComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UBrushComponent_ : public UBrushComponent
+class UBrushComponent_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return UBrushComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBrushComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UBrushComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBrushComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

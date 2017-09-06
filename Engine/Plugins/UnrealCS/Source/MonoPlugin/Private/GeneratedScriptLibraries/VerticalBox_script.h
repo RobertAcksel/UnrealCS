@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UVerticalBox_
@@ -10,12 +9,12 @@ class UVerticalBox_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UVerticalBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UVerticalBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UVerticalBox::AddChildToVerticalBox",(const void*)AddChildToVerticalBox);
-		mono_add_internal_call("UnrealEngine.UVerticalBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UVerticalBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

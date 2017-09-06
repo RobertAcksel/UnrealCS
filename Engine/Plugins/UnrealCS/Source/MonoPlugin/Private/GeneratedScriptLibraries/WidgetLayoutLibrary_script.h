@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWidgetLayoutLibrary_
@@ -75,7 +74,7 @@ class UWidgetLayoutLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UWidgetLayoutLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidgetLayoutLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -91,7 +90,7 @@ class UWidgetLayoutLibrary_
 		mono_add_internal_call("UnrealEngine.UWidgetLayoutLibrary::GetViewportSize",(const void*)GetViewportSize);
 		mono_add_internal_call("UnrealEngine.UWidgetLayoutLibrary::GetViewportScale",(const void*)GetViewportScale);
 		mono_add_internal_call("UnrealEngine.UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition",(const void*)ProjectWorldLocationToWidgetPosition);
-		mono_add_internal_call("UnrealEngine.UWidgetLayoutLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidgetLayoutLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

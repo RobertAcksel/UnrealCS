@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/HUD.h"
 #include "HUD_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API AHUD_ : public AHUD
 {
@@ -116,7 +120,7 @@ class MONOPLUGIN_API AHUD_ : public AHUD
 		_this->ShowHUD();
 		
 	}
-	static UClass* StaticClass(){return AHUD::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AHUD::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -140,7 +144,7 @@ class MONOPLUGIN_API AHUD_ : public AHUD
 		mono_add_internal_call("UnrealEngine.AHUD::ShowDebugToggleSubCategory",(const void*)ShowDebugToggleSubCategory);
 		mono_add_internal_call("UnrealEngine.AHUD::ShowDebug",(const void*)ShowDebug);
 		mono_add_internal_call("UnrealEngine.AHUD::ShowHUD",(const void*)ShowHUD);
-		mono_add_internal_call("UnrealEngine.AHUD::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AHUD::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

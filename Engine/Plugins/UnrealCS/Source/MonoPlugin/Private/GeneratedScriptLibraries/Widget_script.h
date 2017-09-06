@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWidget_
@@ -168,7 +167,7 @@ class UWidget_
 		_this->SetRenderTransform(*InTransform);
 		
 	}
-	static UClass* StaticClass(){return UWidget::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidget::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -202,7 +201,7 @@ class UWidget_
 		mono_add_internal_call("UnrealEngine.UWidget::SetRenderShear",(const void*)SetRenderShear);
 		mono_add_internal_call("UnrealEngine.UWidget::SetRenderScale",(const void*)SetRenderScale);
 		mono_add_internal_call("UnrealEngine.UWidget::SetRenderTransform",(const void*)SetRenderTransform);
-		mono_add_internal_call("UnrealEngine.UWidget::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidget::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

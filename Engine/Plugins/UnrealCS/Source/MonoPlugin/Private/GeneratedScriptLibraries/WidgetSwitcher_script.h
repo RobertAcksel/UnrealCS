@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWidgetSwitcher_
@@ -32,7 +31,7 @@ class UWidgetSwitcher_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UWidgetSwitcher::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidgetSwitcher::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -41,7 +40,7 @@ class UWidgetSwitcher_
 		mono_add_internal_call("UnrealEngine.UWidgetSwitcher::SetActiveWidgetIndex",(const void*)SetActiveWidgetIndex);
 		mono_add_internal_call("UnrealEngine.UWidgetSwitcher::GetActiveWidgetIndex",(const void*)GetActiveWidgetIndex);
 		mono_add_internal_call("UnrealEngine.UWidgetSwitcher::GetNumWidgets",(const void*)GetNumWidgets);
-		mono_add_internal_call("UnrealEngine.UWidgetSwitcher::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidgetSwitcher::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

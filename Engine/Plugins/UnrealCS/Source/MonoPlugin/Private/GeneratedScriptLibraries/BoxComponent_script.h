@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/BoxComponent.h"
 #include "BoxComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UBoxComponent_ : public UBoxComponent
 {
@@ -24,14 +28,14 @@ class MONOPLUGIN_API UBoxComponent_ : public UBoxComponent
 		_this->SetBoxExtent(*InBoxExtent,bUpdateOverlaps>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UBoxComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBoxComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UBoxComponent::GetUnscaledBoxExtent",(const void*)GetUnscaledBoxExtent);
 		mono_add_internal_call("UnrealEngine.UBoxComponent::GetScaledBoxExtent",(const void*)GetScaledBoxExtent);
 		mono_add_internal_call("UnrealEngine.UBoxComponent::SetBoxExtent",(const void*)SetBoxExtent);
-		mono_add_internal_call("UnrealEngine.UBoxComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBoxComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

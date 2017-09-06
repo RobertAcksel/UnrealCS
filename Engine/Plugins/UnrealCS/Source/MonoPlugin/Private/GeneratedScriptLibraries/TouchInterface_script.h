@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UTouchInterface_
 {
-	static UClass* StaticClass(){return UTouchInterface::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTouchInterface::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UTouchInterface::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTouchInterface::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

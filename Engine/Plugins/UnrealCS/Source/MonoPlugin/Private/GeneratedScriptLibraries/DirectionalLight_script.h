@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "DirectionalLight_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ADirectionalLight_ : public ADirectionalLight
+class ADirectionalLight_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ADirectionalLight::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ADirectionalLight::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ADirectionalLight::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ADirectionalLight::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

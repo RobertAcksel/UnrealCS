@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UScaleBoxSlot_
@@ -19,14 +18,14 @@ class UScaleBoxSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UScaleBoxSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UScaleBoxSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UScaleBoxSlot::SetVerticalAlignment",(const void*)SetVerticalAlignment);
 		mono_add_internal_call("UnrealEngine.UScaleBoxSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UScaleBoxSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UScaleBoxSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UScaleBoxSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

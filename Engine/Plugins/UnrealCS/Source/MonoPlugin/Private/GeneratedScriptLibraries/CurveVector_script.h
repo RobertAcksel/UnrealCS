@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCurveVector_
@@ -10,12 +9,12 @@ class UCurveVector_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UCurveVector::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCurveVector::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCurveVector::GetVectorValue",(const void*)GetVectorValue);
-		mono_add_internal_call("UnrealEngine.UCurveVector::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCurveVector::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

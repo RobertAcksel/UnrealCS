@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SceneCaptureComponent.h"
 #include "SceneCaptureComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USceneCaptureComponent_ : public USceneCaptureComponent
 {
@@ -47,7 +51,7 @@ class MONOPLUGIN_API USceneCaptureComponent_ : public USceneCaptureComponent
 		_this->HideComponent(InComponent);
 		
 	}
-	static UClass* StaticClass(){return USceneCaptureComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USceneCaptureComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -59,7 +63,7 @@ class MONOPLUGIN_API USceneCaptureComponent_ : public USceneCaptureComponent
 		mono_add_internal_call("UnrealEngine.USceneCaptureComponent::ShowOnlyComponent",(const void*)ShowOnlyComponent);
 		mono_add_internal_call("UnrealEngine.USceneCaptureComponent::HideActorComponents",(const void*)HideActorComponents);
 		mono_add_internal_call("UnrealEngine.USceneCaptureComponent::HideComponent",(const void*)HideComponent);
-		mono_add_internal_call("UnrealEngine.USceneCaptureComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USceneCaptureComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetInputLibrary_
@@ -225,7 +224,7 @@ class UKismetInputLibrary_
 		_this->CalibrateTilt();
 		
 	}
-	static UClass* StaticClass(){return UKismetInputLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetInputLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -266,7 +265,7 @@ class UKismetInputLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetInputLibrary::EqualEqual_InputChordInputChord",(const void*)EqualEqual_InputChordInputChord);
 		mono_add_internal_call("UnrealEngine.UKismetInputLibrary::EqualEqual_KeyKey",(const void*)EqualEqual_KeyKey);
 		mono_add_internal_call("UnrealEngine.UKismetInputLibrary::CalibrateTilt",(const void*)CalibrateTilt);
-		mono_add_internal_call("UnrealEngine.UKismetInputLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetInputLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/Controller.h"
 #include "Controller_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API AController_ : public AController
 {
@@ -137,7 +141,7 @@ class MONOPLUGIN_API AController_ : public AController
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return AController::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AController::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -165,7 +169,7 @@ class MONOPLUGIN_API AController_ : public AController
 		mono_add_internal_call("UnrealEngine.AController::SetInitialLocationAndRotation",(const void*)SetInitialLocationAndRotation);
 		mono_add_internal_call("UnrealEngine.AController::SetControlRotation",(const void*)SetControlRotation);
 		mono_add_internal_call("UnrealEngine.AController::GetControlRotation",(const void*)GetControlRotation);
-		mono_add_internal_call("UnrealEngine.AController::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AController::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UGameInstance_
@@ -14,13 +13,13 @@ class UGameInstance_
 		_this->DebugCreatePlayer(ControllerId);
 		
 	}
-	static UClass* StaticClass(){return UGameInstance::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UGameInstance::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UGameInstance::DebugRemovePlayer",(const void*)DebugRemovePlayer);
 		mono_add_internal_call("UnrealEngine.UGameInstance::DebugCreatePlayer",(const void*)DebugCreatePlayer);
-		mono_add_internal_call("UnrealEngine.UGameInstance::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UGameInstance::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

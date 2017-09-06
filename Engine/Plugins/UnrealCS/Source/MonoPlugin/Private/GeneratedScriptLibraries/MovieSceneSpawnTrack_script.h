@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMovieSceneSpawnTrack_
 {
-	static UClass* StaticClass(){return UMovieSceneSpawnTrack::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMovieSceneSpawnTrack::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UMovieSceneSpawnTrack::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMovieSceneSpawnTrack::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

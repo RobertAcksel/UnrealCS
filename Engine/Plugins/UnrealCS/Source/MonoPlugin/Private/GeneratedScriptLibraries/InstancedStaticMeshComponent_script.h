@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/InstancedStaticMeshComponent.h"
 #include "InstancedStaticMeshComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UInstancedStaticMeshComponent_ : public UInstancedStaticMeshComponent
 {
@@ -65,7 +69,7 @@ class MONOPLUGIN_API UInstancedStaticMeshComponent_ : public UInstancedStaticMes
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UInstancedStaticMeshComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UInstancedStaticMeshComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -79,7 +83,7 @@ class MONOPLUGIN_API UInstancedStaticMeshComponent_ : public UInstancedStaticMes
 		mono_add_internal_call("UnrealEngine.UInstancedStaticMeshComponent::GetInstanceTransform",(const void*)GetInstanceTransform);
 		mono_add_internal_call("UnrealEngine.UInstancedStaticMeshComponent::AddInstanceWorldSpace",(const void*)AddInstanceWorldSpace);
 		mono_add_internal_call("UnrealEngine.UInstancedStaticMeshComponent::AddInstance",(const void*)AddInstance);
-		mono_add_internal_call("UnrealEngine.UInstancedStaticMeshComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UInstancedStaticMeshComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetRenderingLibrary_
@@ -49,7 +48,7 @@ class UKismetRenderingLibrary_
 		_this->ClearRenderTarget2D(WorldContextObject,TextureRenderTarget,*ClearColor);
 		
 	}
-	static UClass* StaticClass(){return UKismetRenderingLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetRenderingLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -61,7 +60,7 @@ class UKismetRenderingLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetRenderingLibrary::DrawMaterialToRenderTarget",(const void*)DrawMaterialToRenderTarget);
 		mono_add_internal_call("UnrealEngine.UKismetRenderingLibrary::CreateRenderTarget2D",(const void*)CreateRenderTarget2D);
 		mono_add_internal_call("UnrealEngine.UKismetRenderingLibrary::ClearRenderTarget2D",(const void*)ClearRenderTarget2D);
-		mono_add_internal_call("UnrealEngine.UKismetRenderingLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetRenderingLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

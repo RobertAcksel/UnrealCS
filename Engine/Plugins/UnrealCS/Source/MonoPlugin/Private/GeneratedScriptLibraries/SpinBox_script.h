@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USpinBox_
@@ -84,7 +83,7 @@ class USpinBox_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return USpinBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USpinBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -103,7 +102,7 @@ class USpinBox_
 		mono_add_internal_call("UnrealEngine.USpinBox::GetMinValue",(const void*)GetMinValue);
 		mono_add_internal_call("UnrealEngine.USpinBox::SetValue",(const void*)SetValue);
 		mono_add_internal_call("UnrealEngine.USpinBox::GetValue",(const void*)GetValue);
-		mono_add_internal_call("UnrealEngine.USpinBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USpinBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

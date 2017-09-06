@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Camera/CameraActor.h"
 #include "CameraActor_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ACameraActor_ : public ACameraActor
 {
@@ -13,12 +17,12 @@ class MONOPLUGIN_API ACameraActor_ : public ACameraActor
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return ACameraActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ACameraActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.ACameraActor::GetAutoActivatePlayerIndex",(const void*)GetAutoActivatePlayerIndex);
-		mono_add_internal_call("UnrealEngine.ACameraActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ACameraActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

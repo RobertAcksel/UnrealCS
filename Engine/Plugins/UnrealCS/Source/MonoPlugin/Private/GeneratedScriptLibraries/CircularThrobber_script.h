@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCircularThrobber_
@@ -19,14 +18,14 @@ class UCircularThrobber_
 		_this->SetNumberOfPieces(InNumberOfPieces);
 		
 	}
-	static UClass* StaticClass(){return UCircularThrobber::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCircularThrobber::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCircularThrobber::SetRadius",(const void*)SetRadius);
 		mono_add_internal_call("UnrealEngine.UCircularThrobber::SetPeriod",(const void*)SetPeriod);
 		mono_add_internal_call("UnrealEngine.UCircularThrobber::SetNumberOfPieces",(const void*)SetNumberOfPieces);
-		mono_add_internal_call("UnrealEngine.UCircularThrobber::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCircularThrobber::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

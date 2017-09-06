@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWrapBoxSlot_
@@ -29,7 +28,7 @@ class UWrapBoxSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UWrapBoxSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWrapBoxSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -38,7 +37,7 @@ class UWrapBoxSlot_
 		mono_add_internal_call("UnrealEngine.UWrapBoxSlot::SetFillSpanWhenLessThan",(const void*)SetFillSpanWhenLessThan);
 		mono_add_internal_call("UnrealEngine.UWrapBoxSlot::SetFillEmptySpace",(const void*)SetFillEmptySpace);
 		mono_add_internal_call("UnrealEngine.UWrapBoxSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UWrapBoxSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWrapBoxSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

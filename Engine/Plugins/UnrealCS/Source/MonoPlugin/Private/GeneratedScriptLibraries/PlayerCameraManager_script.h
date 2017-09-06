@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Camera/PlayerCameraManager.h"
 #include "PlayerCameraManager_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API APlayerCameraManager_ : public APlayerCameraManager
 {
@@ -122,7 +126,7 @@ class MONOPLUGIN_API APlayerCameraManager_ : public APlayerCameraManager
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return APlayerCameraManager::StaticClass();}
+	static UClass* _StaticClassForProxy(){return APlayerCameraManager::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -147,7 +151,7 @@ class MONOPLUGIN_API APlayerCameraManager_ : public APlayerCameraManager
 		mono_add_internal_call("UnrealEngine.APlayerCameraManager::FindCameraModifierByClass",(const void*)FindCameraModifierByClass);
 		mono_add_internal_call("UnrealEngine.APlayerCameraManager::AddNewCameraModifier",(const void*)AddNewCameraModifier);
 		mono_add_internal_call("UnrealEngine.APlayerCameraManager::GetOwningPlayerController",(const void*)GetOwningPlayerController);
-		mono_add_internal_call("UnrealEngine.APlayerCameraManager::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.APlayerCameraManager::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

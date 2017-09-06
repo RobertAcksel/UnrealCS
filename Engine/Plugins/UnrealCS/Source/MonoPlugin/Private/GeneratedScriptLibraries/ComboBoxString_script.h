@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UComboBoxString_
@@ -63,7 +62,7 @@ class UComboBoxString_
 		_this->AddOption(Option_temp);
 		
 	}
-	static UClass* StaticClass(){return UComboBoxString::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UComboBoxString::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -77,7 +76,7 @@ class UComboBoxString_
 		mono_add_internal_call("UnrealEngine.UComboBoxString::FindOptionIndex",(const void*)FindOptionIndex);
 		mono_add_internal_call("UnrealEngine.UComboBoxString::RemoveOption",(const void*)RemoveOption);
 		mono_add_internal_call("UnrealEngine.UComboBoxString::AddOption",(const void*)AddOption);
-		mono_add_internal_call("UnrealEngine.UComboBoxString::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UComboBoxString::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SkeletalMeshComponent.h"
 #include "SkeletalMeshComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USkeletalMeshComponent_ : public USkeletalMeshComponent
 {
@@ -327,7 +331,7 @@ class MONOPLUGIN_API USkeletalMeshComponent_ : public USkeletalMeshComponent
 		_this->SetAnimInstanceClass(NewClass);
 		
 	}
-	static UClass* StaticClass(){return USkeletalMeshComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USkeletalMeshComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -388,7 +392,7 @@ class MONOPLUGIN_API USkeletalMeshComponent_ : public USkeletalMeshComponent
 		mono_add_internal_call("UnrealEngine.USkeletalMeshComponent::GetPostProcessInstance",(const void*)GetPostProcessInstance);
 		mono_add_internal_call("UnrealEngine.USkeletalMeshComponent::GetAnimInstance",(const void*)GetAnimInstance);
 		mono_add_internal_call("UnrealEngine.USkeletalMeshComponent::SetAnimInstanceClass",(const void*)SetAnimInstanceClass);
-		mono_add_internal_call("UnrealEngine.USkeletalMeshComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USkeletalMeshComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

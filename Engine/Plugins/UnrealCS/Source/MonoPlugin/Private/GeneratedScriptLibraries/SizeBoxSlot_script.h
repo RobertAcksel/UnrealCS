@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USizeBoxSlot_
@@ -19,14 +18,14 @@ class USizeBoxSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return USizeBoxSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USizeBoxSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.USizeBoxSlot::SetVerticalAlignment",(const void*)SetVerticalAlignment);
 		mono_add_internal_call("UnrealEngine.USizeBoxSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.USizeBoxSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.USizeBoxSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USizeBoxSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

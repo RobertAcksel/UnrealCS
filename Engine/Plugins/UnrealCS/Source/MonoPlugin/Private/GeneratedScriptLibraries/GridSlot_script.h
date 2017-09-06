@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UGridSlot_
@@ -44,7 +43,7 @@ class UGridSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UGridSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UGridSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -56,7 +55,7 @@ class UGridSlot_
 		mono_add_internal_call("UnrealEngine.UGridSlot::SetRowSpan",(const void*)SetRowSpan);
 		mono_add_internal_call("UnrealEngine.UGridSlot::SetRow",(const void*)SetRow);
 		mono_add_internal_call("UnrealEngine.UGridSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UGridSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UGridSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

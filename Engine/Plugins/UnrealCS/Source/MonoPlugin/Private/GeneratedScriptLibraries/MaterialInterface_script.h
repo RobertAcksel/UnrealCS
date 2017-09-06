@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMaterialInterface_
@@ -16,13 +15,13 @@ class UMaterialInterface_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UMaterialInterface::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMaterialInterface::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UMaterialInterface::GetPhysicalMaterial",(const void*)GetPhysicalMaterial);
 		mono_add_internal_call("UnrealEngine.UMaterialInterface::GetBaseMaterial",(const void*)GetBaseMaterial);
-		mono_add_internal_call("UnrealEngine.UMaterialInterface::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMaterialInterface::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

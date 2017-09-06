@@ -1,12 +1,8 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "AtmosphericFogComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UAtmosphericFogComponent_ : public UAtmosphericFogComponent
+class UAtmosphericFogComponent_
 {
-	GENERATED_BODY()
 	static void SetPrecomputeParams(UAtmosphericFogComponent* _this,float DensityHeight,int32 MaxScatteringOrder,int32 InscatterAltitudeSampleNum)
 	{
 		_this->SetPrecomputeParams(DensityHeight,MaxScatteringOrder,InscatterAltitudeSampleNum);
@@ -72,7 +68,7 @@ class MONOPLUGIN_API UAtmosphericFogComponent_ : public UAtmosphericFogComponent
 		_this->SetDefaultBrightness(NewBrightness);
 		
 	}
-	static UClass* StaticClass(){return UAtmosphericFogComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UAtmosphericFogComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -89,7 +85,7 @@ class MONOPLUGIN_API UAtmosphericFogComponent_ : public UAtmosphericFogComponent
 		mono_add_internal_call("UnrealEngine.UAtmosphericFogComponent::SetSunMultiplier",(const void*)SetSunMultiplier);
 		mono_add_internal_call("UnrealEngine.UAtmosphericFogComponent::SetDefaultLightColor",(const void*)SetDefaultLightColor);
 		mono_add_internal_call("UnrealEngine.UAtmosphericFogComponent::SetDefaultBrightness",(const void*)SetDefaultBrightness);
-		mono_add_internal_call("UnrealEngine.UAtmosphericFogComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UAtmosphericFogComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

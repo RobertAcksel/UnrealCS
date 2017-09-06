@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UTexture2D_
 {
-	static UClass* StaticClass(){return UTexture2D::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTexture2D::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UTexture2D::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTexture2D::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

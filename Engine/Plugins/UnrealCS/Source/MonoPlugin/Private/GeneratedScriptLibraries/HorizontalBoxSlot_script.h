@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UHorizontalBoxSlot_
@@ -24,7 +23,7 @@ class UHorizontalBoxSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UHorizontalBoxSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UHorizontalBoxSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -32,7 +31,7 @@ class UHorizontalBoxSlot_
 		mono_add_internal_call("UnrealEngine.UHorizontalBoxSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UHorizontalBoxSlot::SetSize",(const void*)SetSize);
 		mono_add_internal_call("UnrealEngine.UHorizontalBoxSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UHorizontalBoxSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UHorizontalBoxSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

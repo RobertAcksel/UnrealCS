@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 #include "ProjectileMovementComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UProjectileMovementComponent_ : public UProjectileMovementComponent
 {
@@ -17,13 +21,13 @@ class MONOPLUGIN_API UProjectileMovementComponent_ : public UProjectileMovementC
 		_this->SetVelocityInLocalSpace(*NewVelocity);
 		
 	}
-	static UClass* StaticClass(){return UProjectileMovementComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UProjectileMovementComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UProjectileMovementComponent::StopSimulating",(const void*)StopSimulating);
 		mono_add_internal_call("UnrealEngine.UProjectileMovementComponent::SetVelocityInLocalSpace",(const void*)SetVelocityInLocalSpace);
-		mono_add_internal_call("UnrealEngine.UProjectileMovementComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UProjectileMovementComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

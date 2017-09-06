@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UKismetStringTableLibrary_
@@ -64,7 +63,7 @@ class UKismetStringTableLibrary_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UKismetStringTableLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UKismetStringTableLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -76,7 +75,7 @@ class UKismetStringTableLibrary_
 		mono_add_internal_call("UnrealEngine.UKismetStringTableLibrary::GetTableNamespace",(const void*)GetTableNamespace);
 		mono_add_internal_call("UnrealEngine.UKismetStringTableLibrary::IsRegisteredTableEntry",(const void*)IsRegisteredTableEntry);
 		mono_add_internal_call("UnrealEngine.UKismetStringTableLibrary::IsRegisteredTableId",(const void*)IsRegisteredTableId);
-		mono_add_internal_call("UnrealEngine.UKismetStringTableLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UKismetStringTableLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UTextBlock_
@@ -51,7 +50,7 @@ class UTextBlock_
 		_this->SetColorAndOpacity(*InColorAndOpacity);
 		
 	}
-	static UClass* StaticClass(){return UTextBlock::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UTextBlock::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -64,7 +63,7 @@ class UTextBlock_
 		mono_add_internal_call("UnrealEngine.UTextBlock::SetShadowColorAndOpacity",(const void*)SetShadowColorAndOpacity);
 		mono_add_internal_call("UnrealEngine.UTextBlock::SetOpacity",(const void*)SetOpacity);
 		mono_add_internal_call("UnrealEngine.UTextBlock::SetColorAndOpacity",(const void*)SetColorAndOpacity);
-		mono_add_internal_call("UnrealEngine.UTextBlock::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UTextBlock::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

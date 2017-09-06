@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "DecalComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UDecalComponent_ : public UDecalComponent
 {
@@ -46,7 +50,7 @@ class MONOPLUGIN_API UDecalComponent_ : public UDecalComponent
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UDecalComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UDecalComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -57,7 +61,7 @@ class MONOPLUGIN_API UDecalComponent_ : public UDecalComponent
 		mono_add_internal_call("UnrealEngine.UDecalComponent::SetFadeOut",(const void*)SetFadeOut);
 		mono_add_internal_call("UnrealEngine.UDecalComponent::GetFadeDuration",(const void*)GetFadeDuration);
 		mono_add_internal_call("UnrealEngine.UDecalComponent::GetFadeStartDelay",(const void*)GetFadeStartDelay);
-		mono_add_internal_call("UnrealEngine.UDecalComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UDecalComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

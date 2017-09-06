@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UImage_
@@ -45,7 +44,7 @@ class UImage_
 		_this->SetColorAndOpacity(*InColorAndOpacity);
 		
 	}
-	static UClass* StaticClass(){return UImage::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UImage::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -57,7 +56,7 @@ class UImage_
 		mono_add_internal_call("UnrealEngine.UImage::SetBrush",(const void*)SetBrush);
 		mono_add_internal_call("UnrealEngine.UImage::SetOpacity",(const void*)SetOpacity);
 		mono_add_internal_call("UnrealEngine.UImage::SetColorAndOpacity",(const void*)SetColorAndOpacity);
-		mono_add_internal_call("UnrealEngine.UImage::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UImage::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

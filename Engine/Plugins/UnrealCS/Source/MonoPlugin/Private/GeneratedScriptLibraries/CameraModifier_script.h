@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCameraModifier_
@@ -26,7 +25,7 @@ class UCameraModifier_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UCameraModifier::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCameraModifier::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -34,7 +33,7 @@ class UCameraModifier_
 		mono_add_internal_call("UnrealEngine.UCameraModifier::DisableModifier",(const void*)DisableModifier);
 		mono_add_internal_call("UnrealEngine.UCameraModifier::GetViewTarget",(const void*)GetViewTarget);
 		mono_add_internal_call("UnrealEngine.UCameraModifier::IsDisabled",(const void*)IsDisabled);
-		mono_add_internal_call("UnrealEngine.UCameraModifier::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCameraModifier::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

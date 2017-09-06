@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UInputKeySelector_
@@ -26,7 +25,7 @@ class UInputKeySelector_
 		_this->SetSelectedKey(*InSelectedKey);
 		
 	}
-	static UClass* StaticClass(){return UInputKeySelector::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UInputKeySelector::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -34,7 +33,7 @@ class UInputKeySelector_
 		mono_add_internal_call("UnrealEngine.UInputKeySelector::SetAllowModifierKeys",(const void*)SetAllowModifierKeys);
 		mono_add_internal_call("UnrealEngine.UInputKeySelector::SetKeySelectionText",(const void*)SetKeySelectionText);
 		mono_add_internal_call("UnrealEngine.UInputKeySelector::SetSelectedKey",(const void*)SetSelectedKey);
-		mono_add_internal_call("UnrealEngine.UInputKeySelector::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UInputKeySelector::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

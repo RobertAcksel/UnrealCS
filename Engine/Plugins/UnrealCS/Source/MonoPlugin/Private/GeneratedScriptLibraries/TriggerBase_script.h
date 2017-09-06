@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "TriggerBase_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ATriggerBase_ : public ATriggerBase
+class ATriggerBase_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ATriggerBase::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ATriggerBase::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ATriggerBase::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ATriggerBase::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

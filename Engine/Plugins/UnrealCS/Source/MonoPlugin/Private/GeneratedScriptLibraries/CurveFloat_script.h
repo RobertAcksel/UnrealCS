@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCurveFloat_
@@ -10,12 +9,12 @@ class UCurveFloat_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UCurveFloat::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCurveFloat::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCurveFloat::GetFloatValue",(const void*)GetFloatValue);
-		mono_add_internal_call("UnrealEngine.UCurveFloat::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCurveFloat::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UWidgetAnimation_
@@ -16,13 +15,13 @@ class UWidgetAnimation_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UWidgetAnimation::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UWidgetAnimation::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UWidgetAnimation::GetEndTime",(const void*)GetEndTime);
 		mono_add_internal_call("UnrealEngine.UWidgetAnimation::GetStartTime",(const void*)GetStartTime);
-		mono_add_internal_call("UnrealEngine.UWidgetAnimation::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UWidgetAnimation::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

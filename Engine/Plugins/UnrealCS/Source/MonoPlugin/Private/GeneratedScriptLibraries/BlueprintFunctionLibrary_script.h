@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UBlueprintFunctionLibrary_
 {
-	static UClass* StaticClass(){return UBlueprintFunctionLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBlueprintFunctionLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UBlueprintFunctionLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBlueprintFunctionLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

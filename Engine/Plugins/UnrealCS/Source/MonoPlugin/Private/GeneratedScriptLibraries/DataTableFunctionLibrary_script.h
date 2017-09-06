@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UDataTableFunctionLibrary_
@@ -27,14 +26,14 @@ class UDataTableFunctionLibrary_
 		*OutResult=(int)OutResult_temp;
 		
 	}
-	static UClass* StaticClass(){return UDataTableFunctionLibrary::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UDataTableFunctionLibrary::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UDataTableFunctionLibrary::GetDataTableRowFromName",(const void*)GetDataTableRowFromName);
 		mono_add_internal_call("UnrealEngine.UDataTableFunctionLibrary::GetDataTableRowNames",(const void*)GetDataTableRowNames);
 		mono_add_internal_call("UnrealEngine.UDataTableFunctionLibrary::EvaluateCurveTableRow",(const void*)EvaluateCurveTableRow);
-		mono_add_internal_call("UnrealEngine.UDataTableFunctionLibrary::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UDataTableFunctionLibrary::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

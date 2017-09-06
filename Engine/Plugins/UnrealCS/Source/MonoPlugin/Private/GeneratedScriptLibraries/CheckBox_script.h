@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCheckBox_
@@ -21,14 +20,14 @@ class UCheckBox_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UCheckBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCheckBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCheckBox::SetIsChecked",(const void*)SetIsChecked);
 		mono_add_internal_call("UnrealEngine.UCheckBox::IsChecked",(const void*)IsChecked);
 		mono_add_internal_call("UnrealEngine.UCheckBox::IsPressed",(const void*)IsPressed);
-		mono_add_internal_call("UnrealEngine.UCheckBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCheckBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

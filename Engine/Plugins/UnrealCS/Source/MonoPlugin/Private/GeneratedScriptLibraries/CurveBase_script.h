@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCurveBase_
@@ -14,13 +13,13 @@ class UCurveBase_
 		_this->GetTimeRange(*MinTime,*MaxTime);
 		
 	}
-	static UClass* StaticClass(){return UCurveBase::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCurveBase::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UCurveBase::GetValueRange",(const void*)GetValueRange);
 		mono_add_internal_call("UnrealEngine.UCurveBase::GetTimeRange",(const void*)GetTimeRange);
-		mono_add_internal_call("UnrealEngine.UCurveBase::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCurveBase::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

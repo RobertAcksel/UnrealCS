@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "MaterialInstanceActor_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API AMaterialInstanceActor_ : public AMaterialInstanceActor
+class AMaterialInstanceActor_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return AMaterialInstanceActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AMaterialInstanceActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.AMaterialInstanceActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AMaterialInstanceActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

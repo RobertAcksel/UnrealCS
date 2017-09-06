@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UNavigationSystem_
@@ -105,7 +104,7 @@ class UNavigationSystem_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UNavigationSystem::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UNavigationSystem::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -127,7 +126,7 @@ class UNavigationSystem_
 		mono_add_internal_call("UnrealEngine.UNavigationSystem::K2_GetRandomReachablePointInRadius",(const void*)K2_GetRandomReachablePointInRadius);
 		mono_add_internal_call("UnrealEngine.UNavigationSystem::K2_ProjectPointToNavigation",(const void*)K2_ProjectPointToNavigation);
 		mono_add_internal_call("UnrealEngine.UNavigationSystem::GetNavigationSystem",(const void*)GetNavigationSystem);
-		mono_add_internal_call("UnrealEngine.UNavigationSystem::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UNavigationSystem::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

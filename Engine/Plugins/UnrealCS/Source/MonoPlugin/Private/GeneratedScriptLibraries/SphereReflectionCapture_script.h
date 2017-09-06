@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "SphereReflectionCapture_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ASphereReflectionCapture_ : public ASphereReflectionCapture
+class ASphereReflectionCapture_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ASphereReflectionCapture::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ASphereReflectionCapture::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ASphereReflectionCapture::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ASphereReflectionCapture::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

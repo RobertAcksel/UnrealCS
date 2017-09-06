@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UOnlineBlueprintCallProxyBase_
@@ -9,12 +8,12 @@ class UOnlineBlueprintCallProxyBase_
 		_this->Activate();
 		
 	}
-	static UClass* StaticClass(){return UOnlineBlueprintCallProxyBase::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UOnlineBlueprintCallProxyBase::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UOnlineBlueprintCallProxyBase::Activate",(const void*)Activate);
-		mono_add_internal_call("UnrealEngine.UOnlineBlueprintCallProxyBase::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UOnlineBlueprintCallProxyBase::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

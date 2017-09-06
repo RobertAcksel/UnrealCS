@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USkeletalMeshSocket_
@@ -15,13 +14,13 @@ class USkeletalMeshSocket_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return USkeletalMeshSocket::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USkeletalMeshSocket::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.USkeletalMeshSocket::InitializeSocketFromLocation",(const void*)InitializeSocketFromLocation);
 		mono_add_internal_call("UnrealEngine.USkeletalMeshSocket::GetSocketLocation",(const void*)GetSocketLocation);
-		mono_add_internal_call("UnrealEngine.USkeletalMeshSocket::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USkeletalMeshSocket::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

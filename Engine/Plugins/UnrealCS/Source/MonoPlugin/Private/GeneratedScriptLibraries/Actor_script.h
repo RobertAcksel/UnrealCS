@@ -1,9 +1,16 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-class AActor_
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/Actor.h"
+#include "Actor_script.generated.h"
+
+UCLASS()
+class MONOPLUGIN_API AActor_ : public AActor
 {
+	GENERATED_BODY()
 	static MonoArray* GetComponentsByTag(AActor* _this,TSubclassOf<UActorComponent>  ComponentClass,MonoString* Tag)
 	{
 		FName Tag_temp=MonoStringToFName(Tag);
@@ -538,7 +545,7 @@ class AActor_
 		_this->OnRep_ReplicateMovement();
 		
 	}
-	static UClass* StaticClass(){return AActor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AActor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -636,7 +643,7 @@ class AActor_
 		mono_add_internal_call("UnrealEngine.AActor::SetReplicates",(const void*)SetReplicates);
 		mono_add_internal_call("UnrealEngine.AActor::TearOff",(const void*)TearOff);
 		mono_add_internal_call("UnrealEngine.AActor::OnRep_ReplicateMovement",(const void*)OnRep_ReplicateMovement);
-		mono_add_internal_call("UnrealEngine.AActor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AActor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMovieSceneFadeTrack_
 {
-	static UClass* StaticClass(){return UMovieSceneFadeTrack::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMovieSceneFadeTrack::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UMovieSceneFadeTrack::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMovieSceneFadeTrack::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

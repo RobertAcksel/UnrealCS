@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UExpandableArea_
@@ -20,14 +19,14 @@ class UExpandableArea_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return UExpandableArea::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UExpandableArea::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UExpandableArea::SetIsExpanded_Animated",(const void*)SetIsExpanded_Animated);
 		mono_add_internal_call("UnrealEngine.UExpandableArea::SetIsExpanded",(const void*)SetIsExpanded);
 		mono_add_internal_call("UnrealEngine.UExpandableArea::GetIsExpanded",(const void*)GetIsExpanded);
-		mono_add_internal_call("UnrealEngine.UExpandableArea::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UExpandableArea::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

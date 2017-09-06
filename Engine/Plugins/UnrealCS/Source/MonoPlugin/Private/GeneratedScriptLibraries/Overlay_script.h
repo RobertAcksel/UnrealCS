@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UOverlay_
@@ -10,12 +9,12 @@ class UOverlay_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UOverlay::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UOverlay::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UOverlay::AddChildToOverlay",(const void*)AddChildToOverlay);
-		mono_add_internal_call("UnrealEngine.UOverlay::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UOverlay::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

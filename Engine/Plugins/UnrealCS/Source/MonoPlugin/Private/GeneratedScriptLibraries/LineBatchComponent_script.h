@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "LineBatchComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API ULineBatchComponent_ : public ULineBatchComponent
+class ULineBatchComponent_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return ULineBatchComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ULineBatchComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.ULineBatchComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ULineBatchComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

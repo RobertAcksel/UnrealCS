@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "ModelComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UModelComponent_ : public UModelComponent
+class UModelComponent_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return UModelComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UModelComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UModelComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UModelComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

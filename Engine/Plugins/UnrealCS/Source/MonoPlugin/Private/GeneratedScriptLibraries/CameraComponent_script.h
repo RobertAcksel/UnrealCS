@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Camera/CameraComponent.h"
 #include "CameraComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UCameraComponent_ : public UCameraComponent
 {
@@ -57,7 +61,7 @@ class MONOPLUGIN_API UCameraComponent_ : public UCameraComponent
 		_this->SetFieldOfView(InFieldOfView);
 		
 	}
-	static UClass* StaticClass(){return UCameraComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCameraComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -71,7 +75,7 @@ class MONOPLUGIN_API UCameraComponent_ : public UCameraComponent
 		mono_add_internal_call("UnrealEngine.UCameraComponent::SetOrthoNearClipPlane",(const void*)SetOrthoNearClipPlane);
 		mono_add_internal_call("UnrealEngine.UCameraComponent::SetOrthoWidth",(const void*)SetOrthoWidth);
 		mono_add_internal_call("UnrealEngine.UCameraComponent::SetFieldOfView",(const void*)SetFieldOfView);
-		mono_add_internal_call("UnrealEngine.UCameraComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCameraComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

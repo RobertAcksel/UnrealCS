@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UViewport_
@@ -38,7 +37,7 @@ class UViewport_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UViewport::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UViewport::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -48,7 +47,7 @@ class UViewport_
 		mono_add_internal_call("UnrealEngine.UViewport::SetViewLocation",(const void*)SetViewLocation);
 		mono_add_internal_call("UnrealEngine.UViewport::GetViewLocation",(const void*)GetViewLocation);
 		mono_add_internal_call("UnrealEngine.UViewport::GetViewportWorld",(const void*)GetViewportWorld);
-		mono_add_internal_call("UnrealEngine.UViewport::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UViewport::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

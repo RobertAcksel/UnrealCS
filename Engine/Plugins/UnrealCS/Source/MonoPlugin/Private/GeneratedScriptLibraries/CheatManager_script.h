@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCheatManager_
@@ -256,7 +255,7 @@ class UCheatManager_
 		_this->FreezeFrame(Delay);
 		
 	}
-	static UClass* StaticClass(){return UCheatManager::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCheatManager::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -308,7 +307,7 @@ class UCheatManager_
 		mono_add_internal_call("UnrealEngine.UCheatManager::ChangeSize",(const void*)ChangeSize);
 		mono_add_internal_call("UnrealEngine.UCheatManager::Teleport",(const void*)Teleport);
 		mono_add_internal_call("UnrealEngine.UCheatManager::FreezeFrame",(const void*)FreezeFrame);
-		mono_add_internal_call("UnrealEngine.UCheatManager::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCheatManager::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

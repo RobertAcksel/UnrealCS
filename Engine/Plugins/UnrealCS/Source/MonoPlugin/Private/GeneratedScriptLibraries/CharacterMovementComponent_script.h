@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/CharacterMovementComponent.h"
 #include "CharacterMovementComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UCharacterMovementComponent_ : public UCharacterMovementComponent
 {
@@ -219,7 +223,7 @@ class MONOPLUGIN_API UCharacterMovementComponent_ : public UCharacterMovementCom
 		_this->SetAvoidanceGroupMask(*GroupMask);
 		
 	}
-	static UClass* StaticClass(){return UCharacterMovementComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCharacterMovementComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -261,7 +265,7 @@ class MONOPLUGIN_API UCharacterMovementComponent_ : public UCharacterMovementCom
 		mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::SetGroupsToIgnoreMask",(const void*)SetGroupsToIgnoreMask);
 		mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::SetGroupsToAvoidMask",(const void*)SetGroupsToAvoidMask);
 		mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::SetAvoidanceGroupMask",(const void*)SetAvoidanceGroupMask);
-		mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCharacterMovementComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

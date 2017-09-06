@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class URetainerBox_
@@ -21,14 +20,14 @@ class URetainerBox_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return URetainerBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return URetainerBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.URetainerBox::SetTextureParameter",(const void*)SetTextureParameter);
 		mono_add_internal_call("UnrealEngine.URetainerBox::SetEffectMaterial",(const void*)SetEffectMaterial);
 		mono_add_internal_call("UnrealEngine.URetainerBox::GetEffectMaterial",(const void*)GetEffectMaterial);
-		mono_add_internal_call("UnrealEngine.URetainerBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.URetainerBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

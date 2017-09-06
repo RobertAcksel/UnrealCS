@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class USizeBox_
@@ -74,7 +73,7 @@ class USizeBox_
 		_this->SetWidthOverride(InWidthOverride);
 		
 	}
-	static UClass* StaticClass(){return USizeBox::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USizeBox::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -92,7 +91,7 @@ class USizeBox_
 		mono_add_internal_call("UnrealEngine.USizeBox::SetHeightOverride",(const void*)SetHeightOverride);
 		mono_add_internal_call("UnrealEngine.USizeBox::ClearWidthOverride",(const void*)ClearWidthOverride);
 		mono_add_internal_call("UnrealEngine.USizeBox::SetWidthOverride",(const void*)SetWidthOverride);
-		mono_add_internal_call("UnrealEngine.USizeBox::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USizeBox::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

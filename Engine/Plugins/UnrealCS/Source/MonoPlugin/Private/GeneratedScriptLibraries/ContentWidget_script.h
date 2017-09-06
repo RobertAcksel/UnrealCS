@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UContentWidget_
@@ -22,14 +21,14 @@ class UContentWidget_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UContentWidget::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UContentWidget::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UContentWidget::GetContent",(const void*)GetContent);
 		mono_add_internal_call("UnrealEngine.UContentWidget::SetContent",(const void*)SetContent);
 		mono_add_internal_call("UnrealEngine.UContentWidget::GetContentSlot",(const void*)GetContentSlot);
-		mono_add_internal_call("UnrealEngine.UContentWidget::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UContentWidget::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

@@ -1,23 +1,19 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "ExponentialHeightFog_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API AExponentialHeightFog_ : public AExponentialHeightFog
+class AExponentialHeightFog_
 {
-	GENERATED_BODY()
 	static void OnRep_bEnabled(AExponentialHeightFog* _this)
 	{
 		_this->OnRep_bEnabled();
 		
 	}
-	static UClass* StaticClass(){return AExponentialHeightFog::StaticClass();}
+	static UClass* _StaticClassForProxy(){return AExponentialHeightFog::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.AExponentialHeightFog::OnRep_bEnabled",(const void*)OnRep_bEnabled);
-		mono_add_internal_call("UnrealEngine.AExponentialHeightFog::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.AExponentialHeightFog::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

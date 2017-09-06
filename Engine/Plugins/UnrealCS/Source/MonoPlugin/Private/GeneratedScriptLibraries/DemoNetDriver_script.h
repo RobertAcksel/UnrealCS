@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UDemoNetDriver_
 {
-	static UClass* StaticClass(){return UDemoNetDriver::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UDemoNetDriver::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UDemoNetDriver::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UDemoNetDriver::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

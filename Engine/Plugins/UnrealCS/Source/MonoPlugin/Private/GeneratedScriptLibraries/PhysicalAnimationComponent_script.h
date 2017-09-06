@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/PhysicsEngine/PhysicalAnimationComponent.h"
 #include "PhysicalAnimationComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UPhysicalAnimationComponent_ : public UPhysicalAnimationComponent
 {
@@ -43,7 +47,7 @@ class MONOPLUGIN_API UPhysicalAnimationComponent_ : public UPhysicalAnimationCom
 		_this->SetSkeletalMeshComponent(InSkeletalMeshComponent);
 		
 	}
-	static UClass* StaticClass(){return UPhysicalAnimationComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPhysicalAnimationComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -53,7 +57,7 @@ class MONOPLUGIN_API UPhysicalAnimationComponent_ : public UPhysicalAnimationCom
 		mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::ApplyPhysicalAnimationSettingsBelow",(const void*)ApplyPhysicalAnimationSettingsBelow);
 		mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::ApplyPhysicalAnimationSettings",(const void*)ApplyPhysicalAnimationSettings);
 		mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::SetSkeletalMeshComponent",(const void*)SetSkeletalMeshComponent);
-		mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPhysicalAnimationComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

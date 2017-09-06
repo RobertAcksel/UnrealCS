@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMenuAnchor_
@@ -43,7 +42,7 @@ class UMenuAnchor_
 		_this->ToggleOpen(bFocusOnOpen>0?true:false);
 		
 	}
-	static UClass* StaticClass(){return UMenuAnchor::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMenuAnchor::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -54,7 +53,7 @@ class UMenuAnchor_
 		mono_add_internal_call("UnrealEngine.UMenuAnchor::Close",(const void*)Close);
 		mono_add_internal_call("UnrealEngine.UMenuAnchor::Open",(const void*)Open);
 		mono_add_internal_call("UnrealEngine.UMenuAnchor::ToggleOpen",(const void*)ToggleOpen);
-		mono_add_internal_call("UnrealEngine.UMenuAnchor::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMenuAnchor::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

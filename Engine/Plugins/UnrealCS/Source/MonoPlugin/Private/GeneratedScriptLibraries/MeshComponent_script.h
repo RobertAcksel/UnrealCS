@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/MeshComponent.h"
 #include "MeshComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UMeshComponent_ : public UMeshComponent
 {
@@ -45,7 +49,7 @@ class MONOPLUGIN_API UMeshComponent_ : public UMeshComponent
 		return TArrayToMonoArray(___ret,"System.IntPtr,mscorlib");
 		
 	}
-	static UClass* StaticClass(){return UMeshComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMeshComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -55,7 +59,7 @@ class MONOPLUGIN_API UMeshComponent_ : public UMeshComponent
 		mono_add_internal_call("UnrealEngine.UMeshComponent::GetMaterialSlotNames",(const void*)GetMaterialSlotNames);
 		mono_add_internal_call("UnrealEngine.UMeshComponent::GetMaterialIndex",(const void*)GetMaterialIndex);
 		mono_add_internal_call("UnrealEngine.UMeshComponent::GetMaterials",(const void*)GetMaterials);
-		mono_add_internal_call("UnrealEngine.UMeshComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMeshComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

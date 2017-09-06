@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UUserWidget_
@@ -156,7 +155,7 @@ class UUserWidget_
 		_this->AddToViewport(ZOrder);
 		
 	}
-	static UClass* StaticClass(){return UUserWidget::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UUserWidget::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -188,7 +187,7 @@ class UUserWidget_
 		mono_add_internal_call("UnrealEngine.UUserWidget::SetPositionInViewport",(const void*)SetPositionInViewport);
 		mono_add_internal_call("UnrealEngine.UUserWidget::AddToPlayerScreen",(const void*)AddToPlayerScreen);
 		mono_add_internal_call("UnrealEngine.UUserWidget::AddToViewport",(const void*)AddToViewport);
-		mono_add_internal_call("UnrealEngine.UUserWidget::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UUserWidget::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

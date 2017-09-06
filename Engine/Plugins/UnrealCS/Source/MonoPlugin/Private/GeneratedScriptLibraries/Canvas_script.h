@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UCanvas_
@@ -75,7 +74,7 @@ class UCanvas_
 		_this->K2_DrawLine(*ScreenPositionA,*ScreenPositionB,Thickness,*RenderColor);
 		
 	}
-	static UClass* StaticClass(){return UCanvas::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UCanvas::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -92,7 +91,7 @@ class UCanvas_
 		mono_add_internal_call("UnrealEngine.UCanvas::K2_DrawMaterial",(const void*)K2_DrawMaterial);
 		mono_add_internal_call("UnrealEngine.UCanvas::K2_DrawTexture",(const void*)K2_DrawTexture);
 		mono_add_internal_call("UnrealEngine.UCanvas::K2_DrawLine",(const void*)K2_DrawLine);
-		mono_add_internal_call("UnrealEngine.UCanvas::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UCanvas::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

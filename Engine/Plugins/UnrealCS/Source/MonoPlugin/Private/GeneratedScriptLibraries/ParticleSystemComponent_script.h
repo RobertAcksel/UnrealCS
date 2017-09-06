@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Particles/ParticleSystemComponent.h"
 #include "ParticleSystemComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UParticleSystemComponent_ : public UParticleSystemComponent
 {
@@ -170,7 +174,7 @@ class MONOPLUGIN_API UParticleSystemComponent_ : public UParticleSystemComponent
 		_this->SetBeamEndPoint(EmitterIndex,*NewEndPoint);
 		
 	}
-	static UClass* StaticClass(){return UParticleSystemComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UParticleSystemComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -202,7 +206,7 @@ class MONOPLUGIN_API UParticleSystemComponent_ : public UParticleSystemComponent
 		mono_add_internal_call("UnrealEngine.UParticleSystemComponent::SetBeamSourceTangent",(const void*)SetBeamSourceTangent);
 		mono_add_internal_call("UnrealEngine.UParticleSystemComponent::SetBeamSourcePoint",(const void*)SetBeamSourcePoint);
 		mono_add_internal_call("UnrealEngine.UParticleSystemComponent::SetBeamEndPoint",(const void*)SetBeamEndPoint);
-		mono_add_internal_call("UnrealEngine.UParticleSystemComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UParticleSystemComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

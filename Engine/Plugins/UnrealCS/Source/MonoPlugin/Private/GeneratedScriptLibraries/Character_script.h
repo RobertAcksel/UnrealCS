@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/GameFramework/Character.h"
 #include "Character_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API ACharacter_ : public ACharacter
 {
@@ -132,7 +136,7 @@ class MONOPLUGIN_API ACharacter_ : public ACharacter
 		_this->CacheInitialMeshOffset(*MeshRelativeLocation,*MeshRelativeRotation);
 		
 	}
-	static UClass* StaticClass(){return ACharacter::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ACharacter::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -159,7 +163,7 @@ class MONOPLUGIN_API ACharacter_ : public ACharacter
 		mono_add_internal_call("UnrealEngine.ACharacter::SetReplicateMovement",(const void*)SetReplicateMovement);
 		mono_add_internal_call("UnrealEngine.ACharacter::OnRep_ReplicatedBasedMovement",(const void*)OnRep_ReplicatedBasedMovement);
 		mono_add_internal_call("UnrealEngine.ACharacter::CacheInitialMeshOffset",(const void*)CacheInitialMeshOffset);
-		mono_add_internal_call("UnrealEngine.ACharacter::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ACharacter::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

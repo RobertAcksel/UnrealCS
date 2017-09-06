@@ -1,17 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
-#include "NavigationGraphNodeComponent_script.generated.h"
-UCLASS()
-class MONOPLUGIN_API UNavigationGraphNodeComponent_ : public UNavigationGraphNodeComponent
+class UNavigationGraphNodeComponent_
 {
-	GENERATED_BODY()
-	static UClass* StaticClass(){return UNavigationGraphNodeComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UNavigationGraphNodeComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UNavigationGraphNodeComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UNavigationGraphNodeComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

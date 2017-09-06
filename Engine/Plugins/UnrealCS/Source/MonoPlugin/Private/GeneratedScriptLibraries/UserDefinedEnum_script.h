@@ -1,14 +1,13 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UUserDefinedEnum_
 {
-	static UClass* StaticClass(){return UUserDefinedEnum::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UUserDefinedEnum::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
-		mono_add_internal_call("UnrealEngine.UUserDefinedEnum::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UUserDefinedEnum::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

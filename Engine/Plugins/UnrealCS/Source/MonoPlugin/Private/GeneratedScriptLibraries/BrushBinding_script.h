@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UBrushBinding_
@@ -10,12 +9,12 @@ class UBrushBinding_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UBrushBinding::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UBrushBinding::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UBrushBinding::GetValue",(const void*)GetValue);
-		mono_add_internal_call("UnrealEngine.UBrushBinding::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UBrushBinding::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

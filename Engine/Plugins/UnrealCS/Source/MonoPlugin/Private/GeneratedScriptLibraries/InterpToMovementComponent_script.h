@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/InterpToMovementComponent.h"
 #include "InterpToMovementComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UInterpToMovementComponent_ : public UInterpToMovementComponent
 {
@@ -22,14 +26,14 @@ class MONOPLUGIN_API UInterpToMovementComponent_ : public UInterpToMovementCompo
 		_this->StopSimulating(*HitResult);
 		
 	}
-	static UClass* StaticClass(){return UInterpToMovementComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UInterpToMovementComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UInterpToMovementComponent::FinaliseControlPoints",(const void*)FinaliseControlPoints);
 		mono_add_internal_call("UnrealEngine.UInterpToMovementComponent::RestartMovement",(const void*)RestartMovement);
 		mono_add_internal_call("UnrealEngine.UInterpToMovementComponent::StopSimulating",(const void*)StopSimulating);
-		mono_add_internal_call("UnrealEngine.UInterpToMovementComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UInterpToMovementComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

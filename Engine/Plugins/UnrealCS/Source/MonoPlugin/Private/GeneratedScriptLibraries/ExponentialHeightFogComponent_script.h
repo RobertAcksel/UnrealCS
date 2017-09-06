@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/ExponentialHeightFogComponent.h"
 #include "ExponentialHeightFogComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UExponentialHeightFogComponent_ : public UExponentialHeightFogComponent
 {
@@ -107,7 +111,7 @@ class MONOPLUGIN_API UExponentialHeightFogComponent_ : public UExponentialHeight
 		_this->SetFogDensity(Value);
 		
 	}
-	static UClass* StaticClass(){return UExponentialHeightFogComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UExponentialHeightFogComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -131,7 +135,7 @@ class MONOPLUGIN_API UExponentialHeightFogComponent_ : public UExponentialHeight
 		mono_add_internal_call("UnrealEngine.UExponentialHeightFogComponent::SetInscatteringColorCubemap",(const void*)SetInscatteringColorCubemap);
 		mono_add_internal_call("UnrealEngine.UExponentialHeightFogComponent::SetFogInscatteringColor",(const void*)SetFogInscatteringColor);
 		mono_add_internal_call("UnrealEngine.UExponentialHeightFogComponent::SetFogDensity",(const void*)SetFogDensity);
-		mono_add_internal_call("UnrealEngine.UExponentialHeightFogComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UExponentialHeightFogComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

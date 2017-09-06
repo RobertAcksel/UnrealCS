@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UScrollBoxSlot_
@@ -14,13 +13,13 @@ class UScrollBoxSlot_
 		_this->SetPadding(*InPadding);
 		
 	}
-	static UClass* StaticClass(){return UScrollBoxSlot::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UScrollBoxSlot::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UScrollBoxSlot::SetHorizontalAlignment",(const void*)SetHorizontalAlignment);
 		mono_add_internal_call("UnrealEngine.UScrollBoxSlot::SetPadding",(const void*)SetPadding);
-		mono_add_internal_call("UnrealEngine.UScrollBoxSlot::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UScrollBoxSlot::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

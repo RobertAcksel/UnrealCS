@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/SplineMeshComponent.h"
 #include "SplineMeshComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API USplineMeshComponent_ : public USplineMeshComponent
 {
@@ -171,7 +175,7 @@ class MONOPLUGIN_API USplineMeshComponent_ : public USplineMeshComponent
 		_this->UpdateMesh();
 		
 	}
-	static UClass* StaticClass(){return USplineMeshComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return USplineMeshComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -205,7 +209,7 @@ class MONOPLUGIN_API USplineMeshComponent_ : public USplineMeshComponent
 		mono_add_internal_call("UnrealEngine.USplineMeshComponent::SetStartPosition",(const void*)SetStartPosition);
 		mono_add_internal_call("UnrealEngine.USplineMeshComponent::GetStartPosition",(const void*)GetStartPosition);
 		mono_add_internal_call("UnrealEngine.USplineMeshComponent::UpdateMesh",(const void*)UpdateMesh);
-		mono_add_internal_call("UnrealEngine.USplineMeshComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.USplineMeshComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

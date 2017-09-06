@@ -1,8 +1,12 @@
 //GENERATED: C++ Code
-
 #pragma once
 
+#include "CoreMinimal.h"
+#include "ObjectMacros.h"
+#include "MonoScriptBindHelper.h"
+#include "F:/UnrealEngineSource/Engine/Source/Runtime/Engine/Classes/Components/StereoLayerComponent.h"
 #include "StereoLayerComponent_script.generated.h"
+
 UCLASS()
 class MONOPLUGIN_API UStereoLayerComponent_ : public UStereoLayerComponent
 {
@@ -56,7 +60,7 @@ class MONOPLUGIN_API UStereoLayerComponent_ : public UStereoLayerComponent
 		_this->SetTexture(InTexture);
 		
 	}
-	static UClass* StaticClass(){return UStereoLayerComponent::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UStereoLayerComponent::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -69,7 +73,7 @@ class MONOPLUGIN_API UStereoLayerComponent_ : public UStereoLayerComponent
 		mono_add_internal_call("UnrealEngine.UStereoLayerComponent::SetQuadSize",(const void*)SetQuadSize);
 		mono_add_internal_call("UnrealEngine.UStereoLayerComponent::GetTexture",(const void*)GetTexture);
 		mono_add_internal_call("UnrealEngine.UStereoLayerComponent::SetTexture",(const void*)SetTexture);
-		mono_add_internal_call("UnrealEngine.UStereoLayerComponent::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UStereoLayerComponent::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

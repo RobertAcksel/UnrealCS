@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class ULevelStreaming_
@@ -28,7 +27,7 @@ class ULevelStreaming_
 		return ___ret?1:0;
 		
 	}
-	static UClass* StaticClass(){return ULevelStreaming::StaticClass();}
+	static UClass* _StaticClassForProxy(){return ULevelStreaming::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -36,7 +35,7 @@ class ULevelStreaming_
 		mono_add_internal_call("UnrealEngine.ULevelStreaming::IsStreamingStatePending",(const void*)IsStreamingStatePending);
 		mono_add_internal_call("UnrealEngine.ULevelStreaming::IsLevelLoaded",(const void*)IsLevelLoaded);
 		mono_add_internal_call("UnrealEngine.ULevelStreaming::IsLevelVisible",(const void*)IsLevelVisible);
-		mono_add_internal_call("UnrealEngine.ULevelStreaming::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.ULevelStreaming::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

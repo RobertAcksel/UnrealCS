@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UMultiLineEditableText_
@@ -21,14 +20,14 @@ class UMultiLineEditableText_
 		return FStringToMonoString(___ret.ToString());
 		
 	}
-	static UClass* StaticClass(){return UMultiLineEditableText::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UMultiLineEditableText::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
 		mono_add_internal_call("UnrealEngine.UMultiLineEditableText::SetIsReadOnly",(const void*)SetIsReadOnly);
 		mono_add_internal_call("UnrealEngine.UMultiLineEditableText::SetText",(const void*)SetText);
 		mono_add_internal_call("UnrealEngine.UMultiLineEditableText::GetText",(const void*)GetText);
-		mono_add_internal_call("UnrealEngine.UMultiLineEditableText::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UMultiLineEditableText::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	

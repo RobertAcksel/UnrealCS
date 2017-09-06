@@ -1,5 +1,4 @@
 //GENERATED: C++ Code
-
 #pragma once
 
 class UPanelWidget_
@@ -57,7 +56,7 @@ class UPanelWidget_
 		return ___ret;
 		
 	}
-	static UClass* StaticClass(){return UPanelWidget::StaticClass();}
+	static UClass* _StaticClassForProxy(){return UPanelWidget::StaticClass();}
 	public:
 	static void BindFunctions()
 	{
@@ -70,7 +69,7 @@ class UPanelWidget_
 		mono_add_internal_call("UnrealEngine.UPanelWidget::GetChildIndex",(const void*)GetChildIndex);
 		mono_add_internal_call("UnrealEngine.UPanelWidget::GetChildAt",(const void*)GetChildAt);
 		mono_add_internal_call("UnrealEngine.UPanelWidget::GetChildrenCount",(const void*)GetChildrenCount);
-		mono_add_internal_call("UnrealEngine.UPanelWidget::StaticClass",(const void*)StaticClass);
+		mono_add_internal_call("UnrealEngine.UPanelWidget::StaticClass",(const void*)_StaticClassForProxy);
 		
 	}
 	
