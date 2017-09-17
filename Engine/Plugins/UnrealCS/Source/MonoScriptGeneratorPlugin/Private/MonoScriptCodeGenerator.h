@@ -54,8 +54,9 @@ class FMonoScriptCodeGenerator : public FScriptCodeGeneratorBase
 	bool CollectExportInfo(UStruct* Struct);
 	void CollectExportInfo(UFunction* Struct);
 	void CollectExportInfo(UProperty* Property);
+    FMonoTextBuilder ExportImplementableEvent(const FString & ClassNameCPP, UClass * Class, UFunction * Function);
 
-	virtual bool IsStructSupported(UScriptStruct* Struct);
+    virtual bool IsStructSupported(UScriptStruct* Struct);
 	virtual bool IsClassSupported(UClass* Class);
 	bool IsEnumSupported(UEnum* Property);
 	bool IsFunctionSupported(UClass* Class, UFunction* Func);

@@ -9,7 +9,7 @@ namespace UnrealEngine
         static extern void Destroy(IntPtr _this);
 
         [AssemblyRemoved]
-        public virtual void BeginPlay() { }
+        protected virtual void BeginPlay() { }
 
         public void Destroy()
         {

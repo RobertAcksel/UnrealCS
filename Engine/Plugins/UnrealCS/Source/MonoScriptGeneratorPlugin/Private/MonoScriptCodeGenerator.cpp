@@ -190,7 +190,8 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 {
 	UClass* Class = CI.Class;
 
-	TArray<FString> AllExportedFunctions;
+    TArray<FString> AllExportedImplementableEvents;
+    TArray<FString> AllExportedFunctions;
 
 	const FString ClassNameCPP = GetClassNameCPP(Class);
 
@@ -255,7 +256,7 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 	    }
 
 	    if(isScriptCreateableClass) {
-            GeneratedGlue.Append(FString::Printf(TEXT(" : public %s"), *ClassNameCPP));
+            GeneratedGlue.Append(FString::Printf(TEXT(" : public %s, public IMonoScriptBinding"), *ClassNameCPP));
         }
         GeneratedGlue.AppendLine();
 		GeneratedGlue.OpenBrace();
@@ -270,9 +271,19 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 			UFunction* Function = *FuncIt;
 			if (IsFunctionSupported(Class, Function))
 			{
-				AllExportedFunctions.Add(Function->GetName());
-				UE_LOG(LogScriptGenerator, Log, TEXT("Exporting Function %s"), *Function->GetName());
-				GeneratedGlue.Append(ExportFunction(ClassNameCPP, Class, Function));
+                if (Function->HasAnyFunctionFlags(FUNC_BlueprintEvent)
+                    //TODO: currently only support 0 params
+                    && Function->ParmsSize == 0
+                    ) {
+                    AllExportedImplementableEvents.Add(Function->GetName());
+                    UE_LOG(LogScriptGenerator, Log, TEXT("Exporting Event %s"), *Function->GetName());
+                    GeneratedGlue.Append(ExportImplementableEvent(ClassNameCPP, Class, Function));
+                } else {
+				    AllExportedFunctions.Add(Function->GetName());
+				    UE_LOG(LogScriptGenerator, Log, TEXT("Exporting Function %s"), *Function->GetName());
+				    GeneratedGlue.Append(ExportFunction(ClassNameCPP, Class, Function));
+                }
+
 			}
 			else
 			{
@@ -302,6 +313,12 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 		//	}
 		//}
 
+	    if(isScriptCreateableClass) {
+            GeneratedGlue.AppendLine(TEXT("UPROPERTY(Category = Script, EditAnywhere)"));
+            GeneratedGlue.AppendLine(TEXT("bool SyncProperty;"));
+            GeneratedGlue.AppendLine(TEXT(""));
+            GeneratedGlue.AppendLine(TEXT("inline virtual bool & GetSyncProperty() const{ return SyncProperty; }"));
+        }
 
 	    const auto proxyStaticClassFunctionName = TEXT("_StaticClassForProxy");
 
@@ -310,6 +327,11 @@ void FMonoScriptCodeGenerator::ExportClass(ClassInfo& CI)
 		GeneratedGlue.AppendLine(TEXT("public:"));
 		GeneratedGlue.AppendLine(TEXT("static void BindFunctions()"));
 		GeneratedGlue.OpenBrace();
+
+        for (int i = 0; i < AllExportedImplementableEvents.Num(); i++)
+        {
+//            GeneratedGlue.AppendLine(FString::Printf(TEXT("mono_add_internal_call(\"UnrealEngine.%s::%s\",(const void*)%s);"), *ClassNameCPP, *AllExportedFunctions[i], *AllExportedFunctions[i]));
+        }
 
 		for (int i = 0; i < AllExportedFunctions.Num(); i++)
 		{
@@ -415,6 +437,71 @@ void FMonoScriptCodeGenerator::CollectExportInfo(UProperty* Property)
 		UStructProperty* StructProp = Cast<UStructProperty>(Property);
 		CollectExportInfo(StructProp->Struct);
 	}
+}
+
+FMonoTextBuilder FMonoScriptCodeGenerator::ExportImplementableEvent(const FString& ClassNameCPP, UClass* Class, UFunction* Function){
+
+    //C++声明以及返回值
+    {
+
+        UProperty* ReturnValue = Function->GetReturnProperty();
+        FMonoTextBuilder FuncText;
+        auto className = *GetClassNameCPP(Class);
+        if (ReturnValue != nullptr)
+            FuncText += FString::Printf(TEXT("virtual %s %s("), *Factory.GetCppMarshalReturnTypeName(ReturnValue), *Function->GetName());
+        else
+            FuncText += FString::Printf(TEXT("virtual void %s("), *Function->GetName());
+
+        //TODO: not supported atm
+        for (TFieldIterator<UProperty> ParamIt(Function); ParamIt; ++ParamIt)
+        {
+            UProperty* Param = *ParamIt;
+            if (!(Param->GetPropertyFlags() & CPF_ReturnParm))
+            {
+                FuncText += FString::Printf(TEXT(",%s %s"), *Factory.GetCppMarshalTypeName(Param), *Param->GetName());
+            }
+        }
+        FuncText.AppendLine(TEXT(") override"));
+        FuncText.OpenBrace();
+
+        FMonoTextBuilder PreCallDeclare;
+        FMonoTextBuilder PostCallSet;
+        FMonoTextBuilder paramList;
+
+        bool first = true;
+        for (TFieldIterator<UProperty> ParamIt(Function); ParamIt; ++ParamIt)
+        {
+            UProperty* Param = *ParamIt;
+            if (!(Param->GetPropertyFlags() & CPF_ReturnParm))
+            {
+                if (!first)
+                    paramList += ",";
+                {
+                    PreCallDeclare.AppendLine(Factory.BuildCppFuncPreCall(Param));
+                    PostCallSet.AppendLine(Factory.BuildCppFuncPostSet(Param));
+                    paramList += Factory.BuildCppCallParam(Param);
+
+                    first = false;
+                }
+            }
+        }
+        FuncText.Append(PreCallDeclare);
+
+        if (ReturnValue)
+        {
+            FuncText.AppendLine(FString::Printf(TEXT("%s ___ret = _this->%s(%s);"), *Factory.GetCppParamTypeName(ReturnValue), *Function->GetName(), *paramList.ToText()));
+            FuncText.AppendLine(Factory.BuildCppFuncReturn(ReturnValue));
+
+        }
+        else
+        {
+            FuncText.AppendLine(FString::Printf(TEXT("_this->%s(%s);"), *Function->GetName(), *paramList.ToText()));
+        }
+        FuncText.Append(PostCallSet);
+        FuncText.CloseBrace();
+
+        return FuncText;
+    }
 }
 
 FMonoTextBuilder FMonoScriptCodeGenerator::ExportFunction(const FString& ClassNameCPP, UClass* Class, UFunction* Function)
@@ -650,7 +737,7 @@ bool FMonoScriptCodeGenerator::IsFunctionSupported(UClass* Class, UFunction* Fun
 	// We don't support delegates and non-public functions
 	if (!(Function->FunctionFlags & (FUNC_Public))
 		|| Function->HasMetaData("DeprecatedFunction")
-		|| Function->HasAnyFunctionFlags(FUNC_BlueprintEvent)
+//		|| Function->HasAnyFunctionFlags(FUNC_BlueprintEvent)
 		//|| Function->HasAnyFunctionFlags(FUNC_Static)
 		//|| Function->GetBoolMetaData("BlueprintInternalUseOnly")
 		)
